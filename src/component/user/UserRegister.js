@@ -1,4 +1,7 @@
 import React from "react";
+import classnames from "classnames";
+const axios = require('axios');
+
 
 class UserRegister extends React.Component{
     constructor() {
@@ -11,11 +14,25 @@ class UserRegister extends React.Component{
             phone: "",
             password: "",
             confirmPassword: "",
-            gender: {}
+            gender: {},
+            referenceCode:"",
+            errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    createUser(newUser){
+        console.log("user cretade");
+        console.log(newUser);
+        axios.post('http://localhost:8080/user/register', newUser)
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
 
@@ -25,14 +42,18 @@ class UserRegister extends React.Component{
 
     onSubmit(e) {
         e.preventDefault();
-        const newProject = {
-            projectName: this.state.projectName,
-            projectIdentifier: this.state.projectIdentifier,
-            description: this.state.description,
-            start_date: this.state.start_date,
-            end_date: this.state.end_date
+        const newUser = {
+            name: this.state.name,
+            surname: this.state.surname,
+            email: this.state.email,
+            phone: this.state.phone,
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword,
+            gender: this.state.gender,
+            referenceCode: this.state.referenceCode,
+
         };
-        this.props.createProject(newProject, this.props.history);
+        this.createUser(newUser);
     }
 
     render() {
@@ -44,23 +65,23 @@ class UserRegister extends React.Component{
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8 m-auto">
-                                <h5 className="display-4 text-center">Create Project form</h5>
+                                <h5 className="display-4 text-center">Kullanıcı Kayıt</h5>
                                 <hr />
                                 <form onSubmit={this.onSubmit}>
                                     <div className="form-group">
                                         <input
                                             type="text"
                                             className={classnames("form-control form-control-lg", {
-                                                "is-invalid": errors.projectName
+                                                "is-invalid": errors.name
                                             })}
                                             placeholder="İsim"
                                             name="name"
-                                            value={this.state.projectName}
+                                            value={this.state.name}
                                             onChange={this.onChange}
                                         />
-                                        {errors.projectName && (
+                                        {errors.name && (
                                             <div className="invalid-feedback">
-                                                {errors.projectName}
+                                                {errors.name}
                                             </div>
                                         )}
                                     </div>
@@ -68,54 +89,122 @@ class UserRegister extends React.Component{
                                         <input
                                             type="text"
                                             className={classnames("form-control form-control-lg", {
-                                                "is-invalid": errors.projectIdentifier
+                                                "is-invalid": errors.surname
                                             })}
-                                            placeholder="Unique Project ID"
-                                            name="projectIdentifier"
-                                            value={this.state.projectIdentifier}
+                                            placeholder="Soyisim"
+                                            name="surname"
+                                            value={this.state.surname}
                                             onChange={this.onChange}
                                         />
-                                        {errors.projectIdentifier && (
+                                        {errors.surname && (
                                             <div className="invalid-feedback">
-                                                {errors.projectIdentifier}
+                                                {errors.surname}
                                             </div>
                                         )}
                                     </div>
                                     <div className="form-group">
-                    <textarea
-                        className={classnames("form-control form-control-lg", {
-                            "is-invalid": errors.description
-                        })}
-                        placeholder="Project Description"
-                        name="description"
-                        value={this.state.description}
-                        onChange={this.onChange}
-                    />
-                                        {errors.description && (
+                                        <input
+                                            type="text"
+                                            className={classnames("form-control form-control-lg", {
+                                                "is-invalid": errors.email
+                                            })}
+                                            placeholder="E-Posta"
+                                            name="email"
+                                            value={this.state.email}
+                                            onChange={this.onChange}
+                                        />
+                                        {errors.email && (
                                             <div className="invalid-feedback">
-                                                {errors.description}
+                                                {errors.email}
                                             </div>
                                         )}
                                     </div>
-                                    <h6>Start Date</h6>
                                     <div className="form-group">
                                         <input
-                                            type="date"
-                                            className="form-control form-control-lg"
-                                            name="start_date"
-                                            value={this.state.start_date}
+                                            type="text"
+                                            className={classnames("form-control form-control-lg", {
+                                                "is-invalid": errors.phone
+                                            })}
+                                            placeholder="Telefon"
+                                            name="phone"
+                                            value={this.state.phone}
                                             onChange={this.onChange}
                                         />
+                                        {errors.phone && (
+                                            <div className="invalid-feedback">
+                                                {errors.phone}
+                                            </div>
+                                        )}
                                     </div>
-                                    <h6>Estimated End Date</h6>
                                     <div className="form-group">
                                         <input
-                                            type="date"
-                                            className="form-control form-control-lg"
-                                            name="end_date"
-                                            value={this.state.end_date}
+                                            type="password"
+                                            className={classnames("form-control form-control-lg", {
+                                                "is-invalid": errors.password
+                                            })}
+                                            placeholder="Şifre"
+                                            name="password"
+                                            value={this.state.password}
                                             onChange={this.onChange}
                                         />
+                                        {errors.password && (
+                                            <div className="invalid-feedback">
+                                                {errors.password}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="form-group">
+                                        <input
+                                            type="password"
+                                            className={classnames("form-control form-control-lg", {
+                                                "is-invalid": errors.confirmPassword
+                                            })}
+                                            placeholder="Şifre Tekrar"
+                                            name="confirmPassword"
+                                            value={this.state.confirmPassword}
+                                            onChange={this.onChange}
+                                        />
+                                        {errors.confirmPassword && (
+                                            <div className="invalid-feedback">
+                                                {errors.confirmPassword}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="form-group">
+                                        <label>Erkek</label> <input type="radio"
+                                        name="gender"
+                                        value="MALE"
+                                        onChange={this.onChange}
+                                        />&nbsp;&nbsp;&nbsp;
+                                        <label>Kadın</label>
+                                        <input type="radio"
+                                        name="gender"
+                                        value="FEMALE"
+                                        onChange={this.onChange}
+                                        />
+
+                                        {errors.gender && (
+                                            <div className="invalid-feedback">
+                                                {errors.gender}
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="form-group">
+                                        <input
+                                            type="text"
+                                            className={classnames("form-control form-control-lg", {
+                                                "is-invalid": errors.referenceCode
+                                            })}
+                                            placeholder="Referans Kodu"
+                                            name="referenceCode"
+                                            value={this.state.referenceCode}
+                                            onChange={this.onChange}
+                                        />
+                                        {errors.referenceCode && (
+                                            <div className="invalid-feedback">
+                                                {errors.referenceCode}
+                                            </div>
+                                        )}
                                     </div>
 
                                     <input
@@ -132,8 +221,5 @@ class UserRegister extends React.Component{
     }
 }
 
-UserRegister.propTypes = {
-    createProject: PropTypes.func.isRequired,
-    errors: PropTypes.object.isRequired
-};
+
 export default UserRegister;
