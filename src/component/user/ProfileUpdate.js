@@ -2,32 +2,48 @@ import React from "react";
 import classnames from "classnames";
 const axios = require('axios');
 
-
-class UserRegister extends React.Component {
-    constructor() {
-        super();
+class ProfileUpdate extends React.Component{
+    constructor(props) {
+        super(props);
 
         this.state = {
             name: "",
             surname: "",
             email: "",
             phone: "",
-            password: "",
-            confirmPassword: "",
             gender: "UNSELECTED",
             referenceCode: "",
+            about:"",
+            motivation:"",
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+
+        this.fillFields();
     }
 
-    createUser(newUser) {
-        console.log("user cretade");
+    fillFields(){
+        console.log(this.props);
+        let self = this;
+        let userId = this.props.match.params.id
+        axios.get('http://localhost:8080/user/id/'+userId)
+            .then(function (response) {
+                console.log(response);
+                self.setState(response.data);
+            })
+            .catch(function (error) {
+                console.log(error.response);
+                self.setState({"errors": error.response.data});
+            });
+    }
+
+    updateUser(newUser) {
+        console.log("profile updated");
         console.log(newUser);
         let self = this;
-        axios.post('http://localhost:8080/user/register', newUser)
+        axios.post('http://localhost:8080/user/update', newUser)
             .then(function (response) {
                 console.log(response);
                 self.setState({"errors": {}});
@@ -50,25 +66,26 @@ class UserRegister extends React.Component {
             surname: this.state.surname,
             email: this.state.email,
             phone: this.state.phone,
-            password: this.state.password,
-            confirmPassword: this.state.confirmPassword,
             gender: this.state.gender,
             referenceCode: this.state.referenceCode,
-
+            about:this.state.about,
+            motivation: this.state.motivation
         };
-        this.createUser(newUser);
+        this.updateUser(newUser);
     }
 
-    render() {
+
+    render(){
         const {errors} = this.state;
         const show = {display: "inline"}
-        return (
+
+        return(
             <div>
                 <div className="project">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-8 m-auto">
-                                <h5 className="display-4 text-center">Kullanıcı Kayıt</h5>
+                                <h5 className="display-4 text-center">Hakkımda</h5>
                                 <hr/>
                                 <form onSubmit={this.onSubmit}>
                                     <div className="form-group">
@@ -140,39 +157,24 @@ class UserRegister extends React.Component {
                                         )}
                                     </div>
                                     <div className="form-group">
-                                        <input
-                                            type="password"
-                                            className={classnames("form-control form-control-lg", {
-                                                "is-invalid": errors.password
-                                            })}
-                                            placeholder="Şifre"
-                                            name="password"
-                                            value={this.state.password}
+                                        <textarea
+                                            className={classnames("form-control form-control-lg")}
+                                            placeholder="Kısaca Kendinden Bahset..."
+                                            name="about"
+                                            value={this.state.about}
                                             onChange={this.onChange}
                                         />
-                                        {errors.password && (
-                                            <div className="invalid-feedback">
-                                                {errors.password}
-                                            </div>
-                                        )}
                                     </div>
                                     <div className="form-group">
-                                        <input
-                                            type="password"
-                                            className={classnames("form-control form-control-lg", {
-                                                "is-invalid": errors.confirmPassword
-                                            })}
-                                            placeholder="Şifre Tekrar"
-                                            name="confirmPassword"
-                                            value={this.state.confirmPassword}
+                                        <textarea
+                                            className={classnames("form-control form-control-lg")}
+                                            placeholder="Neden Burdasın..."
+                                            name="motivation"
+                                            value={this.state.motivation}
                                             onChange={this.onChange}
                                         />
-                                        {errors.confirmPassword && (
-                                            <div className="invalid-feedback">
-                                                {errors.confirmPassword}
-                                            </div>
-                                        )}
                                     </div>
+
                                     <div className="form-group">
                                         <label>Erkek&nbsp;</label>
                                         <input type="radio"
@@ -220,9 +222,9 @@ class UserRegister extends React.Component {
                     </div>
                 </div>
             </div>
-        );
+
+        )
     }
 }
 
-
-export default UserRegister;
+export default ProfileUpdate;
