@@ -7,6 +7,7 @@ import UserRegister from './component/user/UserRegister';
 import ProfileUpdate from './component/user/ProfileUpdate';
 
 import './App.css';
+import Landing from "./component/common/Landing";
 
 class App extends Component {
     render() {
@@ -14,7 +15,7 @@ class App extends Component {
             <Router>
                 <div className="App">
                     <Header/>
-                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/" component={Landing}/>
                     {<Route exact path="/user/register" component={UserRegister}/>}
                     {<Route exact path="/user/update/:id" component={ProfileUpdate}/>}
                 </div>

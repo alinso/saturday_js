@@ -27,7 +27,7 @@ class ProfileUpdate extends React.Component{
     fillFields(){
         console.log(this.props);
         let self = this;
-        let userId = this.props.match.params.id
+        let userId = this.props.match.params.id;
         axios.get('http://localhost:8080/user/id/'+userId)
             .then(function (response) {
                 console.log(response);
@@ -62,6 +62,8 @@ class ProfileUpdate extends React.Component{
     onSubmit(e) {
         e.preventDefault();
         const newUser = {
+            //TODO:this will change after security
+            id:this.props.match.params.id,
             name: this.state.name,
             surname: this.state.surname,
             email: this.state.email,
@@ -78,6 +80,7 @@ class ProfileUpdate extends React.Component{
     render(){
         const {errors} = this.state;
         const show = {display: "inline"}
+
 
         return(
             <div>
@@ -181,12 +184,15 @@ class ProfileUpdate extends React.Component{
                                                name="gender"
                                                value="MALE"
                                                onChange={this.onChange}
+                                               checked={this.state.gender === "MALE"}
                                         />&nbsp;&nbsp;&nbsp;&nbsp;
+
                                         <label>Kadın&nbsp;</label>
                                         <input type="radio"
                                                name="gender"
                                                onChange={this.onChange}
                                                value="FEMALE"
+                                               checked={this.state.gender === "FEMALE"}
                                         />
                                         <br/>
                                         <div className="invalid-feedback" style={show}>
