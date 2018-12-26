@@ -28,7 +28,11 @@ class ProfileUpdate extends React.Component{
         console.log(this.props);
         let self = this;
         let userId = this.props.match.params.id;
-        axios.get('http://localhost:8080/user/id/'+userId)
+        axios.get('http://localhost:8080/user/id/'+userId,{
+            headers: {
+                Authorization: localStorage.getItem("jwtToken"),
+            }
+        })
             .then(function (response) {
                 console.log(response);
                 self.setState(response.data);

@@ -10,8 +10,11 @@ class Header extends React.Component {
                     <Link className="navbar-brand" to="/">
                         Home
                     </Link>
-                    <Link className="navbar-brand" to="/user/register">
+                    <Link className="navbar-brand" to="/register">
                         Kaydol
+                    </Link>
+                    <Link className="navbar-brand" to="/login">
+                        Giriş Yap
                     </Link>
                     <Link className="navbar-brand" to="/user/update">
                         Güncelle

@@ -3,7 +3,7 @@ import classnames from "classnames";
 const axios = require('axios');
 
 
-class UserRegister extends React.Component {
+class Register extends React.Component {
     constructor() {
         super();
 
@@ -225,4 +225,4 @@ class UserRegister extends React.Component {
 }
 
 
-export default UserRegister;
+export default Register;
