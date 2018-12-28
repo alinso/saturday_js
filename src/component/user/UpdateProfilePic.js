@@ -44,9 +44,9 @@ class UpdateProfilePic extends React.Component {
     };
 
     handleUpload = () => {
-        const data = new FormData()
-        data.append('file', this.state.selectedFile, this.state.selectedFile.name,)
-
+        const data = new FormData();
+        data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+        const self = this;
         axios
             .post("http://localhost:8080/user/updateProfilePic", data, security.authHeader(), {
                 onUploadProgress: ProgressEvent => {
@@ -57,10 +57,15 @@ class UpdateProfilePic extends React.Component {
             })
             .then(res => {
                 this.setState({"profilePicUrl":res.data});
-            });
+            })
+            .catch(function (error) {
+            self.setState({"errors": error.response.data});
+        });
     };
 
     render() {
+        const {errors} = this.state;
+
         return (
             <div className="row">
                 <div className="col-md-8 m-auto">
@@ -72,6 +77,12 @@ class UpdateProfilePic extends React.Component {
                         <input type="file" name="" id="" onChange={this.handleSelectedFile}/>
                         <button onClick={this.handleUpload}>Upload</button>
                         <div> {Math.round(this.state.loaded)} %</div>
+
+                        {errors.file && (
+                            <div>
+                                {errors.file}
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

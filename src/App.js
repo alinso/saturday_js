@@ -14,6 +14,7 @@ import Login from "./component/user/Login";
 import UpdateInfo from "./component/user/UpdateInfo";
 import UpdatePassword from "./component/user/UpdatePassword";
 import UpdateProfilePic from "./component/user/UpdateProfilePic";
+import MyAlbum from "./component/user/MyAlbum";
 
 class App extends Component {
 
@@ -42,6 +43,7 @@ class App extends Component {
                     {<Route exact path="/updateInfo" component={UpdateInfo}/>}
                     {<Route exact path="/updatePassword" component={UpdatePassword}/>}
                     {<Route exact path="/updateProfilePic" component={UpdateProfilePic}/>}
+                    {<Route exact path="/myAlbum" component={MyAlbum}/>}
 
 
                 </div>
