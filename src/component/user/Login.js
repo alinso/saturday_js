@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import classnames from "classnames";
+import security from "../../security/Security";
+
 const axios = require('axios');
 
 class Login extends Component {
@@ -30,30 +32,26 @@ class Login extends Component {
     //   }
     //}
     login(LoginRequest) {
-        const self =this;
+        const self = this;
         try {
             // post => Login Request
-            console.log("asd");
-             axios.post("http://localhost:8080/user/login", LoginRequest)
+            axios.post("http://localhost:8080/user/login", LoginRequest)
                 .then(function (res) {
                     const {token} = res.data;
-                    localStorage.setItem("jwtToken", token);
-                    self.setJWTToken(token);
+                    const {userName} = res.data;
+                    security.setLoginCredentials(token, userName);
+                    window.location = "/dashboard";
+                }).catch(function (error) {
+                console.log(error);
 
-                });
+
+                self.setState({"errors": error.response.data});
+            });
         } catch (err) {
-           console.log(err);
+            console.log(err);
         }
     };
 
-
-    setJWTToken(token) {
-        if (token) {
-            axios.defaults.headers.common["Authorization"] = token;
-        } else {
-            delete axios.defaults.headers.common["Authorization"];
-        }
-    };
 
     onSubmit(e) {
         e.preventDefault();
@@ -72,48 +70,42 @@ class Login extends Component {
     render() {
         const {errors} = this.state;
         return (
-            <div className="login">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-8 m-auto">
-                            <h1 className="display-4 text-center">Log In</h1>
-                            <form onSubmit={this.onSubmit}>
-                                <div className="form-group">
-                                    <input
-                                        type="text"
-                                        className={classnames("form-control form-control-lg", {
-                                            "is-invalid": errors.username
-                                        })}
-                                        placeholder="Email Address"
-                                        name="username"
-                                        value={this.state.username}
-                                        onChange={this.onChange}
-                                    />
-                                    {errors.username && (
-                                        <div className="invalid-feedback">{errors.username}</div>
-                                    )}
-                                </div>
-                                <div className="form-group">
-                                    <input
-                                        type="password"
-                                        className={classnames("form-control form-control-lg", {
-                                            "is-invalid": errors.password
-                                        })}
-                                        placeholder="Password"
-                                        name="password"
-                                        value={this.state.password}
-                                        onChange={this.onChange}
-                                    />
-                                    {errors.password && (
-                                        <div className="invalid-feedback">{errors.password}</div>
-                                    )}
-                                </div>
-                                <input type="submit" className="btn btn-info btn-block mt-4"/>
-                            </form>
+            <div className="row">
+                <div className="col-md-8 m-auto">
+                    <h1 className="display-4 text-center">Log In</h1>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                className={classnames("form-control form-control-lg", {
+                                    "is-invalid": errors.errorMessage
+                                })}
+                                placeholder="Email Address"
+                                name="username"
+                                value={this.state.username}
+                                onChange={this.onChange}
+                            />
                         </div>
-                    </div>
+                        <div className="form-group">
+                            <input
+                                type="password"
+                                className={classnames("form-control form-control-lg", {
+                                    "is-invalid": errors.errorMessage
+                                })}
+                                placeholder="Password"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.onChange}
+                            />
+                            {errors.errorMessage && (
+                                <div className="invalid-feedback">{errors.errorMessage} </div>
+                            )}
+                        </div>
+                        <input type="submit" className="btn btn-info btn-block mt-4"/>
+                    </form>
                 </div>
             </div>
+
         );
     }
 }

@@ -1,10 +1,14 @@
 import React from "react";
 import classnames from "classnames";
+import security from "../../security/Security";
 const axios = require('axios');
 
-class ProfileUpdate extends React.Component{
+
+
+class UpdateInfo extends React.Component{
     constructor(props) {
         super(props);
+        security.protect();
 
         this.state = {
             name: "",
@@ -27,12 +31,9 @@ class ProfileUpdate extends React.Component{
     fillFields(){
         console.log(this.props);
         let self = this;
-        let userId = this.props.match.params.id;
-        axios.get('http://localhost:8080/user/id/'+userId,{
-            headers: {
-                Authorization: localStorage.getItem("jwtToken"),
-            }
-        })
+        let userId = localStorage.getItem("userId");
+
+        axios.get('http://localhost:8080/user/id/'+userId,security.authHeader())
             .then(function (response) {
                 console.log(response);
                 self.setState(response.data);
@@ -47,7 +48,7 @@ class ProfileUpdate extends React.Component{
         console.log("profile updated");
         console.log(newUser);
         let self = this;
-        axios.post('http://localhost:8080/user/update', newUser)
+        axios.post('http://localhost:8080/user/updateInfo', newUser, security.authHeader())
             .then(function (response) {
                 console.log(response);
                 self.setState({"errors": {}});
@@ -66,8 +67,7 @@ class ProfileUpdate extends React.Component{
     onSubmit(e) {
         e.preventDefault();
         const newUser = {
-            //TODO:this will change after security
-            id:this.props.match.params.id,
+            id: localStorage.getItem("userId"),
             name: this.state.name,
             surname: this.state.surname,
             email: this.state.email,
@@ -237,4 +237,4 @@ class ProfileUpdate extends React.Component{
     }
 }
 
-export default ProfileUpdate;
+export default UpdateInfo;

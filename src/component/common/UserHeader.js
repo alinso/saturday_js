@@ -1,23 +1,21 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import security from "../../security/Security";
 
 
-class Header extends React.Component {
+class GuestHeader extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
-                        Home
+                        Night Out
                     </Link>
-                    <Link className="navbar-brand" to="/register">
-                        Kaydol
+                    <Link className="navbar-brand" to="/profile">
+                        Profilim
                     </Link>
-                    <Link className="navbar-brand" to="/login">
-                        Giriş Yap
-                    </Link>
-                    <Link className="navbar-brand" to="/user/update">
-                        Güncelle
+                    <Link className="navbar-brand" to="/logout">
+                        Çıkış Yap
                     </Link>
                     <button
                         className="navbar-toggler"
@@ -33,4 +31,4 @@ class Header extends React.Component {
     }
 }
 
-export default Header;
+export default GuestHeader;
