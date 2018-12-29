@@ -42,13 +42,13 @@ class Login extends Component {
                     security.setLoginCredentials(token, userName);
                     window.location = "/dashboard";
                 }).catch(function (error) {
-                console.log(error);
-
-
+                console.log("err")
+                console.log(error.response.data);
+                console.log("err")
                 self.setState({"errors": error.response.data});
             });
         } catch (err) {
-            console.log(err);
+
         }
     };
 
@@ -99,6 +99,9 @@ class Login extends Component {
                             />
                             {errors.errorMessage && (
                                 <div className="invalid-feedback">{errors.errorMessage} </div>
+                            )}
+                            {errors.userWarningMessage && (
+                                <div>{errors.userWarningMessage} </div>
                             )}
                         </div>
                         <input type="submit" className="btn btn-info btn-block mt-4"/>

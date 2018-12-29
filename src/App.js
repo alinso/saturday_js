@@ -15,6 +15,9 @@ import UpdateInfo from "./component/user/UpdateInfo";
 import UpdatePassword from "./component/user/UpdatePassword";
 import UpdateProfilePic from "./component/user/UpdateProfilePic";
 import MyAlbum from "./component/user/MyAlbum";
+import Settings from "./component/user/Settings";
+import VerifyMail from "./component/user/VerifyMail";
+import SearchUser from "./component/user/SearchUser";
 
 class App extends Component {
 
@@ -37,6 +40,7 @@ class App extends Component {
                     {<Route exact path="/logout" render={()=>security.logout()}/>}
                     {<Route exact path="/register" component={Register}/>}
                     {<Route exact path="/login" component={Login}/>}
+                    {<Route exact path="/searchUser" component={SearchUser}/>}
 
                     {<Route exact path="/dashboard" component={Dashboard}/>}
                     {<Route exact path="/profile" component={Profile}/>}
@@ -44,6 +48,8 @@ class App extends Component {
                     {<Route exact path="/updatePassword" component={UpdatePassword}/>}
                     {<Route exact path="/updateProfilePic" component={UpdateProfilePic}/>}
                     {<Route exact path="/myAlbum" component={MyAlbum}/>}
+                    {<Route exact path="/settings" component={Settings}/>}
+                    {<Route exact path="/verifyMail/:token" component={VerifyMail}/>}
 
 
                 </div>

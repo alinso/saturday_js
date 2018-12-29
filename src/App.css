@@ -23,7 +23,14 @@
 }
 
 .profilePic{
-  width: 80%;
+  width: 100%;
+}
+
+.albumPhoto{
+  width: 90%;
+}
+.userListProfile{
+    width:80%;
 }
 
 @keyframes App-logo-spin {

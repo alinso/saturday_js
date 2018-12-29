@@ -14,30 +14,15 @@ class UpdatePassword extends React.Component {
             newPassword: "",
             newPasswordConfirm: "",
             oldPassword: "",
+            passwordUpdatedMessage:false,
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
-        this.fillFields();
     }
 
-    fillFields() {
-        console.log(this.props);
-        let self = this;
-        let userId = localStorage.getItem("userId");
-
-        axios.get('http://localhost:8080/user/id/' + userId, security.authHeader())
-            .then(function (response) {
-                console.log(response);
-                self.setState(response.data);
-            })
-            .catch(function (error) {
-                console.log(error.response);
-                self.setState({"errors": error.response.data});
-            });
-    }
 
     UpdatePassword(changePasswordDto) {
         let self = this;
@@ -46,11 +31,13 @@ class UpdatePassword extends React.Component {
         axios.post('http://localhost:8080/user/updatePassword', changePasswordDto, security.authHeader())
             .then(function (response) {
                 console.log(response);
+                self.setState({"passwordUpdatedMessage":"Şifreniz Güncellendi"});
                 self.setState({"errors": {}});
             })
             .catch(function (error) {
                 console.log(error.response);
                 self.setState({"errors": error.response.data});
+                self.setState({"passwordUpdatedMessage":false});
             });
     }
 
@@ -72,14 +59,18 @@ class UpdatePassword extends React.Component {
 
     render() {
         const {errors} = this.state;
+        const {passwordUpdatedMessage} = this.state;
 
 
         return (
             <div>
                 <div className="row">
                     <div className="col-md-8 m-auto">
-                        <h5 className="display-4 text-center">Hakkımda</h5>
+                        <h5 className="display-4 text-center">Şifre Güncelle</h5>
                         <hr/>
+                        { passwordUpdatedMessage &&(
+                         <h6>{passwordUpdatedMessage}</h6>
+                        )}
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <input

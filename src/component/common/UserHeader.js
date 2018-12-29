@@ -14,6 +14,9 @@ class GuestHeader extends React.Component {
                     <Link className="navbar-brand" to="/profile">
                         Profilim
                     </Link>
+                    <Link className="navbar-brand" to="/searchUser">
+                        Kullanıcı Ara
+                    </Link>
                     <Link className="navbar-brand" to="/logout">
                         Çıkış Yap
                     </Link>

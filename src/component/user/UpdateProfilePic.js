@@ -28,7 +28,11 @@ class UpdateProfilePic extends React.Component {
         axios.get('http://localhost:8080/user/id/' + userId, security.authHeader())
             .then(function (response) {
                 console.log(response);
-                self.setState({"profilePicUrl": response.data.profilePicUrl});
+
+                if(response.data.profilePicUrl==="")
+                    self.setState({"profilePicUrl":"/user.png"})
+                else
+                    self.setState({"profilePicUrl":"/upload/profile/"+response.data.profilePicUrl});
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -56,7 +60,8 @@ class UpdateProfilePic extends React.Component {
                 },
             })
             .then(res => {
-                this.setState({"profilePicUrl":res.data});
+                self.setState({"profilePicUrl":"/upload/profile/"+res.data});
+
             })
             .catch(function (error) {
             self.setState({"errors": error.response.data});
@@ -72,7 +77,7 @@ class UpdateProfilePic extends React.Component {
                     <div className="col-md-4 m-auto">
 
                         <h3>Profil Fotoğrafını Güncelle</h3>
-                        <img className="profilePic" src={"/upload/profile/" + this.state.profilePicUrl}/>
+                        <img className="profilePic" src={this.state.profilePicUrl}/>
 
                         <input type="file" name="" id="" onChange={this.handleSelectedFile}/>
                         <button onClick={this.handleUpload}>Upload</button>

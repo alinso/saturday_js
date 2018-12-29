@@ -9,6 +9,9 @@ class GuestHeader extends React.Component {
                     <Link className="navbar-brand" to="/">
                         Night Out
                     </Link>
+                    <Link className="navbar-brand" to="/searchUser">
+                        Kullanıcı Ara
+                    </Link>
                     <Link className="navbar-brand" to="/register">
                         Kaydol
                     </Link>

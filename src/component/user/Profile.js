@@ -36,6 +36,10 @@ class UpdateInfo extends React.Component {
             .then(function (response) {
                 console.log(response);
                 self.setState(response.data);
+                if(response.data.profilePicUrl==="")
+                    self.setState({"profilePicUrl":"/user.png"});
+                else
+                    self.setState({"profilePicUrl":"/upload/profile/"+response.data.profilePicUrl})
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -52,14 +56,12 @@ class UpdateInfo extends React.Component {
                     <div className="col-md-8 m-auto">
                         <div className="col-md-4 m-auto">
                             <a href="/updateProfilePic/">
-                        <img className="profilePic" src={"/upload/profile/"+this.state.profilePicUrl}/>
+                        <img className="profilePic" src={this.state.profilePicUrl}/>
                             </a>
                         </div>
                         <h5 className="display-4 text-center">{this.state.name + " " + this.state.surname}</h5>
                         <hr/>
-                        <a href="/updateInfo/">Bilgilerimi Güncelle</a>
-                        <a href="/updatePassword/">Şifre Güncelle</a>
-                        <a href="/myAlbum/">Fotoğrafları Düzenle</a>
+                        <a href="/settings/">Hesap Ayarları</a>
                         <div className="panel panel-default">
                             <div className="panel-heading">
                                 <h3 className="panel-title">Hakkımda</h3>
