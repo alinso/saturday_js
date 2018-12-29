@@ -39,7 +39,7 @@ class UpdateInfo extends React.Component {
                 if(response.data.profilePicUrl==="")
                     self.setState({"profilePicUrl":"/user.png"});
                 else
-                    self.setState({"profilePicUrl":"/upload/profile/"+response.data.profilePicUrl})
+                    self.setState({"profilePicUrl":"/upload/profile/"+response.data.profilePicName})
             })
             .catch(function (error) {
                 console.log(error.response);

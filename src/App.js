@@ -18,6 +18,8 @@ import MyAlbum from "./component/user/MyAlbum";
 import Settings from "./component/user/Settings";
 import VerifyMail from "./component/user/VerifyMail";
 import SearchUser from "./component/user/SearchUser";
+import ForgottenPassword from "./component/user/ForgottenPassword";
+import ResetPassword from "./component/user/ResetPassword";
 
 class App extends Component {
 
@@ -41,6 +43,8 @@ class App extends Component {
                     {<Route exact path="/register" component={Register}/>}
                     {<Route exact path="/login" component={Login}/>}
                     {<Route exact path="/searchUser" component={SearchUser}/>}
+                    {<Route exact path="/forgottenPassword" component={ForgottenPassword}/>}
+                    {<Route exact path="/resetPassword/:token" component={ResetPassword}/>}
 
                     {<Route exact path="/dashboard" component={Dashboard}/>}
                     {<Route exact path="/profile" component={Profile}/>}

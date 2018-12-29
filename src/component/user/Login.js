@@ -106,6 +106,8 @@ class Login extends Component {
                         </div>
                         <input type="submit" className="btn btn-info btn-block mt-4"/>
                     </form>
+
+                    <a href="/forgottenPassword">Şifremi Unuttum</a>
                 </div>
             </div>
 

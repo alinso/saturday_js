@@ -29,7 +29,7 @@ class VerifyMail extends React.Component{
 
 
     render(){
-        return(<div> Kullanıcı listesi</div>)
+        return(<div>Mailiniz Onaylanmıştır!</div>)
     }
 }
 
