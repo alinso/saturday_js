@@ -23,15 +23,66 @@
 }
 
 .profilePic{
-  width: 100%;
+  object-fit: cover;
+  width:200px;
+  height: 200px;
+  border-radius: 50%;
 }
 
+.registerPic{
+  width:100% ;
+}
+.profileTitle{
+  color:gray;
+  font-size: 19px;
+  font-weight: bold;
+}
+.profileTitle:hover{
+  text-decoration: none;
+  color:blue;
+}
+.my-interests{
+ font-size: 17px;
+  margin: 5px;
+}
+
+.nav-link a{
+  color: white;
+}
 .albumPhoto{
   width: 90%;
 }
 .userListProfile{
-    width:80%;
+  object-fit: cover;
+  width:120px;
+  height:120px;
+  border-radius: 50%;
 }
+
+.searchItemContainer{
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d8c8c8;
+}
+.customRadioLabel{
+  font-size: 20px;
+}
+.customRadio{
+  -webkit-appearance:button;
+  -moz-appearance:button;
+  appearance:button;
+  border:4px solid #ccc;
+  border-top-color:#bbb;
+  border-left-color:#bbb;
+  background:#fff;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+}
+.customRadio:checked{
+  border:10px solid #4099ff;
+}
+
 
 @keyframes App-logo-spin {
   from {

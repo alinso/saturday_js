@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import security from "../../security/Security";
+import security from "../../../security/Security";
 
 const axios = require('axios');
 

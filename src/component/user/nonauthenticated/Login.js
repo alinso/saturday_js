@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import classnames from "classnames";
-import security from "../../security/Security";
+import security from "../../../security/Security";
 
 const axios = require('axios');
 
@@ -71,8 +71,8 @@ class Login extends Component {
         const {errors} = this.state;
         return (
             <div className="row">
-                <div className="col-md-8 m-auto">
-                    <h1 className="display-4 text-center">Log In</h1>
+                <div className="col-md-6 m-auto">
+                    <h4 className=" text-center">Giriş Yap</h4>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <input
@@ -104,9 +104,9 @@ class Login extends Component {
                                 <div>{errors.userWarningMessage} </div>
                             )}
                         </div>
-                        <input type="submit" className="btn btn-info btn-block mt-4"/>
+                        <input type="submit" value="Giriş Yap" className="btn btn-info btn-block mt-4"/>
                     </form>
-
+                    <br/>
                     <a href="/forgottenPassword">Şifremi Unuttum</a>
                 </div>
             </div>

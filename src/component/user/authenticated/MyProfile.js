@@ -1,11 +1,10 @@
 import React from "react";
-import classnames from "classnames";
-import security from "../../security/Security";
+import security from "../../../security/Security";
 
 const axios = require('axios');
 
 
-class UpdateInfo extends React.Component {
+class MyProfile extends React.Component {
     constructor(props) {
         super(props);
         security.protect();
@@ -32,12 +31,12 @@ class UpdateInfo extends React.Component {
         let self = this;
         let userId = localStorage.getItem("userId");
 
-        axios.get('http://localhost:8080/user/id/' + userId, security.authHeader())
+        axios.get('http://localhost:8080/user/myProfile/', security.authHeader())
             .then(function (response) {
                 console.log(response);
                 self.setState(response.data);
-                if(response.data.profilePicUrl==="")
-                    self.setState({"profilePicUrl":"/user.png"});
+                if(response.data.profilePicName==="")
+                    self.setState({"profilePicUrl":"/img/user.png"});
                 else
                     self.setState({"profilePicUrl":"/upload/profile/"+response.data.profilePicName})
             })
@@ -88,4 +87,4 @@ class UpdateInfo extends React.Component {
     }
 }
 
-export default UpdateInfo;
+export default MyProfile;

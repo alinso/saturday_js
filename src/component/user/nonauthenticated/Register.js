@@ -1,62 +1,43 @@
 import React from "react";
 import classnames from "classnames";
-import security from "../../security/Security";
+import Validator from "../../../util/Validator";
+import InputMask from "react-input-mask";
 
 const axios = require('axios');
 
 
-class UpdateInfo extends React.Component {
-    constructor(props) {
-        super(props);
-        security.protect();
+class Register extends React.Component {
+    constructor() {
+        super();
 
         this.state = {
             name: "",
             surname: "",
             email: "",
             phone: "",
+            password: "",
+            confirmPassword: "",
             gender: "UNSELECTED",
             referenceCode: "",
-            savedMessage: "",
-            about: "",
-            motivation: "",
+            registrationCompletedMessage: false,
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
-
-        this.fillFields();
     }
 
-    fillFields() {
-        console.log(this.props);
-        let self = this;
-        let userId = localStorage.getItem("userId");
-
-        axios.get('http://localhost:8080/user/id/' + userId, security.authHeader())
-            .then(function (response) {
-                self.setState(response.data);
-                self.setState({"errors": {}});
-            })
-            .catch(function (error) {
-                self.setState({"errors": error.response.data});
-            });
-    }
-
-    updateUser(newUser) {
-        console.log("profile updated");
+    createUser(newUser) {
+        console.log("user cretade");
         console.log(newUser);
         let self = this;
-        axios.post('http://localhost:8080/user/updateInfo', newUser, security.authHeader())
+        axios.post('http://localhost:8080/user/register', newUser)
             .then(function (response) {
                 self.setState({"errors": {}});
-                self.setState({"savedMessage": "Bilgileriniz Güncellendi"});
+                self.setState({"registrationCompletedMessage": "Mailinize aktivasyon linki gönderilmiştir, linke tıklayarak hesabınızı aktifleştirebilirsiniz"});
             })
             .catch(function (error) {
-                console.log(error.response);
                 self.setState({"errors": error.response.data});
-                self.setState({"savedMessage": false});
             });
     }
 
@@ -67,38 +48,44 @@ class UpdateInfo extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
+
+        let phoneValidationResult = Validator.validatePhoneNumber(this.state.phone);
+
+        if (!phoneValidationResult.valid) {
+            let errorUpdated = {...this.state.errors}
+            errorUpdated.phone = "Telefon numarası uygun formatta değil";
+            this.setState({"errors": errorUpdated})
+            return;
+        }
+
         const newUser = {
-            id: localStorage.getItem("userId"),
             name: this.state.name,
             surname: this.state.surname,
             email: this.state.email,
-            phone: this.state.phone,
+            phone: phoneValidationResult.phoneNumer,
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword,
             gender: this.state.gender,
             referenceCode: this.state.referenceCode,
-            about: this.state.about,
-            motivation: this.state.motivation
+
         };
-        this.updateUser(newUser);
+        this.createUser(newUser);
     }
 
 
     render() {
+
+        const {registrationCompletedMessage} = this.state;
         const {errors} = this.state;
-        const {savedMessage} = this.state;
         const show = {display: "inline"}
-
-
         return (
             <div className="row">
-                <div className="col-md-8 m-auto">
-                    <h5 className="display-4 text-center">Bilgilerimi Düzenle</h5>
-                    <hr/>
-                    {savedMessage && (
-                        <h6>
-                            {savedMessage}
-                        </h6>
-                    )}
+                <div className={"col-md-6 offset-3"}>
+                    <h4>Nigh Out'a Katıl!</h4>
 
+                    {registrationCompletedMessage && (
+                        <h4>{registrationCompletedMessage}</h4>
+                    )}
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <input
@@ -152,8 +139,9 @@ class UpdateInfo extends React.Component {
                             )}
                         </div>
                         <div className="form-group">
-                            <input
+                            <InputMask
                                 type="text"
+                                mask="0599 999 9999"
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": errors.phone
                                 })}
@@ -169,39 +157,53 @@ class UpdateInfo extends React.Component {
                             )}
                         </div>
                         <div className="form-group">
-                                        <textarea
-                                            className={classnames("form-control form-control-lg")}
-                                            placeholder="Kısaca Kendinden Bahset..."
-                                            name="about"
-                                            value={this.state.about}
-                                            onChange={this.onChange}
-                                        />
+                            <input
+                                type="password"
+                                className={classnames("form-control form-control-lg", {
+                                    "is-invalid": errors.password
+                                })}
+                                placeholder="Şifre"
+                                name="password"
+                                value={this.state.password}
+                                onChange={this.onChange}
+                            />
+                            {errors.password && (
+                                <div className="invalid-feedback">
+                                    {errors.password}
+                                </div>
+                            )}
                         </div>
                         <div className="form-group">
-                                        <textarea
-                                            className={classnames("form-control form-control-lg")}
-                                            placeholder="Neden Burdasın..."
-                                            name="motivation"
-                                            value={this.state.motivation}
-                                            onChange={this.onChange}
-                                        />
+                            <input
+                                type="password"
+                                className={classnames("form-control form-control-lg", {
+                                    "is-invalid": errors.confirmPassword
+                                })}
+                                placeholder="Şifre Tekrar"
+                                name="confirmPassword"
+                                value={this.state.confirmPassword}
+                                onChange={this.onChange}
+                            />
+                            {errors.confirmPassword && (
+                                <div className="invalid-feedback">
+                                    {errors.confirmPassword}
+                                </div>
+                            )}
                         </div>
-
                         <div className="form-group">
-                            <label>Erkek&nbsp;</label>
+                            <label className="customRadioLabel">Erkek&nbsp;</label>
                             <input type="radio"
                                    name="gender"
                                    value="MALE"
                                    onChange={this.onChange}
-                                   checked={this.state.gender === "MALE"}
+                                   className="customRadio"
                             />&nbsp;&nbsp;&nbsp;&nbsp;
-
-                            <label>Kadın&nbsp;</label>
+                            <label className="customRadioLabel">Kadın&nbsp;</label>
                             <input type="radio"
                                    name="gender"
                                    onChange={this.onChange}
                                    value="FEMALE"
-                                   checked={this.state.gender === "FEMALE"}
+                                   className="customRadio"
                             />
                             <br/>
                             <div className="invalid-feedback" style={show}>
@@ -217,9 +219,8 @@ class UpdateInfo extends React.Component {
                                 })}
                                 placeholder="Referans Kodu"
                                 name="referenceCode"
-                                value={"Referans Kodu : "+this.state.referenceCode}
+                                value={this.state.referenceCode}
                                 onChange={this.onChange}
-                                disabled
                             />
                             {errors.referenceCode && (
                                 <div className="invalid-feedback">
@@ -230,15 +231,17 @@ class UpdateInfo extends React.Component {
 
                         <input
                             type="submit"
+                            value="Hesap Oluştur"
                             className="btn btn-primary btn-block mt-4"
                         />
                     </form>
-
+                    <br/>
                 </div>
             </div>
 
-        )
+        );
     }
 }
 
-export default UpdateInfo;
+
+export default Register;

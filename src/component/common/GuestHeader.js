@@ -1,33 +1,43 @@
 import React from "react";
 import {Link} from "react-router-dom";
 
+
 class GuestHeader extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
-                <div className="container">
-                    <Link className="navbar-brand" to="/">
-                        Night Out
-                    </Link>
-                    <Link className="navbar-brand" to="/searchUser">
-                        Kullanıcı Ara
-                    </Link>
-                    <Link className="navbar-brand" to="/register">
-                        Kaydol
-                    </Link>
-                    <Link className="navbar-brand" to="/login">
-                        Giriş Yap
-                    </Link>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#mobile-nav"
-                    >
-                        <span className="navbar-toggler-icon" />
-                    </button>
-                </div>
+            <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
+                    <div className="container-fluid col-md-8">
+                        <div className="navbar-header">
+                            <Link className="navbar-brand" to="/">
+                                 <strong>Night Out</strong>
+                            </Link>
+                        </div>
+                        <ul className="nav navbar-nav navbar-right">
+                            <li className={"nav-item nav-link"}>
+                                <form className="form-inline my-2 my-lg-0" method="get" action="/searchUser">
+                                    <input className="form-control mr-sm-2" type="search" name="fullname" placeholder="isim gir..."
+                                           aria-label="Search"/>
+                                    <button className="btn btn-info my-2 my-sm-0" type="submit">Ara
+                                    </button>
+                                </form>
+                            </li>
+
+                            <li className={"nav-item nav-link"}>
+                                <a href="/register">
+                                    <button className="btn btn-outline-light my-2 my-sm-0" type="button"><strong>Hesap
+                                        Oluştur</strong></button>
+                                </a>
+                            </li>
+                            <li className={"nav-item nav-link"}>
+                                <a href="/login">
+                                    <button className="btn btn-outline-light my-2 my-sm-0" type="button"><strong>Giriş
+                                        Yap</strong></button>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
             </nav>
+
         )
     }
 }

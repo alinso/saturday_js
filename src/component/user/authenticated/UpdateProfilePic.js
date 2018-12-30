@@ -1,5 +1,6 @@
 import React from "react";
-import security from "../../security/Security";
+import security from "../../../security/Security";
+import UserUtil from "../../../util/UserUtil";
 
 const axios = require('axios');
 
@@ -25,14 +26,11 @@ class UpdateProfilePic extends React.Component {
         let self = this;
         let userId = localStorage.getItem("userId");
 
-        axios.get('http://localhost:8080/user/id/' + userId, security.authHeader())
+        axios.get('http://localhost:8080/user/myProfile/', security.authHeader())
             .then(function (response) {
                 console.log(response);
+                self.setState({"profilePicUrl":UserUtil.buildProfilePicUrl(response.data.profilePicName)});
 
-                if(response.data.profilePicUrl==="")
-                    self.setState({"profilePicUrl":"/user.png"})
-                else
-                    self.setState({"profilePicUrl":"/upload/profile/"+response.data.profilePicUrl});
             })
             .catch(function (error) {
                 console.log(error.response);

@@ -1,41 +1,65 @@
 import React from "react";
 import classnames from "classnames";
+import security from "../../../security/Security";
+import Validator from "../../../util/Validator";
+import InputMask from"react-input-mask";
 
 const axios = require('axios');
 
 
-class Register extends React.Component {
-    constructor() {
-        super();
+class UpdateInfo extends React.Component {
+    constructor(props) {
+        super(props);
+        security.protect();
 
         this.state = {
             name: "",
             surname: "",
             email: "",
+            bDateString:"",
             phone: "",
-            password: "",
-            confirmPassword: "",
             gender: "UNSELECTED",
             referenceCode: "",
-            registrationCompletedMessage:false,
+            savedMessage: "",
+            about: "",
+            motivation: "",
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+
+        this.fillFields();
     }
 
-    createUser(newUser) {
-        console.log("user cretade");
-        console.log(newUser);
+    fillFields() {
+        console.log(this.props);
         let self = this;
-        axios.post('http://localhost:8080/user/register', newUser)
+        let userId = localStorage.getItem("userId");
+
+        axios.get('http://localhost:8080/user/myProfile/', security.authHeader())
             .then(function (response) {
+                self.setState(response.data);
                 self.setState({"errors": {}});
-                self.setState({"registrationCompletedMessage":"Mailinize aktivasyon linki gönderilmiştir, linke tıklayarak hesabınızı aktifleştirebilirsiniz"});
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
+            });
+    }
+
+    updateUser(newUser) {
+        console.log("profile updated");
+        console.log(newUser);
+        let self = this;
+        axios.post('http://localhost:8080/user/updateInfo', newUser, security.authHeader())
+            .then(function (response) {
+                self.setState({"errors": {}});
+                self.setState({"savedMessage": "Bilgileriniz Güncellendi"});
+            })
+            .catch(function (error) {
+                console.log(error.response);
+                self.setState({"errors": error.response.data});
+                self.setState({"savedMessage": false});
             });
     }
 
@@ -46,33 +70,50 @@ class Register extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
+
+        let phoneValidationResult = Validator.validatePhoneNumber(this.state.phone);
+
+        if(!phoneValidationResult.valid){
+            let errorUpdated = {...this.state.errors}
+            errorUpdated.phone = "Telefon numarası uygun formatta değil";
+            this.setState({"errors":errorUpdated})
+            return;
+        }
+
+
         const newUser = {
+            id: localStorage.getItem("userId"),
             name: this.state.name,
             surname: this.state.surname,
             email: this.state.email,
-            phone: this.state.phone,
-            password: this.state.password,
-            confirmPassword: this.state.confirmPassword,
+            phone: phoneValidationResult.phoneNumer,
+            bDateString: this.state.bDateString,
             gender: this.state.gender,
             referenceCode: this.state.referenceCode,
-
+            about: this.state.about,
+            motivation: this.state.motivation
         };
-        this.createUser(newUser);
+        this.updateUser(newUser);
     }
 
+
     render() {
-    const {registrationCompletedMessage} = this.state;
-    const {errors} = this.state;
+        const {errors} = this.state;
+        const {savedMessage} = this.state;
         const show = {display: "inline"}
+
+
         return (
             <div className="row">
                 <div className="col-md-8 m-auto">
-                    <h5 className="display-4 text-center">Kullanıcı Kayıt</h5>
-                    { registrationCompletedMessage &&(
-                        <h4>{registrationCompletedMessage}</h4>
+                    <h5 className="display-4 text-center">Bilgilerimi Düzenle</h5>
+                    <hr/>
+                    {savedMessage && (
+                        <h6>
+                            {savedMessage}
+                        </h6>
                     )}
 
-                    <hr/>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <input
@@ -126,7 +167,8 @@ class Register extends React.Component {
                             )}
                         </div>
                         <div className="form-group">
-                            <input
+                            <InputMask
+                                mask="0599 999 9999"
                                 type="text"
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": errors.phone
@@ -135,6 +177,7 @@ class Register extends React.Component {
                                 name="phone"
                                 value={this.state.phone}
                                 onChange={this.onChange}
+                                required
                             />
                             {errors.phone && (
                                 <div className="invalid-feedback">
@@ -143,51 +186,57 @@ class Register extends React.Component {
                             )}
                         </div>
                         <div className="form-group">
-                            <input
-                                type="password"
+                            <InputMask
+                                mask="99/99/9999"
+                                type="text"
                                 className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.password
+                                    "is-invalid": errors.bDateString
                                 })}
-                                placeholder="Şifre"
-                                name="password"
-                                value={this.state.password}
+                                placeholder="Doğum Tarihi(gün/ay/yil)"
+                                name="bDateString"
+                                value={this.state.bDateString}
                                 onChange={this.onChange}
                             />
-                            {errors.password && (
+                            {errors.bDateString && (
                                 <div className="invalid-feedback">
-                                    {errors.password}
+                                    {errors.bDateString}
                                 </div>
                             )}
                         </div>
                         <div className="form-group">
-                            <input
-                                type="password"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.confirmPassword
-                                })}
-                                placeholder="Şifre Tekrar"
-                                name="confirmPassword"
-                                value={this.state.confirmPassword}
-                                onChange={this.onChange}
-                            />
-                            {errors.confirmPassword && (
-                                <div className="invalid-feedback">
-                                    {errors.confirmPassword}
-                                </div>
-                            )}
+                                        <textarea
+                                            className={classnames("form-control form-control-lg")}
+                                            placeholder="Kısaca Kendinden Bahset..."
+                                            name="about"
+                                            value={this.state.about}
+                                            onChange={this.onChange}
+                                        />
                         </div>
+                        <div className="form-group">
+                                        <textarea
+                                            className={classnames("form-control form-control-lg")}
+                                            placeholder="Neden Burdasın..."
+                                            name="motivation"
+                                            value={this.state.motivation}
+                                            onChange={this.onChange}
+                                        />
+                        </div>
+
                         <div className="form-group">
                             <label>Erkek&nbsp;</label>
                             <input type="radio"
                                    name="gender"
                                    value="MALE"
                                    onChange={this.onChange}
+                                   checked={this.state.gender === "MALE"}
                             />&nbsp;&nbsp;&nbsp;&nbsp;
+
                             <label>Kadın&nbsp;</label>
                             <input type="radio"
                                    name="gender"
                                    onChange={this.onChange}
                                    value="FEMALE"
+                                   checked={this.state.gender === "FEMALE"}
                             />
                             <br/>
                             <div className="invalid-feedback" style={show}>
@@ -203,8 +252,9 @@ class Register extends React.Component {
                                 })}
                                 placeholder="Referans Kodu"
                                 name="referenceCode"
-                                value={this.state.referenceCode}
+                                value={"Referans Kodu : "+this.state.referenceCode}
                                 onChange={this.onChange}
+                                disabled
                             />
                             {errors.referenceCode && (
                                 <div className="invalid-feedback">
@@ -218,12 +268,12 @@ class Register extends React.Component {
                             className="btn btn-primary btn-block mt-4"
                         />
                     </form>
+
                 </div>
             </div>
 
-        );
+        )
     }
 }
 
-
-export default Register;
+export default UpdateInfo;
