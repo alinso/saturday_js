@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import security from "../../../security/Security";
+import Alert from "../../common/Alert";
 
 const axios = require('axios');
 
@@ -15,6 +16,7 @@ class UpdatePassword extends React.Component {
             newPasswordConfirm: "",
             oldPassword: "",
             passwordUpdatedMessage:false,
+            isSubmitDisabled:false,
             errors: {}
         };
 
@@ -38,6 +40,7 @@ class UpdatePassword extends React.Component {
                 console.log(error.response);
                 self.setState({"errors": error.response.data});
                 self.setState({"passwordUpdatedMessage":false});
+                self.setState({ isSubmitDisabled:false});
             });
     }
 
@@ -48,6 +51,7 @@ class UpdatePassword extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
+        this.setState({isSubmitDisabled:true});
         const newPassword = {
             newPassword: this.state.newPassword,
             oldPassword: this.state.oldPassword,
@@ -69,8 +73,9 @@ class UpdatePassword extends React.Component {
                         <h5 className="display-4 text-center">Şifre Güncelle</h5>
                         <hr/>
                         { passwordUpdatedMessage &&(
-                         <h6>{passwordUpdatedMessage}</h6>
-                        )}
+                            <Alert type="alert-success" message={passwordUpdatedMessage}/>
+
+                            )}
                         <form onSubmit={this.onSubmit}>
                             <div className="form-group">
                                 <input
@@ -129,6 +134,7 @@ class UpdatePassword extends React.Component {
                             <input
                                 type="submit"
                                 className="btn btn-primary btn-block mt-4"
+                                disabled={this.state.isSubmitDisabled}
                             />
                         </form>
                     </div>

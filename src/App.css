@@ -46,6 +46,23 @@
   margin: 5px;
 }
 
+.uploadBrowseButton{
+    border: 1px dotted gray;
+    padding: 6px;
+    color: gray;
+}
+.meetingListProfile{
+  border-right: 1px solid gray;
+}
+
+
+.uploadBrowseButton:hover{
+    border: 1px dotted gray;
+    padding: 6px;
+    color: gray;
+    background: #bbbbbb;
+}
+
 .nav-link a{
   color: white;
 }
@@ -57,6 +74,32 @@
   width:120px;
   height:120px;
   border-radius: 50%;
+}
+
+.userListUserName{
+  color: crimson;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.meetingListMeetingText{
+  text-align: left;
+  height: 200px;
+  padding: 20px;
+  padding-top: 50px;
+}
+
+.meetingListUserMeta{
+ padding-left: 20px;
+  text-align: left;
+}
+
+
+.meetingListSingleMeetingContainer{
+  background: #ccd8e6;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .searchItemContainer{

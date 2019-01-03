@@ -19,7 +19,11 @@ class UserHeader extends React.Component {
                         <li className="nav-item nav-link">
                             <a href="/myProfile">Profilim</a>
                         </li>
-
+                    </ul>
+                    <ul className="nav navbar-nav">
+                        <li className="nav-item nav-link">
+                            <a href="/createMeeting">Dışarı Çık</a>
+                        </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li className={"nav-item nav-link"}>
@@ -40,6 +44,7 @@ class UserHeader extends React.Component {
             </nav>
         )
     }
+
 }
 
 export default UserHeader;

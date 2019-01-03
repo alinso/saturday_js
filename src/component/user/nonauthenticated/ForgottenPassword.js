@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import Alert from '../../common/Alert';
 
 const axios = require('axios');
 
@@ -11,6 +12,7 @@ class ForgottenPassword extends React.Component {
         this.state = {
             mail:"",
             mailSentMessage:false,
+            iSubmitDisabled:false,
             errors: {}
         };
 
@@ -27,6 +29,7 @@ class ForgottenPassword extends React.Component {
             .then(function (response) {
                 console.log(response);
                 self.setState({"mailSentMessage":"Şifre Güncelleme Linki Gönderildi"});
+                self.setState({isSubmitDisabled:false});
                 self.setState({"errors": {}});
             })
             .catch(function (error) {
@@ -43,6 +46,7 @@ class ForgottenPassword extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
+        this.setState({isSubmitDisabled:true});
         this.sendResetPasswordLinkMail(this.state.mail);
     }
 
@@ -59,7 +63,7 @@ class ForgottenPassword extends React.Component {
                         <h5 className="display-4 text-center">Şifremi Unuttum</h5>
                         <hr/>
                         { mailSentMessage &&(
-                            <h6>{mailSentMessage}</h6>
+                            <Alert type="alert-success" message={mailSentMessage}/>
                         )}
                         <form onSubmit={this.onSubmit}>
 
@@ -84,6 +88,7 @@ class ForgottenPassword extends React.Component {
                             <input
                                 type="submit"
                                 className="btn btn-primary btn-block mt-4"
+                                disabled={this.state.isSubmitDisabled}
                             />
                         </form>
                     </div>

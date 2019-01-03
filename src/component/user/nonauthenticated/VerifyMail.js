@@ -29,7 +29,9 @@ class VerifyMail extends React.Component{
 
 
     render(){
-        return(<div>Mailiniz Onaylanmıştır!</div>)
+        return(<div>Mailiniz Onaylanmıştır!<br/>
+            <a href="/login">
+                <button className="btn btn-success" >Giriş Yapın</button></a></div>)
     }
 }
 

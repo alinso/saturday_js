@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import Validator from "../../../util/Validator";
 import InputMask from "react-input-mask";
+import Alert from "../../common/Alert";
 
 const axios = require('axios');
 
@@ -19,6 +20,7 @@ class Register extends React.Component {
             confirmPassword: "",
             gender: "UNSELECTED",
             referenceCode: "",
+            isSubmitDisabled:false,
             registrationCompletedMessage: false,
             errors: {}
         };
@@ -28,7 +30,6 @@ class Register extends React.Component {
     }
 
     createUser(newUser) {
-        console.log("user cretade");
         console.log(newUser);
         let self = this;
         axios.post('http://localhost:8080/user/register', newUser)
@@ -38,6 +39,7 @@ class Register extends React.Component {
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
+                self.setState({isSubmitDisabled:false});
             });
     }
 
@@ -48,7 +50,6 @@ class Register extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-
         let phoneValidationResult = Validator.validatePhoneNumber(this.state.phone);
 
         if (!phoneValidationResult.valid) {
@@ -57,7 +58,7 @@ class Register extends React.Component {
             this.setState({"errors": errorUpdated})
             return;
         }
-
+        this.setState({isSubmitDisabled:true});
         const newUser = {
             name: this.state.name,
             surname: this.state.surname,
@@ -84,8 +85,9 @@ class Register extends React.Component {
                     <h4>Nigh Out'a Katıl!</h4>
 
                     {registrationCompletedMessage && (
-                        <h4>{registrationCompletedMessage}</h4>
-                    )}
+                        <Alert type="alert-success" message={registrationCompletedMessage}/>
+
+                        )}
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <input
@@ -233,6 +235,7 @@ class Register extends React.Component {
                             type="submit"
                             value="Hesap Oluştur"
                             className="btn btn-primary btn-block mt-4"
+                            disabled={this.state.isSubmitDisabled}
                         />
                     </form>
                     <br/>

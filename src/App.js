@@ -22,6 +22,8 @@ import ForgottenPassword from "./component/user/nonauthenticated/ForgottenPasswo
 import ResetPassword from "./component/user/nonauthenticated/ResetPassword";
 import Profile from "./component/user/common/Profile";
 import Album from "./component/user/common/Album";
+import CreateMeeting from "./component/meeting/CreateMeeting";
+import UpdateMeeting from "./component/meeting/UpdateMeeting";
 
 class App extends Component {
 
@@ -42,7 +44,8 @@ class App extends Component {
                     {this.setHeader()}
                     <br/>
                     {/*non authenticated*/}
-                    {<Route exact path="/" component={Landing}/>}
+                    {!security.isValidToken() && <Route exact path="/" component={Landing}/>}
+                    {security.isValidToken() && <Route exact path="/" component={Dashboard}/>}
                     {<Route exact path="/logout" render={() => security.logout()}/>}
                     {<Route exact path="/register" component={Register}/>}
                     {<Route exact path="/login" component={Login}/>}
@@ -53,7 +56,6 @@ class App extends Component {
                     {<Route exact path="/verifyMail/:token" component={VerifyMail}/>}
 
                     {/*authenticated*/}
-                    {<Route exact path="/dashboard" component={Dashboard}/>}
                     {<Route exact path="/myprofile" component={MyProfile}/>}
                     {<Route exact path="/updateInfo" component={UpdateInfo}/>}
                     {<Route exact path="/updatePassword" component={UpdatePassword}/>}
@@ -61,6 +63,9 @@ class App extends Component {
                     {<Route exact path="/myAlbum" component={MyAlbum}/>}
                     {<Route exact path="/album/:id" component={Album}/>}
                     {<Route exact path="/settings" component={Settings}/>}
+
+                    {<Route exact path="/createMeeting" component={CreateMeeting}/>}
+                    {<Route exact path="/updateMeeting/:id" component={UpdateMeeting}/>}
 
 
                 </div>

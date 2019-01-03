@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import classnames from "classnames";
 import security from "../../../security/Security";
+import Alert from "../../common/Alert";
 
 const axios = require('axios');
 
@@ -10,27 +11,13 @@ class Login extends Component {
         this.state = {
             username: "",
             password: "",
+            isSubmitDisabled:false,
             errors: {}
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    // componentDidMount() {
-    //   if (this.props.security.validToken) {
-    //     this.props.history.push("/dashboard");
-    //   }
-    // }
-    //
-    // componentWillReceiveProps(nextProps) {
-    //   if (nextProps.security.validToken) {
-    //     this.props.history.push("/dashboard");
-    //   }
-    //
-    //   if (nextProps.errors) {
-    //     this.setState({ errors: nextProps.errors });
-    //   }
-    //}
     login(LoginRequest) {
         const self = this;
         try {
@@ -40,11 +27,10 @@ class Login extends Component {
                     const {token} = res.data;
                     const {userName} = res.data;
                     security.setLoginCredentials(token, userName);
-                    window.location = "/dashboard";
+                    window.location = "/";
                 }).catch(function (error) {
-                console.log("err")
                 console.log(error.response.data);
-                console.log("err")
+                self.setState({isSubmitDisabled:false});
                 self.setState({"errors": error.response.data});
             });
         } catch (err) {
@@ -55,6 +41,7 @@ class Login extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+        this.setState({isSubmitDisabled:true});
         const LoginRequest = {
             username: this.state.username,
             password: this.state.password
@@ -73,6 +60,13 @@ class Login extends Component {
             <div className="row">
                 <div className="col-md-6 m-auto">
                     <h4 className=" text-center">Giriş Yap</h4>
+                    {errors.errorMessage && (
+                        <Alert type="alert-danger" message={errors.errorMessage}/>
+
+                        )}
+                    {errors.userWarningMessage && (
+                        <Alert type="alert-danger" message={errors.userWarningMessage}/>
+                    )}
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <input
@@ -97,14 +91,11 @@ class Login extends Component {
                                 value={this.state.password}
                                 onChange={this.onChange}
                             />
-                            {errors.errorMessage && (
-                                <div className="invalid-feedback">{errors.errorMessage} </div>
-                            )}
-                            {errors.userWarningMessage && (
-                                <div>{errors.userWarningMessage} </div>
-                            )}
+
                         </div>
-                        <input type="submit" value="Giriş Yap" className="btn btn-info btn-block mt-4"/>
+                        <input type="submit" value="Giriş Yap"
+                               className="btn btn-info btn-block mt-4"
+                        disabled={this.state.isSubmitDisabled}/>
                     </form>
                     <br/>
                     <a href="/forgottenPassword">Şifremi Unuttum</a>

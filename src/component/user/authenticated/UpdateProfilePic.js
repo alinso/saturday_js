@@ -29,7 +29,7 @@ class UpdateProfilePic extends React.Component {
         axios.get('http://localhost:8080/user/myProfile/', security.authHeader())
             .then(function (response) {
                 console.log(response);
-                self.setState({"profilePicUrl":UserUtil.buildProfilePicUrl(response.data.profilePicName)});
+                self.setState({"profilePicUrl": UserUtil.buildProfilePicUrl(response.data.profilePicName)});
 
             })
             .catch(function (error) {
@@ -58,12 +58,12 @@ class UpdateProfilePic extends React.Component {
                 },
             })
             .then(res => {
-                self.setState({"profilePicUrl":"/upload/profile/"+res.data});
+                self.setState({"profilePicUrl": "/upload/profile/" + res.data});
 
             })
             .catch(function (error) {
-            self.setState({"errors": error.response.data});
-        });
+                self.setState({"errors": error.response.data});
+            });
     };
 
     render() {
@@ -76,10 +76,19 @@ class UpdateProfilePic extends React.Component {
 
                         <h3>Profil Fotoğrafını Güncelle</h3>
                         <img className="profilePic" src={this.state.profilePicUrl}/>
+                        <br/>
+                            <label className="btn btn-default">
+                                <div className="uploadBrowseButton">Fotoğraf Seç</div>
+                                <input type="file" hidden onChange={this.handleSelectedFile}/>
+                            </label>
 
-                        <input type="file" name="" id="" onChange={this.handleSelectedFile}/>
-                        <button onClick={this.handleUpload}>Upload</button>
+                        <div>
+                            <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafı Yükle</button>
+                        </div>
+                    </div>
+                        {(this.state.loaded > 0) &&
                         <div> {Math.round(this.state.loaded)} %</div>
+                        }
 
                         {errors.file && (
                             <div>
@@ -88,8 +97,7 @@ class UpdateProfilePic extends React.Component {
                         )}
                     </div>
                 </div>
-            </div>
-        )
+            )
     }
 
 }

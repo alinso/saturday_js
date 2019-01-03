@@ -1,34 +1,42 @@
 import React from "react";
-import classnames from "classnames";
 import security from "../../../security/Security";
+import {isMobile} from "react-device-detect";
+import Lightbox from 'react-images';
+
 
 const axios = require('axios');
 
 
 class MyAlbum extends React.Component {
+
     constructor(props) {
         super(props);
         security.protect();
 
         this.state = {
             errors: {},
-            photos: [],
-            loaded:0,
+            photoNames: [],
+            loaded: 0,
             selectedPhotos: []
         };
         this.handleUpload = this.handleUpload.bind(this);
         this.handleSelectedFiles = this.handleSelectedFiles.bind(this);
+        //lighbox methods
+        this.onClickPrev = this.onClickPrev.bind(this);
+        this.onClickNext = this.onClickNext.bind(this);
+        this.openLightbox = this.openLightbox.bind(this);
+        this.closeLightbox = this.closeLightbox.bind(this);
+
         this.fillFields();
     };
 
     fillFields() {
-        console.log(this.props);
         let self = this;
         let userId = localStorage.getItem("userId");
 
-        axios.get('http://localhost:8080/photo/album/' + userId)
+        axios.get('http://localhost:8080/photo/album/' + userId, security.authHeader())
             .then(function (response) {
-                self.setState({photos:response.data});
+                self.setState({photoNames: response.data.photoNames});
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -46,64 +54,116 @@ class MyAlbum extends React.Component {
     handleUpload = () => {
 
         let data = new FormData();
-        const self  =this;
+        const self = this;
 
         for (var key in this.state.selectedPhotos) {
             if (this.state.selectedPhotos.hasOwnProperty(key)) {
-               let selectedFile = this.state.selectedPhotos [key];
+                let selectedFile = this.state.selectedPhotos [key];
                 data.append('files', selectedFile, selectedFile.name);
             }
         }
 
         axios.post("http://localhost:8080/photo/upload", data, security.authHeader(), {
-                onUploadProgress: ProgressEvent => {
-                    this.setState({
-                        loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
-                    })
-                },
-            })
+            onUploadProgress: ProgressEvent => {
+                this.setState({
+                    loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
+                })
+            },
+        })
             .then(res => {
-                let oldPhotos=self.state.photos;
+                let oldPhotos = self.state.photoNames;
                 let allPhotosCombined = oldPhotos.concat(res.data);
-                self.setState({photos:allPhotosCombined});
+                self.setState({photoNames: allPhotosCombined});
             });
     };
 
 
-    deletePhoto(photoName){
-        const self  =this;
-        console.log(photoName);
-        axios.post("http://localhost:8080/photo/delete", {"fileName":photoName}, security.authHeader())
-            .then(res => {
-                let photoNames=self.state.photos;
+    deletePhoto(photoName) {
 
+        const self = this;
+        if (!window.confirm("Bu fotoğrafı kalıcı olarak silmek istiiyor musunuz?"))
+            return;
+
+        axios.post("http://localhost:8080/photo/delete", {"fileName": photoName}, security.authHeader())
+            .then(res => {
+
+                let photoNames = self.state.photoNames;
                 var index = photoNames.indexOf(photoName);
                 if (index > -1) {
                     photoNames.splice(index, 1);
                 }
-                self.setState({photos:photoNames});
+                self.setState({photoNames: photoNames});
             });
     }
 
+    //lightbox methods
+    onClickPrev() {
+        let currentImageIndex = this.state.currentImageIndex;
+        currentImageIndex--;
+        this.setState({currentImageIndex: currentImageIndex});
+    }
+
+    onClickNext() {
+        let currentImageIndex = this.state.currentImageIndex;
+        currentImageIndex++;
+        this.setState({currentImageIndex: currentImageIndex});
+    }
+
+    openLightbox(currentImageIndex1) {
+        this.setState({currentImageIndex: currentImageIndex1});
+        this.setState({isLightBoxOpen: true});
+    }
+
+    closeLightbox() {
+        this.setState({isLightBoxOpen: false});
+    }
+
     render() {
-        const self  =this;
-
+        let photoSet = [];
+        const self = this;
         return (
-                <div className="row">
-                    <div className="col-md-8 m-auto">
-                        <div className="row">
-                        {self.state.photos.map((photoName, i) => {
-                            return (<div className="col-md-4"> <img className="albumPhoto" src={"/upload/" +photoName} /><br/>
-                                <button type="button" className="btn btn-danger" value="Bunu Sil" onClick={()=>this.deletePhoto(photoName)}/> </div>)
-                        })}
-                        </div>
+            <div className="row">
+                <div className="col-md-8 m-auto">
+                    <div className="row">
+                        {this.state.photoNames.map((photoName, i) => {
+                                photoSet.push({"src": "/upload/" + photoName});
+                                return (<div key={"key" + i} className="col-md-4">
+                                        <img className="albumPhoto"
+                                             src={"/upload/" + photoName}
+                                             onClick={() => self.openLightbox(i)}
+                                        />
+                                        <br/>
+                                        <button type="button" className="btn" onClick={() => self.deletePhoto(photoName)}> X
+                                            Fotoğrafı Sil
+                                        </button>
+                                        <br/><br/>
+                                    </div>
+                                )
+                            }
+                        )}
 
-                        <input type="file" name="photos[]" onChange={this.handleSelectedFiles} multiple/>
-                        <button onClick={this.handleUpload}>Upload</button>
-                        <div> {Math.round(this.state.loaded)} %</div>
+                        {!isMobile &&
+                        <Lightbox
+                            images={photoSet}
+                            isOpen={this.state.isLightBoxOpen}
+                            currentImage={this.state.currentImageIndex}
+                            onClickPrev={() => this.onClickPrev()}
+                            onClickNext={() => this.onClickNext()}
+                            onClose={() => this.closeLightbox()}/>
+                        }
                     </div>
+                    <label className="btn btn-default">
+                        <div className="uploadBrowseButton">Fotoğrafları Seç</div>
+                        <input type="file" hidden name="photos[]" onChange={this.handleSelectedFiles} multiple/>
+                    </label>
+                    <div>
+                        <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafları Yükle</button>
+                    </div>
+                    {(this.state.loaded > 0) &&
+                    <div> {Math.round(this.state.loaded)} %</div>
+                    }
                 </div>
-
+            </div>
         )
     }
 }

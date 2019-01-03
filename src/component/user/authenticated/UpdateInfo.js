@@ -3,6 +3,7 @@ import classnames from "classnames";
 import security from "../../../security/Security";
 import Validator from "../../../util/Validator";
 import InputMask from"react-input-mask";
+import Alert from "../../common/Alert";
 
 const axios = require('axios');
 
@@ -109,9 +110,7 @@ class UpdateInfo extends React.Component {
                     <h5 className="display-4 text-center">Bilgilerimi Düzenle</h5>
                     <hr/>
                     {savedMessage && (
-                        <h6>
-                            {savedMessage}
-                        </h6>
+                        <Alert type="alert-success" message={savedMessage}/>
                     )}
 
                     <form onSubmit={this.onSubmit}>
