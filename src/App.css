@@ -24,10 +24,11 @@
 
 .profilePic{
   object-fit: cover;
-  width:200px;
-  height: 200px;
+  width:180px;
+  height: 180px;
   border-radius: 50%;
 }
+
 
 .registerPic{
   width:100% ;
@@ -68,23 +69,21 @@
 }
 .albumPhoto{
   width: 90%;
-}
-.userListProfile{
-  object-fit: cover;
-  width:120px;
-  height:120px;
-  border-radius: 50%;
+  max-width: 500px;
 }
 
-.userListUserName{
-  color: crimson;
+.userFullName{
+  color: #563918;
   text-decoration: none;
-  font-weight: bold;
 }
+.userFullName:hover{
+  text-decoration: none;
+color: #282c34
+}
+
 
 .meetingListMeetingText{
-  text-align: left;
-  height: 200px;
+  min-height: 200px;
   padding: 20px;
   padding-top: 50px;
 }
@@ -95,11 +94,17 @@
 }
 
 
+.meetingListPhoto{
+  width: 90%;
+  object-fit: cover;
+  max-height: 300px;
+}
+
+
 .meetingListSingleMeetingContainer{
-  background: #ccd8e6;
-  border-radius: 10px;
   padding: 5px;
   margin-bottom: 10px;
+  border-bottom: 1px solid gray;
 }
 
 .searchItemContainer{

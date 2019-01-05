@@ -14,7 +14,10 @@ class UpdateMeeting extends React.Component {
         this.state = {
             id:null,
             detail:null,
+            photoName:null,
             savedMessage: false,
+            selectedFile:null,
+            isFileSelected:false,
             isSubmitDisabled:false,
             errors: {}
         };
@@ -31,6 +34,7 @@ class UpdateMeeting extends React.Component {
         axios.get('http://localhost:8080/meeting/findById/'+this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
+                self.setState({photoName: response.data.photoName});
                 self.setState({id: response.data.id});
             })
             .catch(function (error) {
@@ -60,16 +64,25 @@ class UpdateMeeting extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
+    handleSelectedFile = event => {
+        this.setState({
+            selectedFile: event.target.files[0],
+            isFileSelected:"Fotoğraf Yüklenmeye Hazır"
+        })
+    };
+
     onSubmit(e) {
         e.preventDefault();
 
         this.setState({isSubmitDisabled: true});
 
-        const newMeeting= {
-            detail: this.state.detail,
-            id: this.state.id,
-        };
-        this.updateMeeting(newMeeting);
+        const data = new FormData();
+        if(this.state.selectedFile!=null)
+            data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+        data.append("detail",this.state.detail);
+        data.append("id",this.props.match.params.id);
+
+        this.updateMeeting(data);
     }
 
 
@@ -77,6 +90,7 @@ class UpdateMeeting extends React.Component {
 
         const {savedMessage} = this.state;
         const {errors} = this.state;
+        const {photoName} = this.state;
 
         return (
             <div className="row">
@@ -89,6 +103,11 @@ class UpdateMeeting extends React.Component {
                              <a href="/"><strong> Mesajın burada görünüyor</strong> </a>
                         </div>
                     )}
+
+                    {photoName && (
+                     <img className={"albumPhoto"} src={"/upload/"+photoName}/>
+                    )}
+
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <textarea
@@ -107,10 +126,25 @@ class UpdateMeeting extends React.Component {
                             )}
                         </div>
 
+                        <label className="btn btn-default">
+                            <div className="uploadBrowseButton">Fotoğraf Seç</div>
+                            <input type="file" hidden onChange={this.handleSelectedFile}/>
+                            {
+                                this.state.isFileSelected && (
+                                    <span><strong>{this.state.isFileSelected}</strong></span>
+                                )
+                            }
+                        </label><br/>
+                        {errors.file && (
+                                <span>{errors.file}</span>
+
+                        )}
+
                         <input
                             type="submit"
                             value="Kaydet ve Yayınla"
                             className="btn btn-primary btn-block mt-4"
+                            disabled={this.state.isSubmitDisabled}
                         />
                     </form>
                     <br/>

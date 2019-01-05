@@ -1,6 +1,8 @@
 import React from "react";
 import security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
+import ProfilePic from "../../common/ProfilePic";
+import UserFullName from "../../common/UserFullName";
 
 const axios = require('axios');
 
@@ -12,10 +14,11 @@ class Profile extends React.Component {
             name: "",
             surname: "",
             gender: "UNSELECTED",
-            profilePicUrl: "",
+            profilePicName: "",
             about: "",
             age: "",
             motivation: "",
+            meetingCount:0,
             errors: {}
         };
 
@@ -31,7 +34,7 @@ class Profile extends React.Component {
             .then(function (response) {
                 self.setState(response.data);
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
-                self.setState({"profilePicUrl": UserUtil.buildProfilePicUrl(response.data.profilePicName)});
+                self.setState({"profilePicName": response.data.profilePicName});
             })
             .catch(function (error) {
                 console.log(error);
@@ -47,13 +50,20 @@ class Profile extends React.Component {
                 <div className="col-md-8 m-auto">
                     <div className="row">
                         <div className="col-md-4">
-                            <img className="profilePic" src={this.state.profilePicUrl}/>
+                            <ProfilePic
+                            profilePicName={this.state.profilePicName}
+                            userId={this.props.match.params.id}
+                            />
                             <br/>
                             <br/>
-                            <h3 className=" text-center">{this.state.name + " " + this.state.surname}</h3>
+                            <UserFullName
+                            name={this.state.name}
+                            surname={this.state.surname}
+                            userId={this.props.match.params.id}
+                            />
                             <h5>{this.state.gender} / {this.state.age}</h5>
+                            <i className="fas fa-star"></i><i className="fas fa-star"></i>
                             <i className="fas fa-star"></i><i className="fas fa-star"></i><i
-                            className="fas fa-star"></i><i className="fas fa-star"></i><i
                             className="fas fa-star"></i>(37)
                         </div>
 
@@ -75,8 +85,8 @@ class Profile extends React.Component {
                                     </a>
                                 </div>
                                 <div className="col-md-3">
-                                    <a className="profileTitle" href={"/album/" + this.props.match.params.id}>
-                                        Buluşmalar(9)
+                                    <a className="profileTitle" href={"/userMeetings/" + this.props.match.params.id}>
+                                        Buluşmalar({this.state.meetingCount})
                                     </a>
                                 </div>
                             </div>

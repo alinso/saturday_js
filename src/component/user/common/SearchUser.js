@@ -1,5 +1,7 @@
 import React from "react";
 import UserUtil from "../../../util/UserUtil";
+import ProfilePic from "../../common/ProfilePic";
+import UserFullName from "../../common/UserFullName";
 
 const axios = require('axios');
 
@@ -95,18 +97,20 @@ class SearchUser extends React.Component {
 
                     {self.state.users.map((user, i) => {
 
-                        profilePicUrl=UserUtil.buildProfilePicUrl(user.profilePicName);
-
-
                         return (<div className="row searchItemContainer">
                             <div className="col-md-2">
-                                <a href={"/profile/" + user.id}>
-                                    <img className="userListProfile" src={profilePicUrl}/>
-                                </a>
+
+                                <ProfilePic
+                                userId={user.id}
+                                profilePicName={user.profilePicName}
+                                />
                             </div>
                             <div className="col-md-5">
-                                <a className="searchItem" href={"/profile/" + user.id}>
-                                    <h4>{user.name + " " + user.surname}</h4></a>
+                                <UserFullName
+                                userId={user.id}
+                                name={user.name}
+                                surname={user.surname}
+                                />
                                 <h5>{user.gender} / {user.age}</h5>
                                 <i className="fas fa-star"></i><i className="fas fa-star"></i><i
                                 className="fas fa-star"></i><i className="fas fa-star"></i><i

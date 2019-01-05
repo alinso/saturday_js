@@ -15,11 +15,14 @@ class CreateMeeting extends React.Component {
             detail: "",
             savedMessage: false,
             isSubmitDisabled:false,
+            selectedFile:null,
+            isFileSelected:false,
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.handleSelectedFile = this.handleSelectedFile.bind(this);
     }
 
     createMeeting(newMeeting) {
@@ -42,14 +45,25 @@ class CreateMeeting extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
+    handleSelectedFile = event => {
+        this.setState({
+            selectedFile: event.target.files[0],
+            isFileSelected:"Fotoğraf Yüklenmeye Hazır"
+        })
+    };
+
     onSubmit(e) {
         e.preventDefault();
 
         this.setState({isSubmitDisabled:true});
-        const newMeeting= {
-            detail: this.state.detail,
-        };
-        this.createMeeting(newMeeting);
+
+        const data = new FormData();
+
+        if(this.state.selectedFile!=null)
+        data.append('file', this.state.selectedFile, this.state.selectedFile.name);
+        data.append("detail",this.state.detail);
+
+        this.createMeeting(data);
     }
 
 
@@ -57,7 +71,6 @@ class CreateMeeting extends React.Component {
 
         const {savedMessage} = this.state;
         const {errors} = this.state;
-        const show = {display: "inline"}
         return (
             <div className="row">
                 <div className={"col-md-6 offset-3"}>
@@ -86,6 +99,21 @@ class CreateMeeting extends React.Component {
                                 </div>
                             )}
                         </div>
+
+                        <label className="btn btn-default">
+                            <div className="uploadBrowseButton">Fotoğraf Seç</div>
+                            <input type="file" hidden onChange={this.handleSelectedFile}/>
+                            {
+                                this.state.isFileSelected && (
+                                    <span><strong>{this.state.isFileSelected}</strong></span>
+                                )
+                            }
+                        </label><br/>
+                        {errors.file && (
+                            <span>
+                                {errors.file}
+                            </span>
+                        )}
 
                         <input
                             type="submit"
