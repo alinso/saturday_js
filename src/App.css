@@ -55,7 +55,11 @@
 .meetingListProfile{
   border-right: 1px solid gray;
 }
-
+.meetingProcess{
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 5px;
+}
 
 .uploadBrowseButton:hover{
     border: 1px dotted gray;

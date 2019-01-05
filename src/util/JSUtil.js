@@ -25,6 +25,15 @@ class JSUtil{
         return 0;
     }
 
+    static compareByRequestatus(a,b) {
+        if (a.meetingRequestStatus==="WAITING" && b.meetingRequestStatus==="APPROVED")
+            return  1;
+        if (b.meetingRequestStatus==="WAITING" && a.meetingRequestStatus==="APPROVED")
+            return -1;
+
+        return 0;
+    }
+
 
 
 }

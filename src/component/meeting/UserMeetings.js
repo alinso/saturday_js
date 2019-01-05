@@ -3,23 +3,19 @@ import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import '../../util/JSUtil';
-import JSUtil from "../../util/JSUtil";
+import BaseMeetingList from "./BaseMeetingList";
+import MeetingEditButtons from "../common/MeetingEditButtons";
+import MeetingRequestButtons from "../common/MeetingRequestButtons";
+import MeetingInfoBlock from "../common/MeetingInfoBlock";
 
 const axios = require('axios');
 
-class UserMeetings extends React.Component {
+class UserMeetings extends BaseMeetingList {
     constructor(props) {
         super(props);
-        Security.protect();
 
-        this.state = {
-            meetings: [],
-            user:false
-        }
         this.fillPage();
     }
-
-
 
     fillPage() {
         const self = this;
@@ -27,45 +23,12 @@ class UserMeetings extends React.Component {
             .then(function (response) {
                 self.setState({
                     meetings: response.data,
-                    user:response.data[0].profileDto
                 });
             })
             .catch(function (error) {
                 console.log(error.response);
             });
 
-    }
-
-    deleteMeeting(id) {
-
-        const self = this;
-        if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
-            return;
-
-        axios.get("http://localhost:8080/meeting/delete/" + id, Security.authHeader())
-            .then(res => {
-
-                let meetings = self.state.meetings;
-                //let deletedIndex = -1;
-                // meetings.forEach(function (meeting, index) {
-                //     if (meeting.id == id) {
-                //         deletedIndex = index;
-                //     }
-                // });
-                //
-                // if (deletedIndex > -1) {
-                //     meetings.splice(deletedIndex, 1);
-                // }
-                //
-                let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
-
-
-                self.setState({meetings: meetingsNew});
-            });
-    }
-
-    updateMeeting(id) {
-        window.location = "/updateMeeting/" + id;
     }
 
 
@@ -75,7 +38,7 @@ class UserMeetings extends React.Component {
         return(
             <div className="row">
                 <div className="col-md-6 m-auto">
-                    {this.state.user &&(
+                    {this.state.meetings[0] &&(
                        <div> <UserFullName
                             name={self.state.meetings[0].profileDto.name}
                             userId={self.state.meetings[0].profileDto.id}
@@ -100,32 +63,23 @@ class UserMeetings extends React.Component {
                                         />
                                     </div>
                                     <div className={"col-md-9 "}>
-                                        <div className={"row meetingListMeetingText"}>
-                                            {(meeting.photoName!=null) &&(
-                                                <div className={"col-md-12"}>
-                                                    <img className={"meetingListPhoto col-md-8"} src={"/upload/"+meeting.photoName}/><hr/><br/>
-                                                </div>
-                                            )}
-
-                                            <div className={"col-md-12"}>
-                                                {meeting.detail}
-                                            </div>
-                                        </div>
+                                        <MeetingInfoBlock photoName={meeting.photoName} detail={meeting.detail}/>
                                         <div className={"row"}>
                                             <div className={"col-md-9 meetingListUserMeta"}>
                                                 <button className={"btn btn-warning"}> {meeting.updatedAt}</button>
                                             </div>
                                             <div className={"col-md-3"}>
-                                                {(meeting.profileDto.id === parseInt(localStorage.getItem("userId"))) &&
-                                                <div className={" row meetingListMeetingEditButtons"}>
-                                                    <button onClick={() => self.updateMeeting(meeting.id)}
-                                                            className="btn btn-info">düzenle
-                                                    </button>
-                                                    <button onClick={() => self.deleteMeeting(meeting.id)}
-                                                            className="btn btn-warning">sil
-                                                    </button>
-                                                </div>
-                                                }
+                                                <MeetingEditButtons
+                                                    meetingId={meeting.id}
+                                                    userId={meeting.profileDto.id}
+                                                    deleteMeeting={()=>self.deleteMeeting(meeting.id)}
+                                                    updateMeeting={()=>self.updateMeeting(meeting.id)}
+                                                />
+                                                <MeetingRequestButtons
+                                                    userId={meeting.profileDto.id}
+                                                    joinMeeting={() => self.joinMeeting(meeting.id)}
+                                                    thisUserJoined ={meeting.thisUserJoined}
+                                                />
                                             </div>
                                         </div>
                                     </div>

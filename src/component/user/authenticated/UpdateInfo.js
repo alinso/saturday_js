@@ -58,7 +58,6 @@ class UpdateInfo extends React.Component {
                 self.setState({"savedMessage": "Bilgileriniz Güncellendi"});
             })
             .catch(function (error) {
-                console.log(error.response);
                 self.setState({"errors": error.response.data});
                 self.setState({"savedMessage": false});
             });

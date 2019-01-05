@@ -25,6 +25,7 @@ import Album from "./component/user/common/Album";
 import CreateMeeting from "./component/meeting/CreateMeeting";
 import UpdateMeeting from "./component/meeting/UpdateMeeting";
 import UserMeetings from "./component/meeting/UserMeetings";
+import MeetingRequests from "./component/meeting/MeetingRequests";
 
 class App extends Component {
 
@@ -68,6 +69,7 @@ class App extends Component {
                     {<Route exact path="/createMeeting" component={CreateMeeting}/>}
                     {<Route exact path="/updateMeeting/:id" component={UpdateMeeting}/>}
                     {<Route exact path="/userMeetings/:id" component={UserMeetings}/>}
+                    {<Route exact path="/meetingRequests/:id" component={MeetingRequests}/>}
 
 
                 </div>

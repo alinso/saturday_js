@@ -3,24 +3,20 @@ import Security from "../security/Security";
 import UserUtil from "../util/UserUtil";
 import ProfilePic from "./common/ProfilePic";
 import UserFullName from "./common/UserFullName";
-import JSUtil from "../util/JSUtil";
+import BaseMeetingList from "./meeting/BaseMeetingList";
+import MeetingEditButtons from "./common/MeetingEditButtons";
+import MeetingRequests from "./meeting/MeetingRequests";
+import MeetingRequestButtons from "./common/MeetingRequestButtons";
+import MeetingInfoBlock from "./common/MeetingInfoBlock";
 
 const axios = require('axios');
 
 
-class Dashboard extends React.Component {
+class Dashboard extends BaseMeetingList {
     constructor() {
         super();
-        Security.protect();
-
-        this.state = {
-            meetings: [],
-        };
 
         this.fillPage();
-        this.deleteMeeting = this.deleteMeeting.bind(this);
-        this.updateMeeting = this.updateMeeting.bind(this);
-        this.joinMeeting = this.joinMeeting.bind(this);
     }
 
     fillPage() {
@@ -34,65 +30,6 @@ class Dashboard extends React.Component {
             });
 
     }
-
-
-
-    joinMeeting(id){
-        const self = this;
-        axios.get('http://localhost:8080/meeting/join/'+id, Security.authHeader())
-            .then(function (response) {
-                let meetings = self.state.meetings;
-                let currentMeetingOld = meetings.filter(obj => {
-                    return obj.id === id
-                });
-
-
-
-                let currentMeetingNew  =Object.assign({},currentMeetingOld)[0];
-                console.log(currentMeetingNew);
-                currentMeetingNew.thisUserJoins = response.data;
-                let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
-                meetingsNew.push(currentMeetingNew);
-                meetingsNew.sort(JSUtil.compareByUpdatedAt);
-
-
-                self.setState({meetings:meetingsNew});
-            })
-            .catch(function (error) {
-                console.log(error.response);
-            });
-    }
-
-
-    deleteMeeting(id) {
-
-        const self = this;
-        if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
-            return;
-
-        axios.get("http://localhost:8080/meeting/delete/" + id, Security.authHeader())
-            .then(res => {
-
-                let meetings = self.state.meetings;
-                    // let deletedIndex = -1;
-                    // meetings.forEach(function (meeting, index) {
-                    //     if (meeting.id == id) {
-                    //         deletedIndex = index;
-                    //     }
-                    // });
-                    //
-                    // if (deletedIndex > -1) {
-                    //     meetings.splice(deletedIndex, 1);
-                    // }
-                let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
-                self.setState({meetings: meetingsNew});
-            });
-    }
-
-    updateMeeting(id) {
-        window.location = "/updateMeeting/" + id;
-    }
-
 
     render() {
         const self = this;
@@ -117,17 +54,11 @@ class Dashboard extends React.Component {
                                         />
                                     </div>
                                     <div className={"col-md-9 "}>
-                                        <div className={"row meetingListMeetingText"}>
-                                            {(meeting.photoName!=null) &&(
-                                                <div className={"col-md-12"}>
-                                                    <img className={"meetingListPhoto col-md-8"} src={"/upload/"+meeting.photoName}/><hr/><br/>
-                                                </div>
-                                            )}
+                                        <MeetingInfoBlock
+                                            photoName={meeting.photoName}
+                                            detail={meeting.detail}
+                                        />
 
-                                            <div className={"col-md-12"}>
-                                            {meeting.detail}
-                                            </div>
-                                        </div>
                                         <div className={"row"}>
                                             <div className={"col-md-9 meetingListUserMeta"}>
                                                 <button className={"btn btn-warning"}> {meeting.updatedAt}</button>
@@ -142,25 +73,17 @@ class Dashboard extends React.Component {
                                                 <br/>
                                             </div>
                                             <div className={"col-md-3"}>
-                                                {(meeting.profileDto.id === parseInt(localStorage.getItem("userId"))) &&
-                                                <div className={" row meetingListMeetingEditButtons"}>
-                                                    <button onClick={() => self.updateMeeting(meeting.id)}
-                                                            className="btn btn-info">düzenle
-                                                    </button>
-                                                    <button onClick={() => self.deleteMeeting(meeting.id)}
-                                                            className="btn btn-warning">sil
-                                                    </button>
-                                                </div>
-                                                }
-
-                                                {(meeting.profileDto.id !== parseInt(localStorage.getItem("userId"))) &&
-                                                (<button
-                                                    onClick={() => self.joinMeeting(meeting.id)}
-                                                    className="btn btn-success">
-                                                    {meeting.thisUserJoins && (<span>isteğimi iptal et</span>) }
-                                                    {!meeting.thisUserJoins && (<span>katılmak istiyorum</span>) }
-                                                </button>)
-                                                }
+                                                <MeetingEditButtons
+                                                        meetingId={meeting.id}
+                                                        userId={meeting.profileDto.id}
+                                                        deleteMeeting={()=>self.deleteMeeting(meeting.id)}
+                                                        updateMeeting={()=>self.updateMeeting(meeting.id)}
+                                                    />
+                                                <MeetingRequestButtons
+                                                userId={meeting.profileDto.id}
+                                                joinMeeting={() => self.joinMeeting(meeting.id)}
+                                                thisUserJoined ={meeting.thisUserJoined}
+                                                />
 
                                             </div>
                                         </div>
