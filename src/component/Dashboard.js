@@ -5,7 +5,6 @@ import ProfilePic from "./common/ProfilePic";
 import UserFullName from "./common/UserFullName";
 import BaseMeetingList from "./meeting/BaseMeetingList";
 import MeetingEditButtons from "./common/MeetingEditButtons";
-import MeetingRequests from "./meeting/MeetingRequests";
 import MeetingRequestButtons from "./common/MeetingRequestButtons";
 import MeetingInfoBlock from "./common/MeetingInfoBlock";
 
@@ -61,7 +60,7 @@ class Dashboard extends BaseMeetingList {
 
                                         <div className={"row"}>
                                             <div className={"col-md-9 meetingListUserMeta"}>
-                                                <button className={"btn btn-warning"}> {meeting.updatedAt}</button>
+                                                <button className={"btn btn-warning"}> {meeting.deadLineString}</button>
                                                 &nbsp;&nbsp;&nbsp;
                                                 <strong>
                                                     {UserUtil.translateGender(meeting.profileDto.gender)} / {meeting.profileDto.age}

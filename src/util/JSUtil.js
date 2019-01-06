@@ -17,10 +17,10 @@ class JSUtil{
     }
 
 
-    static compareByUpdatedAt(a,b) {
-        if (a.updatedAt > b.updatedAt)
+    static compareByDeadLineString(a,b) {
+        if (a.deadLineString > b.deadLineString)
             return -1;
-        if (a.updatedAt < b.updatedAt)
+        if (a.deadLineString < b.deadLineString)
             return 1;
         return 0;
     }

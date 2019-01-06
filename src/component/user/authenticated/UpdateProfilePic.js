@@ -1,6 +1,7 @@
 import React from "react";
 import security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
+import SinglePhotoSelector from "../../common/SinglePhotoSelector";
 
 const axios = require('axios');
 
@@ -12,6 +13,7 @@ class UpdateProfilePic extends React.Component {
 
         this.state = {
             profilePicUrl: null,
+            isFileSelected: false,
             selectedFile: null,
             loaded: 0,
             errors: {}
@@ -33,7 +35,6 @@ class UpdateProfilePic extends React.Component {
 
             })
             .catch(function (error) {
-                console.log(error.response);
                 self.setState({"errors": error.response.data});
             });
     }
@@ -42,7 +43,9 @@ class UpdateProfilePic extends React.Component {
         this.setState({
             selectedFile: event.target.files[0],
             loaded: 0,
+            isFileSelected: "Fotoğraf Yüklenmeye Hazır"
         })
+
     };
 
     handleUpload = () => {
@@ -59,15 +62,18 @@ class UpdateProfilePic extends React.Component {
             })
             .then(res => {
                 self.setState({"profilePicUrl": "/upload/profile/" + res.data});
+                self.setState({errors: false});
 
             })
             .catch(function (error) {
+                self.setState({isFileSelected :false});
                 self.setState({"errors": error.response.data});
             });
     };
 
     render() {
         const {errors} = this.state;
+        const {isFileSelected}=this.state;
 
         return (
             <div className="row">
@@ -77,27 +83,19 @@ class UpdateProfilePic extends React.Component {
                         <h3>Profil Fotoğrafını Güncelle</h3>
                         <img className="profilePic" src={this.state.profilePicUrl}/>
                         <br/>
-                            <label className="btn btn-default">
-                                <div className="uploadBrowseButton">Fotoğraf Seç</div>
-                                <input type="file" hidden onChange={this.handleSelectedFile}/>
-                            </label>
+                        <SinglePhotoSelector
+                            onChange={this.handleSelectedFile}
+                            isFileSelected={isFileSelected}
+                            error={errors.file}
+                        />
 
                         <div>
                             <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafı Yükle</button>
                         </div>
                     </div>
-                        {(this.state.loaded > 0) &&
-                        <div> {Math.round(this.state.loaded)} %</div>
-                        }
-
-                        {errors.file && (
-                            <div>
-                                {errors.file}
-                            </div>
-                        )}
-                    </div>
                 </div>
-            )
+            </div>
+        )
     }
 
 }

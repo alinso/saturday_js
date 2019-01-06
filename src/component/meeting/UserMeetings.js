@@ -43,7 +43,8 @@ class UserMeetings extends BaseMeetingList {
                             name={self.state.meetings[0].profileDto.name}
                             userId={self.state.meetings[0].profileDto.id}
                             surname={self.state.meetings[0].profileDto.surname}
-                       /><h4>Buluşmalar</h4></div>
+                       /><h4>Buluşmalar</h4>
+                       </div>
                     )}
 
 
@@ -66,7 +67,7 @@ class UserMeetings extends BaseMeetingList {
                                         <MeetingInfoBlock photoName={meeting.photoName} detail={meeting.detail}/>
                                         <div className={"row"}>
                                             <div className={"col-md-9 meetingListUserMeta"}>
-                                                <button className={"btn btn-warning"}> {meeting.updatedAt}</button>
+                                                <button className={"btn btn-warning"}> {meeting.deadLineString}</button>
                                             </div>
                                             <div className={"col-md-3"}>
                                                 <MeetingEditButtons
@@ -75,11 +76,14 @@ class UserMeetings extends BaseMeetingList {
                                                     deleteMeeting={()=>self.deleteMeeting(meeting.id)}
                                                     updateMeeting={()=>self.updateMeeting(meeting.id)}
                                                 />
-                                                <MeetingRequestButtons
-                                                    userId={meeting.profileDto.id}
-                                                    joinMeeting={() => self.joinMeeting(meeting.id)}
-                                                    thisUserJoined ={meeting.thisUserJoined}
-                                                />
+                                                {(!meeting.expired) &&
+                                                    ( <MeetingRequestButtons
+                                                        userId={meeting.profileDto.id}
+                                                        joinMeeting={() => self.joinMeeting(meeting.id)}
+                                                        thisUserJoined ={meeting.thisUserJoined}
+                                                    />)
+                                                }
+
                                             </div>
                                         </div>
                                     </div>

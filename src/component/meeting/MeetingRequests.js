@@ -17,7 +17,7 @@ class MeetingRequests extends React.Component {
         this.state = {
             photoName: null,
             detail: null,
-            updatedAt: null,
+            deadLineString:null,
             requests: null,
             errors: {}
         };
@@ -33,7 +33,7 @@ class MeetingRequests extends React.Component {
             .then(function (response) {
                 self.setState({detail: response.data.detail});
                 self.setState({photoName: response.data.photoName});
-                self.setState({updatedAt: response.data.updatedAt});
+                self.setState({deadLineString: response.data.deadLineString});
                 self.setState({requests: response.data.requests});
 
             })
@@ -93,7 +93,7 @@ class MeetingRequests extends React.Component {
 
                             <div className={"col-md-12 meetingListUserMeta"}>
                                 <br/><br/>
-                                <button className={"btn btn-warning"}> {this.state.updatedAt}</button>
+                                <button className={"btn btn-warning"}> {this.state.deadLineString}</button>
                                 <hr/>
                             </div>
                         </div>

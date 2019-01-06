@@ -36,8 +36,8 @@ class BaseMeetingList extends React.Component {
                 currentMeetingNew.thisUserJoined = response.data;
                 let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
                 meetingsNew.push(currentMeetingNew);
-                meetingsNew.sort(JSUtil.compareByUpdatedAt);
 
+                meetingsNew.sort(JSUtil.compareByDeadLineString);
 
                 self.setState({meetings:meetingsNew});
             })
