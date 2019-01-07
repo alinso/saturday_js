@@ -81,7 +81,7 @@ class UpdateProfilePic extends React.Component {
                     <div className="col-md-4 m-auto">
 
                         <h3>Profil Fotoğrafını Güncelle</h3>
-                        <img className="profilePic" src={this.state.profilePicUrl}/>
+                        <img className="profilePicLarge" src={this.state.profilePicUrl}/>
                         <br/>
                         <SinglePhotoSelector
                             onChange={this.handleSelectedFile}

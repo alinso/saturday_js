@@ -17,7 +17,12 @@ class UserHeader extends React.Component {
 
                     <ul className="nav navbar-nav">
                         <li className="nav-item nav-link">
-                            <a href="/myProfile">Profilim</a>
+                            <a href={"/profile/"+localStorage.getItem("userId")}>Profilim</a>
+                        </li>
+                    </ul>
+                    <ul className="nav navbar-nav">
+                        <li className="nav-item nav-link">
+                            <a href={"/conversations/"}>Mesajlar</a>
                         </li>
                     </ul>
                     <ul className="nav navbar-nav">

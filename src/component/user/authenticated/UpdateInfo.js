@@ -49,8 +49,6 @@ class UpdateInfo extends React.Component {
     }
 
     updateUser(newUser) {
-        console.log("profile updated");
-        console.log(newUser);
         let self = this;
         axios.post('http://localhost:8080/user/updateInfo', newUser, security.authHeader())
             .then(function (response) {

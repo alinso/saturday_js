@@ -30,7 +30,7 @@ class Profile extends React.Component {
         let self = this;
         let userId = this.props.match.params.id;
 
-        axios.get('http://localhost:8080/user/profile/' + userId, security.authHeader())
+        axios.get('http://localhost:8080/user/profile/' + userId)
             .then(function (response) {
                 self.setState(response.data);
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
@@ -65,6 +65,25 @@ class Profile extends React.Component {
                             <i className="fas fa-star"></i><i className="fas fa-star"></i>
                             <i className="fas fa-star"></i><i className="fas fa-star"></i><i
                             className="fas fa-star"></i>(37)
+                            <br/>
+                            {(this.props.match.params.id===localStorage.getItem("userId")) &&
+                            (
+                                <a href="/settings/"><button className={"btn btn-info"}>Hesap Ayarları</button></a>
+                            )}
+
+                            {(this.props.match.params.id!==localStorage.getItem("userId")) &&
+                            (
+                                <div>
+                                    <a href={"/message/"+this.props.match.params.id}>
+                                        <button className={"btn btn-info"}>Mesaj Gönder</button>
+                                    </a><br/>
+                                    <a href={"/writeReference/"+this.props.match.params.id}>
+                                        <button className={"btn btn-info"}>Referans Yaz</button>
+                                    </a>
+                                </div>
+                            )}
+
+
                         </div>
 
                         <div className="col-md-6">
@@ -104,31 +123,25 @@ class Profile extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="row">
-                                <div className="card">
+                                <div className="row card">
                                     <div className="card-body">
                                         <h5 className="card-title">Hakkımda</h5>
                                         <hr/>
                                         {this.state.about}
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="row">
-                                <div className="card">
+                                <div className="row card">
                                     <div className="card-body">
                                         <h5 className="card-title">Neden Burdayım?</h5>
                                         <hr/>
                                         {this.state.motivation}
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         )
     }
 }

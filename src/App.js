@@ -26,6 +26,9 @@ import CreateMeeting from "./component/meeting/CreateMeeting";
 import UpdateMeeting from "./component/meeting/UpdateMeeting";
 import UserMeetings from "./component/meeting/UserMeetings";
 import MeetingRequests from "./component/meeting/MeetingRequests";
+import MessagePage from "./component/message/MessagePage";
+import Conversations from "./component/message/Conversations";
+import ReferenceForm from "./component/reference/ReferenceForm";
 
 class App extends Component {
 
@@ -58,7 +61,7 @@ class App extends Component {
                     {<Route exact path="/verifyMail/:token" component={VerifyMail}/>}
 
                     {/*authenticated*/}
-                    {<Route exact path="/myprofile" component={MyProfile}/>}
+                    {/*{<Route exact path="/myprofile" component={Profile}/>}*/}
                     {<Route exact path="/updateInfo" component={UpdateInfo}/>}
                     {<Route exact path="/updatePassword" component={UpdatePassword}/>}
                     {<Route exact path="/updateProfilePic" component={UpdateProfilePic}/>}
@@ -70,6 +73,12 @@ class App extends Component {
                     {<Route exact path="/updateMeeting/:id" component={UpdateMeeting}/>}
                     {<Route exact path="/userMeetings/:id" component={UserMeetings}/>}
                     {<Route exact path="/meetingRequests/:id" component={MeetingRequests}/>}
+
+                    {<Route exact path="/message/:id" component={MessagePage}/>}
+                    {<Route exact path="/conversations/" component={Conversations}/>}
+
+                    {<Route exact path="/referenceForm/:type/:id" component={ReferenceForm}/>}
+
 
 
                 </div>

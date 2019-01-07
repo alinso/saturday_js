@@ -40,7 +40,6 @@ class Security {
 
         const decoded_jwtToken = jwt_decode(localStorage.getItem("jwtToken"));
         const currentTime = Date.now() / 1000;
-        console.log(decoded_jwtToken);
         if(decoded_jwtToken.exp < currentTime) {
             return false;
         }

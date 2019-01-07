@@ -22,13 +22,49 @@
   color: #61dafb;
 }
 
-.profilePic{
+.profilePicLarge{
   object-fit: cover;
   width:180px;
   height: 180px;
   border-radius: 50%;
 }
 
+.conversationContainer{
+    background: #cdcde0;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 10px;
+}
+.conversationProfile{
+}
+.conversationProfilePicContianer, .conversationProfileNameContianer{
+    text-align: left;
+}
+
+
+.conversationText{
+    background: #e6e7ef;
+    padding: 10px;
+    color:black;
+    border-radius: 10px;
+}
+.conversationText:hover{
+    text-decoration: none;
+}
+
+.profilePicMedium{
+    object-fit: cover;
+    width:120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+.profilePicSmall{
+    object-fit: cover;
+    width:80px;
+    height: 80px;
+    border-radius: 50%;
+}
 
 .registerPic{
   width:100% ;
@@ -96,13 +132,44 @@ color: #282c34
  padding-left: 20px;
   text-align: left;
 }
+.messageBox{
+  background: #d5dee6;
+  padding: 10px;
+  border-radius: 5px;
+  height: 350px;
+  overflow-y: scroll;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.incomingMessage, .outgoingMessage{
+  border-radius: 12px;
+  width: 70%;
+  margin-bottom: 5px;
+}
 
+.messageDate{
+  color: gray;
+  float: right;
+  margin-right: 5px;
+  font-size: 14px;
+}
+.incomingMessage{
+  background: #d6aeb6;
+    float: left;
+
+}
+
+.outgoingMessage{
+  background: #a3d47e;
+  float: right;
+}
 
 .meetingListPhoto{
   width: 90%;
   object-fit: cover;
   max-height: 300px;
 }
+
 
 
 .meetingListSingleMeetingContainer{

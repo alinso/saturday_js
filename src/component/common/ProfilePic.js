@@ -7,11 +7,13 @@ class ProfilePic extends React.Component {
         super(props)
     }
 
+    static defaultProps={cssClass:"profilePicLarge"};
+
 
     render() {
         return (
             <a  href={"/profile/" + this.props.userId}>
-                <img className={"profilePic"}
+                <img className={this.props.cssClass}
                      src={UserUtil.buildProfilePicUrl(this.props.profilePicName)}/>
             </a>
         )
