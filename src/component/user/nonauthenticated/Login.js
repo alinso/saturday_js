@@ -25,8 +25,9 @@ class Login extends Component {
             axios.post("http://localhost:8080/user/login", LoginRequest)
                 .then(function (res) {
                     const {token} = res.data;
-                    const {userName} = res.data;
-                    security.setLoginCredentials(token, userName);
+                    const {userFullName} = res.data;
+                    const {cityId} = res.data;
+                    security.setLoginCredentials(token, userFullName,cityId);
                     window.location = "/";
                 }).catch(function (error) {
                 console.log(error.response.data);

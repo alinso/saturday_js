@@ -2,6 +2,7 @@ import React from "react";
 import Security from "../../security/Security";
 import "../../react-datetime.css";
 import BaseMeetingForm from "./BaseMeetingForm";
+import CityUtil from "../../util/CityUtil";
 const moment=require("moment");
 const axios = require('axios');
 
@@ -11,11 +12,25 @@ class CreateMeeting extends BaseMeetingForm{
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.getInitDeadLine = this.getInitDeadLine.bind(this);
+        this.loadCities();
+    }
+
+    loadCities(){
+        const self=this;
+        axios.get('http://localhost:8080/city/all/', Security.authHeader())
+            .then(function (response) {
+                let result =CityUtil.setCitiesForSelect(response.data);
+                self.setState({cities:result.cities});
+                self.setState({city:result.selectedCity});
+            })
+            .catch(function (error) {
+            });
+
     }
 
     createMeeting(newMeeting) {
-        console.log(newMeeting);
         let self = this;
+        console.log(newMeeting);
         axios.post('http://localhost:8080/meeting/create', newMeeting, Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
@@ -44,7 +59,7 @@ class CreateMeeting extends BaseMeetingForm{
         if (this.state.selectedFile != null)
             data.append('file', this.state.selectedFile, this.state.selectedFile.name);
 
-
+        data.append("cityId",this.state.city.value);
         data.append("detail", this.state.detail);
         data.append("deadLineString",this.state.deadLineString);
         this.createMeeting(data);

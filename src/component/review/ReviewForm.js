@@ -6,16 +6,18 @@ import UserFullName from "../common/UserFullName";
 const axios = require('axios');
 
 
-class ReferenceForm extends React.Component {
+class ReviewForm extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
 
         this.state = {
             reference: "",
+            reviewType:"",
             profileDto: {},
             isPositive:true,
             saved: false,
+            label:"",
             errors: {}
         };
 
@@ -34,10 +36,14 @@ class ReferenceForm extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
+        if(!window.confirm("Referanslar silinemez ve düzenlenemez, kaydetmek istediğinizden emin misiniz?"))
+            return false;
+
         const reference = {
             reference: this.state.reference,
             reader: this.state.profileDto,
-            positive:this.state.isPositive
+            positive:this.state.isPositive,
+            reviewType:this.state.reviewType
         };
         this.saveReference(reference);
     }
@@ -46,7 +52,7 @@ class ReferenceForm extends React.Component {
     saveReference(referenceDto) {
 
         const self = this;
-        axios.post('http://localhost:8080/review/writeAsFriend/', referenceDto, Security.authHeader())
+        axios.post('http://localhost:8080/review/writeReview/', referenceDto, Security.authHeader())
             .then(function (response) {
                 self.setState({saved: true});
             })
@@ -62,10 +68,24 @@ class ReferenceForm extends React.Component {
         //get the reader user
         axios.get('http://localhost:8080/user/profile/' + this.props.match.params.id)
             .then(function (response) {
+
                 self.setState({profileDto: response.data});
+
+                console.log(self.props.match.params.type);
+
+                if(self.props.match.params.type === "meeting"){
+                    const label = self.state.profileDto.name +" ile buluştunuz, nasıl bir deneyimdi referans olur musunuz? referanslar silinemez ve düzenlenemez";
+                    self.setState({label:label});
+                    self.setState({reviewType:"MEETING"});
+                }
+
+                if(self.props.match.params.type === "friend"){
+                    const label ="Bir Referans Yazın, referanslar silinemez ve düzenlenemez";
+                    self.setState({label:label});
+                    self.setState({reviewType:"FRIEND"});
+                }
             })
             .catch(function (error) {
-                console.log(error);
                 self.setState({"errors": error.response.data});
             });
 
@@ -73,6 +93,12 @@ class ReferenceForm extends React.Component {
 
 
     render() {
+        let disabled=false;
+        let {label}  =this.state;
+        if(this.state.saved){
+            disabled = true;
+            label="Referansınız kaydedildi, topluluğumuza katkıda bulunduğunuz için teşekür ederiz";
+        }
 
         return (
             <div className="row">
@@ -86,7 +112,13 @@ class ReferenceForm extends React.Component {
                         surname={this.state.profileDto.surname}
                         userId={this.state.profileDto.id}
                     />
-                    <h4>Bir Referans Yazın, referanslar silinemez ve düzenlenemez</h4>
+                    <h4>{label}</h4>
+
+                    {
+                        this.state.errors.userWarningMessage &&(
+                            <span>{this.state.errors.userWarningMessage}</span>
+                        )
+                    }
                     <form onSubmit={this.onSubmit}>
 
                         <div className="form-group">
@@ -98,6 +130,7 @@ class ReferenceForm extends React.Component {
                                 name="reference"
                                 value={this.state.reference}
                                 onChange={this.onChange}
+                                disabled={disabled}
                             />
                             {this.state.errors.reference && (
                                 <div className="invalid-feedback">
@@ -131,6 +164,7 @@ class ReferenceForm extends React.Component {
                             type="submit"
                             value="Referansı Kaydet"
                             className="btn btn-primary btn-block mt-4"
+                            disabled={disabled}
                         />
                     </form>
                     <br/>
@@ -142,4 +176,4 @@ class ReferenceForm extends React.Component {
 }
 
 
-export default ReferenceForm;
+export default ReviewForm;

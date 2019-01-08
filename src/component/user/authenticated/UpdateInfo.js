@@ -2,8 +2,10 @@ import React from "react";
 import classnames from "classnames";
 import security from "../../../security/Security";
 import Validator from "../../../util/Validator";
-import InputMask from"react-input-mask";
+import InputMask from "react-input-mask";
 import Alert from "../../common/Alert";
+import Select from 'react-select'
+import CityUtil from "../../../util/CityUtil";
 
 const axios = require('axios');
 
@@ -17,17 +19,20 @@ class UpdateInfo extends React.Component {
             name: "",
             surname: "",
             email: "",
-            bDateString:"",
+            bDateString: "",
             phone: "",
             gender: "UNSELECTED",
             referenceCode: "",
             savedMessage: "",
             about: "",
             motivation: "",
+            city: {},
+            cities: [],
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
+        this.onSelectChange = this.onSelectChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.fillFields();
@@ -36,7 +41,6 @@ class UpdateInfo extends React.Component {
     fillFields() {
         console.log(this.props);
         let self = this;
-        let userId = localStorage.getItem("userId");
 
         axios.get('http://localhost:8080/user/myProfile/', security.authHeader())
             .then(function (response) {
@@ -46,6 +50,21 @@ class UpdateInfo extends React.Component {
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
             });
+        this.initCities();
+    }
+
+    initCities(){
+
+
+     let self = this;
+        axios.get('http://localhost:8080/city/all/', security.authHeader())
+            .then(function (response) {
+                let result =CityUtil.setCitiesForSelect(response.data);
+                self.setState({cities:result.cities});
+                self.setState({city:result.selectedCity});
+            })
+            .catch(function (error) {
+            });
     }
 
     updateUser(newUser) {
@@ -54,6 +73,8 @@ class UpdateInfo extends React.Component {
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Bilgileriniz Güncellendi"});
+                localStorage.setItem("cityId",response.data.cityId);
+                self.initCities();
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
@@ -66,15 +87,18 @@ class UpdateInfo extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
+    onSelectChange(e) {
+        this.setState({city: e});
+    }
+
     onSubmit(e) {
         e.preventDefault();
 
         let phoneValidationResult = Validator.validatePhoneNumber(this.state.phone);
-
-        if(!phoneValidationResult.valid){
+        if (!phoneValidationResult.valid) {
             let errorUpdated = {...this.state.errors}
             errorUpdated.phone = "Telefon numarası uygun formatta değil";
-            this.setState({"errors":errorUpdated})
+            this.setState({"errors": errorUpdated})
             return;
         }
 
@@ -89,6 +113,7 @@ class UpdateInfo extends React.Component {
             gender: this.state.gender,
             referenceCode: this.state.referenceCode,
             about: this.state.about,
+            cityId: this.state.city.value,
             motivation: this.state.motivation
         };
         this.updateUser(newUser);
@@ -98,7 +123,7 @@ class UpdateInfo extends React.Component {
     render() {
         const {errors} = this.state;
         const {savedMessage} = this.state;
-        const show = {display: "inline"}
+        const show = {display: "inline"};
 
 
         return (
@@ -219,6 +244,10 @@ class UpdateInfo extends React.Component {
                         </div>
 
                         <div className="form-group">
+                            <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
+                        </div>
+
+                        <div className="form-group">
                             <label>Erkek&nbsp;</label>
                             <input type="radio"
                                    name="gender"
@@ -248,7 +277,7 @@ class UpdateInfo extends React.Component {
                                 })}
                                 placeholder="Referans Kodu"
                                 name="referenceCode"
-                                value={"Referans Kodu : "+this.state.referenceCode}
+                                value={"Referans Kodu : " + this.state.referenceCode}
                                 onChange={this.onChange}
                                 disabled
                             />

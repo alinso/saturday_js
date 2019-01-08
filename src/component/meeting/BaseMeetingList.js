@@ -10,9 +10,7 @@ class BaseMeetingList extends React.Component {
         super(props);
         Security.protect();
 
-        this.state = {
-            meetings: [],
-        };
+
 
         this.fillPage();
         this.deleteMeeting = this.deleteMeeting.bind(this);

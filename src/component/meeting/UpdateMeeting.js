@@ -1,6 +1,7 @@
 import React from "react";
 import Security from "../../security/Security";
 import BaseMeetingForm from "./BaseMeetingForm";
+import CityUtil from "../../util/CityUtil";
 
 const moment=require("moment");
 const axios = require('axios');
@@ -12,6 +13,19 @@ class UpdateMeeting extends BaseMeetingForm {
         this.fillPage();
         this.onSubmit = this.onSubmit.bind(this);
         this.getInitDeadLine = this.getInitDeadLine.bind(this);
+        this.loadCities();
+    }
+
+    loadCities(){
+        const self=this;
+        axios.get('http://localhost:8080/city/all/', Security.authHeader())
+            .then(function (response) {
+                let result =CityUtil.setCitiesForSelect(response.data);
+                self.setState({cities:result.cities});
+            })
+            .catch(function (error) {
+            });
+
     }
 
     fillPage() {
@@ -23,6 +37,8 @@ class UpdateMeeting extends BaseMeetingForm {
                 self.setState({deadLineString: response.data.deadLineString});
                 self.setState({photoName: response.data.photoName});
                 self.setState({id: response.data.id});
+                self.setState({city:{label:response.data.city.name, value: response.data.city.id}});
+
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -57,10 +73,13 @@ class UpdateMeeting extends BaseMeetingForm {
 
         this.setState({isSubmitDisabled: true});
 
+        console.log(this.state.city);
+
         const data = new FormData();
         if (this.state.selectedFile != null)
             data.append('file', this.state.selectedFile, this.state.selectedFile.name);
         data.append("detail", this.state.detail);
+        data.append("cityId", this.state.city.value);
         data.append("deadLineString", this.state.deadLineString);
         data.append("id", this.props.match.params.id);
 

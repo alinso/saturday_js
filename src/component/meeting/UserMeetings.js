@@ -14,6 +14,9 @@ class UserMeetings extends BaseMeetingList {
     constructor(props) {
         super(props);
 
+        this.state={
+            meetings: []
+        }
         this.fillPage();
     }
 

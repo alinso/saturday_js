@@ -8,9 +8,11 @@ class Security {
 
 
 
-    static setLoginCredentials(token, userName) {
+    static setLoginCredentials(token, userFullName,cityId) {
         localStorage.setItem("jwtToken", token);
-        localStorage.setItem("userName", userName);
+        localStorage.setItem("userFullName", userFullName);
+        localStorage.setItem("cityId", cityId);
+
 
         const decoded_jwtToken = jwt_decode(localStorage.getItem("jwtToken"));
         localStorage.setItem("userId", decoded_jwtToken.id);
@@ -19,8 +21,9 @@ class Security {
 
     static logout() {
         localStorage.removeItem("jwtToken");
-        localStorage.removeItem("userName");
+        localStorage.removeItem("userFullName");
         localStorage.removeItem("userId");
+        localStorage.removeItem("cityId");
 
         window.location = "/login";
     }

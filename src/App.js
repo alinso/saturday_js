@@ -5,7 +5,6 @@ import Dashboard from './component/Dashboard';
 import GuestHeader from './component/common/GuestHeader';
 import UserHeader from './component/common/UserHeader';
 import Register from './component/user/nonauthenticated/Register';
-import MyProfile from './component/user/authenticated/MyProfile';
 import security from "./security/Security";
 
 import './App.css';
@@ -28,7 +27,10 @@ import UserMeetings from "./component/meeting/UserMeetings";
 import MeetingRequests from "./component/meeting/MeetingRequests";
 import MessagePage from "./component/message/MessagePage";
 import Conversations from "./component/message/Conversations";
-import ReferenceForm from "./component/reference/ReferenceForm";
+import ReviewForm from "./component/review/ReviewForm";
+import ReferenceCodes from "./component/user/authenticated/ReferenceCodes";
+import Followings from "./component/user/authenticated/Followings";
+import Reviews from "./component/review/Reviews";
 
 class App extends Component {
 
@@ -68,6 +70,8 @@ class App extends Component {
                     {<Route exact path="/myAlbum" component={MyAlbum}/>}
                     {<Route exact path="/album/:id" component={Album}/>}
                     {<Route exact path="/settings" component={Settings}/>}
+                    {<Route exact path="/referenceCodes" component={ReferenceCodes}/>}
+                    {<Route exact path="/followings" component={Followings}/>}
 
                     {<Route exact path="/createMeeting" component={CreateMeeting}/>}
                     {<Route exact path="/updateMeeting/:id" component={UpdateMeeting}/>}
@@ -77,7 +81,9 @@ class App extends Component {
                     {<Route exact path="/message/:id" component={MessagePage}/>}
                     {<Route exact path="/conversations/" component={Conversations}/>}
 
-                    {<Route exact path="/referenceForm/:type/:id" component={ReferenceForm}/>}
+                    {<Route exact path="/reviewForm/:type/:id" component={ReviewForm}/>}
+                    {<Route exact path="/reviews/:id" component={Reviews}/>}
+
 
 
 

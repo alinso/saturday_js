@@ -112,9 +112,8 @@ class SearchUser extends React.Component {
                                 surname={user.surname}
                                 />
                                 <h5>{user.gender} / {user.age}</h5>
-                                <i className="fas fa-star"></i><i className="fas fa-star"></i><i
-                                className="fas fa-star"></i><i className="fas fa-star"></i><i
-                                className="fas fa-star"></i>(37)
+                                <h4>{user.point} <i className="far fa-star"/></h4>
+
                             </div>
                         </div>)
                     })}

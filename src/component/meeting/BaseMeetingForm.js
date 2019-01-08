@@ -3,6 +3,11 @@ import Security from "../../security/Security";
 import MeetingDetailInput from "../common/MeetingDetailInput";
 import Datetime from "react-datetime";
 import SinglePhotoSelector from "../common/SinglePhotoSelector";
+import Select from 'react-select'
+import CityUtil from "../../util/CityUtil";
+
+const axios = require('axios');
+
 
 require('moment/locale/tr');
 
@@ -21,14 +26,20 @@ class BaseMeetingForm extends React.Component {
             selectedFile:null,
             isFileSelected:false,
             isSubmitDisabled:false,
+            cities:[],
+            city:{},
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.dateSelected=this.dateSelected.bind(this);
         this.handleSelectedFile=this.handleSelectedFile.bind(this);
+        this.loadCities = this.loadCities.bind(this);
+        this.onSelectChange = this.onSelectChange.bind(this);
 
     }
+
+
 
 
     dateSelected(e){
@@ -39,6 +50,10 @@ class BaseMeetingForm extends React.Component {
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
+    }
+    onSelectChange(e) {
+        console.log(e);
+        this.setState({city: e});
     }
 
     handleSelectedFile = event => {
@@ -74,6 +89,10 @@ class BaseMeetingForm extends React.Component {
                     )}
 
                     <form onSubmit={this.onSubmit}>
+
+                        <div className="form-group">
+                            <Select value={this.state.city} options={this.state.cities}  onChange={this.onSelectChange}/>
+                        </div>
 
                         <MeetingDetailInput
                             error={errors.detail}
