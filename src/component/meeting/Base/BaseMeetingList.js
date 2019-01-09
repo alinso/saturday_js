@@ -1,6 +1,6 @@
 import React from "react";
-import Security from "../../security/Security";
-import JSUtil from "../../util/JSUtil";
+import Security from "../../../security/Security";
+import JSUtil from "../../../util/JSUtil";
 
 const axios = require('axios');
 
@@ -12,7 +12,6 @@ class BaseMeetingList extends React.Component {
 
 
 
-        this.fillPage();
         this.deleteMeeting = this.deleteMeeting.bind(this);
         this.updateMeeting = this.updateMeeting.bind(this);
         this.joinMeeting = this.joinMeeting.bind(this);
@@ -21,7 +20,7 @@ class BaseMeetingList extends React.Component {
 
     joinMeeting(id){
         const self = this;
-        axios.get('http://localhost:8080/meeting/join/'+id, Security.authHeader())
+        axios.get('http://localhost:8080/request/sendRequest/'+id, Security.authHeader())
             .then(function (response) {
                 let meetings = self.state.meetings;
                 let currentMeetingOld = meetings.filter(obj => {

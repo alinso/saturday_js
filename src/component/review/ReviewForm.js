@@ -12,7 +12,7 @@ class ReviewForm extends React.Component {
         Security.protect();
 
         this.state = {
-            reference: "",
+            review: "",
             reviewType:"",
             profileDto: {},
             isPositive:true,
@@ -40,7 +40,7 @@ class ReviewForm extends React.Component {
             return false;
 
         const reference = {
-            reference: this.state.reference,
+            review: this.state.review,
             reader: this.state.profileDto,
             positive:this.state.isPositive,
             reviewType:this.state.reviewType
@@ -124,17 +124,17 @@ class ReviewForm extends React.Component {
                         <div className="form-group">
                             <textarea
                                 className={classnames("form-control form-control-lg", {
-                                    "is-invalid": this.state.errors.reference
+                                    "is-invalid": this.state.errors.review
                                 })}
                                 placeholder={"Bize " + this.state.profileDto.name + " hakkında birşeyler anlatın..."}
-                                name="reference"
-                                value={this.state.reference}
+                                name="review"
+                                value={this.state.review}
                                 onChange={this.onChange}
                                 disabled={disabled}
                             />
                             {this.state.errors.reference && (
                                 <div className="invalid-feedback">
-                                    {this.state.errors.reference}
+                                    {this.state.errors.review}
                                 </div>
                             )}
                         </div>

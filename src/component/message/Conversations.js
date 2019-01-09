@@ -33,6 +33,8 @@ class Conversations extends React.Component {
                 self.setState({"errors": error.response.data});
             });
 
+        axios.get('http://localhost:8080/notification/readMessages', Security.authHeader());
+
     }
 
 

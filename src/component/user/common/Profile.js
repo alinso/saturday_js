@@ -29,7 +29,6 @@ class Profile extends React.Component {
     }
 
     fillPage() {
-        console.log(this.props);
         let self = this;
         let userId = this.props.match.params.id;
 

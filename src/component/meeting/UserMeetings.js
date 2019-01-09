@@ -3,7 +3,7 @@ import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import '../../util/JSUtil';
-import BaseMeetingList from "./BaseMeetingList";
+import BaseMeetingList from "./Base/BaseMeetingList";
 import MeetingEditButtons from "../common/MeetingEditButtons";
 import MeetingRequestButtons from "../common/MeetingRequestButtons";
 import MeetingInfoBlock from "../common/MeetingInfoBlock";

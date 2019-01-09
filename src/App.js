@@ -31,6 +31,8 @@ import ReviewForm from "./component/review/ReviewForm";
 import ReferenceCodes from "./component/user/authenticated/ReferenceCodes";
 import Followings from "./component/user/authenticated/Followings";
 import Reviews from "./component/review/Reviews";
+import Notifications from "./component/notification/Notifications";
+import MeetingDetail from "./component/meeting/MeetingDetail";
 
 class App extends Component {
 
@@ -77,12 +79,15 @@ class App extends Component {
                     {<Route exact path="/updateMeeting/:id" component={UpdateMeeting}/>}
                     {<Route exact path="/userMeetings/:id" component={UserMeetings}/>}
                     {<Route exact path="/meetingRequests/:id" component={MeetingRequests}/>}
+                    {<Route exact path="/meetingDetail/:id" component={MeetingDetail}/>}
 
                     {<Route exact path="/message/:id" component={MessagePage}/>}
                     {<Route exact path="/conversations/" component={Conversations}/>}
 
                     {<Route exact path="/reviewForm/:type/:id" component={ReviewForm}/>}
                     {<Route exact path="/reviews/:id" component={Reviews}/>}
+
+                    {<Route exact path="/notifications/" component={Notifications}/>}
 
 
 

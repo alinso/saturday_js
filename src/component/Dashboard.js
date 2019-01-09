@@ -3,7 +3,7 @@ import Security from "../security/Security";
 import UserUtil from "../util/UserUtil";
 import ProfilePic from "./common/ProfilePic";
 import UserFullName from "./common/UserFullName";
-import BaseMeetingList from "./meeting/BaseMeetingList";
+import BaseMeetingList from "./meeting/Base/BaseMeetingList";
 import MeetingEditButtons from "./common/MeetingEditButtons";
 import MeetingRequestButtons from "./common/MeetingRequestButtons";
 import MeetingInfoBlock from "./common/MeetingInfoBlock";
@@ -57,6 +57,7 @@ class Dashboard extends BaseMeetingList {
 
     onSelectChange(e) {
         self.fillPage(e.value);
+        self.setState({city:e});
     }
 
 
@@ -70,9 +71,8 @@ class Dashboard extends BaseMeetingList {
 
                     {
                         self.state.meetings.map(function (meeting, i) {
-                            console.log(meeting);
                             return (
-                                <div className={"row meetingListSingleMeetingContainer"}>
+                                <div key={i} className={"row meetingListSingleMeetingContainer"}>
                                     <div className="col-md-3 meetingListProfile">
 
                                         <ProfilePic

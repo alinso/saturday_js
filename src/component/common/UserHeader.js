@@ -1,17 +1,60 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import Security from "../../security/Security";
+const axios = require('axios');
 
 
 class UserHeader extends React.Component {
+
+    constructor(){
+        super()
+        this.state={
+            notifications:[],
+            messageNotification:false,
+            notification:false,
+        }
+        this.fillPage();
+    }
+
+    fillPage(){
+
+
+        const self = this;
+        axios.get('http://localhost:8080/notification/newNotifications/', Security.authHeader())
+            .then(function (response) {
+                self.setState({notifications: response.data});
+
+
+                response.data.map(function (not) {
+
+                    console.log(not.notificationType);
+
+                    if(not.notificationType.toString()==="MESSAGE")
+                        self.setState({messageNotification:true});
+                    if(not.notificationType.toString()!=="MESSAGE")
+                        self.setState({notification:true});
+                });
+
+            })
+            .catch(function (error) {
+                self.setState({"errors": error.response.data});
+            });
+    }
+
+
     render() {
+        let messageText="Mesajlar";
+        if(this.state.messageNotification===true){
+            messageText="Mesajlar(*)";
+        }
+
+
         return (
-
-
             <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
                 <div className="container-fluid col-md-8">
                     <div className="navbar-header">
                         <Link className="navbar-brand" to="/">
-                            <strong>Night Out</strong>
+                            <strong>{localStorage.getItem("userFullName")}</strong>
                         </Link>
                     </div>
 
@@ -22,9 +65,17 @@ class UserHeader extends React.Component {
                     </ul>
                     <ul className="nav navbar-nav">
                         <li className="nav-item nav-link">
-                            <a href={"/conversations/"}>Mesajlar</a>
+                            <a href={"/conversations/"}>{messageText}</a>
                         </li>
                     </ul>
+                    {this.state.notification &&
+                    (
+                        <ul className="nav navbar-nav">
+                            <li className="nav-item nav-link">
+                                <a href={"/notifications/"}>Yeni Bildirim*</a>
+                            </li>
+                        </ul>)
+                    }
                     <ul className="nav navbar-nav">
                         <li className="nav-item nav-link">
                             <a href="/createMeeting">Dışarı Çık</a>
@@ -53,29 +104,3 @@ class UserHeader extends React.Component {
 }
 
 export default UserHeader;
-/*
-*   <!-- <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
-                <div className="container">
-                    <Link className="navbar-brand" to="/">
-                        <strong>Night Out</strong>
-                    </Link>
-                    <Link className="navbar-brand" to="/myProfile">
-                        Profilim
-                    </Link>
-                    <Link className="navbar-brand" to="/searchUser">
-                        Kullanıcı Ara
-                    </Link>
-                    <Link className="navbar-brand" to="/logout">
-                        Çıkış Yap
-                    </Link>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#mobile-nav"
-                    >
-                        <span className="navbar-toggler-icon" />
-                    </button>
-                </div>
-            </nav>-->
-* */

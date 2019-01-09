@@ -1,6 +1,6 @@
 import React from "react";
 import Security from "../../security/Security";
-import BaseMeetingForm from "./BaseMeetingForm";
+import BaseMeetingForm from "./Base/BaseMeetingForm";
 import CityUtil from "../../util/CityUtil";
 
 const moment=require("moment");

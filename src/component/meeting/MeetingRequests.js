@@ -29,7 +29,7 @@ class MeetingRequests extends React.Component {
     fillPage() {
         const self = this;
 
-        axios.get('http://localhost:8080/meeting/requests/' + this.props.match.params.id, Security.authHeader())
+        axios.get('http://localhost:8080/meeting/meetingWithRequests/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
                 self.setState({photoName: response.data.photoName});
@@ -45,7 +45,7 @@ class MeetingRequests extends React.Component {
 
     toggleApprove(id) {
         const self = this;
-        axios.get('http://localhost:8080/meeting/approveRequest/' + id, Security.authHeader())
+        axios.get('http://localhost:8080/request/approveRequest/' + id, Security.authHeader())
             .then(function (response) {
                 let requests = self.state.requests;
                 let currentRequestOld = requests.filter(obj => {
