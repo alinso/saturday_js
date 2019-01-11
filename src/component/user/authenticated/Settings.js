@@ -22,6 +22,7 @@ class Settings extends React.Component {
                         <a href="/updatePassword/"><h3>Şifre Güncelle</h3></a>
                         <a href="/referenceCodes/"><h3>Referanslarım</h3></a>
                         <a href="/followings/"><h3>Bildirim Listem</h3></a>
+                        <a href="/blocks/"><h3>Engellediğim Kişiler</h3></a>
                     </div>
                 </div>
             </div>

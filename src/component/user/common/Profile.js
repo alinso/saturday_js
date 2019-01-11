@@ -25,6 +25,7 @@ class Profile extends React.Component {
         };
 
         this.follow = this.follow.bind(this);
+        this.block = this.block.bind(this);
         this.fillPage();
     }
 
@@ -72,6 +73,19 @@ class Profile extends React.Component {
             });
     }
 
+    block(){
+        const self  =this;
+        if(window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
+        axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
+            .then(function (response) {
+                self.setState({"isBlocked": response.data});
+                window.location="/";
+            })
+            .catch(function (error) {
+                self.setState({"errors": error.response.data});
+            });
+    }
+
 
     sendMessageButton() {
         if (this.props.match.params.id !== localStorage.getItem("userId")) {
@@ -102,6 +116,15 @@ class Profile extends React.Component {
             return(
                 <button onClick={this.follow} className={"btn btn-info"}>Takip Et</button>
             )}
+    }
+
+
+    blockButton(){
+        if(this.props.match.params.id !== localStorage.getItem("userId")) {
+            return(
+                <button onClick={this.block} className={"btn btn-info"}>Engelle</button>
+            )}
+
     }
 
 
@@ -139,6 +162,8 @@ class Profile extends React.Component {
                             {this.reviewButton()}
                             <br/>
                             {this.followButton()}
+                            <br/>
+                            {this.blockButton()}
 
                         </div>
 

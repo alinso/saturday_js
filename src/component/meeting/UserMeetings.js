@@ -77,7 +77,6 @@ class UserMeetings extends BaseMeetingList {
                                                     meetingId={meeting.id}
                                                     userId={meeting.profileDto.id}
                                                     deleteMeeting={()=>self.deleteMeeting(meeting.id)}
-                                                    updateMeeting={()=>self.updateMeeting(meeting.id)}
                                                 />
                                                 {(!meeting.expired) &&
                                                     ( <MeetingRequestButtons

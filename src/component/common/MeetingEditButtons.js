@@ -16,9 +16,11 @@ class MeetingEditButtons extends React.Component {
                             <i className="fas fa-users"/>
                         </button>
                     </a>
+                    <a href={"/updateMeeting/" + this.props.meetingId}>
                     <button onClick={this.props.updateMeeting}
                             className="btn btn-info meetingProcess"><i className="fas fa-edit"/>
                     </button>
+                    </a>
                     <button onClick={this.props.deleteMeeting}
                             className="btn btn-warning meetingProcess"><i className="fas fa-trash"/>
                     </button>

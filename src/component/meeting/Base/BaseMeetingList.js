@@ -13,7 +13,6 @@ class BaseMeetingList extends React.Component {
 
 
         this.deleteMeeting = this.deleteMeeting.bind(this);
-        this.updateMeeting = this.updateMeeting.bind(this);
         this.joinMeeting = this.joinMeeting.bind(this);
     }
 
@@ -58,11 +57,6 @@ class BaseMeetingList extends React.Component {
                 self.setState({meetings: meetingsNew});
             });
     }
-
-    updateMeeting(id) {
-        window.location = "/updateMeeting/" + id;
-    }
-
 
 }
 

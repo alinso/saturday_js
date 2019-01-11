@@ -28,6 +28,12 @@
   height: 180px;
   border-radius: 50%;
 }
+.profilePicSmall{
+    object-fit: cover;
+    width:80px;
+    height: 80px;
+    border-radius: 50%;
+}
 
 .conversationContainer{
     background: #cdcde0;
@@ -88,9 +94,6 @@
     padding: 6px;
     color: gray;
 }
-.meetingListProfile{
-  border-right: 1px solid gray;
-}
 .meetingProcess{
   padding-left: 10px;
   padding-right: 10px;
@@ -121,17 +124,27 @@
 color: #282c34
 }
 
+.lightOnGreen{
+    color: #69ec76;
+}
+.bg-menu{
+    background: #b385de;
+}
+.doSometingLink{
 
-.meetingListMeetingText{
+}
+.meetingDeadLine{
+ text-align: left;
+    padding-left: 40px;
+}
+.float-left{
+    float: left;
+}
+.meetingListMeetingDetail{
   min-height: 200px;
-  padding: 20px;
-  padding-top: 50px;
-}
+    padding: 10px;
+    }
 
-.meetingListUserMeta{
- padding-left: 20px;
-  text-align: left;
-}
 .messageBox{
   background: #d5dee6;
   padding: 10px;
@@ -165,17 +178,30 @@ color: #282c34
 }
 
 .meetingListPhoto{
-  width: 90%;
+  width: 98%;
   object-fit: cover;
-  max-height: 300px;
+  max-height: 470px;
 }
-
-
+.city-filter{
+    background: #d2d3dc;
+    padding: 5px;
+}
+.city-filter-label{
+    margin-top:7px
+}
+.container{
+   background: white;
+}
+.outer{
+    background: #eaebf1;
+}
+.text-align-left{
+ text-align: left;
+}
 
 .meetingListSingleMeetingContainer{
   padding: 5px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid gray;
+  border-bottom: 2px solid #eaebf1;
 }
 
 .searchItemContainer{

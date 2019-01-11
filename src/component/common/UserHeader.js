@@ -1,22 +1,23 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Security from "../../security/Security";
+
 const axios = require('axios');
 
 
 class UserHeader extends React.Component {
 
-    constructor(){
+    constructor() {
         super()
-        this.state={
-            notifications:[],
-            messageNotification:false,
-            notification:false,
+        this.state = {
+            notifications: [],
+            messageNotification: false,
+            notification: false,
         }
         this.fillPage();
     }
 
-    fillPage(){
+    fillPage() {
 
 
         const self = this;
@@ -29,10 +30,10 @@ class UserHeader extends React.Component {
 
                     console.log(not.notificationType);
 
-                    if(not.notificationType.toString()==="MESSAGE")
-                        self.setState({messageNotification:true});
-                    if(not.notificationType.toString()!=="MESSAGE")
-                        self.setState({notification:true});
+                    if (not.notificationType.toString() === "MESSAGE")
+                        self.setState({messageNotification: true});
+                    if (not.notificationType.toString() !== "MESSAGE")
+                        self.setState({notification: true});
                 });
 
             })
@@ -43,14 +44,20 @@ class UserHeader extends React.Component {
 
 
     render() {
-        let messageText="Mesajlar";
-        if(this.state.messageNotification===true){
-            messageText="Mesajlar(*)";
+        let messageLinkProps = {title:"Mesajlar", class:"fas fa-2x fa-envelope"};
+        let notificationLinkProps = {title: "Bildirimler",class: "fa fa-2x fa-bell"};
+
+        if (this.state.messageNotification === true) {
+             messageLinkProps = {title:"Yeni Mesaj", class:"fas fa-2x fa-envelope lightOnGreen"};
+        }
+
+        if (this.state.notification === true) {
+             notificationLinkProps = {title: "Yeni Bildirim!",class: "fas fa-2x fa-bell lightOnGreen"};
         }
 
 
         return (
-            <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
+            <nav className="navbar navbar-expand-sm navbar-dark bg-menu">
                 <div className="container-fluid col-md-8">
                     <div className="navbar-header">
                         <Link className="navbar-brand" to="/">
@@ -60,39 +67,38 @@ class UserHeader extends React.Component {
 
                     <ul className="nav navbar-nav">
                         <li className="nav-item nav-link">
-                            <a href={"/profile/"+localStorage.getItem("userId")}>Profilim</a>
+                            <a href="/createMeeting" className={"doSometingLink"} title={"Yeni Aktivite"}>
+                                <i className="fa fa-2x  fa-bolt"/>
+                                <i className="fa  fa-2x   fa-bolt"/>
+                                <i className="fa  fa-2x   fa-bolt"/></a>
                         </li>
-                    </ul>
-                    <ul className="nav navbar-nav">
-                        <li className="nav-item nav-link">
-                            <a href={"/conversations/"}>{messageText}</a>
-                        </li>
-                    </ul>
-                    {this.state.notification &&
-                    (
-                        <ul className="nav navbar-nav">
-                            <li className="nav-item nav-link">
-                                <a href={"/notifications/"}>Yeni Bildirim*</a>
-                            </li>
-                        </ul>)
-                    }
-                    <ul className="nav navbar-nav">
-                        <li className="nav-item nav-link">
-                            <a href="/createMeeting">Dışarı Çık</a>
-                        </li>
+
+
+
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
+                        <li className="nav-item nav-link">
+                            <a href={"/conversations/"}><i className={messageLinkProps.class} title={messageLinkProps.title}/></a>
+                        </li>
+                        <li className="nav-item nav-link">
+                            <a href={"/notifications/"}><i className={notificationLinkProps.class} title={notificationLinkProps.title}/></a>
+                        </li>
+                        <li className="nav-item nav-link">
+                            <a href={"/profile/" + localStorage.getItem("userId")} title={"Profilim"}><i className="fa fa-2x fa-user"/></a>
+                        </li>
                         <li className={"nav-item nav-link"}>
                             <form className="form-inline my-2 my-lg-0" method="get" action="/searchUser">
-                                <input className="form-control mr-sm-2" type="search" name="fullname" placeholder="isim gir..."
+                                <input className="form-control mr-sm-2" type="search" name="fullname"
+                                       placeholder="isim gir..."
                                        aria-label="Search"/>
-                                <button className="btn btn-info my-2 my-sm-0" type="submit">Ara
+                                <button className="btn btn-primary my-2 my-sm-0" type="submit">Ara
                                 </button>
                             </form>
                         </li>
                         <li className={"nav-item nav-link"}>
                             <a href="/logout">
-                                <button className="btn btn-outline-light my-2 my-sm-0" type="button"><strong>Çıkış Yap</strong></button>
+                                <button className="btn btn-outline-light my-2 my-sm-0" type="button"><strong>Çıkış
+                                    Yap</strong></button>
                             </a>
                         </li>
                     </ul>

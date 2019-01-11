@@ -9,16 +9,15 @@ class MeetingInfoBlock extends React.Component {
 
     render() {
 
-        return(<div className={"row meetingListMeetingText"}>
+        return(<div className={"meetingListMeetingDetail"}>
+                {this.props.detail}
+
             {(this.props.photoName!=null) &&(
                 <div className={"col-md-12"}>
-                    <img className={"meetingListPhoto col-md-8"} src={"/upload/"+this.props.photoName}/><hr/><br/>
+                    <img className={"meetingListPhoto"} src={"/upload/"+this.props.photoName}/>
                 </div>
             )}
 
-            <div className={"col-md-12"}>
-                {this.props.detail}
-            </div>
         </div>)
     }
 }

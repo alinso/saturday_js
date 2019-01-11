@@ -33,6 +33,8 @@ import Followings from "./component/user/authenticated/Followings";
 import Reviews from "./component/review/Reviews";
 import Notifications from "./component/notification/Notifications";
 import MeetingDetail from "./component/meeting/MeetingDetail";
+import Blocks from "./component/user/authenticated/Blocks";
+import ReviewDetail from "./component/review/ReviewDetail";
 
 class App extends Component {
 
@@ -51,7 +53,6 @@ class App extends Component {
             <Router>
                 <div className="App">
                     {this.setHeader()}
-                    <br/>
                     {/*non authenticated*/}
                     {!security.isValidToken() && <Route exact path="/" component={Landing}/>}
                     {security.isValidToken() && <Route exact path="/" component={Dashboard}/>}
@@ -74,6 +75,7 @@ class App extends Component {
                     {<Route exact path="/settings" component={Settings}/>}
                     {<Route exact path="/referenceCodes" component={ReferenceCodes}/>}
                     {<Route exact path="/followings" component={Followings}/>}
+                    {<Route exact path="/blocks" component={Blocks}/>}
 
                     {<Route exact path="/createMeeting" component={CreateMeeting}/>}
                     {<Route exact path="/updateMeeting/:id" component={UpdateMeeting}/>}
@@ -86,6 +88,7 @@ class App extends Component {
 
                     {<Route exact path="/reviewForm/:type/:id" component={ReviewForm}/>}
                     {<Route exact path="/reviews/:id" component={Reviews}/>}
+                    {<Route exact path="/review/:id" component={ReviewDetail}/>}
 
                     {<Route exact path="/notifications/" component={Notifications}/>}
 

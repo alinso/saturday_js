@@ -5,6 +5,7 @@ import UserFullName from "../common/UserFullName";
 import UserUtil from "../../util/UserUtil";
 import JSUtil from "../../util/JSUtil";
 import Alert from "../common/Alert";
+import MeetingEditButtons from "../common/MeetingEditButtons";
 
 const axios = require('axios');
 
@@ -16,6 +17,7 @@ class MeetingRequests extends React.Component {
 
         this.state = {
             photoName: null,
+            meetingId:null,
             detail: null,
             deadLineString:null,
             requests: null,
@@ -35,12 +37,28 @@ class MeetingRequests extends React.Component {
                 self.setState({photoName: response.data.photoName});
                 self.setState({deadLineString: response.data.deadLineString});
                 self.setState({requests: response.data.requests});
+                self.setState({meetingId: response.data.id});
 
             })
             .catch(function (error) {
                 console.log(error.response);
             });
 
+    }
+
+    deleteMeeting(id) {
+
+        const self = this;
+        if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
+            return;
+
+        axios.get("http://localhost:8080/meeting/delete/" + id, Security.authHeader())
+            .then(res => {
+
+                let meetings = self.state.meetings;
+                let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
+                self.setState({meetings: meetingsNew});
+            });
     }
 
     toggleApprove(id) {
@@ -94,6 +112,13 @@ class MeetingRequests extends React.Component {
                             <div className={"col-md-12 meetingListUserMeta"}>
                                 <br/><br/>
                                 <button className={"btn btn-warning"}> {this.state.deadLineString}</button>
+
+                                <MeetingEditButtons
+                                    meetingId={this.state.meetingId}
+                                    userId={parseInt(localStorage.getItem("userId"))}
+                                    deleteMeeting={() => self.deleteMeeting(this.state.meetingId)}
+                                />
+
                                 <hr/>
                             </div>
                         </div>

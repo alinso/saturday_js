@@ -6,13 +6,13 @@ import JSUtil from "../../../util/JSUtil";
 const axios = require('axios');
 
 
-class Followings extends React.Component {
+class Blocks extends React.Component {
     constructor() {
         super();
         Security.protect()
 
         this.state={
-            followings:[],
+            blocks:[],
             erorrs:{}
         };
 
@@ -21,7 +21,7 @@ class Followings extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/follow/myFollowings', Security.authHeader())
+        axios.get('http://localhost:8080/block/myBlocks', Security.authHeader())
             .then(function (response) {
                 self.setState({blocks: response.data});
             })
@@ -31,19 +31,19 @@ class Followings extends React.Component {
 
     }
 
-    unfollow(id,name){
+    unblock(id,name){
         const self  =this;
 
-        if(window.confirm("Artık "+name+" ile ilgili bildirim almayacaksınız, emin misiniz?"))
-        axios.get('http://localhost:8080/follow/follow/' + id, Security.authHeader())
-            .then(function (response) {
+        if(window.confirm(" Engellediğiniz, "+name+" üzerindeki engeli kaldıracaksınız, emin misiniz?"))
+            axios.get('http://localhost:8080/block/block/' + id, Security.authHeader())
+                .then(function (response) {
 
-                let followings = self.state.followings;
-                JSUtil.deleteFromArrayByPropertyName(followings,"id",id);
-                self.setState({blocks:followings});
-            })
-            .catch(function (error) {
-            });
+                    let blocks = self.state.blocks;
+                    JSUtil.deleteFromArrayByPropertyName(blocks,"id",id);
+                    self.setState({blocks:blocks});
+                })
+                .catch(function (error) {
+                });
     }
 
 
@@ -52,27 +52,27 @@ class Followings extends React.Component {
         return (
             <div className="row">
                 <div className="col-md-6 m-auto">
-                    <h5>Bildirim Aldığım kişiler</h5>
+                    <h5>Engellediğim kişiler</h5>
                     {
-                        self.state.followings.map(function (following, i) {
+                        self.state.blocks.map(function (block, i) {
                             return (
                                 <div className={"row"}>
                                     <div className={"col-md-3 col-sm-3"}>
                                         <ProfilePic
-                                        userId = {following.id}
-                                        profilePicName={following.profilePicName}
-                                        cssClass={"profilePicMedium"}
+                                            userId = {block.id}
+                                            profilePicName={block.profilePicName}
+                                            cssClass={"profilePicMedium"}
                                         />
                                     </div>
                                     <div className={"col-md-5 col-sm-5"}>
                                         <UserFullName
-                                        userId={following.id}
-                                        name={following.name}
-                                        surname={following.surname}
+                                            userId={block.id}
+                                            name={block.name}
+                                            surname={block.surname}
                                         />
                                     </div>
                                     <div className={"col-md-3col-sm-3"}>
-                                    <button onClick={()=>self.unfollow(following.id,following.name)} className={"btn btn-danger"}>Bildirim almayı Bırak</button>
+                                        <button onClick={()=>self.unblock(block.id,block.name)} className={"btn btn-danger"}>Engeli Kaldır</button>
                                     </div>
                                 </div>
                             );
@@ -84,4 +84,4 @@ class Followings extends React.Component {
     }
 }
 
-export default Followings;
+export default Blocks;
