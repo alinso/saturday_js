@@ -17,13 +17,7 @@ class JSUtil{
     }
 
 
-    static compareByDeadLineString(a,b) {
-        if (a.deadLineString > b.deadLineString)
-            return -1;
-        if (a.deadLineString < b.deadLineString)
-            return 1;
-        return 0;
-    }
+
 
     static compareByRequestatus(a,b) {
         if (a.meetingRequestStatus==="WAITING" && b.meetingRequestStatus==="APPROVED")

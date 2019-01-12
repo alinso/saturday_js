@@ -9,11 +9,11 @@ const axios = require('axios');
 class Reviews extends React.Component {
     constructor(props) {
         super(props);
-        Security.protect()
+        Security.protect();
 
-        this.state={
-            reviews:[],
-            erorrs:{}
+        this.state = {
+            reviews: [],
+            erorrs: {}
         };
 
         this.fillPage();
@@ -21,7 +21,7 @@ class Reviews extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/review/reviewsOfUser/'+this.props.match.params.id, Security.authHeader())
+        axios.get('http://localhost:8080/review/reviewsOfUser/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({reviews: response.data});
             })
@@ -33,34 +33,54 @@ class Reviews extends React.Component {
 
     render() {
         const self = this;
+        if(self.state.reviews.length==0)
+            return("");
+
         return (
-            <div className="row">
-                <div className="col-md-6 m-auto">
-                    <h5>Bildirim Aldığım kişiler</h5>
+            <div className="row outer">
+                <div className="col-md-5 m-x-auto container">
+                    <h5>İnsanlar <a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                        <i className="fas fa-comments"/> {self.state.reviews[0].reader.name +" "+self.state.reviews[0].reader.surname}</a> için ne diyor?
+                    </h5>
+                    <hr/>
                     {
                         self.state.reviews.map(function (review, i) {
                             return (
                                 <div className={"row"}>
-                                    <div className={"col-md-3 col-sm-3"}>
+                                    <div className={"col-md-2 col-sm-2"}>
                                         <ProfilePic
-                                            userId = {review.writer.id}
+                                            userId={review.writer.id}
                                             profilePicName={review.writer.profilePicName}
                                             cssClass={"profilePicMedium"}
                                         />
                                     </div>
-                                    <div className={"col-md-5 col-sm-5"}>
+                                    <div className={"col-md-10 col-sm-10 text-align-left"}>
                                         <UserFullName
                                             userId={review.writer.id}
                                             name={review.writer.name}
                                             surname={review.writer.surname}
                                         />
+
+                                        <div className={"reviewBlock"}>
+                                            {review.positive && (
+                                                <strong className={"positiveReview"}><i className="fas fa-check"/>OLUMLU</strong>)}
+                                            {!review.positive && (<strong className={"negativeReview"}><i
+                                                className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
+                                            , &nbsp;
+                                            {review.positive && (
+                                                <span className={"reviewTypeFriend  "}>Arkadaş Referansı</span>)}
+                                            {!review.positive && (
+                                                <strong className={"reviewTypeActivity"}>Aktivite Referansı</strong>)}
+
+                                            <hr/>
+                                            {review.review}
+                                        </div>
                                     </div>
-                                    <div className={"col-md-3col-sm-3"}>
-                                        {review.reviewType} - {review.positive &&(<span>pozitif</span>)}
-                                        <br/>
-                                        {review.review}
+                                    <div className={"col-md-12"}>
+                                        <hr/>
                                     </div>
                                 </div>
+
                             );
                         })
                     }
@@ -71,3 +91,12 @@ class Reviews extends React.Component {
 }
 
 export default Reviews;
+
+
+
+
+
+
+
+
+

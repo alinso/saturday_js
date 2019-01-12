@@ -1,6 +1,5 @@
 import React from "react";
 import Security from "../security/Security";
-import UserUtil from "../util/UserUtil";
 import ProfilePic from "./common/ProfilePic";
 import UserFullName from "./common/UserFullName";
 import BaseMeetingList from "./meeting/Base/BaseMeetingList";
@@ -9,7 +8,6 @@ import MeetingRequestButtons from "./common/MeetingRequestButtons";
 import MeetingInfoBlock from "./common/MeetingInfoBlock";
 import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
-import ProfilePicAndName from "./common/ProfilePicAndName";
 
 const axios = require('axios');
 let self;
@@ -66,12 +64,11 @@ class Dashboard extends BaseMeetingList {
         const self = this;
         return (
             <div className="row outer">
-                <div className="col-md-5 m-auto container">
-                    <div className={"row city-filter"}>
-                        <div className={"col-md-5"}>
+                <div className="col-md-5 m-x-auto container">
+                    <div className={"col-md-6 m-auto"}>
                             <div className={"float-left city-filter-label"}> Şehir Filtresi:&nbsp;</div>
                             <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
-                        </div>
+                        <hr/>
                     </div>
                     {
                         self.state.meetings.map(function (meeting, i) {
@@ -97,10 +94,10 @@ class Dashboard extends BaseMeetingList {
                                             detail={meeting.detail}
                                         />
                                         <div className={"row"}>
-                                            <div className={"col-md-9 meetingDeadLine"}>
+                                            <div className={"col-md-8 meetingDeadLine"}>
                                                 <i className="far fa-clock">{meeting.deadLineString}</i>
                                             </div>
-                                            <div className={"col-md-3"}>
+                                            <div className={"col-md-4"}>
                                                 <MeetingEditButtons
                                                     meetingId={meeting.id}
                                                     userId={meeting.profileDto.id}

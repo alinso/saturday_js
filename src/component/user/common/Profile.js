@@ -5,6 +5,7 @@ import ProfilePic from "../../common/ProfilePic";
 import UserFullName from "../../common/UserFullName";
 
 const axios = require('axios');
+const isMobile = require('is-mobile');
 
 
 class Profile extends React.Component {
@@ -44,16 +45,16 @@ class Profile extends React.Component {
             });
 
 
-        if(Security.isValidToken())
-        axios.get('http://localhost:8080/review/isReviewedBefore/' + userId, Security.authHeader())
-            .then(function (response) {
-                self.setState({"isReviewedBefore": response.data});
-            })
-            .catch(function (error) {
-                self.setState({"errors": error.response.data});
-            });
+        if (Security.isValidToken())
+            axios.get('http://localhost:8080/review/isReviewedBefore/' + userId, Security.authHeader())
+                .then(function (response) {
+                    self.setState({"isReviewedBefore": response.data});
+                })
+                .catch(function (error) {
+                    self.setState({"errors": error.response.data});
+                });
 
-        if(Security.isValidToken())
+        if (Security.isValidToken())
             axios.get('http://localhost:8080/follow/isFollowing/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isFollowing": response.data});
@@ -62,8 +63,9 @@ class Profile extends React.Component {
                     self.setState({"errors": error.response.data});
                 });
     }
-    follow(){
-     const self  =this;
+
+    follow() {
+        const self = this;
         axios.get('http://localhost:8080/follow/follow/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({"isFollowing": response.data});
@@ -73,73 +75,93 @@ class Profile extends React.Component {
             });
     }
 
-    block(){
-        const self  =this;
-        if(window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
-        axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
-            .then(function (response) {
-                self.setState({"isBlocked": response.data});
-                window.location="/";
-            })
-            .catch(function (error) {
-                self.setState({"errors": error.response.data});
-            });
+    block() {
+        const self = this;
+        if (window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
+            axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
+                .then(function (response) {
+                    self.setState({"isBlocked": response.data});
+                    window.location = "/";
+                })
+                .catch(function (error) {
+                    self.setState({"errors": error.response.data});
+                });
     }
 
 
     sendMessageButton() {
         if (this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
-                <a href={"/message/" + this.props.match.params.id}>
-                    <button className={"btn btn-info"}>Mesaj Gönder</button>
+                <a href={"/message/" + this.props.match.params.id} className={"row"}>
+                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-comment"/></strong>Mesaj
+                    </button>
                 </a>)
         }
     }
 
-    reviewButton(){
-        if(!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
-            return(
-            <a href={"/reviewForm/friend/" + this.props.match.params.id}>
-                <button className={"btn btn-info"}>Referans Yaz</button>
-            </a>
-        )}
+    reviewButton() {
+        if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
+            return (
+                <a href={"/reviewForm/friend/" + this.props.match.params.id} className={"row"}>
+                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-edit"/></strong>Referans
+                        Yaz
+                    </button>
+                </a>
+            )
+        }
     }
 
 
-    followButton(){
-        if(this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
-            return(
-                    <button onClick={this.follow} className={"btn btn-info"}>Takibi Bırak</button>
-            )}
+    followButton() {
+        if (this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
+            return (
+                <div className={"row"}>
+                    <button onClick={this.follow} className={"btn btn-dark profileButton "}><strong>
+                        <i className="far fa-bell-slash"/>
+                    </strong>Bildirimleri Kapat
+                    </button>
+                </div>
+            )
+        }
 
-        if(!this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
-            return(
-                <button onClick={this.follow} className={"btn btn-info"}>Takip Et</button>
-            )}
+        if (!this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
+            return (<div className={"row"}>
+                    <button onClick={this.follow} className={"btn btn-dark profileButton"}><strong><i
+                        className="far fa-bell"/></strong>
+                        Bildirimleri Aç
+                    </button>
+                </div>
+            )
+        }
     }
 
 
-    blockButton(){
-        if(this.props.match.params.id !== localStorage.getItem("userId")) {
-            return(
-                <button onClick={this.block} className={"btn btn-info"}>Engelle</button>
-            )}
+    blockButton() {
+        if (this.props.match.params.id !== localStorage.getItem("userId")) {
+            return (
+                <div className={"row"}>
+                    <button onClick={this.block}
+                            className={"btn btn-dark profileButton"}><strong><i className="fas fa-ban"/></strong>Engelle
+                    </button>
+                </div>
+            )
+        }
 
     }
 
 
     render() {
 
+
         return (
-            <div className="row">
-                <div className="col-md-8 m-auto">
+            <div className="row outer">
+                <div className="col-md-6 m-x-auto container">
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <ProfilePic
                                 profilePicName={this.state.profilePicName}
                                 userId={this.props.match.params.id}
                             />
-                            <br/>
                             <br/>
                             <UserFullName
                                 name={this.state.name}
@@ -149,48 +171,45 @@ class Profile extends React.Component {
                             />
                             <h5>{this.state.gender} / {this.state.age}</h5>
                             <h4>{this.state.point} <i className="far fa-star"/></h4>
+                            <div className={"col-md-12"}>
+                                {this.sendMessageButton()}
+                                {this.reviewButton()}
+                                {this.followButton()}
+                                {this.blockButton()}
 
-                            <br/>
-                            {(this.props.match.params.id === localStorage.getItem("userId")) &&
-                            (
-                                <a href="/settings/">
-                                    <button className={"btn btn-info"}>Hesap Ayarları</button>
-                                </a>
-                            )}
-                            {this.sendMessageButton()}
-                            <br/>
-                            {this.reviewButton()}
-                            <br/>
-                            {this.followButton()}
-                            <br/>
-                            {this.blockButton()}
+                                {(this.props.match.params.id === localStorage.getItem("userId")) &&
+                                (
+                                    <a href="/settings/" className={"row"}>
+                                        <button className={"btn btn-dark profileButton"}>Hesap Ayarları</button>
+                                    </a>
+                                )}
+
+                            </div>
 
                         </div>
 
-                        <div className="col-md-6">
+                        <div className="col-md-9 profileContent">
                             <div className="row">
-                                <div className="col-md-3">
-                                    <a className="profileTitle" href={"/album/" + this.props.match.params.id}>
-                                        Fotoğraflar({this.state.photoCount})
-                                    </a>
-                                </div>
-                                <div className="col-md-3">
-                                    <a className="profileTitle" href={"/album/" + this.props.match.params.id}>
-                                        Arkadaşlar(11)
-                                    </a>
-                                </div>
-                                <div className="col-md-3">
-                                    <a className="profileTitle" href={"/reviews/" + this.props.match.params.id}>
-                                        Yorumlar ({this.state.reviewCount})
-                                    </a>
-                                </div>
-                                <div className="col-md-3">
-                                    <a className="profileTitle" href={"/userMeetings/" + this.props.match.params.id}>
-                                        Buluşmalar({this.state.meetingCount})
-                                    </a>
+                                <div className={"profileTitleContainer m-auto"}>
+                                    <div className="profileTitleDiv">
+                                        <a className="profileTitle" href={"/album/" + this.props.match.params.id}>
+                                            Fotoğraflar({this.state.photoCount})
+                                        </a>
+                                    </div>
+                                    <div className="profileTitleDiv">
+                                        <a className="profileTitle" href={"/reviews/" + this.props.match.params.id}>
+                                            Yorumlar ({this.state.reviewCount})
+                                        </a>
+                                    </div>
+                                    <div className="profileTitleDiv">
+                                        <a className="profileTitle"
+                                           href={"/userMeetings/" + this.props.match.params.id}>
+                                            Buluşmalar({this.state.meetingCount})
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                            <br/><br/>
+
                             <div className="row">
                                 <div className="card col-md-12">
                                     <div className="card-body">

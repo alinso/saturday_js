@@ -35,6 +35,10 @@ import Notifications from "./component/notification/Notifications";
 import MeetingDetail from "./component/meeting/MeetingDetail";
 import Blocks from "./component/user/authenticated/Blocks";
 import ReviewDetail from "./component/review/ReviewDetail";
+import Footer from "./component/common/Footer";
+
+const isMobile = require('is-mobile');
+
 
 class App extends Component {
 
@@ -52,7 +56,7 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
-                    {this.setHeader()}
+                    {!isMobile() && this.setHeader()}
                     {/*non authenticated*/}
                     {!security.isValidToken() && <Route exact path="/" component={Landing}/>}
                     {security.isValidToken() && <Route exact path="/" component={Dashboard}/>}
@@ -93,7 +97,7 @@ class App extends Component {
                     {<Route exact path="/notifications/" component={Notifications}/>}
 
 
-
+                    <Footer/>
 
                 </div>
             </Router>

@@ -25,17 +25,16 @@ class BaseMeetingList extends React.Component {
                 let currentMeetingOld = meetings.filter(obj => {
                     return obj.id === id
                 });
-
-
                 let currentMeetingNew  =Object.assign({},currentMeetingOld)[0];
-                console.log(currentMeetingNew);
                 currentMeetingNew.thisUserJoined = response.data;
-                let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
-                meetingsNew.push(currentMeetingNew);
 
-                meetingsNew.sort(JSUtil.compareByDeadLineString);
-
-                self.setState({meetings:meetingsNew});
+                let indexOfChanged = 0;
+                meetings.map(function (meeting,index) {
+                   if(meeting.id===id)
+                       indexOfChanged=index;
+                });
+                meetings[indexOfChanged] = currentMeetingNew;
+                self.setState({meetings:meetings});
             })
             .catch(function (error) {
                 console.log(error.response);

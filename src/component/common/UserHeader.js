@@ -4,7 +4,6 @@ import Security from "../../security/Security";
 
 const axios = require('axios');
 
-
 class UserHeader extends React.Component {
 
     constructor() {
@@ -68,9 +67,7 @@ class UserHeader extends React.Component {
                     <ul className="nav navbar-nav">
                         <li className="nav-item nav-link">
                             <a href="/createMeeting" className={"doSometingLink"} title={"Yeni Aktivite"}>
-                                <i className="fa fa-2x  fa-bolt"/>
-                                <i className="fa  fa-2x   fa-bolt"/>
-                                <i className="fa  fa-2x   fa-bolt"/></a>
+                                <i className="fas fa-2x fa-glass-cheers"/></a>
                         </li>
 
 
@@ -89,16 +86,18 @@ class UserHeader extends React.Component {
                         <li className={"nav-item nav-link"}>
                             <form className="form-inline my-2 my-lg-0" method="get" action="/searchUser">
                                 <input className="form-control mr-sm-2" type="search" name="fullname"
-                                       placeholder="isim gir..."
+                                       placeholder="isim..."
                                        aria-label="Search"/>
-                                <button className="btn btn-primary my-2 my-sm-0" type="submit">Ara
+                                <button className="btn btn-primary my-2  my-sm-0" type="submit" title={"Ara"}>
+                                    <i className="fas  fa-search"/>
                                 </button>
                             </form>
                         </li>
                         <li className={"nav-item nav-link"}>
-                            <a href="/logout">
-                                <button className="btn btn-outline-light my-2 my-sm-0" type="button"><strong>Çıkış
-                                    Yap</strong></button>
+                            <a href="/logout" title={"Çıkış"}>
+                                    <strong>
+                                        <i className="fas fa-2x fa-sign-out-alt"/>
+                                </strong>
                             </a>
                         </li>
                     </ul>

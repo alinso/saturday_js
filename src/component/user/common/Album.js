@@ -67,9 +67,12 @@ class Album extends React.Component {
         const self = this;
         let photoSet=[];
         return (
-            <div className="row">
-                <div className="col-md-8 m-auto">
-                    <h5><a href={"/profile/" + this.props.match.params.id}> {this.state.fullName}</a> Fotoğrafları </h5>
+            <div className="row outer">
+                <div className="col-md-8 m-x-auto container">
+
+                        <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                            <i className="fas fa-camera-retro"/> {this.state.fullName}</a> Fotoğrafları</h5>
+                    <hr/>
                     <div className="row">
                         {self.state.photoNames.map((photoName, i) => {
                             photoSet.push({"src": "/upload/" + photoName});
