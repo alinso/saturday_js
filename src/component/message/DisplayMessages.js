@@ -9,7 +9,6 @@ class MessageBox extends React.Component {
     }
 
 
-
     scrollToBottom() {
         const scrollHeight = this.messageList.scrollHeight;
         const height = this.messageList.clientHeight;
@@ -34,13 +33,15 @@ class MessageBox extends React.Component {
                             msgClass = "incomingMessage";
                         }
 
-                        return (<div className={msgClass}>
+                        return (<div className={msgClass+"Container"}>
+                                <div className={msgClass}>
                             <span>
                             {message.message}
                              </span>
-                                <span className={"messageDate"}>
+                                    <span className={"messageDate"}>
                                     {message.createdAt}
                                 </span>
+                                </div>
                             </div>
                         )
                     }
@@ -50,7 +51,6 @@ class MessageBox extends React.Component {
         )
     }
 }
-
 
 
 export default MessageBox;

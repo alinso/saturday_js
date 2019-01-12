@@ -73,8 +73,8 @@ class BaseMeetingForm extends React.Component {
         const  deadLineDate  =this.getInitDeadLine();
 
         return (
-            <div className="row">
-                <div className={"col-md-6 offset-3"}>
+            <div className="row outer">
+                <div className={"col-md-6 offset-3 container"}>
                     <h4>Dışarı Çık!</h4>
 
                     {savedMessage && (

@@ -7,7 +7,6 @@ import BaseMeetingList from "./Base/BaseMeetingList";
 import MeetingEditButtons from "../common/MeetingEditButtons";
 import MeetingRequestButtons from "../common/MeetingRequestButtons";
 import MeetingInfoBlock from "../common/MeetingInfoBlock";
-import Select from 'react-select'
 
 const axios = require('axios');
 
@@ -19,10 +18,33 @@ class UserMeetings extends BaseMeetingList {
             meetingsCreated: [],
             meetingsJoined: [],
             meetings: [],
-            meetingTypes : [{label:"Oluşturdukları",value:1},{label:"Katıldıkları",value:2}],
-            selectedMeetingType:{label:"Oluşturdukları",value:1}
+            meetingTypes: "created",
+            createdTitle: "activeTitle",
+            joinedTitle: "passiveTitle",
         };
         this.fillPage();
+        this.changeType = this.changeType.bind(this);
+    }
+
+    changeType(type) {
+        let meetings = [];
+        let createdTitle = "";
+        let joinedTitle = "";
+
+        if (type === "created") {
+            meetings = this.state.meetingsCreated;
+            createdTitle = "activeTitle";
+            joinedTitle = "passiveTitle";
+        } else if (type === "joined") {
+            meetings = this.state.meetingsJoined;
+            createdTitle = "passiveTitle";
+            joinedTitle = "activeTitle";
+        }
+
+        this.setState({meetings: meetings});
+        this.setState({createdTitle: createdTitle});
+        this.setState({joinedTitle: joinedTitle});
+
     }
 
     fillPage() {
@@ -53,37 +75,52 @@ class UserMeetings extends BaseMeetingList {
 
         const self = this;
         return (
-            <div className="row">
-                <div className="col-md-6 m-auto">
-                    {this.state.meetings[0] && (
-                        <div><UserFullName
-                            name={self.state.meetings[0].profileDto.name}
-                            userId={self.state.meetings[0].profileDto.id}
-                            surname={self.state.meetings[0].profileDto.surname}
-                        />
-                            <h4>Buluşmalar</h4>
-                        </div>
-                        )}
+            <div className="row outer">
+                <div className="col-md-5 m-auto container">
+                    {this.state.meetingsCreated[0] && (
+                        <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                            <i className="fas fa-comments"/>
+                            {self.state.meetingsCreated[0].profileDto.name + " " + self.state.meetingsCreated[0].profileDto.surname}
+                        </a> bugüne kadar neler yaptı?
+                        </h5>
+                    )}
 
+                    <div className={"row"}>
+                        <div className={"col-md-12"}>
+                            <hr/>
+                        </div>
+                        <div className="col-md-6 m-auto">
+                            <span className={this.state.createdTitle}
+                                  onClick={() => this.changeType("created")}> Oluşturduğu ({this.state.meetingsCreated.length}) </span>&nbsp;&nbsp;
+                            <span className={this.state.joinedTitle}
+                                  onClick={() => this.changeType("joined")}> Katıldığı ({this.state.meetingsJoined.length})</span>
+                        </div>
+                        <div className={"col-md-12"}>
+                            <hr/>
+                        </div>
+
+                    </div>
                     {
                         self.state.meetings.map(function (meeting, i) {
                             return (
                                 <div className={"row meetingListSingleMeetingContainer"}>
-                                    <div className="col-md-3 meetingListProfile">
+                                    <div className="col-md-2 meetingListProfile">
                                         <ProfilePic
                                             userId={meeting.profileDto.id}
                                             profilePicName={meeting.profileDto.profilePicName}
+                                            cssClass={"profilePicMedium"}
                                         />
+
+                                    </div>
+                                    <div className={"col-md-10  text-align-left "}>
                                         <UserFullName
                                             name={meeting.profileDto.name}
                                             userId={meeting.profileDto.id}
                                             surname={meeting.profileDto.surname}
                                         />
-                                    </div>
-                                    <div className={"col-md-9 "}>
                                         <MeetingInfoBlock photoName={meeting.photoName} detail={meeting.detail}/>
                                         <div className={"row"}>
-                                            <div className={"col-md-9 meetingListUserMeta"}>
+                                            <div className={"col-md-8 meetingDeadLine"}>
                                                 <button className={"btn btn-warning"}> {meeting.deadLineString}</button>
                                             </div>
                                             <div className={"col-md-3"}>

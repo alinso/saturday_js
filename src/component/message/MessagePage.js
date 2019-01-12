@@ -90,8 +90,8 @@ class MessagePage extends React.Component {
     render() {
 
         return (
-            <div className="row">
-                <div className={"col-md-6 offset-3"}>
+            <div className="row outer">
+                <div className={"col-md-6 offset-3 container"}>
                     <ProfilePic
                         userId={this.props.match.params.id}
                         profilePicName={this.state.readerProfile.profilePicName}
@@ -101,10 +101,11 @@ class MessagePage extends React.Component {
                         surname={this.state.readerProfile.surname}
                         userId={this.state.readerProfile.id}
                     />
+                    <div className={"col-md-10 m-auto"}>
                     <MessageBox
                         messages={this.state.messages}
                     />
-
+                    </div>
 
                     <form onSubmit={this.onSubmit}>
 

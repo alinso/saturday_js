@@ -138,6 +138,22 @@ color: #282c34
     color: #504a4a;
 }
 
+.activeTitle{
+color:black;
+font-weight: bold;
+    cursor: pointer;
+}
+
+.passiveTitle{
+    color:#a9a5a5;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.activeTitle:hover, .passiveTitle:hover{
+    color: black;
+}
 
 .reviewTypeFriend{
     font-style: italic;
@@ -154,6 +170,14 @@ color: #282c34
 .doSometingLink{
 
 }
+.outgoingMessageContainer{
+    width: 80%;
+    float: right;
+}
+.incomingMessageContainer{
+    width: 80%;
+    float: left;
+}
 .meetingDeadLine{
  text-align: left;
     padding-left: 40px;
@@ -167,7 +191,7 @@ color: #282c34
     }
 
 .messageBox{
-  background: #d5dee6;
+  background: #f5f0e8;
   padding: 10px;
   border-radius: 5px;
   height: 350px;
@@ -177,25 +201,29 @@ color: #282c34
 }
 .incomingMessage, .outgoingMessage{
   border-radius: 12px;
-  width: 70%;
   margin-bottom: 5px;
 }
 
 .messageDate{
-  color: gray;
-  float: right;
-  margin-right: 5px;
-  font-size: 14px;
+    color: gray;
+    float: right;
+    margin-right: -2px;
+    font-size: 14px;
+    margin-left: 5px;
+    margin-top: 8px;
 }
 .incomingMessage{
-  background: #d6aeb6;
+    background: #b3b7e6;
+    padding: 9px 9px 3px;
     float: left;
 
 }
 
 .outgoingMessage{
-  background: #a3d47e;
-  float: right;
+  background: #85e847;
+    padding: 9px 9px 3px;
+    float:right ;
+
 }
 .footer{
     padding-top: 10px;
