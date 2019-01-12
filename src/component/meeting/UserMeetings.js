@@ -76,7 +76,7 @@ class UserMeetings extends BaseMeetingList {
         const self = this;
         return (
             <div className="row outer">
-                <div className="col-md-5 m-auto container">
+                <div className="col-md-5 m-x-auto container">
                     {this.state.meetingsCreated[0] && (
                         <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
                             <i className="fas fa-comments"/>

@@ -44,11 +44,20 @@ html, body {
     border-radius: 50%;
 }
 
+.profilePicXSmall{
+    object-fit: cover;
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
 .conversationContainer{
-    background: #cdcde0;
+    background: #8db3f9;
     margin-bottom: 10px;
     padding: 5px;
     border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .conversationProfile{
 }
@@ -56,11 +65,17 @@ html, body {
     text-align: left;
 }
 
+.notificationRow{
+ border-bottom: 2px solid #eaebf1;
+}
+.notificationText{
+   padding-top: 25px;
+}
 
 .conversationText{
-    background: #e6e7ef;
+    background: #ffffff;
     padding: 10px;
-    color:black;
+    color: black;
     border-radius: 10px;
 }
 .conversationText:hover{
@@ -166,9 +181,11 @@ font-weight: bold;
 }
 .bg-menu{
     background: #337af8;
+    padding-top: 0px;
+    padding-bottom: 0;
 }
-.doSometingLink{
-
+.menuProfilePic{
+ margin-top: -8px;
 }
 .outgoingMessageContainer{
     width: 80%;
@@ -184,6 +201,9 @@ font-weight: bold;
 }
 .float-left{
     float: left;
+}
+.float-right{
+    float: right;
 }
 .meetingListMeetingDetail{
   min-height: 200px;

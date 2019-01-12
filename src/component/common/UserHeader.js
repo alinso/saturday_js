@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import Security from "../../security/Security";
+import ProfilePic from "./ProfilePic";
 
 const axios = require('axios');
 
@@ -60,7 +61,7 @@ class UserHeader extends React.Component {
                 <div className="container-fluid col-md-8">
                     <div className="navbar-header">
                         <Link className="navbar-brand" to="/">
-                            <strong>{localStorage.getItem("userFullName")}</strong>
+                            <strong>AF Logo</strong>
                         </Link>
                     </div>
 
@@ -69,19 +70,13 @@ class UserHeader extends React.Component {
                             <a href="/createMeeting" className={"doSometingLink"} title={"Yeni Aktivite"}>
                                 <i className="fas fa-2x fa-glass-cheers"/></a>
                         </li>
-
-
-
                     </ul>
-                    <ul className="nav navbar-nav navbar-right">
+                    <ul className="nav navbar-nav navbar-right ">
                         <li className="nav-item nav-link">
                             <a href={"/conversations/"}><i className={messageLinkProps.class} title={messageLinkProps.title}/></a>
                         </li>
                         <li className="nav-item nav-link">
                             <a href={"/notifications/"}><i className={notificationLinkProps.class} title={notificationLinkProps.title}/></a>
-                        </li>
-                        <li className="nav-item nav-link">
-                            <a href={"/profile/" + localStorage.getItem("userId")} title={"Profilim"}><i className="fa fa-2x fa-user"/></a>
                         </li>
                         <li className={"nav-item nav-link"}>
                             <form className="form-inline my-2 my-lg-0" method="get" action="/searchUser">
@@ -93,6 +88,14 @@ class UserHeader extends React.Component {
                                 </button>
                             </form>
                         </li>
+                        <li className="nav-item nav-link menuProfilePic">
+                            <ProfilePic
+                                userId={localStorage.getItem("userId")}
+                                profilePicName={localStorage.getItem("profilePicName")}
+                                cssClass={"profilePicXSmall"}
+                            />
+                        </li>
+
                         <li className={"nav-item nav-link"}>
                             <a href="/logout" title={"Çıkış"}>
                                     <strong>

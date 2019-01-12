@@ -41,8 +41,10 @@ class Conversations extends React.Component {
     render() {
 
         return (
-            <div className="row">
-                <div className={"col-md-6 offset-3"}>
+            <div className="row outer">
+                <div className={"col-md-6 m-x-auto container"}>
+                    <h5 className={"profileTitle"}><i className="fas fa-comments"/>Tüm Konuşmalar</h5>
+                    <hr/>
                     {
                         this.state.conversations.map(function (conversation) {
                             return (

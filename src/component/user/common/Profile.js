@@ -21,6 +21,7 @@ class Profile extends React.Component {
             about: "",
             age: "",
             motivation: "",
+            interestsArray:[],
             meetingCount: 0,
             errors: {}
         };
@@ -39,8 +40,14 @@ class Profile extends React.Component {
                 self.setState(response.data);
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
                 self.setState({"profilePicName": response.data.profilePicName});
+
+                if(response.data.interests!=null) {
+                    let interests = response.data.interests.split(",");
+                    self.setState({interestsArray: interests});
+                }
             })
             .catch(function (error) {
+                console.log(error);
                 self.setState({"errors": error.response.data});
             });
 
@@ -213,16 +220,14 @@ class Profile extends React.Component {
                             <div className="row">
                                 <div className="card col-md-12">
                                     <div className="card-body">
-                                        <span className="badge badge-pill badge-success my-interests">Kitap</span>
-                                        <span className="badge badge-pill badge-success my-interests">Müzik</span>
-                                        <span
-                                            className="badge badge-pill badge-success my-interests">Sinemaya Gitmek</span>
-                                        <span
-                                            className="badge badge-pill badge-success my-interests">Film İzlemek</span>
-                                        <span
-                                            className="badge badge-pill badge-success my-interests">Sinemaya Gitmek</span>
-                                        <span
-                                            className="badge badge-pill badge-success my-interests">Film İzlemek</span>
+                                        <h5 className="card-title">İlgi Alanlarım</h5>
+                                        <hr/>
+                                        {
+                                        this.state.interestsArray.map(function(interest){
+                                            return(<span className="badge badge-pill badge-success my-interests">{interest}</span>
+                                            )
+                                        })
+                                    }
                                     </div>
                                 </div>
                             </div>

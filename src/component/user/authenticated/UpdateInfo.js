@@ -6,9 +6,15 @@ import InputMask from "react-input-mask";
 import Alert from "../../common/Alert";
 import Select from 'react-select'
 import CityUtil from "../../../util/CityUtil";
+import {WithContext as ReactTags} from 'react-tag-input';
 
 const axios = require('axios');
+const KeyCodes = {
+    comma: 188,
+    enter: 13,
+};
 
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 class UpdateInfo extends React.Component {
     constructor(props) {
@@ -28,6 +34,7 @@ class UpdateInfo extends React.Component {
             motivation: "",
             city: {},
             cities: [],
+            interests: "",
             errors: {}
         };
 
@@ -53,15 +60,15 @@ class UpdateInfo extends React.Component {
         this.initCities();
     }
 
-    initCities(){
+    initCities() {
 
 
-     let self = this;
+        let self = this;
         axios.get('http://localhost:8080/city/all/', security.authHeader())
             .then(function (response) {
-                let result =CityUtil.setCitiesForSelect(response.data);
-                self.setState({cities:result.cities});
-                self.setState({city:result.selectedCity});
+                let result = CityUtil.setCitiesForSelect(response.data);
+                self.setState({cities: result.cities});
+                self.setState({city: result.selectedCity});
             })
             .catch(function (error) {
             });
@@ -73,7 +80,7 @@ class UpdateInfo extends React.Component {
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Bilgileriniz Güncellendi"});
-                localStorage.setItem("cityId",response.data.cityId);
+                localStorage.setItem("cityId", response.data.cityId);
                 self.initCities();
             })
             .catch(function (error) {
@@ -114,7 +121,8 @@ class UpdateInfo extends React.Component {
             referenceCode: this.state.referenceCode,
             about: this.state.about,
             cityId: this.state.city.value,
-            motivation: this.state.motivation
+            motivation: this.state.motivation,
+            interests: this.state.interests,
         };
         this.updateUser(newUser);
     }
@@ -125,18 +133,18 @@ class UpdateInfo extends React.Component {
         const {savedMessage} = this.state;
         const show = {display: "inline"};
 
-
         return (
-            <div className="row">
-                <div className="col-md-8 m-auto">
-                    <h5 className="display-4 text-center">Bilgilerimi Düzenle</h5>
+            <div className="row outer">
+                <div className="col-md-6 m-x-auto container">
+                    <h4 className=" text-center">Bilgilerimi Düzenle</h4>
                     <hr/>
                     {savedMessage && (
                         <Alert type="alert-success" message={savedMessage}/>
                     )}
 
                     <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
+                        <div className="form-group text-align-left">
+                            İsim*
                             <input
                                 type="text"
                                 className={classnames("form-control form-control-lg", {
@@ -153,7 +161,8 @@ class UpdateInfo extends React.Component {
                                 </div>
                             )}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group  text-align-left">
+                            Soyisim*
                             <input
                                 type="text"
                                 className={classnames("form-control form-control-lg", {
@@ -170,7 +179,8 @@ class UpdateInfo extends React.Component {
                                 </div>
                             )}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group  text-align-left">
+                            Email*
                             <input
                                 type="text"
                                 className={classnames("form-control form-control-lg", {
@@ -187,7 +197,8 @@ class UpdateInfo extends React.Component {
                                 </div>
                             )}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group  text-align-left">
+                            Telefon*
                             <InputMask
                                 mask="0599 999 9999"
                                 type="text"
@@ -206,7 +217,8 @@ class UpdateInfo extends React.Component {
                                 </div>
                             )}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group  text-align-left">
+                            Doğum Tarihi
                             <InputMask
                                 mask="99/99/9999"
                                 type="text"
@@ -224,16 +236,18 @@ class UpdateInfo extends React.Component {
                                 </div>
                             )}
                         </div>
-                        <div className="form-group">
-                                        <textarea
-                                            className={classnames("form-control form-control-lg")}
-                                            placeholder="Kısaca Kendinden Bahset..."
-                                            name="about"
-                                            value={this.state.about}
-                                            onChange={this.onChange}
-                                        />
+                        <div className="form-group  text-align-left">
+                            Kendinden Bahset
+                            <textarea
+                                className={classnames("form-control form-control-lg")}
+                                placeholder="Kısaca Kendinden Bahset..."
+                                name="about"
+                                value={this.state.about}
+                                onChange={this.onChange}
+                            />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group  text-align-left">
+                            Bize film ve kitap önerir misin?
                                         <textarea
                                             className={classnames("form-control form-control-lg")}
                                             placeholder="Neden Burdasın..."
@@ -243,7 +257,19 @@ class UpdateInfo extends React.Component {
                                         />
                         </div>
 
-                        <div className="form-group">
+                        <div className="form-group  text-align-left">
+                            İlgi alanların neler? (araya virgül koyarak yazmalısın)
+                            <textarea
+                                   className={classnames("form-control form-control-lg")}
+                                   placeholder="Scuba Diving, Bungee Jumping..."
+                                   name="interests"
+                                   value={this.state.interests}
+                                   onChange={this.onChange}
+                               />
+                        </div>
+
+                        <div className="form-group  text-align-left">
+                            Yaşadığın Şehir
                             <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                         </div>
 
@@ -269,7 +295,7 @@ class UpdateInfo extends React.Component {
                             </div>
 
                         </div>
-                        <div className="form-group">
+                        <div className="form-group  text-align-left">
                             <input
                                 type="text"
                                 className={classnames("form-control form-control-lg", {
@@ -289,7 +315,7 @@ class UpdateInfo extends React.Component {
                         </div>
 
                         <input
-                            type="submit"
+                            type="submit" value={"Güncelle"}
                             className="btn btn-primary btn-block mt-4"
                         />
                     </form>
