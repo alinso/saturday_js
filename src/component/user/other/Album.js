@@ -2,6 +2,7 @@ import React from "react";
 import security from "../../../security/Security";
 import {isMobile} from 'react-device-detect';
 import Lightbox from 'react-images';
+import UserUtil from "../../../util/UserUtil";
 
 const axios = require('axios');
 
@@ -10,6 +11,7 @@ class Album extends React.Component {
     constructor(props) {
         super(props);
         security.protect();
+        UserUtil.redirectIsBlocked(this.props.match.params.id);
         this.state = {
             errors: {},
             fullName: "",
@@ -94,6 +96,9 @@ class Album extends React.Component {
                             onClose={() => this.closeLightbox()}/>
                         }
                     </div>
+                    {(this.props.match.params.id==localStorage.getItem("userId")) &&(
+                        <a className={"profileTitle"} href={"/myAlbum"}><i className="fas fa-edit"/>Albümü Düzenle</a>
+                    )}
                     </div>
                 </div>
         )

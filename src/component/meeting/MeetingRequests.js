@@ -17,15 +17,15 @@ class MeetingRequests extends React.Component {
 
         this.state = {
             photoName: null,
-            meetingId:null,
+            meetingId: null,
             detail: null,
-            deadLineString:null,
+            deadLineString: null,
             requests: null,
             errors: {}
         };
 
         this.fillPage();
-        this.toggleApprove= this.toggleApprove.bind(this);
+        this.toggleApprove = this.toggleApprove.bind(this);
     }
 
     fillPage() {
@@ -56,7 +56,7 @@ class MeetingRequests extends React.Component {
             .then(res => {
 
                 let meetings = self.state.meetings;
-                let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
+                let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings, "id", id);
                 self.setState({meetings: meetingsNew});
             });
     }
@@ -83,7 +83,7 @@ class MeetingRequests extends React.Component {
             .catch(function (error) {
 
                 console.log(error);
-                self.setState({errors:error.response.data});
+                self.setState({errors: error.response.data});
             });
     }
 
@@ -92,43 +92,41 @@ class MeetingRequests extends React.Component {
 
         const self = this;
         return (
-            <div className="row">
-                <div className={"col-md-6 offset-3"}>
+            <div className="row outer">
+                <div className={"col-md-6 offset-3 container"}>
                     <div className={"row meetingListSingleMeetingContainer"}>
                         <div className={"col-md-12 meetingListMeetingText"}>
+                            <div className={"col-md-12"}>
+                                {this.state.detail}
+                            </div>
                             {(this.state.photoName != null) && (
                                 <div className={"col-md-12"}>
                                     <img className={"meetingListPhoto col-md-8"}
                                          src={"/upload/" + this.state.photoName}/>
                                     <hr/>
-                                    <br/>
                                 </div>
                             )}
-
-                            <div className={"col-md-12"}>
-                                {this.state.detail}
-                            </div>
-
-                            <div className={"col-md-12 meetingListUserMeta"}>
-                                <br/><br/>
-                                <button className={"btn btn-warning"}> {this.state.deadLineString}</button>
-
-                                <MeetingEditButtons
-                                    meetingId={this.state.meetingId}
-                                    userId={parseInt(localStorage.getItem("userId"))}
-                                    deleteMeeting={() => self.deleteMeeting(this.state.meetingId)}
-                                />
-
+                            <div className={"row"}>
+                                <div className={"col-md-8 meetingDeadLine"}>
+                                    <button className={"btn btn-warning"}> {this.state.deadLineString}</button>
+                                </div>
+                                <div className={"col-md-4"}>
+                                    <MeetingEditButtons
+                                        meetingId={this.state.meetingId}
+                                        userId={parseInt(localStorage.getItem("userId"))}
+                                        deleteMeeting={() => self.deleteMeeting(this.state.meetingId)}
+                                    />
+                                </div>
                                 <hr/>
                             </div>
                         </div>
                         <div className={"col-md-12"}>
-                            <strong>Katılmak İsteyen Kişiler</strong>
                             <hr/>
+                            <strong>Katılmak İsteyen Kişiler</strong>
                             {this.state.errors.userWarningMessage && (
                                 <Alert
-                                type={"alert-danger"}
-                                message={this.state.errors.userWarningMessage}
+                                    type={"alert-danger"}
+                                    message={this.state.errors.userWarningMessage}
                                 />
                             )}
                         </div>
@@ -143,6 +141,7 @@ class MeetingRequests extends React.Component {
                                             <ProfilePic
                                                 userId={request.profileDto.id}
                                                 profilePicName={request.profileDto.profilePicName}
+                                                cssClass={"profilePicMedium"}
                                             />
                                             <UserFullName
                                                 userId={request.profileDto.id}
@@ -153,11 +152,13 @@ class MeetingRequests extends React.Component {
                                             <br/>
                                             {
                                                 (request.meetingRequestStatus === "WAITING") &&
-                                                (<button onClick={()=>self.toggleApprove(request.id)} className={"btn btn-info"}>ONAYLA</button>)
+                                                (<button onClick={() => self.toggleApprove(request.id)}
+                                                         className={"btn btn-info"}>ONAYLA</button>)
                                             }
                                             {
                                                 (request.meetingRequestStatus === "APPROVED") && (
-                                                    <button onClick={()=>self.toggleApprove(request.id)} className={"btn btn-danger"}>İPTAL ET</button>
+                                                    <button onClick={() => self.toggleApprove(request.id)}
+                                                            className={"btn btn-danger"}>İPTAL ET</button>
                                                 )
                                             }
                                         </div>

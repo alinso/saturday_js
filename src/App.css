@@ -153,6 +153,14 @@ color: #282c34
     color: #504a4a;
 }
 
+.newNotification{
+    background-color: #69ec76;
+}
+.settingsTitles a{
+    color: #7f868f;
+    font-weight: 600;
+}
+
 .activeTitle{
 color:black;
 font-weight: bold;
@@ -206,7 +214,7 @@ font-weight: bold;
     float: right;
 }
 .meetingListMeetingDetail{
-  min-height: 200px;
+  min-height: 100px;
     padding: 10px;
     }
 

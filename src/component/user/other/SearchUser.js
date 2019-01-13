@@ -70,8 +70,8 @@ class SearchUser extends React.Component {
         let profilePicUrl;
 
         return (
-            <div className="row">
-                <div className="col-md-8 m-auto">
+            <div className="row outer">
+                <div className="col-md-6 m-x-auto container">
                     <hr/>
                     <form onSubmit={this.onSubmit}>
 
@@ -103,6 +103,7 @@ class SearchUser extends React.Component {
                                 <ProfilePic
                                 userId={user.id}
                                 profilePicName={user.profilePicName}
+                                cssClass={"profilePicMedium"}
                                 />
                             </div>
                             <div className="col-md-5">
@@ -111,7 +112,7 @@ class SearchUser extends React.Component {
                                 name={user.name}
                                 surname={user.surname}
                                 />
-                                <h5>{user.gender} / {user.age}</h5>
+                                <h5>{UserUtil.translateGender(user.gender)} / {user.age}</h5>
                                 <h4>{user.point} <i className="far fa-star"/></h4>
 
                             </div>

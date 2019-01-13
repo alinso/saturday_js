@@ -4,6 +4,7 @@ import classnames from "classnames";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import MessageBox from "./DisplayMessages";
+import UserUtil from "../../util/UserUtil";
 
 const axios = require('axios');
 
@@ -12,6 +13,8 @@ class MessagePage extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
+        UserUtil.redirectIsBlocked(this.props.match.params.id);
+
 
         this.state = {
             messages: [],

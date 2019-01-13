@@ -64,7 +64,7 @@ class Notifications extends React.Component {
     newRequestApprovalText(id) {
         return (
             <span>
-                katılmak istediğiniz <a href={"/meetingDetail/" + id}>AKTİVİTESİ</a> için sizi onayladı, iyi eğlenceler
+                katılmak istediğiniz <a href={"/meetingDetail/" + id}>AKTİVİTESİ</a> için siz onayladı, iyi eğlenceler
                 dileriz:)
             </span>
         )
@@ -76,6 +76,21 @@ class Notifications extends React.Component {
             <a href={"/meetingDetail/" + id}>YENİ BİR AKTİVİTE</a> paylaştı.
             </span>
         )
+    }
+
+    newMeetingCommentAvailable(id) {
+        return (
+            <span>
+            Yakın zamanda <a href={"/meetingDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 10 gün içinde yorum yapabilirsin.
+                Böylece Activity Friend'in büyümesine yardımcı olabilirsin.
+            </span>
+        )
+    }
+    readedClass(isRead){
+        if(isRead)
+            return "readedNotification";
+        else
+            return "newNotification"
     }
 
 
@@ -91,22 +106,26 @@ class Notifications extends React.Component {
                     {
                         self.state.notifications.map(function (not, i) {
 
-
+                        console.log(not.trigger);
                             return (
-                                <div className={"row notificationRow"}>
+                                <div className={"row notificationRow "+self.readedClass(not.read)}>
                                     <div className={"col-md-3"}>
+                                    {(not.trigger)&&
+                                    (
                                         <ProfilePic
                                             userId={not.trigger.id}
                                             profilePicName={not.trigger.profilePicName}
                                             cssClass={"profilePicSmall"}
                                         />
+                                    )}
                                     </div>
                                     <div className={"col-md-8 notificationText text-align-left"}>
-                                        <UserFullName
+                                        {(not.trigger)&&
+                                        (<UserFullName
                                             userId={not.trigger.id}
                                             name={not.trigger.name}
                                             surname={not.trigger.surname}
-                                        />
+                                        />)}
                                         {(not.notificationType === "REQUEST") &&
                                         self.newRequestText(not.message)
                                         }
@@ -122,6 +141,9 @@ class Notifications extends React.Component {
                                         }
                                         {(not.notificationType === "FOLLOWING") &&
                                         self.newFollowingText(not.message)
+                                        }
+                                        {(not.notificationType === "MEETING_COMMENT_AVAILABLE") &&
+                                        self.newMeetingCommentAvailable(not.message)
                                         }
                                         <span className={"float-right messageDate"}>
                                             {not.createdAtString}

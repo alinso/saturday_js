@@ -7,12 +7,14 @@ import BaseMeetingList from "./Base/BaseMeetingList";
 import MeetingEditButtons from "../common/MeetingEditButtons";
 import MeetingRequestButtons from "../common/MeetingRequestButtons";
 import MeetingInfoBlock from "../common/MeetingInfoBlock";
+import UserUtil from "../../util/UserUtil";
 
 const axios = require('axios');
 
 class UserMeetings extends BaseMeetingList {
     constructor(props) {
         super(props);
+        UserUtil.redirectIsBlocked(this.props.match.params.id);
 
         this.state = {
             meetingsCreated: [],
@@ -135,6 +137,13 @@ class UserMeetings extends BaseMeetingList {
                                                     joinMeeting={() => self.joinMeeting(meeting.id)}
                                                     thisUserJoined={meeting.thisUserJoined}
                                                 />)
+                                                }
+                                                {(meeting.expired) &&
+                                                (<a href={"/meetingDetail/" + meeting.id}>
+                                                    <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
+                                                    </button>
+
+                                                </a>)
                                                 }
 
                                             </div>

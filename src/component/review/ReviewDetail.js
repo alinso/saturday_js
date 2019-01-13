@@ -4,6 +4,7 @@ import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import MeetingInfoBlock from "../common/MeetingInfoBlock";
 import MeetingRequestButtons from "../common/MeetingRequestButtons";
+
 const axios = require('axios');
 
 
@@ -12,9 +13,9 @@ class ReviewDetail extends React.Component {
         super(props);
         Security.protect()
 
-        this.state={
-            review:{},
-            erorrs:{}
+        this.state = {
+            review: {},
+            erorrs: {}
         };
 
         this.fillPage();
@@ -22,7 +23,7 @@ class ReviewDetail extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/review/findById/'+this.props.match.params.id, Security.authHeader())
+        axios.get('http://localhost:8080/review/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({review: response.data});
             })
@@ -33,42 +34,50 @@ class ReviewDetail extends React.Component {
     }
 
     render() {
-        const {review}  =this.state;
+        const {review} = this.state;
         const self = this;
 
-        if(review.writer!==undefined){
+        if (review.writer !== undefined) {
             return (
-                <div className={"row meetingListSingleMeetingContainer"}>
-                    <div className="col-md-6 meetingListProfile">
-                        <ProfilePic
-                            userId={review.writer.id}
-                            profilePicName={review.writer.profilePicName}
-                        />
-                        <UserFullName
-                            name={review.writer.name}
-                            userId={review.writer.id}
-                            surname={review.writer.surname}
-                        />
+                <div className={"row outer"}>
+                    <div className="col-md-6 container">
+                        <h5>Sizin için yeni bir yorum yapıldı!</h5>
+                        <div className={"row"}>
+                            <div className={"col-md-2 col-sm-2"}>
+                                <ProfilePic
+                                    userId={review.writer.id}
+                                    profilePicName={review.writer.profilePicName}
+                                    cssClass={"profilePicMedium"}
+                                />
+                            </div>
+                            <div className={"col-md-10 col-sm-10 text-align-left"}>
+                                <UserFullName
+                                    name={review.writer.name}
+                                    userId={review.writer.id}
+                                    surname={review.writer.surname}
+                                />
+                                <div className={"reviewBlock"}>
+                                    {review.positive && (
+                                        <strong className={"positiveReview"}><i
+                                            className="fas fa-check"/>OLUMLU</strong>)}
+                                    {!review.positive && (<strong className={"negativeReview"}><i
+                                        className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
+                                    , &nbsp;
+                                    {review.positive && (
+                                        <span className={"reviewTypeFriend  "}>Arkadaş Referansı</span>)}
+                                    {!review.positive && (
+                                        <strong className={"reviewTypeActivity"}>Aktivite Referansı</strong>)}
+
+                                    <hr/>
+                                    {review.review}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="col-md-6 meetingListProfile">
-                        <ProfilePic
-                            userId={review.reader.id}
-                            profilePicName={review.reader.profilePicName}
-                        />
-                        <UserFullName
-                            name={review.reader.name}
-                            userId={review.reader.id}
-                            surname={review.reader.surname}
-                        />
-                    </div>
-                    <div className={"col-md-9 "}>
-                        {review.review}
-                        <br/>{review.reviewType}
-                    </div>
-                    <hr/>
                 </div>
-            )}
-        if(review.profileDto===undefined) {
+            )
+        }
+        if (review.profileDto === undefined) {
             return (<span>yükleniyor</span>)
         }
     }

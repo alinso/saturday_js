@@ -62,36 +62,35 @@ class UpdateProfilePic extends React.Component {
             })
             .then(res => {
                 self.setState({"profilePicUrl": "/upload/profile/" + res.data});
+                localStorage.setItem("profilePicName", res.data);
                 self.setState({errors: false});
 
             })
             .catch(function (error) {
-                self.setState({isFileSelected :false});
+                self.setState({isFileSelected: false});
                 self.setState({"errors": error.response.data});
             });
     };
 
     render() {
         const {errors} = this.state;
-        const {isFileSelected}=this.state;
+        const {isFileSelected} = this.state;
 
         return (
-            <div className="row">
-                <div className="col-md-8 m-auto">
-                    <div className="col-md-4 m-auto">
+            <div className="row outer">
+                <div className="col-md-6 m-x-auto container">
 
-                        <h3>Profil Fotoğrafını Güncelle</h3>
-                        <img className="profilePicLarge" src={this.state.profilePicUrl}/>
-                        <br/>
-                        <SinglePhotoSelector
-                            onChange={this.handleSelectedFile}
-                            isFileSelected={isFileSelected}
-                            error={errors.file}
-                        />
+                    <h3>Profil Fotoğrafını Güncelle</h3>
+                    <img className="profilePicLarge" src={this.state.profilePicUrl}/>
+                    <br/>
+                    <SinglePhotoSelector
+                        onChange={this.handleSelectedFile}
+                        isFileSelected={isFileSelected}
+                        error={errors.file}
+                    />
 
-                        <div>
-                            <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafı Yükle</button>
-                        </div>
+                    <div>
+                        <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafı Yükle</button>
                     </div>
                 </div>
             </div>

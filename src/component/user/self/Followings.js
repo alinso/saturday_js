@@ -23,7 +23,7 @@ class Followings extends React.Component {
         const self = this;
         axios.get('http://localhost:8080/follow/myFollowings', Security.authHeader())
             .then(function (response) {
-                self.setState({blocks: response.data});
+                self.setState({followings: response.data});
             })
             .catch(function (error) {
                 console.log(error.response);

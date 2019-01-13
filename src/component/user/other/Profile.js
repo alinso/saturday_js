@@ -18,10 +18,11 @@ class Profile extends React.Component {
             profilePicName: "",
             isReviewedBefore: false,
             isFollowing: false,
+            isBlocked:false,
             about: "",
             age: "",
             motivation: "",
-            interestsArray:[],
+            interestsArray: [],
             meetingCount: 0,
             errors: {}
         };
@@ -41,7 +42,7 @@ class Profile extends React.Component {
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
                 self.setState({"profilePicName": response.data.profilePicName});
 
-                if(response.data.interests!=null) {
+                if (response.data.interests != null) {
                     let interests = response.data.interests.split(",");
                     self.setState({interestsArray: interests});
                 }
@@ -56,19 +57,20 @@ class Profile extends React.Component {
             axios.get('http://localhost:8080/review/isReviewedBefore/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isReviewedBefore": response.data});
-                })
-                .catch(function (error) {
-                    self.setState({"errors": error.response.data});
                 });
+
 
         if (Security.isValidToken())
             axios.get('http://localhost:8080/follow/isFollowing/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isFollowing": response.data});
-                })
-                .catch(function (error) {
-                    self.setState({"errors": error.response.data});
                 });
+        if (Security.isValidToken())
+            axios.get('http://localhost:8080/block/isBlocked/' + userId, Security.authHeader())
+                .then(function (response) {
+                    self.setState({"isBlocked": response.data});
+                });
+
     }
 
     follow() {
@@ -84,15 +86,22 @@ class Profile extends React.Component {
 
     block() {
         const self = this;
-        if (window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
-            axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
-                .then(function (response) {
-                    self.setState({"isBlocked": response.data});
-                    window.location = "/";
-                })
-                .catch(function (error) {
-                    self.setState({"errors": error.response.data});
-                });
+        if(!this.state.isBlocked) {
+            if (window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
+                axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
+                    .then(function (response) {
+                        self.setState({"isBlocked": response.data});
+                        window.location = "/";
+                    });
+        }
+
+        if(this.state.isBlocked) {
+            if (window.confirm("Bu kişinin engelini kaldırmak istediğinizden emin misiniz?"))
+                axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
+                    .then(function (response) {
+                        self.setState({"isBlocked": response.data});
+                    });
+        }
     }
 
 
@@ -144,11 +153,20 @@ class Profile extends React.Component {
 
 
     blockButton() {
-        if (this.props.match.params.id !== localStorage.getItem("userId")) {
+        if (this.props.match.params.id !== localStorage.getItem("userId") && !this.state.isBlocked) {
             return (
                 <div className={"row"}>
                     <button onClick={this.block}
                             className={"btn btn-dark profileButton"}><strong><i className="fas fa-ban"/></strong>Engelle
+                    </button>
+                </div>
+            )
+        }
+        if (this.props.match.params.id !== localStorage.getItem("userId") && this.state.isBlocked) {
+            return (
+                <div className={"row"}>
+                    <button onClick={this.block}
+                            className={"btn btn-dark profileButton"}><strong><i className="fas fa-ban"/></strong>Engeli Kaldır
                     </button>
                 </div>
             )
@@ -186,9 +204,15 @@ class Profile extends React.Component {
 
                                 {(this.props.match.params.id === localStorage.getItem("userId")) &&
                                 (
-                                    <a href="/settings/" className={"row"}>
-                                        <button className={"btn btn-dark profileButton"}>Hesap Ayarları</button>
-                                    </a>
+                                    <div className={"text-align-left settingsTitles"}>
+                                        <a href="/updateProfilePic/"><i className="far fa-smile-wink"/> Profil Fotoğrafım</a><br/>
+                                        <a href="/myAlbum/"><i className="fas fa-images"/> Albüm</a><br/>
+                                        <a href="/updateInfo/"><i className="fas fa-info-circle"/> Bilgilerim</a><br/>
+                                        <a href="/updatePassword/"><i className="fas fa-key"/> Şifre Güncelle</a><br/>
+                                        <a href="/referenceCodes/"><i className="fas fa-check"/> Referanslarım</a><br/>
+                                        <a href="/followings/"><i className="fas fa-bell"/> Bildirim Listem</a><br/>
+                                        <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a>
+                                    </div>
                                 )}
 
                             </div>
@@ -223,11 +247,12 @@ class Profile extends React.Component {
                                         <h5 className="card-title">İlgi Alanlarım</h5>
                                         <hr/>
                                         {
-                                        this.state.interestsArray.map(function(interest){
-                                            return(<span className="badge badge-pill badge-success my-interests">{interest}</span>
-                                            )
-                                        })
-                                    }
+                                            this.state.interestsArray.map(function (interest) {
+                                                return (<span
+                                                        className="badge badge-pill badge-success my-interests">{interest}</span>
+                                                )
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>

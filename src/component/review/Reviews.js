@@ -2,6 +2,7 @@ import React from "react";
 import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
+import UserUtil from "../../util/UserUtil";
 
 const axios = require('axios');
 
@@ -10,9 +11,11 @@ class Reviews extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
+        UserUtil.redirectIsBlocked(this.props.match.params.id);
 
         this.state = {
             reviews: [],
+            profileDto:{},
             erorrs: {}
         };
 
@@ -29,20 +32,34 @@ class Reviews extends React.Component {
                 console.log(error.response);
             });
 
+        axios.get('http://localhost:8080/user/profile/' + this.props.match.params.id)
+            .then(function (response) {
+                self.setState({"profileDto": response.data});
+            })
+            .catch(function (error) {
+                console.log(error);
+                self.setState({"errors": error.response.data});
+            });
+
     }
 
     render() {
         const self = this;
-        if(self.state.reviews.length==0)
-            return("");
 
         return (
             <div className="row outer">
                 <div className="col-md-5 m-x-auto container">
                     <h5>İnsanlar <a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
-                        <i className="fas fa-comments"/> {self.state.reviews[0].reader.name +" "+self.state.reviews[0].reader.surname}</a> için ne diyor?
+                        <i className="fas fa-comments"/> {self.state.profileDto.name +" "+self.state.profileDto.surname}</a> için ne diyor?
                     </h5>
                     <hr/>
+
+                    {(self.state.reviews.length===0) &&(
+                        <h5>
+                        Henüz kimse yorum yapmamış.
+                        </h5>
+                    )}
+
                     {
                         self.state.reviews.map(function (review, i) {
                             return (

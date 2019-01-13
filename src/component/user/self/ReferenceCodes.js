@@ -1,5 +1,6 @@
     import React from "react";
     import Security from "../../../security/Security";
+    import UserFullName from "../../common/UserFullName";
     const axios = require('axios');
 
 
@@ -31,9 +32,10 @@
         render() {
             const self = this;
             return (
-                <div className="row">
-                    <div className="col-md-6 m-auto">
+                <div className="row outer">
+                    <div className="col-md-6 m-x-auto container">
                         <h5>Sisteme referanssız üye olunamıyor, siz de bu referans kodları ile başkalarının üye olmasını sağlayabilirsiniz</h5>
+                        <hr/>
                         {
                             self.state.references.map(function (reference, i) {
                                 return (
@@ -43,7 +45,11 @@
                                         </div>
                                         <div className={"col-md-8 col-sm-8"}>
                                             { reference.child && (
-                                                reference.child.name)
+                                                <UserFullName
+                                                userId={reference.child.id}
+                                                name={reference.child.name}
+                                                surname={reference.child.surname}
+                                                />)
                                             }
                                             { !reference.child && (
                                                 <h4>Kullanılmamış</h4>)
