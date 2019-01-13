@@ -86,6 +86,7 @@ class UpdateInfo extends React.Component {
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
                 self.setState({"savedMessage": false});
+                console.log(error.response);
             });
     }
 
@@ -271,6 +272,13 @@ class UpdateInfo extends React.Component {
                         <div className="form-group  text-align-left">
                             Yaşadığın Şehir
                             <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
+                            <div ></div>
+                            {errors.cityId && (
+                                <div className="invalid-feedback">
+                                    {errors.cityId &&(errors.cityId)}
+                                </div>
+
+                            )}
                         </div>
 
                         <div className="form-group">
@@ -278,6 +286,7 @@ class UpdateInfo extends React.Component {
                             <input type="radio"
                                    name="gender"
                                    value="MALE"
+                                   className={"customRadio"}
                                    onChange={this.onChange}
                                    checked={this.state.gender === "MALE"}
                             />&nbsp;&nbsp;&nbsp;&nbsp;
@@ -285,13 +294,16 @@ class UpdateInfo extends React.Component {
                             <label>Kadın&nbsp;</label>
                             <input type="radio"
                                    name="gender"
+                                   className={classnames("customRadio", {
+                                       "is-invalid": errors.gender
+                                   })}
                                    onChange={this.onChange}
                                    value="FEMALE"
                                    checked={this.state.gender === "FEMALE"}
                             />
                             <br/>
-                            <div className="invalid-feedback" style={show}>
-                                {errors.gender}
+                            <div className="invalid-feedback">
+                                {errors.gender &&(errors.gender)}
                             </div>
 
                         </div>

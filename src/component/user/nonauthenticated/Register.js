@@ -80,14 +80,15 @@ class Register extends React.Component {
         const {errors} = this.state;
         const show = {display: "inline"}
         return (
-            <div className="row">
-                <div className={"col-md-6 offset-3"}>
-                    <h4>Nigh Out'a Katıl!</h4>
+            <div className="md-auto registerOuter">
+                <div className={"col-md-4 offset-4 registerContainer"}>
+                    <h4 className={"color-white"}>Activity Friend'e Katıl!</h4>
 
                     {registrationCompletedMessage && (
                         <Alert type="alert-success" message={registrationCompletedMessage}/>
 
                         )}
+
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <input
@@ -101,12 +102,12 @@ class Register extends React.Component {
                                 onChange={this.onChange}
                             />
                             {errors.name && (
-                                <div className="invalid-feedback">
+                                <div className="color-white">
                                     {errors.name}
                                 </div>
                             )}
                         </div>
-                        <div className="form-group">
+                        <div className="form-group ">
                             <input
                                 type="text"
                                 className={classnames("form-control form-control-lg", {
@@ -118,11 +119,12 @@ class Register extends React.Component {
                                 onChange={this.onChange}
                             />
                             {errors.surname && (
-                                <div className="invalid-feedback">
+                                <div className="color-white">
                                     {errors.surname}
                                 </div>
                             )}
                         </div>
+
                         <div className="form-group">
                             <input
                                 type="text"
@@ -135,7 +137,7 @@ class Register extends React.Component {
                                 onChange={this.onChange}
                             />
                             {errors.email && (
-                                <div className="invalid-feedback">
+                                <div className="color-white">
                                     {errors.email}
                                 </div>
                             )}
@@ -153,7 +155,7 @@ class Register extends React.Component {
                                 onChange={this.onChange}
                             />
                             {errors.phone && (
-                                <div className="invalid-feedback">
+                                <div className="color-white">
                                     {errors.phone}
                                 </div>
                             )}
@@ -170,7 +172,7 @@ class Register extends React.Component {
                                 onChange={this.onChange}
                             />
                             {errors.password && (
-                                <div className="invalid-feedback">
+                                <div className="color-white">
                                     {errors.password}
                                 </div>
                             )}
@@ -187,20 +189,20 @@ class Register extends React.Component {
                                 onChange={this.onChange}
                             />
                             {errors.confirmPassword && (
-                                <div className="invalid-feedback">
+                                <div className="color-white">
                                     {errors.confirmPassword}
                                 </div>
                             )}
                         </div>
                         <div className="form-group">
-                            <label className="customRadioLabel">Erkek&nbsp;</label>
+                            <label className="customRadioLabel color-white">Erkek&nbsp;</label>
                             <input type="radio"
                                    name="gender"
                                    value="MALE"
                                    onChange={this.onChange}
                                    className="customRadio"
                             />&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label className="customRadioLabel">Kadın&nbsp;</label>
+                            <label className="customRadioLabel color-white">Kadın&nbsp;</label>
                             <input type="radio"
                                    name="gender"
                                    onChange={this.onChange}
@@ -208,7 +210,7 @@ class Register extends React.Component {
                                    className="customRadio"
                             />
                             <br/>
-                            <div className="invalid-feedback" style={show}>
+                            <div className="color-white" style={show}>
                                 {errors.gender}
                             </div>
 
@@ -225,7 +227,7 @@ class Register extends React.Component {
                                 onChange={this.onChange}
                             />
                             {errors.referenceCode && (
-                                <div className="invalid-feedback">
+                                <div className="color-white">
                                     {errors.referenceCode}
                                 </div>
                             )}
@@ -234,7 +236,7 @@ class Register extends React.Component {
                         <input
                             type="submit"
                             value="Hesap Oluştur"
-                            className="btn btn-primary btn-block mt-4"
+                            className="btn btn-success btn-block mt-4"
                             disabled={this.state.isSubmitDisabled}
                         />
                     </form>

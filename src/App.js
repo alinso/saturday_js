@@ -51,6 +51,15 @@ class App extends Component {
         }
     }
 
+    setFooter() {
+        if (security.isValidToken()) {
+            return <Footer/>
+        }
+        else {
+            return "";
+        }
+    }
+
 
     render() {
         return (
@@ -97,7 +106,7 @@ class App extends Component {
                     {<Route exact path="/notifications/" component={Notifications}/>}
 
 
-                    <Footer/>
+                    {this.setFooter()}
 
                 </div>
             </Router>

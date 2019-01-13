@@ -50,8 +50,8 @@ class Followings extends React.Component {
     render() {
         const self = this;
         return (
-            <div className="row">
-                <div className="col-md-6 m-auto">
+            <div className="row outer">
+                <div className="col-md-6 m-x-auto container">
                     <h5>Bildirim Aldığım kişiler</h5>
                     {
                         self.state.followings.map(function (following, i) {

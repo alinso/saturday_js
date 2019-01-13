@@ -1,6 +1,5 @@
 import React from "react";
 import security from "../../../security/Security";
-import {isMobile} from "react-device-detect";
 import Lightbox from 'react-images';
 
 
@@ -122,8 +121,8 @@ class MyAlbum extends React.Component {
         let photoSet = [];
         const self = this;
         return (
-            <div className="row">
-                <div className="col-md-8 m-auto">
+            <div className="row outer">
+                <div className="col-md-6 m-x-auto container">
                     <div className="row">
                         {this.state.photoNames.map((photoName, i) => {
                                 photoSet.push({"src": "/upload/" + photoName});
@@ -142,7 +141,6 @@ class MyAlbum extends React.Component {
                             }
                         )}
 
-                        {!isMobile &&
                         <Lightbox
                             images={photoSet}
                             isOpen={this.state.isLightBoxOpen}
@@ -150,7 +148,7 @@ class MyAlbum extends React.Component {
                             onClickPrev={() => this.onClickPrev()}
                             onClickNext={() => this.onClickNext()}
                             onClose={() => this.closeLightbox()}/>
-                        }
+
                     </div>
                     <label className="btn btn-default">
                         <div className="uploadBrowseButton">Fotoğrafları Seç</div>

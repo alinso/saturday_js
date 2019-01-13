@@ -78,7 +78,7 @@ class Dashboard extends BaseMeetingList {
                                         <ProfilePic
                                             userId={meeting.profileDto.id}
                                             profilePicName={meeting.profileDto.profilePicName}
-                                            cssClass={"profilePicMedium"}
+                                            cssClass={"profilePicSmall"}
                                         />
 
                                     </div>

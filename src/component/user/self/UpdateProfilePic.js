@@ -50,6 +50,10 @@ class UpdateProfilePic extends React.Component {
 
     handleUpload = () => {
         const data = new FormData();
+        if(this.state.selectedFile==null){
+            this.setState({"errors":{file:"Fotoğraf dosyası seçmelisin"}});
+            return;
+        }
         data.append('file', this.state.selectedFile, this.state.selectedFile.name);
         const self = this;
         axios

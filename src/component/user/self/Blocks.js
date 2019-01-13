@@ -50,8 +50,8 @@ class Blocks extends React.Component {
     render() {
         const self = this;
         return (
-            <div className="row">
-                <div className="col-md-6 m-auto">
+            <div className="row outer">
+                <div className="col-md-6 m-x-auto container">
                     <h5>Engellediğim kişiler</h5>
                     {
                         self.state.blocks.map(function (block, i) {

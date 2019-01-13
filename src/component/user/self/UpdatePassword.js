@@ -67,10 +67,9 @@ class UpdatePassword extends React.Component {
 
 
         return (
-            <div>
-                <div className="row">
-                    <div className="col-md-8 m-auto">
-                        <h5 className="display-4 text-center">Şifre Güncelle</h5>
+                <div className="row outer">
+                    <div className="col-md-6 m-x-auto container">
+                        <h5 className="text-center">Şifre Güncelle</h5>
                         <hr/>
                         { passwordUpdatedMessage &&(
                             <Alert type="alert-success" message={passwordUpdatedMessage}/>
@@ -133,12 +132,12 @@ class UpdatePassword extends React.Component {
 
                             <input
                                 type="submit"
+                                value={"Şifremi Güncelle"}
                                 className="btn btn-primary btn-block mt-4"
                                 disabled={this.state.isSubmitDisabled}
                             />
                         </form>
                     </div>
-                </div>
             </div>
 
         )

@@ -5,6 +5,7 @@ import Datetime from "react-datetime";
 import SinglePhotoSelector from "../../common/SinglePhotoSelector";
 import Select from 'react-select'
 import CityUtil from "../../../util/CityUtil";
+import Alert from "../../common/Alert";
 
 const axios = require('axios');
 
@@ -37,6 +38,7 @@ class BaseMeetingForm extends React.Component {
         this.loadCities = this.loadCities.bind(this);
         this.onSelectChange = this.onSelectChange.bind(this);
 
+
     }
 
 
@@ -66,6 +68,14 @@ class BaseMeetingForm extends React.Component {
 
     render() {
 
+        if(localStorage.getItem("cityId")==="null") {
+            return (<div className="row outer">
+                <div className={"col-md-6 offset-3 container"}><Alert
+                type={"alert-warning"}
+                message={"Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
+                /></div></div>)
+        }
+
         const {savedMessage} = this.state;
         const {errors} = this.state;
         const {photoName} = this.state;
@@ -76,6 +86,7 @@ class BaseMeetingForm extends React.Component {
             <div className="row outer">
                 <div className={"col-md-6 offset-3 container"}>
                     <h4>Dışarı Çık!</h4>
+
 
                     {savedMessage && (
                         <div className={"alert alert-success"}>
@@ -109,6 +120,8 @@ class BaseMeetingForm extends React.Component {
 
                         />
                         }
+
+
                         {errors.deadLineString && (
                             <span>{errors.deadLineString}</span>
                         )}

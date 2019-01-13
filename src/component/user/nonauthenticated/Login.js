@@ -58,9 +58,9 @@ class Login extends Component {
     render() {
         const {errors} = this.state;
         return (
-            <div className="row">
-                <div className="col-md-6 m-auto">
-                    <h4 className=" text-center">Giriş Yap</h4>
+            <div className="loginOuter">
+                <div className="col-md-4 offset-md-4 loginContainer">
+                    <h4 className=" text-center color-white">Giriş Yap</h4>
                     {errors.errorMessage && (
                         <Alert type="alert-danger" message={errors.errorMessage}/>
 
@@ -75,7 +75,7 @@ class Login extends Component {
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": errors.errorMessage
                                 })}
-                                placeholder="Email Address"
+                                placeholder="E-Posta Adresi"
                                 name="username"
                                 value={this.state.username}
                                 onChange={this.onChange}
@@ -87,7 +87,7 @@ class Login extends Component {
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": errors.errorMessage
                                 })}
-                                placeholder="Password"
+                                placeholder="Şifre"
                                 name="password"
                                 value={this.state.password}
                                 onChange={this.onChange}

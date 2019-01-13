@@ -103,8 +103,8 @@ class ReviewForm extends React.Component {
         }
 
         return (
-            <div className="row">
-                <div className={"col-md-6 offset-3"}>
+            <div className="row outer">
+                <div className={"col-md-6 offset-3 container"}>
                     <ProfilePic
                         userId={this.props.match.params.id}
                         profilePicName={this.state.profileDto.profilePicName}
@@ -116,11 +116,7 @@ class ReviewForm extends React.Component {
                     />
                     <h4>{label}</h4>
 
-                    {
-                        this.state.errors.userWarningMessage &&(
-                            <span>{this.state.errors.userWarningMessage}</span>
-                        )
-                    }
+
                     <form onSubmit={this.onSubmit}>
 
                         <div className="form-group">
@@ -139,6 +135,11 @@ class ReviewForm extends React.Component {
                                     {this.state.errors.review}
                                 </div>
                             )}
+                            {
+                                this.state.errors.userWarningMessage &&(
+                                    <span>{this.state.errors.userWarningMessage}</span>
+                                )
+                            }
                         </div>
                         <div className="form-group">
                             <label className="customRadioLabel">Olumlu&nbsp;</label>

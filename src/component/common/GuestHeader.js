@@ -5,11 +5,11 @@ import {Link} from "react-router-dom";
 class GuestHeader extends React.Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
+            <nav className="navbar navbar-expand-sm navbar-dark bg-menu">
                     <div className="container-fluid col-md-8">
                         <div className="navbar-header">
                             <Link className="navbar-brand" to="/">
-                                 <strong>Night Out</strong>
+                                 <strong>AF Logo</strong>
                             </Link>
                         </div>
                         <ul className="nav navbar-nav navbar-right">
