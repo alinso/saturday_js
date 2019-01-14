@@ -154,6 +154,10 @@ color: #282c34
     color: #504a4a;
 }
 
+.rdtStatic .rdtPicker
+{
+    width: 100%;
+}
 .newNotification{
     background-color: #69ec76;
 }
@@ -206,16 +210,70 @@ font-weight: bold;
     font-style: italic;
     color: gray;
 }
+.landingSlide{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(/img/landing_slide.jpg);
+    background-size: cover;
+}
 
+.landingSlideTitle{
+    color: #51456c;
+    font-weight: 600;
+    width: 325px;
+    border: 1px solid red;
+    padding: 9px;
+    border-radius: 9px;
 
+}
+.imgFullWidth{
+    width: 100%;
+}
+.landingTitle{
+    margin-top: 25px;
+    color: #a68375;
+    font-weight: 600;
+}
+.landingSlideText{
+    color: #3d3530;
+        font-weight: 600;
+    width: 900px;
+    padding: 9px;
+    border-bottom: 2px dotted gray;
+
+}
+.landingSlideTitleContainer{
+    padding-top: 50px;
+}
+.landingSlideTextContainer{
+    padding-top: 20px;
+}
+.landingOuter{
+    width: 100%;
+    min-height: 950px;
+    background-color: #eff5f5;
+}
+.landingText{
+    color: #646f7f;
+    font-weight: 600;
+}
+.landingIcons{
+    font-size: 2em;
+    color: #a68375;
+}
+.landingFeatures{
+    background: white;
+    padding-top: 25px;
+}
 .lightOnGreen{
     color: #69ec76;
 }
 .bg-menu{
-    background: linear-gradient(90deg,#00c4cc,#7d2ae8);
+    background: linear-gradient(45deg,#00c4cc,#534269);
     padding-top: 0px;
     padding-bottom: 0;
 }
+
 .menuProfilePic{
  margin-top: -8px;
 }
@@ -236,6 +294,11 @@ font-weight: bold;
 }
 .float-right{
     float: right;
+}
+.meetingFormPhoto{
+    width: 100%;
+    margin-bottom: 15px;
+    max-height: 400px;
 }
 .meetingListMeetingDetail{
   min-height: 100px;
@@ -334,6 +397,11 @@ margin-bottom: 4px;
 .text-align-left{
  text-align: left;
 }
+
+.text-align-center{
+    text-align: center;
+}
+
 
 .negativeReview{
     color:red;

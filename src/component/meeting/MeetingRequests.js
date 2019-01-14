@@ -41,6 +41,7 @@ class MeetingRequests extends React.Component {
 
             })
             .catch(function (error) {
+                self.setState({errors:error.response.data});
                 console.log(error.response);
             });
 
@@ -91,6 +92,16 @@ class MeetingRequests extends React.Component {
     render() {
 
         const self = this;
+
+
+        //sayfa bulunamadı common componentine cevir
+        if(this.state.errors.recordNotFound404Message){
+            return( <div className="row outer">
+                <div className={"col-md-6 offset-3 container"}>
+                    Sayfa Bulunamadı
+                </div></div>)
+        }
+
         return (
             <div className="row outer">
                 <div className={"col-md-6 offset-3 container"}>

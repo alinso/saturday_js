@@ -10,7 +10,9 @@ class MeetingDetailInput extends React.Component {
 
     render() {
 
-        return (<div className="form-group">
+        return (<div className="row">
+           <label className={"col-md-3 text-align-left"}><i className="fas fa-bars"/> Detaylar:</label>
+            <div className={"col-md-9"}>
                             <textarea
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": this.props.error
@@ -19,7 +21,7 @@ class MeetingDetailInput extends React.Component {
                                 name="detail"
                                 value={this.props.detail}
                                 onChange={this.props.onChange}
-                            />
+                            /></div>
             {this.props.error && (
                 <div className="invalid-feedback">
                     {this.props.error}

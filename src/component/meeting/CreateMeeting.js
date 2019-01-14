@@ -4,7 +4,6 @@ import "../../react-datetime.css";
 import BaseMeetingForm from "./Base/BaseMeetingForm";
 import CityUtil from "../../util/CityUtil";
 
-const moment=require("moment");
 const axios = require('axios');
 
 
@@ -45,8 +44,9 @@ class CreateMeeting extends BaseMeetingForm{
     }
 
     getInitDeadLine(){
-        if(this.state.deadLineString==="")
-            return new Date(Date.now());
+        if(this.state.deadLineString===""){
+            return new Date();
+        }
         else
             return this.state.deadLineString;
     }
