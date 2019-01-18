@@ -5,36 +5,36 @@ import JSUtil from "../../../util/JSUtil";
 const axios = require('axios');
 
 
-class BaseMeetingList extends React.Component {
+class BaseActivityList extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
 
 
 
-        this.deleteMeeting = this.deleteMeeting.bind(this);
-        this.joinMeeting = this.joinMeeting.bind(this);
+        this.deleteActivity = this.deleteActivity.bind(this);
+        this.joinActivity = this.joinActivity.bind(this);
     }
 
 
-    joinMeeting(id){
+    joinActivity(id){
         const self = this;
         axios.get('http://localhost:8080/request/sendRequest/'+id, Security.authHeader())
             .then(function (response) {
-                let meetings = self.state.meetings;
-                let currentMeetingOld = meetings.filter(obj => {
+                let activities = self.state.activities;
+                let currentMeetingOld = activities.filter(obj => {
                     return obj.id === id
                 });
                 let currentMeetingNew  =Object.assign({},currentMeetingOld)[0];
                 currentMeetingNew.thisUserJoined = response.data;
 
                 let indexOfChanged = 0;
-                meetings.map(function (meeting,index) {
+                activities.map(function (meeting,index) {
                    if(meeting.id===id)
                        indexOfChanged=index;
                 });
-                meetings[indexOfChanged] = currentMeetingNew;
-                self.setState({meetings:meetings});
+                activities[indexOfChanged] = currentMeetingNew;
+                self.setState({activities:activities});
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -42,21 +42,21 @@ class BaseMeetingList extends React.Component {
     }
 
 
-    deleteMeeting(id) {
+    deleteActivity(id) {
 
         const self = this;
         if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
             return;
 
-        axios.get("http://localhost:8080/meeting/delete/" + id, Security.authHeader())
+        axios.get("http://localhost:8080/activity/delete/" + id, Security.authHeader())
             .then(res => {
 
-                let meetings = self.state.meetings;
+                let meetings = self.state.activities;
                 let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
-                self.setState({meetings: meetingsNew});
+                self.setState({activities: meetingsNew});
             });
     }
 
 }
 
-export default BaseMeetingList;
+export default BaseActivityList;

@@ -2,22 +2,22 @@ import React from "react";
 import Security from "../security/Security";
 import ProfilePic from "./common/ProfilePic";
 import UserFullName from "./common/UserFullName";
-import BaseMeetingList from "./meeting/Base/BaseMeetingList";
-import MeetingEditButtons from "./common/MeetingEditButtons";
-import MeetingRequestButtons from "./common/MeetingRequestButtons";
-import MeetingInfoBlock from "./common/MeetingInfoBlock";
+import BaseActivityList from "./activity/Base/BaseActivityList";
+import ActivityEditButtons from "./common/ActivityEditButtons";
+import ActivityRequestButtons from "./common/ActivityRequestButtons";
+import ActivityInfoBlock from "./common/ActivityInfoBlock";
 import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
 
 const axios = require('axios');
 let self;
 
-class Dashboard extends BaseMeetingList {
+class Dashboard extends BaseActivityList {
     constructor() {
         super();
 
         this.state = {
-            meetings: [],
+            activities: [],
             cities: [],
             city: {}
         };
@@ -31,9 +31,9 @@ class Dashboard extends BaseMeetingList {
     fillPage(cityId) {
         const self = this;
 
-        axios.get('http://localhost:8080/meeting/findAllByCityId/' + cityId, Security.authHeader())
+        axios.get('http://localhost:8080/activity/findAllByCityId/' + cityId, Security.authHeader())
             .then(function (response) {
-                self.setState({meetings: response.data});
+                self.setState({activities: response.data});
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -71,42 +71,42 @@ class Dashboard extends BaseMeetingList {
                         <hr/>
                     </div>
                     {
-                        self.state.meetings.map(function (meeting, i) {
+                        self.state.activities.map(function (activity, i) {
                             return (
                                 <div key={i} className={"row meetingListSingleMeetingContainer"}>
                                     <div className="col-md-2 col-sm-2 meetingListProfile">
                                         <ProfilePic
-                                            userId={meeting.profileDto.id}
-                                            profilePicName={meeting.profileDto.profilePicName}
+                                            userId={activity.profileDto.id}
+                                            profilePicName={activity.profileDto.profilePicName}
                                             cssClass={"profilePicSmall"}
                                         />
 
                                     </div>
                                     <div className={"col-md-10 text-align-left"}>
                                         <UserFullName
-                                            userId={meeting.profileDto.id}
-                                            profilePicName={meeting.profileDto.profilePicName}
-                                            name={meeting.profileDto.name}
-                                            surname={meeting.profileDto.surname}
+                                            userId={activity.profileDto.id}
+                                            profilePicName={activity.profileDto.profilePicName}
+                                            name={activity.profileDto.name}
+                                            surname={activity.profileDto.surname}
                                         />
-                                        <MeetingInfoBlock
-                                            photoName={meeting.photoName}
-                                            detail={meeting.detail}
+                                        <ActivityInfoBlock
+                                            photoName={activity.photoName}
+                                            detail={activity.detail}
                                         />
                                         <div className={"row"}>
                                             <div className={"col-md-8 meetingDeadLine"}>
-                                                <i className="far fa-clock">{meeting.deadLineString}</i>
+                                                <i className="far fa-clock">{activity.deadLineString}</i>
                                             </div>
                                             <div className={"col-md-4"}>
-                                                <MeetingEditButtons
-                                                    meetingId={meeting.id}
-                                                    userId={meeting.profileDto.id}
-                                                    deleteMeeting={() => self.deleteMeeting(meeting.id)}
+                                                <ActivityEditButtons
+                                                    activityId={activity.id}
+                                                    userId={activity.profileDto.id}
+                                                    deleteMeeting={() => self.deleteActivity(activity.id)}
                                                 />
-                                                <MeetingRequestButtons
-                                                    userId={meeting.profileDto.id}
-                                                    joinMeeting={() => self.joinMeeting(meeting.id)}
-                                                    thisUserJoined={meeting.thisUserJoined}
+                                                <ActivityRequestButtons
+                                                    userId={activity.profileDto.id}
+                                                    joinActivity={() => self.joinActivity(activity.id)}
+                                                    thisUserJoined={activity.thisUserJoined}
                                                 />
 
                                             </div>

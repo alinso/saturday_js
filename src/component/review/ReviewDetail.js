@@ -2,8 +2,8 @@ import React from "react";
 import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
-import MeetingInfoBlock from "../common/MeetingInfoBlock";
-import MeetingRequestButtons from "../common/MeetingRequestButtons";
+import ActivityInfoBlock from "../common/ActivityInfoBlock";
+import ActivityRequestButtons from "../common/ActivityRequestButtons";
 
 const axios = require('axios');
 

@@ -1,13 +1,13 @@
 import React from "react";
 import Security from "../../security/Security";
-import BaseMeetingForm from "./Base/BaseMeetingForm";
+import BaseActivityForm from "./Base/BaseActivityForm";
 import CityUtil from "../../util/CityUtil";
 
 const moment=require("moment");
 const axios = require('axios');
 
 
-class UpdateMeeting extends BaseMeetingForm {
+class UpdateActivity extends BaseActivityForm {
     constructor(props) {
         super(props);
         this.fillPage();
@@ -31,7 +31,7 @@ class UpdateMeeting extends BaseMeetingForm {
     fillPage() {
         const self = this;
 
-        axios.get('http://localhost:8080/meeting/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get('http://localhost:8080/activity/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
                 self.setState({deadLineString: response.data.deadLineString});
@@ -52,10 +52,10 @@ class UpdateMeeting extends BaseMeetingForm {
             return moment(this.state.deadLineString, 'DD/MM/YYYY HH:mm').toDate();
     }
 
-    updateMeeting(meeting) {
+    updateActivity(meeting) {
         console.log(meeting);
         let self = this;
-        axios.post('http://localhost:8080/meeting/update', meeting, Security.authHeader())
+        axios.post('http://localhost:8080/activity/update', meeting, Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Kaydedildi, iyi eğlenceler :)"});
@@ -83,9 +83,9 @@ class UpdateMeeting extends BaseMeetingForm {
         data.append("deadLineString", this.state.deadLineString);
         data.append("id", this.props.match.params.id);
 
-        this.updateMeeting(data);
+        this.updateActivity(data);
     }
 
 }
 
-export default UpdateMeeting;
+export default UpdateActivity;

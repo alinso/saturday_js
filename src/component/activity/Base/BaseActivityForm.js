@@ -1,6 +1,6 @@
 import React from "react";
 import Security from "../../../security/Security";
-import MeetingDetailInput from "../../common/MeetingDetailInput";
+import ActivityDetailInput from "../../common/ActivityDetailInput";
 import Datetime from "react-datetime";
 import SinglePhotoSelector from "../../common/SinglePhotoSelector";
 import Select from 'react-select'
@@ -15,7 +15,7 @@ const axios = require('axios');
 require('moment/locale/tr');
 
 
-class BaseMeetingForm extends React.Component {
+class BaseActivityForm extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
@@ -120,7 +120,7 @@ class BaseMeetingForm extends React.Component {
                             </div>
                         </div>
                         <br/>
-                        <MeetingDetailInput
+                        <ActivityDetailInput
                             error={errors.detail}
                             onChange={this.onChange}
                             detail={this.state.detail}
@@ -172,4 +172,4 @@ class BaseMeetingForm extends React.Component {
 }
 
 
-export default BaseMeetingForm;
+export default BaseActivityForm;

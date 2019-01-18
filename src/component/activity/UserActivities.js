@@ -3,24 +3,24 @@ import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import '../../util/JSUtil';
-import BaseMeetingList from "./Base/BaseMeetingList";
-import MeetingEditButtons from "../common/MeetingEditButtons";
-import MeetingRequestButtons from "../common/MeetingRequestButtons";
-import MeetingInfoBlock from "../common/MeetingInfoBlock";
+import BaseActivityList from "./Base/BaseActivityList";
+import ActivityEditButtons from "../common/ActivityEditButtons";
+import ActivityRequestButtons from "../common/ActivityRequestButtons";
+import ActivityInfoBlock from "../common/ActivityInfoBlock";
 import UserUtil from "../../util/UserUtil";
 
 const axios = require('axios');
 
-class UserMeetings extends BaseMeetingList {
+class UserActivities extends BaseActivityList {
     constructor(props) {
         super(props);
         UserUtil.redirectIsBlocked(this.props.match.params.id);
 
         this.state = {
-            meetingsCreated: [],
-            meetingsJoined: [],
-            meetings: [],
-            meetingTypes: "created",
+            activitiesCreated: [],
+            activitiesJoined: [],
+            activities: [],
+            activityTypes: "created",
             createdTitle: "activeTitle",
             joinedTitle: "passiveTitle",
         };
@@ -29,21 +29,21 @@ class UserMeetings extends BaseMeetingList {
     }
 
     changeType(type) {
-        let meetings = [];
+        let activities = [];
         let createdTitle = "";
         let joinedTitle = "";
 
         if (type === "created") {
-            meetings = this.state.meetingsCreated;
+            activities = this.state.activitiesCreated;
             createdTitle = "activeTitle";
             joinedTitle = "passiveTitle";
         } else if (type === "joined") {
-            meetings = this.state.meetingsJoined;
+            activities = this.state.activitiesJoined;
             createdTitle = "passiveTitle";
             joinedTitle = "activeTitle";
         }
 
-        this.setState({meetings: meetings});
+        this.setState({activities: activities});
         this.setState({createdTitle: createdTitle});
         this.setState({joinedTitle: joinedTitle});
 
@@ -51,19 +51,19 @@ class UserMeetings extends BaseMeetingList {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/meeting/findByUserId/' + this.props.match.params.id, Security.authHeader())
+        axios.get('http://localhost:8080/activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
-                let meetingsCreated = [];
-                let meetingsJoined = [];
-                response.data.map(function (meeting) {
-                    if (meeting.profileDto.id == self.props.match.params.id)
-                        meetingsCreated.push(meeting);
-                    if (meeting.profileDto.id != self.props.match.params.id)
-                        meetingsJoined.push(meeting);
+                let activitiesCreated = [];
+                let activitiesJoined = [];
+                response.data.map(function (activity) {
+                    if (activity.profileDto.id == self.props.match.params.id)
+                        activitiesCreated.push(activity);
+                    if (activity.profileDto.id != self.props.match.params.id)
+                        activitiesJoined.push(activity);
                 });
-                self.setState({meetingsCreated: meetingsCreated});
-                self.setState({meetingsJoined: meetingsJoined});
-                self.setState({meetings: meetingsCreated});
+                self.setState({activitiesCreated: activitiesCreated});
+                self.setState({activitiesJoined: activitiesJoined});
+                self.setState({activities: activitiesCreated});
 
             })
             .catch(function (error) {
@@ -79,10 +79,10 @@ class UserMeetings extends BaseMeetingList {
         return (
             <div className="row outer">
                 <div className="col-md-5 m-x-auto container">
-                    {this.state.meetingsCreated[0] && (
+                    {this.state.activitiesCreated[0] && (
                         <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
                             <i className="fas fa-comments"/>
-                            {self.state.meetingsCreated[0].profileDto.name + " " + self.state.meetingsCreated[0].profileDto.surname}
+                            {self.state.activitiesCreated[0].profileDto.name + " " + self.state.activitiesCreated[0].profileDto.surname}
                         </a> bugüne kadar neler yaptı?
                         </h5>
                     )}
@@ -93,9 +93,9 @@ class UserMeetings extends BaseMeetingList {
                         </div>
                         <div className="col-md-6 m-auto">
                             <span className={this.state.createdTitle}
-                                  onClick={() => this.changeType("created")}> Oluşturduğu ({this.state.meetingsCreated.length}) </span>&nbsp;&nbsp;
+                                  onClick={() => this.changeType("created")}> Oluşturduğu ({this.state.activitiesCreated.length}) </span>&nbsp;&nbsp;
                             <span className={this.state.joinedTitle}
-                                  onClick={() => this.changeType("joined")}> Katıldığı ({this.state.meetingsJoined.length})</span>
+                                  onClick={() => this.changeType("joined")}> Katıldığı ({this.state.activitiesJoined.length})</span>
                         </div>
                         <div className={"col-md-12"}>
                             <hr/>
@@ -103,43 +103,43 @@ class UserMeetings extends BaseMeetingList {
 
                     </div>
                     {
-                        self.state.meetings.map(function (meeting, i) {
+                        self.state.activities.map(function (activity, i) {
                             return (
                                 <div className={"row meetingListSingleMeetingContainer"}>
                                     <div className="col-md-2 meetingListProfile">
                                         <ProfilePic
-                                            userId={meeting.profileDto.id}
-                                            profilePicName={meeting.profileDto.profilePicName}
+                                            userId={activity.profileDto.id}
+                                            profilePicName={activity.profileDto.profilePicName}
                                             cssClass={"profilePicMedium"}
                                         />
 
                                     </div>
                                     <div className={"col-md-10  text-align-left "}>
                                         <UserFullName
-                                            name={meeting.profileDto.name}
-                                            userId={meeting.profileDto.id}
-                                            surname={meeting.profileDto.surname}
+                                            name={activity.profileDto.name}
+                                            userId={activity.profileDto.id}
+                                            surname={activity.profileDto.surname}
                                         />
-                                        <MeetingInfoBlock photoName={meeting.photoName} detail={meeting.detail}/>
+                                        <ActivityInfoBlock photoName={activity.photoName} detail={activity.detail}/>
                                         <div className={"row"}>
                                             <div className={"col-md-8 meetingDeadLine"}>
-                                                <button className={"btn btn-warning"}> {meeting.deadLineString}</button>
+                                                <button className={"btn btn-warning"}> {activity.deadLineString}</button>
                                             </div>
                                             <div className={"col-md-3"}>
-                                                <MeetingEditButtons
-                                                    meetingId={meeting.id}
-                                                    userId={meeting.profileDto.id}
-                                                    deleteMeeting={() => self.deleteMeeting(meeting.id)}
+                                                <ActivityEditButtons
+                                                    activityId={activity.id}
+                                                    userId={activity.profileDto.id}
+                                                    deleteActivity={() => self.deleteActivity(activity.id)}
                                                 />
-                                                {(!meeting.expired) &&
-                                                (<MeetingRequestButtons
-                                                    userId={meeting.profileDto.id}
-                                                    joinMeeting={() => self.joinMeeting(meeting.id)}
-                                                    thisUserJoined={meeting.thisUserJoined}
+                                                {(!activity.expired) &&
+                                                (<ActivityRequestButtons
+                                                    userId={activity.profileDto.id}
+                                                    joinMeeting={() => self.joinActivity(activity.id)}
+                                                    thisUserJoined={activity.thisUserJoined}
                                                 />)
                                                 }
-                                                {(meeting.expired) &&
-                                                (<a href={"/meetingDetail/" + meeting.id}>
+                                                {(activity.expired) &&
+                                                (<a href={"/meetingDetail/" + activity.id}>
                                                     <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
                                                     </button>
 
@@ -162,4 +162,4 @@ class UserMeetings extends BaseMeetingList {
 }
 
 
-export default UserMeetings;
+export default UserActivities;

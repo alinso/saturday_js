@@ -2,20 +2,20 @@ import React from "react";
 import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
-import MeetingInfoBlock from "../common/MeetingInfoBlock";
-import MeetingRequestButtons from "../common/MeetingRequestButtons";
+import ActivityInfoBlock from "../common/ActivityInfoBlock";
+import ActivityRequestButtons from "../common/ActivityRequestButtons";
 import UserUtil from "../../util/UserUtil";
 
 const axios = require('axios');
 
 
-class MeetingDetail extends React.Component {
+class ActivityDetail extends React.Component {
     constructor(props) {
         super(props);
         Security.protect()
 
         this.state = {
-            meeting: {},
+            activity: {},
             erorrs: {}
         };
 
@@ -24,9 +24,9 @@ class MeetingDetail extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/meeting/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get('http://localhost:8080/activity/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
-                self.setState({meeting: response.data});
+                self.setState({activity: response.data});
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -39,21 +39,21 @@ class MeetingDetail extends React.Component {
         axios.get('http://localhost:8080/request/sendRequest/' + id, Security.authHeader())
             .then(function (response) {
 
-                let currentMeetingNew = Object.assign({}, self.state.meeting);
+                let currentMeetingNew = Object.assign({}, self.state.activity);
                 currentMeetingNew.thisUserJoined = response.data;
 
-                self.setState({meeting: currentMeetingNew});
+                self.setState({activity: currentMeetingNew});
             });
 
     }
 
     render() {
-        const {meeting} = this.state;
+        const {activity} = this.state;
         const self = this;
 
 
-        console.log(meeting);
-        if (meeting.profileDto !== undefined) {
+        console.log(activity);
+        if (activity.profileDto !== undefined) {
             return (
                 <div className={"row outer"}>
                     <div className={"col-md-6 container"}>
@@ -61,31 +61,31 @@ class MeetingDetail extends React.Component {
                             <div className="col-md-2 meetingListProfile">
                                 <ProfilePic
                                     cssClass={"profilePicMedium"}
-                                    userId={meeting.profileDto.id}
-                                    profilePicName={meeting.profileDto.profilePicName}
+                                    userId={activity.profileDto.id}
+                                    profilePicName={activity.profileDto.profilePicName}
                                 />
                             </div>
                             <div className={"col-md-9 text-align-left"}>
                                 <UserFullName
-                                    name={meeting.profileDto.name}
-                                    userId={meeting.profileDto.id}
-                                    surname={meeting.profileDto.surname}
+                                    name={activity.profileDto.name}
+                                    userId={activity.profileDto.id}
+                                    surname={activity.profileDto.surname}
                                 />
-                                <MeetingInfoBlock photoName={meeting.photoName} detail={meeting.detail}/>
+                                <ActivityInfoBlock photoName={activity.photoName} detail={activity.detail}/>
                                 <div className={"row"}>
                                     <div className={"col-md-9 meetingListUserMeta"}>
-                                        <button className={"btn btn-warning"}> {meeting.deadLineString}</button>
+                                        <button className={"btn btn-warning"}> {activity.deadLineString}</button>
                                     </div>
                                     <div className={"col-md-3"}>
-                                        {(!meeting.expired) &&
-                                        (<MeetingRequestButtons
-                                            userId={meeting.profileDto.id}
-                                            joinMeeting={() => self.joinMeeting(meeting.id)}
-                                            thisUserJoined={meeting.thisUserJoined}
+                                        {(!activity.expired) &&
+                                        (<ActivityRequestButtons
+                                            userId={activity.profileDto.id}
+                                            joinMeeting={() => self.joinMeeting(activity.id)}
+                                            thisUserJoined={activity.thisUserJoined}
                                         />)
                                         }
-                                        {(meeting.expired) &&
-                                        (<a href={"/meetingDetail/" + meeting.id}>
+                                        {(activity.expired) &&
+                                        (<a href={"/activityDetail/" + activity.id}>
                                             <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
                                             </button>
                                         </a>)
@@ -99,8 +99,8 @@ class MeetingDetail extends React.Component {
                             Aktiviteye Katılanlar
                             <hr/>
                             <div className={"row"}>
-                                {(meeting.attendants) &&
-                                meeting.attendants.map(function (attendant) {
+                                {(activity.attendants) &&
+                                activity.attendants.map(function (attendant) {
 
                                     return (
 
@@ -127,10 +127,10 @@ class MeetingDetail extends React.Component {
                 </div>
             )
         }
-        if (meeting.profileDto === undefined) {
+        if (activity.profileDto === undefined) {
             return (<span>yükleniyor</span>)
         }
     }
 }
 
-export default MeetingDetail;
+export default ActivityDetail;

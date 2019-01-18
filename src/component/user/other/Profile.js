@@ -23,7 +23,7 @@ class Profile extends React.Component {
             age: "",
             motivation: "",
             interestsArray: [],
-            meetingCount: 0,
+            activityCount: 0,
             errors: {}
         };
 
@@ -234,8 +234,8 @@ class Profile extends React.Component {
                                     </div>
                                     <div className="profileTitleDiv">
                                         <a className="profileTitle"
-                                           href={"/userMeetings/" + this.props.match.params.id}>
-                                            Buluşmalar({this.state.meetingCount})
+                                           href={"/userActivities/" + this.props.match.params.id}>
+                                            Buluşmalar({this.state.activityCount})
                                         </a>
                                     </div>
                                 </div>

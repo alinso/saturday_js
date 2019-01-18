@@ -201,6 +201,39 @@ font-weight: bold;
     cursor: pointer;
 
 }
+.landing_parallax_text{
+    padding: 40px;
+    background-color: #2b292a;
+    color: white;
+    height: 100%;
+    font-size: 3em;
+    opacity: 0.7;
+    text-align: center;
+}
+.landingBottom{
+height: 200px;
+}
+.howitworks1{
+    background: #e1dae8;
+    padding: 10px;
+}
+.howitworks2{
+    background-color: #c9ea64;
+    padding: 10px;
+}
+.landing_parallax {
+    /* The image used */
+    background-image: url("/img/landing_fixed_middle.jpg");
+
+    /* Set a specific height */
+    height: 250px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
 .activeTitle:hover, .passiveTitle:hover{
     color: black;
@@ -211,11 +244,16 @@ font-weight: bold;
     color: gray;
 }
 .landingSlide{
-    width: 100vw;
+    width: 99vw;
     height: 100vh;
     background-image: url(/img/landing_slide.jpg);
     background-size: cover;
 }
+.landingTitleCounter{
+    font-size: 2em;
+}
+
+
 
 .landingSlideTitle{
     color: #51456c;

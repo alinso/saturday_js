@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 
 
-class MeetingDetailInput extends React.Component {
+class ActivityDetailInput extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -32,5 +32,5 @@ class MeetingDetailInput extends React.Component {
 }
 
 
-export default MeetingDetailInput;
+export default ActivityDetailInput;
 

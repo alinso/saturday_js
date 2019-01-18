@@ -1,13 +1,13 @@
 import React from "react";
 import Security from "../../security/Security";
 import "../../react-datetime.css";
-import BaseMeetingForm from "./Base/BaseMeetingForm";
+import BaseActivityForm from "./Base/BaseActivityForm";
 import CityUtil from "../../util/CityUtil";
 
 const axios = require('axios');
 
 
-class CreateMeeting extends BaseMeetingForm{
+class CreateActivity extends BaseActivityForm{
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
@@ -28,10 +28,10 @@ class CreateMeeting extends BaseMeetingForm{
 
     }
 
-    createMeeting(newMeeting) {
+    createActivity(newActivity) {
         let self = this;
-        console.log(newMeeting);
-        axios.post('http://localhost:8080/meeting/create', newMeeting, Security.authHeader())
+        console.log(newActivity);
+        axios.post('http://localhost:8080/activity/create', newActivity, Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Kaydedildi, iyi eğlenceler :)"});
@@ -63,10 +63,10 @@ class CreateMeeting extends BaseMeetingForm{
         data.append("cityId",this.state.city.value);
         data.append("detail", this.state.detail);
         data.append("deadLineString",this.state.deadLineString);
-        this.createMeeting(data);
+        this.createActivity(data);
     }
 
 }
 
 
-export default CreateMeeting;
+export default CreateActivity;

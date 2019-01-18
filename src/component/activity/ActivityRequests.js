@@ -5,19 +5,19 @@ import UserFullName from "../common/UserFullName";
 import UserUtil from "../../util/UserUtil";
 import JSUtil from "../../util/JSUtil";
 import Alert from "../common/Alert";
-import MeetingEditButtons from "../common/MeetingEditButtons";
+import ActivityEditButtons from "../common/ActivityEditButtons";
 
 const axios = require('axios');
 
 
-class MeetingRequests extends React.Component {
+class ActivityRequests extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
 
         this.state = {
             photoName: null,
-            meetingId: null,
+            activityId: null,
             detail: null,
             deadLineString: null,
             requests: null,
@@ -31,13 +31,13 @@ class MeetingRequests extends React.Component {
     fillPage() {
         const self = this;
 
-        axios.get('http://localhost:8080/meeting/meetingWithRequests/' + this.props.match.params.id, Security.authHeader())
+        axios.get('http://localhost:8080/activity/activityWithRequests/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
                 self.setState({photoName: response.data.photoName});
                 self.setState({deadLineString: response.data.deadLineString});
                 self.setState({requests: response.data.requests});
-                self.setState({meetingId: response.data.id});
+                self.setState({activityId: response.data.id});
 
             })
             .catch(function (error) {
@@ -47,18 +47,15 @@ class MeetingRequests extends React.Component {
 
     }
 
-    deleteMeeting(id) {
+    deleteActivity(id) {
 
         const self = this;
         if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
             return;
 
-        axios.get("http://localhost:8080/meeting/delete/" + id, Security.authHeader())
+        axios.get("http://localhost:8080/activity/delete/" + id, Security.authHeader())
             .then(res => {
-
-                let meetings = self.state.meetings;
-                let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings, "id", id);
-                self.setState({meetings: meetingsNew});
+                window.location="/profile/"+localStorage.getItem("userId");
             });
     }
 
@@ -72,7 +69,7 @@ class MeetingRequests extends React.Component {
                 });
 
                 let currentRequestNew = Object.assign({}, currentRequestOld)[0];
-                currentRequestNew.meetingRequestStatus = response.data;
+                currentRequestNew.activityRequestStatus = response.data;
 
                 let requestsNew = JSUtil.deleteFromArrayByPropertyName(requests, "id", id);
                 requestsNew.push(currentRequestNew);
@@ -122,10 +119,10 @@ class MeetingRequests extends React.Component {
                                     <button className={"btn btn-warning"}> {this.state.deadLineString}</button>
                                 </div>
                                 <div className={"col-md-4"}>
-                                    <MeetingEditButtons
-                                        meetingId={this.state.meetingId}
+                                    <ActivityEditButtons
+                                        activityId={this.state.activityId}
                                         userId={parseInt(localStorage.getItem("userId"))}
-                                        deleteMeeting={() => self.deleteMeeting(this.state.meetingId)}
+                                        deleteActivity={() => self.deleteActivity(this.state.activityId)}
                                     />
                                 </div>
                                 <hr/>
@@ -162,12 +159,12 @@ class MeetingRequests extends React.Component {
                                             {UserUtil.translateGender(request.profileDto.gender)} / {request.profileDto.age}
                                             <br/>
                                             {
-                                                (request.meetingRequestStatus === "WAITING") &&
+                                                (request.activityRequestStatus === "WAITING") &&
                                                 (<button onClick={() => self.toggleApprove(request.id)}
                                                          className={"btn btn-info"}>ONAYLA</button>)
                                             }
                                             {
-                                                (request.meetingRequestStatus === "APPROVED") && (
+                                                (request.activityRequestStatus === "APPROVED") && (
                                                     <button onClick={() => self.toggleApprove(request.id)}
                                                             className={"btn btn-danger"}>İPTAL ET</button>
                                                 )
@@ -188,4 +185,4 @@ class MeetingRequests extends React.Component {
 }
 
 
-export default MeetingRequests;
+export default ActivityRequests;

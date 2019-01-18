@@ -325,6 +325,9 @@ class UpdateInfo extends React.Component {
                                 </div>
                             )}
                         </div>
+                        {savedMessage && (
+                            <Alert type="alert-success" message={savedMessage}/>
+                        )}
 
                         <input
                             type="submit" value={"Güncelle"}

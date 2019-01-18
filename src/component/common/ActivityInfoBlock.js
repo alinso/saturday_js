@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class MeetingInfoBlock extends React.Component {
+class ActivityInfoBlock extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -23,5 +23,5 @@ class MeetingInfoBlock extends React.Component {
 }
 
 
-export default MeetingInfoBlock;
+export default ActivityInfoBlock;
 

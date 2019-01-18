@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class MeetingEditButtons extends React.Component {
+class ActivityEditButtons extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -11,17 +11,17 @@ class MeetingEditButtons extends React.Component {
 
         if (this.props.userId === parseInt(localStorage.getItem("userId"))) {
             return (<div className={" row meetingListMeetingEditButtons"}>
-                    <a href={"/meetingRequests/" + this.props.meetingId}>
+                    <a href={"/activityRequests/" + this.props.activityId}>
                         <button className="btn btn-success meetingProcess">
                             <i className="fas fa-users"/>
                         </button>
                     </a>
-                    <a href={"/updateMeeting/" + this.props.meetingId}>
-                    <button onClick={this.props.updateMeeting}
+                    <a href={"/updateActivity/" + this.props.activityId}>
+                    <button onClick={this.props.updateActivity}
                             className="btn btn-info meetingProcess"><i className="fas fa-edit"/>
                     </button>
                     </a>
-                    <button onClick={this.props.deleteMeeting}
+                    <button onClick={this.props.deleteActivity}
                             className="btn btn-warning meetingProcess"><i className="fas fa-trash"/>
                     </button>
                 </div>
@@ -34,5 +34,5 @@ class MeetingEditButtons extends React.Component {
 }
 
 
-export default MeetingEditButtons;
+export default ActivityEditButtons;
 

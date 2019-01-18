@@ -40,7 +40,7 @@ class Notifications extends React.Component {
     newRequestText(id) {
         return (
             <span>
-            <a href={"/meetingRequests/" + id}>PAYLAŞTIĞINIZ AKTİVİTEYE</a> katılmak istiyor.
+            <a href={"/activityRequests/" + id}>PAYLAŞTIĞINIZ AKTİVİTEYE</a> katılmak istiyor.
             </span>
         )
     }
@@ -64,7 +64,7 @@ class Notifications extends React.Component {
     newRequestApprovalText(id) {
         return (
             <span>
-                katılmak istediğiniz <a href={"/meetingDetail/" + id}>AKTİVİTESİ</a> için siz onayladı, iyi eğlenceler
+                katılmak istediğiniz <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için siz onayladı, iyi eğlenceler
                 dileriz:)
             </span>
         )
@@ -73,7 +73,7 @@ class Notifications extends React.Component {
     newFollowingText(id) {
         return (
             <span>
-            <a href={"/meetingDetail/" + id}>YENİ BİR AKTİVİTE</a> paylaştı.
+            <a href={"/activityDetail/" + id}>YENİ BİR AKTİVİTE</a> paylaştı.
             </span>
         )
     }
@@ -81,7 +81,7 @@ class Notifications extends React.Component {
     newMeetingCommentAvailable(id) {
         return (
             <span>
-            Yakın zamanda <a href={"/meetingDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 10 gün içinde yorum yapabilirsin.
+            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 10 gün içinde yorum yapabilirsin.
                 Böylece Activity Friend'in büyümesine yardımcı olabilirsin.
             </span>
         )

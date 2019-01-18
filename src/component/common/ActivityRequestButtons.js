@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class MeetingRequestButtons extends React.Component {
+class ActivityRequestButtons extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -12,7 +12,7 @@ class MeetingRequestButtons extends React.Component {
         if (this.props.userId !== parseInt(localStorage.getItem("userId"))) {
             return (
                 <button
-                    onClick={() => this.props.joinMeeting()}
+                    onClick={() => this.props.joinActivity()}
                     className="btn btn-success">
                     {this.props.thisUserJoined && (<span><i className="fas fa-times"/>&nbsp; isteğimi iptal et</span>)}
                     {!this.props.thisUserJoined && (<span><i className="fas fa-arrow-right"/>&nbsp; birlikte yapalım!</span>)}
@@ -26,5 +26,5 @@ class MeetingRequestButtons extends React.Component {
 }
 
 
-export default MeetingRequestButtons;
+export default ActivityRequestButtons;
 
