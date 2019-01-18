@@ -1,48 +1,85 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Dashboard from './component/Dashboard';
-import GuestHeader from './component/common/GuestHeader';
-import UserHeader from './component/common/UserHeader';
-import Register from './component/user/nonauthenticated/Register';
+import Dashboard from './pcComponents/Dashboard';
+import GuestHeader from './pcComponents/common/GuestHeader';
+import UserHeader from './pcComponents/common/UserHeader';
+import Register from './pcComponents/user/nonauthenticated/Register';
 import security from "./security/Security";
 
-import './App.css';
-import Landing from "./component/common/Landing";
-import Login from "./component/user/nonauthenticated/Login";
-import UpdateInfo from "./component/user/self/UpdateInfo";
-import UpdatePassword from "./component/user/self/UpdatePassword";
-import UpdateProfilePic from "./component/user/self/UpdateProfilePic";
-import MyAlbum from "./component/user/self/MyAlbum";
-import Settings from "./component/user/self/Settings";
-import VerifyMail from "./component/user/nonauthenticated/VerifyMail";
-import SearchUser from "./component/user/other/SearchUser";
-import ForgottenPassword from "./component/user/nonauthenticated/ForgottenPassword";
-import ResetPassword from "./component/user/nonauthenticated/ResetPassword";
-import Profile from "./component/user/other/Profile";
-import Album from "./component/user/other/Album";
-import CreateActivity from "./component/activity/CreateActivity";
-import UpdateActivity from "./component/activity/UpdateActivity";
-import UserActivities from "./component/activity/UserActivities";
-import ActivityRequests from "./component/activity/ActivityRequests";
-import MessagePage from "./component/message/MessagePage";
-import Conversations from "./component/message/Conversations";
-import ReviewForm from "./component/review/ReviewForm";
-import ReferenceCodes from "./component/user/self/ReferenceCodes";
-import Followings from "./component/user/self/Followings";
-import Reviews from "./component/review/Reviews";
-import Notifications from "./component/notification/Notifications";
-import ActivityDetail from "./component/activity/ActivityDetail";
-import Blocks from "./component/user/self/Blocks";
-import ReviewDetail from "./component/review/ReviewDetail";
-import Footer from "./component/common/Footer";
+import Landing from "./pcComponents/common/Landing";
+import Login from "./pcComponents/user/nonauthenticated/Login";
+import UpdateInfo from "./pcComponents/user/self/UpdateInfo";
+import UpdatePassword from "./pcComponents/user/self/UpdatePassword";
+import UpdateProfilePic from "./pcComponents/user/self/UpdateProfilePic";
+import MyAlbum from "./pcComponents/user/self/MyAlbum";
+import Settings from "./pcComponents/user/self/Settings";
+import VerifyMail from "./pcComponents/user/nonauthenticated/VerifyMail";
+import SearchUser from "./pcComponents/user/other/SearchUser";
+import ForgottenPassword from "./pcComponents/user/nonauthenticated/ForgottenPassword";
+import ResetPassword from "./pcComponents/user/nonauthenticated/ResetPassword";
+import Profile from "./pcComponents/user/other/Profile";
+import Album from "./pcComponents/user/other/Album";
+import CreateActivity from "./pcComponents/activity/CreateActivity";
+import UpdateActivity from "./pcComponents/activity/UpdateActivity";
+import UserActivities from "./pcComponents/activity/UserActivities";
+import ActivityRequests from "./pcComponents/activity/ActivityRequests";
+import MessagePage from "./pcComponents/message/MessagePage";
+import Conversations from "./pcComponents/message/Conversations";
+import ReviewForm from "./pcComponents/review/ReviewForm";
+import ReferenceCodes from "./pcComponents/user/self/ReferenceCodes";
+import Followings from "./pcComponents/user/self/Followings";
+import Reviews from "./pcComponents/review/Reviews";
+import Notifications from "./pcComponents/notification/Notifications";
+import ActivityDetail from "./pcComponents/activity/ActivityDetail";
+import Blocks from "./pcComponents/user/self/Blocks";
+import ReviewDetail from "./pcComponents/review/ReviewDetail";
+import Footer from "./pcComponents/common/Footer";
+import LandingMobile from "./mobileComponents/common/LandingMobile";
+import DashboardMobile from "./mobileComponents/DashboardMobile";
+import RegisterMobile from "./mobileComponents/user/nonauthenticated/RegisterMobile";
+import LoginMobile from "./mobileComponents/user/nonauthenticated/LoginMobile";
+import SearchUserMobile from "./mobileComponents/user/other/SearchUserMobile";
+import ForgottenPasswordMobile from "./mobileComponents/user/nonauthenticated/ForgottenPasswordMobile";
+import ResetPasswordMobile from "./mobileComponents/user/nonauthenticated/ResetPasswordMobile";
+import ProfileMobile from "./mobileComponents/user/other/ProfileMobile";
+import VerifyMailMobile from "./mobileComponents/user/nonauthenticated/VerifyMailMobile";
+import UpdateInfoMobile from "./mobileComponents/user/self/UpdateInfoMobile";
+import UpdatePasswordMobile from "./mobileComponents/user/self/UpdatePasswordMobile";
+import UpdateProfilePicMobile from "./mobileComponents/user/self/UpdateProfilePicMobile";
+import MyAlbumMobile from "./mobileComponents/user/self/MyAlbumMobile";
+import AlbumMobile from "./mobileComponents/user/other/AlbumMobile";
+import SettingsMobile from "./mobileComponents/user/self/SettingsMobile";
+import ReferenceCodesMobile from "./mobileComponents/user/self/ReferenceCodesMobile";
+import FollowingsMobile from "./mobileComponents/user/self/FollowingsMobile";
+import BlocksMobile from "./mobileComponents/user/self/BlocksMobile";
+import CreateActivityMobile from "./mobileComponents/activity/CreateActivityMobile";
+import UpdateActivityMobile from "./mobileComponents/activity/UpdateActivityMobile";
+import UserActivitiesMobile from "./mobileComponents/activity/UserActivitiesMobile";
+import ActivityRequestsMobile from "./mobileComponents/activity/ActivityRequestsMobile";
+import ActivityDetailMobile from "./mobileComponents/activity/ActivityDetailMobile";
+import MessagePageMobile from "./mobileComponents/message/MessagePageMobile";
+import ConversationsMobile from "./mobileComponents/message/ConversationsMobile";
+import ReviewFormMobile from "./mobileComponents/review/ReviewFormMobile";
+import ReviewsMobile from "./mobileComponents/review/ReviewsMobile";
+import ReviewDetailMobile from "./mobileComponents/review/ReviewDetailMobile";
+import NotificationsMobile from "./mobileComponents/notification/NotificationsMobile";
+import UserMenuMobile from "./mobileComponents/common/UserMenuMobile";
+import GuestMenuMobile from "./mobileComponents/common/GuestMenuMobile";
 
 const isMobile = require('is-mobile');
+
+if(!isMobile()) {
+require('./pc.css');
+}
+if(isMobile()) {
+    require('./mobile.css');
+}
 
 
 class App extends Component {
 
-    setHeader() {
+    setPcHeader() {
         if (security.isValidToken()) {
             return <UserHeader/>
         }
@@ -51,7 +88,7 @@ class App extends Component {
         }
     }
 
-    setFooter() {
+    setPcFooter() {
         if (security.isValidToken()) {
             return <Footer/>
         }
@@ -60,12 +97,26 @@ class App extends Component {
         }
     }
 
+    setMobileMenu() {
+        if (security.isValidToken()) {
+            return <UserMenuMobile/>
+        }
+        else {
+            return <GuestMenuMobile/>
+        }
+    }
+
+
+
 
     render() {
+
+
+        if(!isMobile())
         return (
             <Router>
                 <div className="App">
-                    {!isMobile() && this.setHeader()}
+                    {this.setPcHeader()}
                     {/*non authenticated*/}
                     {!security.isValidToken() && <Route exact path="/" component={Landing}/>}
                     {security.isValidToken() && <Route exact path="/" component={Dashboard}/>}
@@ -79,7 +130,6 @@ class App extends Component {
                     {<Route exact path="/verifyMail/:token" component={VerifyMail}/>}
 
                     {/*authenticated*/}
-                    {/*{<Route exact path="/myprofile" component={Profile}/>}*/}
                     {<Route exact path="/updateInfo" component={UpdateInfo}/>}
                     {<Route exact path="/updatePassword" component={UpdatePassword}/>}
                     {<Route exact path="/updateProfilePic" component={UpdateProfilePic}/>}
@@ -99,18 +149,69 @@ class App extends Component {
                     {<Route exact path="/message/:id" component={MessagePage}/>}
                     {<Route exact path="/conversations/" component={Conversations}/>}
 
-                    {<Route exact path="/reviewForm/:type/:id" component={ReviewForm}/>}
+                    {<Route exact path="/reviewForm/:id" component={ReviewForm}/>}
                     {<Route exact path="/reviews/:id" component={Reviews}/>}
                     {<Route exact path="/review/:id" component={ReviewDetail}/>}
 
                     {<Route exact path="/notifications/" component={Notifications}/>}
 
 
-                    {this.setFooter()}
+                    {this.setPcFooter()}
 
                 </div>
             </Router>
         );
+
+
+
+        if(isMobile())
+            return (
+                <Router>
+                    <div className="App">
+                        {/*non authenticated*/}
+                        {!security.isValidToken() && <Route exact path="/" component={LandingMobile}/>}
+                        {security.isValidToken() && <Route exact path="/" component={DashboardMobile}/>}
+                        {<Route exact path="/logout" render={() => security.logout()}/>}
+                        {<Route exact path="/register" component={RegisterMobile}/>}
+                        {<Route exact path="/login" component={LoginMobile}/>}
+                        {<Route exact path="/searchUser" component={SearchUserMobile}/>}
+                        {<Route exact path="/forgottenPassword" component={ForgottenPasswordMobile}/>}
+                        {<Route exact path="/resetPassword/:token" component={ResetPasswordMobile}/>}
+                        {<Route exact path="/profile/:id" component={ProfileMobile}/>}
+                        {<Route exact path="/verifyMail/:token" component={VerifyMailMobile}/>}
+
+                        {/*authenticated*/}
+                        {<Route exact path="/updateInfo" component={UpdateInfoMobile}/>}
+                        {<Route exact path="/updatePassword" component={UpdatePasswordMobile}/>}
+                        {<Route exact path="/updateProfilePic" component={UpdateProfilePicMobile}/>}
+                        {<Route exact path="/myAlbum" component={MyAlbumMobile}/>}
+                        {<Route exact path="/album/:id" component={AlbumMobile}/>}
+                        {<Route exact path="/settings" component={SettingsMobile}/>}
+                        {<Route exact path="/referenceCodes" component={ReferenceCodesMobile}/>}
+                        {<Route exact path="/followings" component={FollowingsMobile}/>}
+                        {<Route exact path="/blocks" component={BlocksMobile}/>}
+
+                        {<Route exact path="/createActivity" component={CreateActivityMobile}/>}
+                        {<Route exact path="/updateActivity/:id" component={UpdateActivityMobile}/>}
+                        {<Route exact path="/userActivities/:id" component={UserActivitiesMobile}/>}
+                        {<Route exact path="/ActivityRequests/:id" component={ActivityRequestsMobile}/>}
+                        {<Route exact path="/ActivityDetail/:id" component={ActivityDetailMobile}/>}
+
+                        {<Route exact path="/message/:id" component={MessagePageMobile}/>}
+                        {<Route exact path="/conversations/" component={ConversationsMobile}/>}
+
+                        {<Route exact path="/reviewForm/:id" component={ReviewFormMobile}/>}
+                        {<Route exact path="/reviews/:id" component={ReviewsMobile}/>}
+                        {<Route exact path="/review/:id" component={ReviewDetailMobile}/>}
+
+                        {<Route exact path="/notifications/" component={NotificationsMobile}/>}
+
+
+                        {this.setMobileMenu()}
+
+                    </div>
+                </Router>
+            );
     }
 }
 
