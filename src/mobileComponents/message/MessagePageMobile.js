@@ -3,7 +3,7 @@ import Security from "../../security/Security";
 import classnames from "classnames";
 import ProfilePicMobile from "../common/ProfilePicMobile";
 import UserFullNameMobile from "../common/UserFullNameMobile";
-import MessageBox from "./DisplayMessagesMobile";
+import MessageBoxMobile from "./DisplayMessagesMobile";
 import UserUtil from "../../util/UserUtil";
 
 const axios = require('axios');
@@ -55,7 +55,7 @@ class MessagePageMobile extends React.Component {
                 let newMessage = response.data;
                 messages.push(newMessage);
                 self.setState({messages: messages});
-                self.setState({message:""});
+                self.setState({message: ""});
 
             })
             .catch(function (error) {
@@ -93,26 +93,27 @@ class MessagePageMobile extends React.Component {
     render() {
 
         return (
-            <div className="row outer">
-                <div className={"col-md-6 offset-3 container"}>
-                    <ProfilePicMobile
-                        userId={this.props.match.params.id}
-                        profilePicName={this.state.readerProfile.profilePicName}
-                    />
-                    <UserFullNameMobile
-                        name={this.state.readerProfile.name}
-                        surname={this.state.readerProfile.surname}
-                        userId={this.state.readerProfile.id}
-                    />
-                    <div className={"col-md-10 m-auto"}>
-                    <MessageBox
+            <div className={"full-width container"}>
+                <ProfilePicMobile
+                    userId={this.props.match.params.id}
+                    profilePicName={this.state.readerProfile.profilePicName}
+                    cssClass={"profilePicSmall"} />
+                &nbsp;
+                <UserFullNameMobile
+                    name={this.state.readerProfile.name}
+                    surname={this.state.readerProfile.surname}
+                    userId={this.state.readerProfile.id}
+                />
+                <br/>   <br/>
+                <div className={"col-md-10 m-auto"}>
+                    <MessageBoxMobile
                         messages={this.state.messages}
                     />
-                    </div>
+                </div>
 
-                    <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit}>
 
-                        <div className="form-group">
+                    <div className="form-group">
                             <textarea
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": this.state.errors.message
@@ -122,21 +123,20 @@ class MessagePageMobile extends React.Component {
                                 value={this.state.message}
                                 onChange={this.onChange}
                             />
-                            {this.state.errors.message && (
-                                <div className="invalid-feedback">
-                                    {this.state.errors.message}
-                                </div>
-                            )}
-                        </div>
+                        {this.state.errors.message && (
+                            <div className="invalid-feedback">
+                                {this.state.errors.message}
+                            </div>
+                        )}
+                    </div>
 
-                        <input
-                            type="submit"
-                            value="Gönder"
-                            className="btn btn-primary btn-block mt-4"
-                        />
-                    </form>
-                    <br/>
-                </div>
+                    <input
+                        type="submit"
+                        value="Gönder"
+                        className="btn btn-primary btn-block mt-4"
+                    />
+                </form>
+                <br/>
             </div>
 
         );

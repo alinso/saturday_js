@@ -12,7 +12,7 @@ class RegisterMobile extends React.Component {
     constructor() {
         super();
 
-        if(localStorage.getItem("jwtToken")){
+        if (localStorage.getItem("jwtToken")) {
             Security.logout();
         }
 
@@ -25,7 +25,7 @@ class RegisterMobile extends React.Component {
             confirmPassword: "",
             gender: "UNSELECTED",
             referenceCode: "",
-            isSubmitDisabled:false,
+            isSubmitDisabled: false,
             registrationCompletedMessage: false,
             errors: {}
         };
@@ -44,7 +44,7 @@ class RegisterMobile extends React.Component {
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
-                self.setState({isSubmitDisabled:false});
+                self.setState({isSubmitDisabled: false});
             });
     }
 
@@ -63,7 +63,7 @@ class RegisterMobile extends React.Component {
             this.setState({"errors": errorUpdated})
             return;
         }
-        this.setState({isSubmitDisabled:true});
+        this.setState({isSubmitDisabled: true});
         const newUser = {
             name: this.state.name,
             surname: this.state.surname,
@@ -85,168 +85,167 @@ class RegisterMobile extends React.Component {
         const {errors} = this.state;
         const show = {display: "inline"}
         return (
-            <div className="md-auto registerOuter">
-                <div className={"col-md-4 offset-4 registerContainer"}>
-                    <h4 className={"color-white"}>Activity Friend'e Katıl!</h4>
+            <div className="full-width registerContainer">
+                <h6 className={"color-white"}>Activity Friend'e Katıl!</h6>
+                {registrationCompletedMessage && (
+                    <AlertMobile type="alert-success" message={registrationCompletedMessage}/>
 
-                    {registrationCompletedMessage && (
-                        <AlertMobile type="alert-success" message={registrationCompletedMessage}/>
+                )}
 
-                        )}
-
-                    <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.name
-                                })}
-                                placeholder="İsim"
-                                name="name"
-                                value={this.state.name}
-                                onChange={this.onChange}
-                            />
-                            {errors.name && (
-                                <div className="color-white">
-                                    {errors.name}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group ">
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.surname
-                                })}
-                                placeholder="Soyisim"
-                                name="surname"
-                                value={this.state.surname}
-                                onChange={this.onChange}
-                            />
-                            {errors.surname && (
-                                <div className="color-white">
-                                    {errors.surname}
-                                </div>
-                            )}
-                        </div>
-
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.email
-                                })}
-                                placeholder="E-Posta"
-                                name="email"
-                                value={this.state.email}
-                                onChange={this.onChange}
-                            />
-                            {errors.email && (
-                                <div className="color-white">
-                                    {errors.email}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group">
-                            <InputMask
-                                type="text"
-                                mask="0599 999 9999"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.phone
-                                })}
-                                placeholder="Telefon"
-                                name="phone"
-                                value={this.state.phone}
-                                onChange={this.onChange}
-                            />
-                            {errors.phone && (
-                                <div className="color-white">
-                                    {errors.phone}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.password
-                                })}
-                                placeholder="Şifre"
-                                name="password"
-                                value={this.state.password}
-                                onChange={this.onChange}
-                            />
-                            {errors.password && (
-                                <div className="color-white">
-                                    {errors.password}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.confirmPassword
-                                })}
-                                placeholder="Şifre Tekrar"
-                                name="confirmPassword"
-                                value={this.state.confirmPassword}
-                                onChange={this.onChange}
-                            />
-                            {errors.confirmPassword && (
-                                <div className="color-white">
-                                    {errors.confirmPassword}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group">
-                            <label className="customRadioLabel color-white">Erkek&nbsp;</label>
-                            <input type="radio"
-                                   name="gender"
-                                   value="MALE"
-                                   onChange={this.onChange}
-                                   className="customRadio"
-                            />&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label className="customRadioLabel color-white">Kadın&nbsp;</label>
-                            <input type="radio"
-                                   name="gender"
-                                   onChange={this.onChange}
-                                   value="FEMALE"
-                                   className="customRadio"
-                            />
-                            <br/>
-                            <div className="color-white" style={show}>
-                                {errors.gender}
-                            </div>
-
-                        </div>
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.referenceCode
-                                })}
-                                placeholder="Referans Kodu"
-                                name="referenceCode"
-                                value={this.state.referenceCode}
-                                onChange={this.onChange}
-                            />
-                            {errors.referenceCode && (
-                                <div className="color-white">
-                                    {errors.referenceCode}
-                                </div>
-                            )}
-                        </div>
-
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
                         <input
-                            type="submit"
-                            value="Hesap Oluştur"
-                            className="btn btn-success btn-block mt-4"
-                            disabled={this.state.isSubmitDisabled}
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.name
+                            })}
+                            placeholder="İsim"
+                            name="name"
+                            value={this.state.name}
+                            onChange={this.onChange}
                         />
-                    </form>
-                    <br/>
-                </div>
+                        {errors.name && (
+                            <div className="color-white">
+                                {errors.name}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group ">
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.surname
+                            })}
+                            placeholder="Soyisim"
+                            name="surname"
+                            value={this.state.surname}
+                            onChange={this.onChange}
+                        />
+                        {errors.surname && (
+                            <div className="color-white">
+                                {errors.surname}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.email
+                            })}
+                            placeholder="E-Posta"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.onChange}
+                        />
+                        {errors.email && (
+                            <div className="color-white">
+                                {errors.email}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group">
+                        <InputMask
+                            type="text"
+                            mask="0599 999 9999"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.phone
+                            })}
+                            placeholder="Telefon"
+                            name="phone"
+                            value={this.state.phone}
+                            onChange={this.onChange}
+                        />
+                        {errors.phone && (
+                            <div className="color-white">
+                                {errors.phone}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="password"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.password
+                            })}
+                            placeholder="Şifre"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.onChange}
+                        />
+                        {errors.password && (
+                            <div className="color-white">
+                                {errors.password}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="password"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.confirmPassword
+                            })}
+                            placeholder="Şifre Tekrar"
+                            name="confirmPassword"
+                            value={this.state.confirmPassword}
+                            onChange={this.onChange}
+                        />
+                        {errors.confirmPassword && (
+                            <div className="color-white">
+                                {errors.confirmPassword}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group">
+                        <label className="customRadioLabel color-white">Erkek&nbsp;</label>
+                        <input type="radio"
+                               name="gender"
+                               value="MALE"
+                               onChange={this.onChange}
+                               className="customRadio"
+                        />&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label className="customRadioLabel color-white">Kadın&nbsp;</label>
+                        <input type="radio"
+                               name="gender"
+                               onChange={this.onChange}
+                               value="FEMALE"
+                               className="customRadio"
+                        />
+                        <br/>
+                        <div className="color-white" style={show}>
+                            {errors.gender}
+                        </div>
+
+                    </div>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.referenceCode
+                            })}
+                            placeholder="Referans Kodu"
+                            name="referenceCode"
+                            value={this.state.referenceCode}
+                            onChange={this.onChange}
+                        />
+                        {errors.referenceCode && (
+                            <div className="color-white">
+                                {errors.referenceCode}
+                            </div>
+                        )}
+                    </div>
+
+                    <input
+                        type="submit"
+                        value="Hesap Oluştur"
+                        className="btn btn-success btn-block mt-4"
+                        disabled={this.state.isSubmitDisabled}
+                    />
+                </form>
+                <br/>
+                <a href={"/"} className={"color-white"}>Anasayfa</a> <span className={"color-white"}>|</span> <a
+                href={"/login"} className={"color-white"}>Giriş Yap</a>
             </div>
 
         );

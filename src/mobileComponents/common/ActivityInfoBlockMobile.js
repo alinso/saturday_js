@@ -9,11 +9,11 @@ class ActivityInfoBlockMobile extends React.Component {
 
     render() {
 
-        return(<div className={"activityListActivityDetail"}>
+            return(<div className={"activityListActivityDetail"}>
                 {this.props.detail}
 
             {(this.props.photoName!=null) &&(
-                <div className={"col-md-12"}>
+                <div className={"full-width"}>
                     <img className={"meetingListPhoto"} src={"/upload/"+this.props.photoName}/>
                 </div>
             )}

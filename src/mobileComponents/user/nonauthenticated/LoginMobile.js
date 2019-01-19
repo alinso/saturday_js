@@ -63,8 +63,8 @@ class LoginMobile extends Component {
         const {errors} = this.state;
         return (
             <div className="loginOuter">
-                <div className="col-md-4 offset-md-4 loginContainer">
-                    <h4 className=" text-center color-white">Giriş Yap</h4>
+                <div className="loginContainer">
+                    <h5 className=" text-center">Giriş Yap</h5>
                     {errors.errorMessage && (
                         <AlertMobile type="alert-danger" message={errors.errorMessage}/>
 
@@ -103,7 +103,7 @@ class LoginMobile extends Component {
                         disabled={this.state.isSubmitDisabled}/>
                     </form>
                     <br/>
-                    <a href="/forgottenPassword">Şifremi Unuttum</a>
+                    <a href="/forgottenPassword">Şifremi Unuttum</a> | <a href="/register">Kaydol</a>
                 </div>
             </div>
 

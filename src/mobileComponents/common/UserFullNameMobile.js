@@ -9,10 +9,10 @@ class UserFullNameMobile extends React.Component {
 
     render() {
         return (
-            <div>
+            <span>
                 <a className="userFullName" href={"/profile/" + this.props.userId}>
                 <strong>{this.props.name + " " + this.props.surname}</strong>
-            </a></div>
+            </a></span>
         )
     }
 }

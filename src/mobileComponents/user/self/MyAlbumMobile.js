@@ -1,6 +1,7 @@
 import React from "react";
 import security from "../../../security/Security";
 import Lightbox from 'react-images';
+import BackToProfileMobile from "../../common/BackToProfileMobile";
 
 
 const axios = require('axios');
@@ -20,11 +21,6 @@ class MyAlbumMobile extends React.Component {
         };
         this.handleUpload = this.handleUpload.bind(this);
         this.handleSelectedFiles = this.handleSelectedFiles.bind(this);
-        //lighbox methods
-        this.onClickPrev = this.onClickPrev.bind(this);
-        this.onClickNext = this.onClickNext.bind(this);
-        this.openLightbox = this.openLightbox.bind(this);
-        this.closeLightbox = this.closeLightbox.bind(this);
 
         this.fillFields();
     };
@@ -95,72 +91,39 @@ class MyAlbumMobile extends React.Component {
             });
     }
 
-    //lightbox methods
-    onClickPrev() {
-        let currentImageIndex = this.state.currentImageIndex;
-        currentImageIndex--;
-        this.setState({currentImageIndex: currentImageIndex});
-    }
-
-    onClickNext() {
-        let currentImageIndex = this.state.currentImageIndex;
-        currentImageIndex++;
-        this.setState({currentImageIndex: currentImageIndex});
-    }
-
-    openLightbox(currentImageIndex1) {
-        this.setState({currentImageIndex: currentImageIndex1});
-        this.setState({isLightBoxOpen: true});
-    }
-
-    closeLightbox() {
-        this.setState({isLightBoxOpen: false});
-    }
-
     render() {
         let photoSet = [];
         const self = this;
         return (
-            <div className="row outer">
-                <div className="col-md-6 m-x-auto container">
-                    <div className="row">
-                        {this.state.photoNames.map((photoName, i) => {
-                                photoSet.push({"src": "/upload/" + photoName});
-                                return (<div key={"key" + i} className="col-md-4">
-                                        <img className="albumPhoto"
-                                             src={"/upload/" + photoName}
-                                             onClick={() => self.openLightbox(i)}
-                                        />
-                                        <br/>
-                                        <button type="button" className="btn" onClick={() => self.deletePhoto(photoName)}> X
-                                            Fotoğrafı Sil
-                                        </button>
-                                        <br/><br/>
-                                    </div>
-                                )
-                            }
-                        )}
-
-                        <Lightbox
-                            images={photoSet}
-                            isOpen={this.state.isLightBoxOpen}
-                            currentImage={this.state.currentImageIndex}
-                            onClickPrev={() => this.onClickPrev()}
-                            onClickNext={() => this.onClickNext()}
-                            onClose={() => this.closeLightbox()}/>
-
-                    </div>
-                    <label className="btn btn-default">
-                        <div className="uploadBrowseButton">Fotoğrafları Seç</div>
-                        <input type="file" hidden name="photos[]" onChange={this.handleSelectedFiles} multiple/>
-                    </label>
-                    <div>
-                        <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafları Yükle</button>
-                    </div>
-                    {(this.state.loaded > 0) &&
-                    <div> {Math.round(this.state.loaded)} %</div>
+            <div className="container">
+                <BackToProfileMobile/>
+                {this.state.photoNames.map((photoName, i) => {
+                        photoSet.push({"src": "/upload/" + photoName});
+                        return (<div key={"key" + i} className="col-md-4">
+                                <img className="albumPhoto"
+                                     src={"/upload/" + photoName}
+                                />
+                                <br/>
+                                <button type="button" className="btn" onClick={() => self.deletePhoto(photoName)}> X
+                                    Fotoğrafı Sil
+                                </button>
+                                <br/><br/>
+                            </div>
+                        )
                     }
+                )}
+
+
+                <label className="btn btn-default">
+                    <div className="uploadBrowseButton">Fotoğrafları Seç</div>
+                    <input type="file" hidden name="photos[]" onChange={this.handleSelectedFiles} multiple/>
+                </label>
+                <div>
+                    <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafları Yükle</button>
                 </div>
+                {(this.state.loaded > 0) &&
+                <div> {Math.round(this.state.loaded)} %</div>
+                }
             </div>
         )
     }

@@ -63,60 +63,50 @@ class DashboardMobile extends BaseActivityListMobile {
     render() {
         const self = this;
         return (
-            <div className="row outer">
-                <div className="col-md-5 m-x-auto container">
-                    <div className={"col-md-6 m-auto"}>
-                            <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
-                        <hr/>
-                    </div>
-                    {
-                        self.state.activities.map(function (activity, i) {
-                            return (
-                                <div key={i} className={"row meetingListSingleMeetingContainer"}>
-                                    <div className="col-md-2 col-sm-2 meetingListProfile">
-                                        <ProfilePicMobile
-                                            userId={activity.profileDto.id}
-                                            profilePicName={activity.profileDto.profilePicName}
-                                            cssClass={"profilePicSmall"}
-                                        />
-
-                                    </div>
-                                    <div className={"col-md-10 text-align-left"}>
-                                        <UserFullNameMobile
-                                            userId={activity.profileDto.id}
-                                            profilePicName={activity.profileDto.profilePicName}
-                                            name={activity.profileDto.name}
-                                            surname={activity.profileDto.surname}
-                                        />
-                                        <ActivityInfoBlockMobile
-                                            photoName={activity.photoName}
-                                            detail={activity.detail}
-                                        />
-                                        <div className={"row"}>
-                                            <div className={"col-md-8 meetingDeadLine"}>
-                                                <i className="far fa-clock">{activity.deadLineString}</i>
-                                            </div>
-                                            <div className={"col-md-4"}>
-                                                <ActivityEditButtonsMobile
-                                                    activityId={activity.id}
-                                                    userId={activity.profileDto.id}
-                                                    deleteMeeting={() => self.deleteActivity(activity.id)}
-                                                />
-                                                <ActivityRequestButtonsMobile
-                                                    userId={activity.profileDto.id}
-                                                    joinActivity={() => self.joinActivity(activity.id)}
-                                                    thisUserJoined={activity.thisUserJoined}
-                                                />
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
+            <div className="full-width container">
+                <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
+                <hr/>
+                {
+                    self.state.activities.map(function (activity, i) {
+                        return (
+                            <div key={i} className={"row meetingListSingleMeetingContainer"}>
+                                <div className={"float-left"}>
+                                    <ProfilePicMobile
+                                        userId={activity.profileDto.id}
+                                        profilePicName={activity.profileDto.profilePicName}
+                                        cssClass={"profilePicSmall"}
+                                    />
                                 </div>
-                            );
-                        })}
-                </div>
+                                <div className={"float-left activityListDetailContainer text-align-left"}>
+                                    <UserFullNameMobile
+                                        userId={activity.profileDto.id}
+                                        profilePicName={activity.profileDto.profilePicName}
+                                        name={activity.profileDto.name}
+                                        surname={activity.profileDto.surname}
+                                    />
+                                    <ActivityInfoBlockMobile
+                                        photoName={activity.photoName}
+                                        detail={activity.detail}
+                                    />
+                                    <br/>
+                                    <div className={"float-left"}>
+                                        <i className="far fa-clock">{activity.deadLineString}</i>
+                                    </div>
+                                    <ActivityEditButtonsMobile
+                                        activityId={activity.id}
+                                        userId={activity.profileDto.id}
+                                        deleteMeeting={() => self.deleteActivity(activity.id)}
+                                    />
+                                    <ActivityRequestButtonsMobile
+                                        userId={activity.profileDto.id}
+                                        joinActivity={() => self.joinActivity(activity.id)}
+                                        thisUserJoined={activity.thisUserJoined}
+                                    />
+                                </div>
+                                <hr/>
+                            </div>
+                        );
+                    })}
             </div>
         )
     }

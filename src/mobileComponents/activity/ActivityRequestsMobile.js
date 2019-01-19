@@ -6,6 +6,7 @@ import UserUtil from "../../util/UserUtil";
 import JSUtil from "../../util/JSUtil";
 import AlertMobile from "../common/AlertMobile";
 import ActivityEditButtonsMobile from "../common/ActivityEditButtonsMobile";
+import BackToProfileMobile from "../common/BackToProfileMobile";
 
 const axios = require('axios');
 
@@ -41,7 +42,7 @@ class ActivityRequestsMobile extends React.Component {
 
             })
             .catch(function (error) {
-                self.setState({errors:error.response.data});
+                self.setState({errors: error.response.data});
                 console.log(error.response);
             });
 
@@ -55,7 +56,7 @@ class ActivityRequestsMobile extends React.Component {
 
         axios.get("http://localhost:8080/activity/delete/" + id, Security.authHeader())
             .then(res => {
-                window.location="/profile/"+localStorage.getItem("userId");
+                window.location = "/profile/" + localStorage.getItem("userId");
             });
     }
 
@@ -92,94 +93,88 @@ class ActivityRequestsMobile extends React.Component {
 
 
         //sayfa bulunamadı common componentine cevir
-        if(this.state.errors.recordNotFound404Message){
-            return( <div className="row outer">
-                <div className={"col-md-6 offset-3 container"}>
-                    Sayfa Bulunamadı
-                </div></div>)
+        if (this.state.errors.recordNotFound404Message) {
+            return (<div className="full-width">
+                <BackToProfileMobile/>
+                Sayfa Bulunamadı
+            </div>)
         }
 
         return (
-            <div className="row outer">
-                <div className={"col-md-6 offset-3 container"}>
-                    <div className={"row meetingListSingleMeetingContainer"}>
-                        <div className={"col-md-12 meetingListMeetingText"}>
-                            <div className={"col-md-12"}>
-                                {this.state.detail}
-                            </div>
-                            {(this.state.photoName != null) && (
-                                <div className={"col-md-12"}>
-                                    <img className={"meetingListPhoto col-md-8"}
-                                         src={"/upload/" + this.state.photoName}/>
-                                    <hr/>
-                                </div>
-                            )}
-                            <div className={"row"}>
-                                <div className={"col-md-8 meetingDeadLine"}>
-                                    <button className={"btn btn-warning"}> {this.state.deadLineString}</button>
-                                </div>
-                                <div className={"col-md-4"}>
-                                    <ActivityEditButtonsMobile
-                                        activityId={this.state.activityId}
-                                        userId={parseInt(localStorage.getItem("userId"))}
-                                        deleteActivity={() => self.deleteActivity(this.state.activityId)}
-                                    />
-                                </div>
-                                <hr/>
-                            </div>
+            <div className={"full-width container"}>
+                <BackToProfileMobile/>
+                <div className={"full-width meetingListMeetingText"}>
+
+                    {this.state.detail}
+                    {(this.state.photoName != null) && (
+                        <div className={"full-width"}>
+                            <img className={"meetingListPhoto "}
+                                 src={"/upload/" + this.state.photoName}/>
                         </div>
-                        <div className={"col-md-12"}>
-                            <hr/>
-                            <strong>Katılmak İsteyen Kişiler</strong>
-                            {this.state.errors.userWarningMessage && (
-                                <AlertMobile
-                                    type={"alert-danger"}
-                                    message={this.state.errors.userWarningMessage}
+                    )}
+                </div>
+                <br/>
+                <div className={"half-left meetingDeadLine"}>
+                    <i className="far fa-clock">{this.state.deadLineString}</i>
+                </div>
+                <div className={"half-left"}>
+                    <ActivityEditButtonsMobile
+                        activityId={this.state.activityId}
+                        userId={parseInt(localStorage.getItem("userId"))}
+                        deleteActivity={() => self.deleteActivity(this.state.activityId)}
+                    />
+                </div>
+                <div className={"clear-both"}/>
+                <hr/>
+                <div className={"full-width"}>
+                    <strong>Katılmak İsteyen Kişiler</strong>
+                    {this.state.errors.userWarningMessage && (
+                        <AlertMobile
+                            type={"alert-danger"}
+                            message={this.state.errors.userWarningMessage}
+                        />
+                    )}
+                    <hr/>
+                </div>
+                {this.state.requests &&
+                this.state.requests.map(function (request) {
+                    return (
+
+                        <div className={"full-width"}>
+                            <div className={"half-left"}>
+                                <ProfilePicMobile
+                                    userId={request.profileDto.id}
+                                    profilePicName={request.profileDto.profilePicName}
+                                    cssClass={"profilePicSmall"}
+                                /><br/>
+                                <UserFullNameMobile
+                                    userId={request.profileDto.id}
+                                    name={request.profileDto.name}
+                                    surname={request.profileDto.surname}
                                 />
-                            )}
-                        </div>
-                        <div className={"col-md-12"}>
-                            <div className={"row"}>
-                                {this.state.requests &&
-                                this.state.requests.map(function (request) {
-
-                                    return (
-
-                                        <div className={"col-md-3"}>
-                                            <ProfilePicMobile
-                                                userId={request.profileDto.id}
-                                                profilePicName={request.profileDto.profilePicName}
-                                                cssClass={"profilePicMedium"}
-                                            />
-                                            <UserFullNameMobile
-                                                userId={request.profileDto.id}
-                                                name={request.profileDto.name}
-                                                surname={request.profileDto.surname}
-                                            />
-                                            {UserUtil.translateGender(request.profileDto.gender)} / {request.profileDto.age}
-                                            <br/>
-                                            {
-                                                (request.activityRequestStatus === "WAITING") &&
-                                                (<button onClick={() => self.toggleApprove(request.id)}
-                                                         className={"btn btn-info"}>ONAYLA</button>)
-                                            }
-                                            {
-                                                (request.activityRequestStatus === "APPROVED") && (
-                                                    <button onClick={() => self.toggleApprove(request.id)}
-                                                            className={"btn btn-danger"}>İPTAL ET</button>
-                                                )
-                                            }
-                                        </div>
+                            </div>
+                                <div className={"half-left"}>
+                                {UserUtil.translateGender(request.profileDto.gender)} / {request.profileDto.age}
+                                <br/>
+                                {
+                                    (request.activityRequestStatus === "WAITING") &&
+                                    (<button onClick={() => self.toggleApprove(request.id)}
+                                             className={"btn btn-info"}>ONAYLA</button>)
+                                }
+                                {
+                                    (request.activityRequestStatus === "APPROVED") && (
+                                        <button onClick={() => self.toggleApprove(request.id)}
+                                                className={"btn btn-danger"}>İPTAL ET</button>
                                     )
-                                })
                                 }
                             </div>
+                            <div className={"clear-both"}/>
                         </div>
-                    </div>
-                </div>
-                <hr/>
+                    )
+                })
+                }
+                <br/><br/>
             </div>
-
         );
     }
 }

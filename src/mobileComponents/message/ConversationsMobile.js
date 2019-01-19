@@ -41,43 +41,44 @@ class ConversationsMobile extends React.Component {
     render() {
 
         return (
-            <div className="row outer">
-                <div className={"col-md-6 m-x-auto container"}>
-                    <h5 className={"profileTitle"}><i className="fas fa-comments"/>Tüm Konuşmalar</h5>
-                    <hr/>
-                    {
-                        this.state.conversations.map(function (conversation) {
-                            return (
-                                <div className={"row conversationContainer"}>
-                                    <div className={"col-md-5 conversationProfile"}>
-                                        <div className={"row"}>
-                                            <div className={"col-md-4 col-sm-4 conversationProfilePicContianer"}>
-                                                <ProfilePicMobile
-                                                    cssClass={"profilePicSmall"}
-                                                    userId={conversation.profileDto.id}
-                                                    profilePicName={conversation.profileDto.profilePicName}
-                                                />
-                                            </div>
-                                            <div className={"col-md-8  col-sm-8 conversationProfileNameContianer"}>
-                                                <UserFullNameMobile
-                                                    userId={conversation.profileDto.id}
-                                                    name={conversation.profileDto.name}
-                                                    surname={conversation.profileDto.surname}
-                                                />
-                                            </div>
-                                        </div>
+            <div className={"full-width container"}>
+                <h5 className={"profileTitle"}><i className="fas fa-comments"/>Tüm Konuşmalar</h5>
+                <hr/>
+                {
+                    this.state.conversations.map(function (conversation) {
+                        return (
+                            <div className={" full-width conversationContainer"}>
+                                <div className={"full-width"}>
+                                    <div className={"float-left text-align-left"}>
+                                        <ProfilePicMobile
+                                            cssClass={"profilePicSmall"}
+                                            userId={conversation.profileDto.id}
+                                            profilePicName={conversation.profileDto.profilePicName}
+                                        />
                                     </div>
-                                    <a href={"/message/"+conversation.profileDto.id} className={"col-md-7 conversationText"}>
-                                    <div className={"col-md-12 "}>
-                                        <span dangerouslySetInnerHTML={{__html: conversation.lastMessage}}/>
+                                    <div className={"text-align-left"}>
+                                        <br/>
+                                        &nbsp;
+                                        <UserFullNameMobile
+                                            userId={conversation.profileDto.id}
+                                            name={conversation.profileDto.name}
+                                            surname={conversation.profileDto.surname}
+                                        />
+                                        <a href={"/message/" + conversation.profileDto.id}
+                                           className={"float-left conversationText"}>
+                                            <div className={""}>
+                                                <span dangerouslySetInnerHTML={{__html: conversation.lastMessage}}/>
+                                            </div>
+                                        </a>
                                     </div>
-                                    </a>
-                                </div>)
-                        })
-                    }
-                </div>
-            </div>
+                                    <div className={"clear-both"}/>
+                                </div>
+                            </div>
 
+                        )
+                    })
+                }
+            </div>
         );
     }
 }

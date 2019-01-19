@@ -15,7 +15,7 @@ class ReviewsMobile extends React.Component {
 
         this.state = {
             reviews: [],
-            profileDto:{},
+            profileDto: {},
             erorrs: {}
         };
 
@@ -47,61 +47,55 @@ class ReviewsMobile extends React.Component {
         const self = this;
 
         return (
-            <div className="row outer">
-                <div className="col-md-5 m-x-auto container">
-                    <h5>İnsanlar <a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
-                        <i className="fas fa-comments"/> {self.state.profileDto.name +" "+self.state.profileDto.surname}</a> için ne diyor?
-                    </h5>
-                    <hr/>
+            <div className="container">
+                <h5>İnsanlar <a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                    <i className="fas fa-comments"/> {self.state.profileDto.name + " " + self.state.profileDto.surname}
+                </a> için ne diyor?
+                </h5>
+                <hr/>
 
-                    {(self.state.reviews.length===0) &&(
-                        <h5>
+                {(self.state.reviews.length === 0) && (
+                    <h5>
                         Henüz kimse yorum yapmamış.
-                        </h5>
-                    )}
+                    </h5>
+                )}
 
-                    {
-                        self.state.reviews.map(function (review, i) {
-                            return (
-                                <div className={"row"}>
-                                    <div className={"col-md-2 col-sm-2"}>
-                                        <ProfilePicMobile
-                                            userId={review.writer.id}
-                                            profilePicName={review.writer.profilePicName}
-                                            cssClass={"profilePicMedium"}
-                                        />
-                                    </div>
-                                    <div className={"col-md-10 col-sm-10 text-align-left"}>
-                                        <UserFullNameMobile
-                                            userId={review.writer.id}
-                                            name={review.writer.name}
-                                            surname={review.writer.surname}
-                                        />
-
-                                        <div className={"reviewBlock"}>
-                                            {review.positive && (
-                                                <strong className={"positiveReview"}><i className="fas fa-check"/>OLUMLU</strong>)}
-                                            {!review.positive && (<strong className={"negativeReview"}><i
-                                                className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
-                                            , &nbsp;
-                                            {review.positive && (
-                                                <span className={"reviewTypeFriend  "}>Arkadaş Referansı</span>)}
-                                            {!review.positive && (
-                                                <strong className={"reviewTypeActivity"}>Aktivite Referansı</strong>)}
-
-                                            <hr/>
-                                            {review.review}
-                                        </div>
-                                    </div>
-                                    <div className={"col-md-12"}>
-                                        <hr/>
-                                    </div>
+                {
+                    self.state.reviews.map(function (review, i) {
+                        return (
+                            <div className={"full-width"}>
+                                <div className={"float-left"}>
+                                    <ProfilePicMobile
+                                        userId={review.writer.id}
+                                        profilePicName={review.writer.profilePicName}
+                                        cssClass={"profilePicSmall"}
+                                    />
                                 </div>
 
-                            );
-                        })
-                    }
-                </div>
+                                <div className={"float-left reviewBlock"}>
+                                    <UserFullNameMobile
+                                        userId={review.writer.id}
+                                        name={review.writer.name}
+                                        surname={review.writer.surname}
+                                    /><br/>
+                                    {review.positive && (
+                                        <strong className={"positiveReview"}><i
+                                            className="fas fa-check"/>OLUMLU</strong>)}
+                                    {!review.positive && (<strong className={"negativeReview"}><i
+                                        className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
+                                    , &nbsp;
+                                    {review.positive && (
+                                        <span className={"reviewTypeFriend  "}>Arkadaş Referansı</span>)}
+                                    {!review.positive && (
+                                        <strong className={"reviewTypeActivity"}>Aktivite Referansı</strong>)}
+                                    <br/>
+                                    {review.review}
+                                </div>
+                            </div>
+
+                        );
+                    })
+                }
             </div>
         )
     }

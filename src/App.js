@@ -101,9 +101,9 @@ class App extends Component {
         if (security.isValidToken()) {
             return <UserMenuMobile/>
         }
-        else {
-            return <GuestMenuMobile/>
-        }
+        // else {
+        //     return <GuestMenuMobile/>
+        // }
     }
 
 

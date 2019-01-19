@@ -86,8 +86,9 @@ class NotificationsMobile extends React.Component {
             </span>
         )
     }
-    readedClass(isRead){
-        if(isRead)
+
+    readedClass(isRead) {
+        if (isRead)
             return "readedNotification";
         else
             return "newNotification"
@@ -97,63 +98,66 @@ class NotificationsMobile extends React.Component {
     render() {
         const self = this;
         return (
-            <div className="row outer">
-                <div className="col-md-5 m-x-auto container">
-                    <h5 className={"profileTitle"}>Tüm Bildirimler</h5>
-                    {(this.state.notifications.length === 0) && (
-                        <h4>Hiç bildirim yok!</h4>
-                    )}
-                    {
-                        self.state.notifications.map(function (not, i) {
+            <div className="full-width container">
+                <h5 className={"profileTitle"}>Tüm Bildirimler</h5>
+                {(this.state.notifications.length === 0) && (
+                    <h4>Hiç bildirim yok!</h4>
+                )}
+                {
+                    self.state.notifications.map(function (not, i) {
 
-                        console.log(not.trigger);
-                            return (
-                                <div className={"row notificationRow "+self.readedClass(not.read)}>
-                                    <div className={"col-md-3"}>
-                                    {(not.trigger)&&
-                                    (
+                        return (
+                            <div key={i} className={"notificationRow " + self.readedClass(not.read)}>
+                                {(not.trigger) &&
+                                (
+                                    <div className={"float-left"}>
                                         <ProfilePicMobile
                                             userId={not.trigger.id}
                                             profilePicName={not.trigger.profilePicName}
                                             cssClass={"profilePicSmall"}
                                         />
-                                    )}
                                     </div>
-                                    <div className={"col-md-8 notificationText text-align-left"}>
-                                        {(not.trigger)&&
-                                        (<UserFullNameMobile
-                                            userId={not.trigger.id}
-                                            name={not.trigger.name}
-                                            surname={not.trigger.surname}
-                                        />)}
-                                        {(not.notificationType === "REQUEST") &&
-                                        self.newRequestText(not.message)
-                                        }
-                                        {(not.notificationType === "MESSAGE") &&
-                                        self.newMessageText()
-                                        }
+                                )}
+                                <div className={"notificationText text-align-left"}>
 
-                                        {(not.notificationType === "REVIEW") &&
-                                        self.newReviewText(not.message)
-                                        }
-                                        {(not.notificationType === "REQUEST_APPROVAL") &&
-                                        self.newRequestApprovalText(not.message)
-                                        }
-                                        {(not.notificationType === "FOLLOWING") &&
-                                        self.newFollowingText(not.message)
-                                        }
-                                        {(not.notificationType === "MEETING_COMMENT_AVAILABLE") &&
-                                        self.newMeetingCommentAvailable(not.message)
-                                        }
-                                        <span className={"float-right messageDate"}>
-                                            {not.createdAtString}
-                                        </span>
+                                    <div className={"full-width text-align-right messageDate"}>
+                                        {not.createdAtString}
                                     </div>
+
+                                    {(not.trigger) &&
+                                    (<div className={"notificationUserName"}>
+                                            <UserFullNameMobile
+                                        userId={not.trigger.id}
+                                        name={not.trigger.name}
+                                        surname={not.trigger.surname}
+                                        /><br/></div>
+                                    )}
+
+                                    {(not.notificationType === "REQUEST") &&
+                                    self.newRequestText(not.message)
+                                    }
+                                    {(not.notificationType === "MESSAGE") &&
+                                    self.newMessageText()
+                                    }
+
+                                    {(not.notificationType === "REVIEW") &&
+                                    self.newReviewText(not.message)
+                                    }
+                                    {(not.notificationType === "REQUEST_APPROVAL") &&
+                                    self.newRequestApprovalText(not.message)
+                                    }
+                                    {(not.notificationType === "FOLLOWING") &&
+                                    self.newFollowingText(not.message)
+                                    }
+                                    {(not.notificationType === "MEETING_COMMENT_AVAILABLE") &&
+                                    self.newMeetingCommentAvailable(not.message)
+                                    }
+
                                 </div>
-                            );
-                        })
-                    }
-                </div>
+                            </div>
+                        );
+                    })
+                }
             </div>
         )
     }

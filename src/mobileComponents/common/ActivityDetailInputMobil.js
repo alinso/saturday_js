@@ -10,24 +10,22 @@ class ActivityDetailInputMobil extends React.Component {
 
     render() {
 
-        return (<div className="row">
-           <label className={"col-md-3 text-align-left"}><i className="fas fa-bars"/> Detaylar:</label>
-            <div className={"col-md-9"}>
-                            <textarea
-                                className={classnames("form-control form-control-lg breakLine", {
-                                    "is-invalid": this.props.error
-                                })}
-                                placeholder="Nereye gideceksin.. Ne zaman gideceksin.. gibi detaylar"
-                                name="detail"
-                                value={this.props.detail}
-                                onChange={this.props.onChange}
-                            /></div>
-            {this.props.error && (
-                <div className="invalid-feedback">
-                    {this.props.error}
-                </div>
-            )}
-        </div>)
+        return (<div className={"full-width text-align-left"}>
+            <label><i className="fas fa-bars"/> Detaylar:</label>
+
+            <textarea
+                className={classnames("form-control form-control-lg breakLine", {
+                    "is-invalid": this.props.error
+                })}
+                placeholder="Nereye gideceksin.. Ne zaman gideceksin.. gibi detaylar"
+                name="detail"
+                value={this.props.detail}
+                onChange={this.props.onChange}
+            />{this.props.error && (
+            <div className="invalid-feedback">
+                {this.props.error}
+            </div>
+        )}</div>)
     }
 }
 

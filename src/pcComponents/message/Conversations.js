@@ -51,14 +51,14 @@ class Conversations extends React.Component {
                                 <div className={"row conversationContainer"}>
                                     <div className={"col-md-5 conversationProfile"}>
                                         <div className={"row"}>
-                                            <div className={"col-md-4 col-sm-4 conversationProfilePicContianer"}>
+                                            <div className={"col-md-4 col-sm-4 text-align-left"}>
                                                 <ProfilePic
                                                     cssClass={"profilePicSmall"}
                                                     userId={conversation.profileDto.id}
                                                     profilePicName={conversation.profileDto.profilePicName}
                                                 />
                                             </div>
-                                            <div className={"col-md-8  col-sm-8 conversationProfileNameContianer"}>
+                                            <div className={"col-md-8  col-sm-8  text-align-left"}>
                                                 <UserFullName
                                                     userId={conversation.profileDto.id}
                                                     name={conversation.profileDto.name}

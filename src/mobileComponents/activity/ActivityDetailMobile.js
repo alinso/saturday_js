@@ -55,74 +55,75 @@ class ActivityDetailMobile extends React.Component {
         console.log(activity);
         if (activity.profileDto !== undefined) {
             return (
-                <div className={"row outer"}>
-                    <div className={"col-md-6 container"}>
-                        <div className={"row"}>
-                            <div className="col-md-2 meetingListProfile">
-                                <ProfilePicMobile
-                                    cssClass={"profilePicMedium"}
-                                    userId={activity.profileDto.id}
-                                    profilePicName={activity.profileDto.profilePicName}
-                                />
-                            </div>
-                            <div className={"col-md-9 text-align-left"}>
-                                <UserFullNameMobile
-                                    name={activity.profileDto.name}
-                                    userId={activity.profileDto.id}
-                                    surname={activity.profileDto.surname}
-                                />
-                                <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail}/>
-                                <div className={"row"}>
-                                    <div className={"col-md-9 meetingListUserMeta"}>
-                                        <button className={"btn btn-warning"}> {activity.deadLineString}</button>
-                                    </div>
-                                    <div className={"col-md-3"}>
-                                        {(!activity.expired) &&
-                                        (<ActivityRequestButtonsMobile
-                                            userId={activity.profileDto.id}
-                                            joinMeeting={() => self.joinMeeting(activity.id)}
-                                            thisUserJoined={activity.thisUserJoined}
-                                        />)
-                                        }
-                                        {(activity.expired) &&
-                                        (<a href={"/activityDetail/" + activity.id}>
-                                            <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
-                                            </button>
-                                        </a>)
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                <div className={"full-with container"}>
+                    <div className={"full-width"}>
+                        <div className="float-left">
+                            <ProfilePicMobile
+                                cssClass={"profilePicSmall"}
+                                userId={activity.profileDto.id}
+                                profilePicName={activity.profileDto.profilePicName}
+                            />
                         </div>
-                        <hr/>
-                        <div className={"col-md-12"}>
-                            Aktiviteye Katılanlar
-                            <hr/>
-                            <div className={"row"}>
-                                {(activity.attendants) &&
-                                activity.attendants.map(function (attendant) {
-
-                                    return (
-
-                                        <div className={"col-md-3"}>
-                                            <ProfilePicMobile
-                                                userId={attendant.id}
-                                                profilePicName={attendant.profilePicName}
-                                                cssClass={"profilePicMedium"}
-                                            />
-                                            <UserFullNameMobile
-                                                userId={attendant.id}
-                                                name={attendant.name}
-                                                surname={attendant.surname}
-                                            />
-                                            {UserUtil.translateGender(attendant.gender)} / {attendant.age}
-                                            <br/>
-                                        </div>
-                                    )
-                                })
+                        <div className={"float-left activityListDetailContainer text-align-left"}>
+                            <UserFullNameMobile
+                                name={activity.profileDto.name}
+                                userId={activity.profileDto.id}
+                                surname={activity.profileDto.surname}
+                            />
+                            <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail}/>
+                            <div className={"clear-both"}/>
+                            <br/>
+                            <div className={"float-left"}>
+                                <i className="far fa-clock">{activity.deadLineString}</i>
+                            </div>
+                            <div className={"float-right"}>
+                                {(!activity.expired) &&
+                                (<ActivityRequestButtonsMobile
+                                    userId={activity.profileDto.id}
+                                    joinMeeting={() => self.joinMeeting(activity.id)}
+                                    thisUserJoined={activity.thisUserJoined}
+                                />)
+                                }
+                                {(activity.expired) &&
+                                (<a href={"/activityDetail/" + activity.id}>
+                                    <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
+                                    </button>
+                                </a>)
                                 }
                             </div>
                         </div>
+                        <div className={"clear-both"}/>
+                    </div>
+                    <div className={"full-width"}>
+                        <hr/>
+                        Aktiviteye Katılanlar
+                        {(activity.attendants) &&
+                        activity.attendants.map(function (attendant) {
+
+                            return (
+                                <div className={"full-width"}>
+                                    <div className={"half-left"}>
+                                        <ProfilePicMobile
+                                            userId={attendant.id}
+                                            profilePicName={attendant.profilePicName}
+                                            cssClass={"profilePicSmall"}
+                                        />
+                                    </div>
+                                    <div className="half-left">
+                                        <UserFullNameMobile
+                                            userId={attendant.id}
+                                            name={attendant.name}
+                                            surname={attendant.surname}
+                                        /><br/>
+                                        {UserUtil.translateGender(attendant.gender)} / {attendant.age}
+                                        <br/>
+                                    </div>
+                                    <hr/>
+                                    <div className={"clear-both"}/>
+                                </div>
+                            )
+                        })
+                        }
                     </div>
                 </div>
             )

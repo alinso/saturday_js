@@ -21,7 +21,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
             activitiesJoined: [],
             activities: [],
             activityTypes: "created",
-            creator:{},
+            creator: {},
             createdTitle: "activeTitle",
             joinedTitle: "passiveTitle",
         };
@@ -87,92 +87,81 @@ class UserActivitiesMobile extends BaseActivityListMobile {
 
         const self = this;
         return (
-            <div className="row outer">
-                <div className="col-md-5 m-x-auto container">
-                    {this.state.activitiesCreated[0] && (
-                        <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
-                            <i className="fas fa-comments"/>
-                            {self.state.creator.name + " " + self.state.creator.surname}
-                        </a> bugüne kadar neler yaptı?
-                        </h5>
-                    )}
-                    {!this.state.activitiesCreated[0] && (
-                        <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
-                            <i className="fas fa-comments"/>
-                            {self.state.creator.name + " " + self.state.creator.surname}
-                        </a> henüz bir aktiviteye katılmamış :(
-                        </h5>
-                    )}
+            <div className="full-width container">
+                {this.state.activitiesCreated[0] && (
+                    <h6><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                        <i className="fas fa-comments"/>
+                        {self.state.creator.name + " " + self.state.creator.surname}
+                    </a> bugüne kadar neler yaptı?
+                    </h6>
+                )}
+                {!this.state.activitiesCreated[0] && (
+                    <h6><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                        <i className="fas fa-comments"/>
+                        {self.state.creator.name + " " + self.state.creator.surname}
+                    </a> henüz bir aktiviteye katılmamış :(
+                    </h6>
+                )}
 
-                    <div className={"row"}>
-                        <div className={"col-md-12"}>
-                            <hr/>
-                        </div>
-                        <div className="col-md-6 m-auto">
+                <hr/>
+                <div className="text-align-center">
                             <span className={this.state.createdTitle}
                                   onClick={() => this.changeType("created")}> Oluşturduğu ({this.state.activitiesCreated.length}) </span>&nbsp;&nbsp;
-                            <span className={this.state.joinedTitle}
-                                  onClick={() => this.changeType("joined")}> Katıldığı ({this.state.activitiesJoined.length})</span>
-                        </div>
-                        <div className={"col-md-12"}>
-                            <hr/>
-                        </div>
-
-                    </div>
-                    {
-                        self.state.activities.map(function (activity, i) {
-                            return (
-                                <div className={"row meetingListSingleMeetingContainer"}>
-                                    <div className="col-md-2 meetingListProfile">
-                                        <ProfilePicMobile
-                                            userId={activity.profileDto.id}
-                                            profilePicName={activity.profileDto.profilePicName}
-                                            cssClass={"profilePicMedium"}
-                                        />
-
-                                    </div>
-                                    <div className={"col-md-10  text-align-left "}>
-                                        <UserFullNameMobile
-                                            name={activity.profileDto.name}
-                                            userId={activity.profileDto.id}
-                                            surname={activity.profileDto.surname}
-                                        />
-                                        <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail}/>
-                                        <div className={"row"}>
-                                            <div className={"col-md-8 meetingDeadLine"}>
-                                                <button className={"btn btn-warning"}> {activity.deadLineString}</button>
-                                            </div>
-                                            <div className={"col-md-3"}>
-                                                <ActivityEditButtonsMobile
-                                                    activityId={activity.id}
-                                                    userId={activity.profileDto.id}
-                                                    deleteActivity={() => self.deleteActivity(activity.id)}
-                                                />
-                                                {(!activity.expired) &&
-                                                (<ActivityRequestButtonsMobile
-                                                    userId={activity.profileDto.id}
-                                                    joinMeeting={() => self.joinActivity(activity.id)}
-                                                    thisUserJoined={activity.thisUserJoined}
-                                                />)
-                                                }
-                                                <br/>
-                                                {(activity.expired) &&
-                                                (<a href={"/activityDetail/" + activity.id}>
-                                                    <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
-                                                    </button>
-
-                                                </a>)
-                                                }
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
-                                </div>
-                            );
-                        })}
+                    <span className={this.state.joinedTitle}
+                          onClick={() => this.changeType("joined")}> Katıldığı ({this.state.activitiesJoined.length})</span>
                 </div>
+                <hr/>
+
+                {
+                    self.state.activities.map(function (activity, i) {
+                        return (
+                            <div className={"row meetingListSingleMeetingContainer"}>
+                                <div className="float-left">
+                                    <ProfilePicMobile
+                                        userId={activity.profileDto.id}
+                                        profilePicName={activity.profileDto.profilePicName}
+                                        cssClass={"profilePicSmall"}
+                                    />
+                                </div>
+                                <div className={"activityListDetailContainer float-left text-align-left"}>
+                                    <UserFullNameMobile
+                                        name={activity.profileDto.name}
+                                        userId={activity.profileDto.id}
+                                        surname={activity.profileDto.surname}
+                                    />
+                                    <ActivityInfoBlockMobile
+                                        photoName={activity.photoName}
+                                        detail={activity.detail}/>
+                                    <br/>
+                                    <div className={"float-left"}>
+                                        <i className="far fa-clock">{activity.deadLineString}</i>
+                                    </div>
+                                        <ActivityEditButtonsMobile
+                                            activityId={activity.id}
+                                            userId={activity.profileDto.id}
+                                            deleteActivity={() => self.deleteActivity(activity.id)}
+                                        />
+                                        {(!activity.expired) &&
+                                        (<ActivityRequestButtonsMobile
+                                            userId={activity.profileDto.id}
+                                            joinMeeting={() => self.joinActivity(activity.id)}
+                                            thisUserJoined={activity.thisUserJoined}
+                                        />)
+                                        }
+                                        <br/><br/>
+                                        {(activity.expired) &&
+                                        (<a href={"/activityDetail/" + activity.id} className={"float-right"}>
+                                            <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
+                                            </button>
+
+                                        </a>)
+                                        }
+                                </div>
+
+                                <hr/>
+                            </div>
+                        );
+                    })}
             </div>
         )
     }

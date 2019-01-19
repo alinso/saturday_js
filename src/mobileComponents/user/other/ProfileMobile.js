@@ -18,7 +18,7 @@ class ProfileMobile extends React.Component {
             profilePicName: "",
             isReviewedBefore: false,
             isFollowing: false,
-            isBlocked:false,
+            isBlocked: false,
             about: "",
             age: "",
             motivation: "",
@@ -86,7 +86,7 @@ class ProfileMobile extends React.Component {
 
     block() {
         const self = this;
-        if(!this.state.isBlocked) {
+        if (!this.state.isBlocked) {
             if (window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
                 axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
@@ -95,7 +95,7 @@ class ProfileMobile extends React.Component {
                     });
         }
 
-        if(this.state.isBlocked) {
+        if (this.state.isBlocked) {
             if (window.confirm("Bu kişinin engelini kaldırmak istediğinizden emin misiniz?"))
                 axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
@@ -108,8 +108,8 @@ class ProfileMobile extends React.Component {
     sendMessageButton() {
         if (this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
-                <a href={"/message/" + this.props.match.params.id} className={"row"}>
-                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-comment"/></strong>Mesaj
+                <a href={"/message/" + this.props.match.params.id} className={"full-width"}>
+                    <button className={"btn btn-menuColor profileButton"}><strong><i className="far fa-comment"/></strong>Mesaj
                     </button>
                 </a>)
         }
@@ -118,8 +118,8 @@ class ProfileMobile extends React.Component {
     reviewButton() {
         if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
-                <a href={"/reviewForm/" + this.props.match.params.id} className={"row"}>
-                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-edit"/></strong>Yorum
+                <a href={"/reviewForm/" + this.props.match.params.id} className={"full-width"}>
+                    <button className={"btn btn-menuColor profileButton"}><strong><i className="far fa-edit"/></strong>Yorum
                         Yaz
                     </button>
                 </a>
@@ -131,20 +131,20 @@ class ProfileMobile extends React.Component {
     followButton() {
         if (this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
-                <div className={"row"}>
-                    <button onClick={this.follow} className={"btn btn-dark profileButton "}><strong>
+                <div className={"full-width"}>
+                    <button onClick={this.follow} className={"btn btn-menuColor profileButton "}><strong>
                         <i className="far fa-bell-slash"/>
-                    </strong>Bildirimleri Kapat
+                    </strong>Listeden Çıkar
                     </button>
                 </div>
             )
         }
 
         if (!this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
-            return (<div className={"row"}>
-                    <button onClick={this.follow} className={"btn btn-dark profileButton"}><strong><i
+            return (<div className={"full-width"}>
+                    <button onClick={this.follow} className={"btn btn-menuColor profileButton"}><strong><i
                         className="far fa-bell"/></strong>
-                        Bildirimleri Aç
+                        Listeye Ekle
                     </button>
                 </div>
             )
@@ -155,18 +155,19 @@ class ProfileMobile extends React.Component {
     blockButton() {
         if (this.props.match.params.id !== localStorage.getItem("userId") && !this.state.isBlocked) {
             return (
-                <div className={"row"}>
+                <div className={"full-width"}>
                     <button onClick={this.block}
-                            className={"btn btn-dark profileButton"}><strong><i className="fas fa-ban"/></strong>Engelle
+                            className={"btn btn-menuColor profileButton"}><strong><i className="fas fa-ban"/></strong>Engelle
                     </button>
                 </div>
             )
         }
         if (this.props.match.params.id !== localStorage.getItem("userId") && this.state.isBlocked) {
             return (
-                <div className={"row"}>
+                <div className={"full-width"}>
                     <button onClick={this.block}
-                            className={"btn btn-dark profileButton"}><strong><i className="fas fa-ban"/></strong>Engeli Kaldır
+                            className={"btn btn-menuColor profileButton"}><strong><i className="fas fa-ban"/></strong>Engeli
+                        Kaldır
                     </button>
                 </div>
             )
@@ -179,107 +180,114 @@ class ProfileMobile extends React.Component {
 
 
         return (
-            <div className="row outer">
-                <div className="col-md-6 m-x-auto container">
-                    <div className="row">
-                        <div className="col-md-3">
-                            <ProfilePicMobile
-                                profilePicName={this.state.profilePicName}
-                                userId={this.props.match.params.id}
-                            />
-                            <br/>
-                            <UserFullNameMobile
-                                name={this.state.name}
-                                surname={this.state.surname}
-                                userId={this.props.match.params.id}
-                                point={this.state.point}
-                            />
-                            <h5>{this.state.gender} / {this.state.age}</h5>
-                            <h4>{this.state.point} <i className="far fa-star"/></h4>
-                            <div className={"col-md-12"}>
-                                {this.sendMessageButton()}
-                                {this.reviewButton()}
-                                {this.followButton()}
-                                {this.blockButton()}
+            <div className="full-width container">
+                <div className={"full-width"}>
 
-                                {(this.props.match.params.id === localStorage.getItem("userId")) &&
-                                (
-                                    <div className={"text-align-left settingsTitles"}>
-                                        <a href="/updateProfilePic/"><i className="far fa-smile-wink"/> Profil Fotoğrafım</a><br/>
-                                        <a href="/myAlbum/"><i className="fas fa-images"/> Albüm</a><br/>
-                                        <a href="/updateInfo/"><i className="fas fa-info-circle"/> Bilgilerim</a><br/>
-                                        <a href="/updatePassword/"><i className="fas fa-key"/> Şifre Güncelle</a><br/>
-                                        <a href="/referenceCodes/"><i className="fas fa-check"/> Referanslarım</a><br/>
-                                        <a href="/followings/"><i className="fas fa-bell"/> Bildirim Listem</a><br/>
-                                        <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a>
-                                    </div>
-                                )}
+                    <a href={"/updateProfilePic/"} className={"float-left"}>
+                        <img className={"profilePicMedium"}
+                             src={UserUtil.buildProfilePicUrl(this.state.profilePicName)}/>
+                    </a>
+                    <div className={"float-left profileMeta"}>
+                        <UserFullNameMobile
+                            name={this.state.name}
+                            surname={this.state.surname}
+                            userId={this.props.match.params.id}
+                            point={this.state.point}
+                        />
 
-                            </div>
+                        <h5>{this.state.gender} / {this.state.age}</h5>
+                        <h4>{this.state.point} <i className="far fa-star"/></h4>
+                    </div>
+                    <div className={"clear-both"}/>
+                </div>
 
+
+                <div className={"full-width"}>
+                    <div className={"half-left"}>
+                        {this.sendMessageButton()}
+                        {this.followButton()}
+                    </div>
+                    <div className={"half-left "}>
+
+                        {this.blockButton()}
+                        {this.reviewButton()}
+
+                    </div>
+                    <div className={"clear-both"}/>
+                </div>
+                {(this.props.match.params.id === localStorage.getItem("userId")) &&
+                (<div className={"full-width"}>
+                        <div className={"text-align-left settingsTitles"}>
+                            <a href="/myAlbum/"><i className="fas fa-images"/> Albüm</a><br/>
+                            <a href="/updateInfo/"><i className="fas fa-info-circle"/>Bilgilerim</a><br/>
+                            <a href="/updatePassword/"><i className="fas fa-key"/> Şifre</a><br/>
                         </div>
 
-                        <div className="col-md-9 profileContent">
-                            <div className="row">
-                                <div className={"profileTitleContainer m-auto"}>
-                                    <div className="profileTitleDiv">
-                                        <a className="profileTitle" href={"/album/" + this.props.match.params.id}>
-                                            Fotoğraflar({this.state.photoCount})
-                                        </a>
-                                    </div>
-                                    <div className="profileTitleDiv">
-                                        <a className="profileTitle" href={"/reviews/" + this.props.match.params.id}>
-                                            Yorumlar ({this.state.reviewCount})
-                                        </a>
-                                    </div>
-                                    <div className="profileTitleDiv">
-                                        <a className="profileTitle"
-                                           href={"/userActivities/" + this.props.match.params.id}>
-                                            Buluşmalar({this.state.activityCount})
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div className={"text-align-left settingsTitles"}>
+                            <a href="/referenceCodes/"><i className="fas fa-check"/> Referanslar</a><br/>
+                            <a href="/followings/"><i className="fas fa-bell"/> Bildirim</a><br/>
+                            <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a>
+                        </div>
+                        <div className={"clear-both"}></div>
 
-                            <div className="row">
-                                <div className="card col-md-12">
-                                    <div className="card-body">
-                                        <h5 className="card-title">İlgi Alanlarım</h5>
-                                        <hr/>
-                                        {
-                                            this.state.interestsArray.map(function (interest) {
-                                                return (<span
-                                                        className="badge badge-pill badge-success my-interests">{interest}</span>
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                )}
+                <br/>
+                <div className={"profileTitleContainer full-width"}>
+                    <div className="profileTitleDiv">
+                        <a className="profileTitle" href={"/album/" + this.props.match.params.id}>
+                            Fotoğraflar({this.state.photoCount})
+                        </a>
+                    </div>
+                    <div className="profileTitleDiv">
+                        <a className="profileTitle" href={"/reviews/" + this.props.match.params.id}>
+                            Yorumlar ({this.state.reviewCount})
+                        </a>
+                    </div>
+                    <div className="profileTitleDiv">
+                        <a className="profileTitle"
+                           href={"/userActivities/" + this.props.match.params.id}>
+                            Buluşmalar({this.state.activityCount})
+                        </a>
+                    </div>
+                    <div className={"clear-both"}></div>
+                </div>
 
-                            <div className="row card">
-                                <div className="card-body">
-                                    <h5 className="card-title">Hakkımda</h5>
-                                    <hr/>
-                                    <span className={"breakLine"}>
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">İlgi Alanlarım</h5>
+                        <hr/>
+                        {
+                            this.state.interestsArray.map(function (interest) {
+                                return (<span
+                                        className="badge badge-pill badge-success my-interests">{interest}</span>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
+                <br/>
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">Hakkımda</h5>
+                        <hr/>
+                        <span className={"breakLine"}>
                                         {this.state.about}
                                     </span>
 
-                                </div>
-                            </div>
-
-                            <div className="row card">
-                                <div className="card-body">
-                                    <h5 className="card-title">Neden Burdayım?</h5>
-                                    <hr/>
-                                    <span className={"breakLine"}>
-                                    {this.state.motivation}
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
+                <br/>
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">Neden Burdayım?</h5>
+                        <hr/>
+                        <span className={"breakLine"}>
+                                    {this.state.motivation}
+                                    </span>
+                    </div>
+                </div>
+                <br/><br/><br/>
             </div>
         )
     }

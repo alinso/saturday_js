@@ -7,6 +7,7 @@ import AlertMobile from "../../common/AlertMobile";
 import Select from 'react-select'
 import CityUtil from "../../../util/CityUtil";
 import {WithContext as ReactTags} from 'react-tag-input';
+import BackToProfileMobile from "../../common/BackToProfileMobile";
 
 const axios = require('axios');
 const KeyCodes = {
@@ -135,207 +136,206 @@ class UpdateInfoMobile extends React.Component {
         const show = {display: "inline"};
 
         return (
-            <div className="row outer">
-                <div className="col-md-6 m-x-auto container">
-                    <h4 className=" text-center">Bilgilerimi Düzenle</h4>
-                    <hr/>
+            <div className="full-width container">
+                <BackToProfileMobile/>
+                <h4 className=" text-center">Bilgilerimi Düzenle</h4>
+                <hr/>
+                {savedMessage && (
+                    <AlertMobile type="alert-success" message={savedMessage}/>
+                )}
+
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group text-align-left">
+                        İsim*
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.name
+                            })}
+                            placeholder="İsim"
+                            name="name"
+                            value={this.state.name}
+                            onChange={this.onChange}
+                        />
+                        {errors.name && (
+                            <div className="invalid-feedback">
+                                {errors.name}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group  text-align-left">
+                        Soyisim*
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.surname
+                            })}
+                            placeholder="Soyisim"
+                            name="surname"
+                            value={this.state.surname}
+                            onChange={this.onChange}
+                        />
+                        {errors.surname && (
+                            <div className="invalid-feedback">
+                                {errors.surname}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group  text-align-left">
+                        Email*
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.email
+                            })}
+                            placeholder="E-Posta"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.onChange}
+                        />
+                        {errors.email && (
+                            <div className="invalid-feedback">
+                                {errors.email}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group  text-align-left">
+                        Telefon*
+                        <InputMask
+                            mask="0599 999 9999"
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.phone
+                            })}
+                            placeholder="Telefon"
+                            name="phone"
+                            value={this.state.phone}
+                            onChange={this.onChange}
+                            required
+                        />
+                        {errors.phone && (
+                            <div className="invalid-feedback">
+                                {errors.phone}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group  text-align-left">
+                        Doğum Tarihi
+                        <InputMask
+                            mask="99/99/9999"
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.bDateString
+                            })}
+                            placeholder="Doğum Tarihi(gün/ay/yil)"
+                            name="bDateString"
+                            value={this.state.bDateString}
+                            onChange={this.onChange}
+                        />
+                        {errors.bDateString && (
+                            <div className="invalid-feedback">
+                                {errors.bDateString}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group  text-align-left breakLine">
+                        Kendinden Bahset
+                        <textarea
+                            className={classnames("form-control form-control-lg")}
+                            placeholder="Kısaca Kendinden Bahset..."
+                            name="about"
+                            value={this.state.about}
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    <div className="form-group  text-align-left textareaBreakLine">
+                        Bize film ve kitap önerir misin?
+                        <textarea
+                            className={classnames("form-control form-control-lg")}
+                            placeholder="Neden Burdasın..."
+                            name="motivation"
+                            value={this.state.motivation}
+                            onChange={this.onChange}
+                        />
+                    </div>
+
+                    <div className="form-group  text-align-left">
+                        İlgi alanların neler? (araya virgül koyarak yazmalısın)
+                        <textarea
+                            className={classnames("form-control form-control-lg")}
+                            placeholder="Scuba Diving, Bungee Jumping..."
+                            name="interests"
+                            value={this.state.interests}
+                            onChange={this.onChange}
+                        />
+                    </div>
+
+                    <div className="form-group  text-align-left">
+                        Yaşadığın Şehir
+                        <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
+                        <div></div>
+                        {errors.cityId && (
+                            <div className="invalid-feedback">
+                                {errors.cityId && (errors.cityId)}
+                            </div>
+
+                        )}
+                    </div>
+
+                    <div className="form-group">
+                        <label>Erkek&nbsp;</label>
+                        <input type="radio"
+                               name="gender"
+                               value="MALE"
+                               className={"customRadio"}
+                               onChange={this.onChange}
+                               checked={this.state.gender === "MALE"}
+                        />&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label>Kadın&nbsp;</label>
+                        <input type="radio"
+                               name="gender"
+                               className={classnames("customRadio", {
+                                   "is-invalid": errors.gender
+                               })}
+                               onChange={this.onChange}
+                               value="FEMALE"
+                               checked={this.state.gender === "FEMALE"}
+                        />
+                        <br/>
+                        <div className="invalid-feedback">
+                            {errors.gender && (errors.gender)}
+                        </div>
+
+                    </div>
+                    <div className="form-group  text-align-left">
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.referenceCode
+                            })}
+                            placeholder="Referans Kodu"
+                            name="referenceCode"
+                            value={"Referans Kodu : " + this.state.referenceCode}
+                            onChange={this.onChange}
+                            disabled
+                        />
+                        {errors.referenceCode && (
+                            <div className="invalid-feedback">
+                                {errors.referenceCode}
+                            </div>
+                        )}
+                    </div>
                     {savedMessage && (
                         <AlertMobile type="alert-success" message={savedMessage}/>
                     )}
 
-                    <form onSubmit={this.onSubmit}>
-                        <div className="form-group text-align-left">
-                            İsim*
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.name
-                                })}
-                                placeholder="İsim"
-                                name="name"
-                                value={this.state.name}
-                                onChange={this.onChange}
-                            />
-                            {errors.name && (
-                                <div className="invalid-feedback">
-                                    {errors.name}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group  text-align-left">
-                            Soyisim*
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.surname
-                                })}
-                                placeholder="Soyisim"
-                                name="surname"
-                                value={this.state.surname}
-                                onChange={this.onChange}
-                            />
-                            {errors.surname && (
-                                <div className="invalid-feedback">
-                                    {errors.surname}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group  text-align-left">
-                            Email*
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.email
-                                })}
-                                placeholder="E-Posta"
-                                name="email"
-                                value={this.state.email}
-                                onChange={this.onChange}
-                            />
-                            {errors.email && (
-                                <div className="invalid-feedback">
-                                    {errors.email}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group  text-align-left">
-                            Telefon*
-                            <InputMask
-                                mask="0599 999 9999"
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.phone
-                                })}
-                                placeholder="Telefon"
-                                name="phone"
-                                value={this.state.phone}
-                                onChange={this.onChange}
-                                required
-                            />
-                            {errors.phone && (
-                                <div className="invalid-feedback">
-                                    {errors.phone}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group  text-align-left">
-                            Doğum Tarihi
-                            <InputMask
-                                mask="99/99/9999"
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.bDateString
-                                })}
-                                placeholder="Doğum Tarihi(gün/ay/yil)"
-                                name="bDateString"
-                                value={this.state.bDateString}
-                                onChange={this.onChange}
-                            />
-                            {errors.bDateString && (
-                                <div className="invalid-feedback">
-                                    {errors.bDateString}
-                                </div>
-                            )}
-                        </div>
-                        <div className="form-group  text-align-left breakLine">
-                            Kendinden Bahset
-                            <textarea
-                                className={classnames("form-control form-control-lg")}
-                                placeholder="Kısaca Kendinden Bahset..."
-                                name="about"
-                                value={this.state.about}
-                                onChange={this.onChange}
-                            />
-                        </div>
-                        <div className="form-group  text-align-left textareaBreakLine">
-                            Bize film ve kitap önerir misin?
-                                        <textarea
-                                            className={classnames("form-control form-control-lg")}
-                                            placeholder="Neden Burdasın..."
-                                            name="motivation"
-                                            value={this.state.motivation}
-                                            onChange={this.onChange}
-                                        />
-                        </div>
-
-                        <div className="form-group  text-align-left">
-                            İlgi alanların neler? (araya virgül koyarak yazmalısın)
-                            <textarea
-                                   className={classnames("form-control form-control-lg")}
-                                   placeholder="Scuba Diving, Bungee Jumping..."
-                                   name="interests"
-                                   value={this.state.interests}
-                                   onChange={this.onChange}
-                               />
-                        </div>
-
-                        <div className="form-group  text-align-left">
-                            Yaşadığın Şehir
-                            <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
-                            <div ></div>
-                            {errors.cityId && (
-                                <div className="invalid-feedback">
-                                    {errors.cityId &&(errors.cityId)}
-                                </div>
-
-                            )}
-                        </div>
-
-                        <div className="form-group">
-                            <label>Erkek&nbsp;</label>
-                            <input type="radio"
-                                   name="gender"
-                                   value="MALE"
-                                   className={"customRadio"}
-                                   onChange={this.onChange}
-                                   checked={this.state.gender === "MALE"}
-                            />&nbsp;&nbsp;&nbsp;&nbsp;
-
-                            <label>Kadın&nbsp;</label>
-                            <input type="radio"
-                                   name="gender"
-                                   className={classnames("customRadio", {
-                                       "is-invalid": errors.gender
-                                   })}
-                                   onChange={this.onChange}
-                                   value="FEMALE"
-                                   checked={this.state.gender === "FEMALE"}
-                            />
-                            <br/>
-                            <div className="invalid-feedback">
-                                {errors.gender &&(errors.gender)}
-                            </div>
-
-                        </div>
-                        <div className="form-group  text-align-left">
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.referenceCode
-                                })}
-                                placeholder="Referans Kodu"
-                                name="referenceCode"
-                                value={"Referans Kodu : " + this.state.referenceCode}
-                                onChange={this.onChange}
-                                disabled
-                            />
-                            {errors.referenceCode && (
-                                <div className="invalid-feedback">
-                                    {errors.referenceCode}
-                                </div>
-                            )}
-                        </div>
-                        {savedMessage && (
-                            <AlertMobile type="alert-success" message={savedMessage}/>
-                        )}
-
-                        <input
-                            type="submit" value={"Güncelle"}
-                            className="btn btn-primary btn-block mt-4"
-                        />
-                    </form>
-
-                </div>
+                    <input
+                        type="submit" value={"Güncelle"}
+                        className="btn btn-primary btn-block mt-4"
+                    />
+                    <br/><br/>
+                </form>
             </div>
 
         )
