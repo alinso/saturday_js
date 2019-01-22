@@ -8,6 +8,7 @@ import ActivityEditButtonsMobile from "../common/ActivityEditButtonsMobile";
 import ActivityRequestButtonsMobile from "../common/ActivityRequestButtonsMobile";
 import ActivityInfoBlockMobile from "../common/ActivityInfoBlockMobile";
 import UserUtil from "../../util/UserUtil";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -52,7 +53,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 let activitiesCreated = [];
                 let activitiesJoined = [];
@@ -72,7 +73,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
             });
 
 
-        axios.get('http://localhost:8080/user/profile/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({creator: response.data});
             })
@@ -89,14 +90,14 @@ class UserActivitiesMobile extends BaseActivityListMobile {
         return (
             <div className="full-width container">
                 {this.state.activitiesCreated[0] && (
-                    <h6><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                    <h6><a href={"/profile/" + this.props.match.params.id} className={"profileTitleMobile"}>
                         <i className="fas fa-comments"/>
                         {self.state.creator.name + " " + self.state.creator.surname}
                     </a> bugüne kadar neler yaptı?
                     </h6>
                 )}
                 {!this.state.activitiesCreated[0] && (
-                    <h6><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                    <h6><a href={"/profile/" + this.props.match.params.id} className={"profileTitleMobile"}>
                         <i className="fas fa-comments"/>
                         {self.state.creator.name + " " + self.state.creator.surname}
                     </a> henüz bir aktiviteye katılmamış :(
@@ -120,10 +121,10 @@ class UserActivitiesMobile extends BaseActivityListMobile {
                                     <ProfilePicMobile
                                         userId={activity.profileDto.id}
                                         profilePicName={activity.profileDto.profilePicName}
-                                        cssClass={"profilePicSmall"}
+                                        cssClass={"profilePicSmallMobile"}
                                     />
                                 </div>
-                                <div className={"activityListDetailContainer float-left text-align-left"}>
+                                <div className={"activityListDetailContainerMobile float-left text-align-left"}>
                                     <UserFullNameMobile
                                         name={activity.profileDto.name}
                                         userId={activity.profileDto.id}
@@ -136,26 +137,29 @@ class UserActivitiesMobile extends BaseActivityListMobile {
                                     <div className={"float-left"}>
                                         <i className="far fa-clock">{activity.deadLineString}</i>
                                     </div>
-                                        <ActivityEditButtonsMobile
-                                            activityId={activity.id}
-                                            userId={activity.profileDto.id}
-                                            deleteActivity={() => self.deleteActivity(activity.id)}
-                                        />
-                                        {(!activity.expired) &&
-                                        (<ActivityRequestButtonsMobile
+                                    <ActivityEditButtonsMobile
+                                        activityId={activity.id}
+                                        userId={activity.profileDto.id}
+                                        deleteActivity={() => self.deleteActivity(activity.id)}
+                                    />
+                                    {(!activity.expired) &&
+                                    (<div className={"float-right"}>
+
+                                        <ActivityRequestButtonsMobile
                                             userId={activity.profileDto.id}
                                             joinMeeting={() => self.joinActivity(activity.id)}
                                             thisUserJoined={activity.thisUserJoined}
-                                        />)
-                                        }
-                                        <br/><br/>
-                                        {(activity.expired) &&
-                                        (<a href={"/activityDetail/" + activity.id} className={"float-right"}>
-                                            <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
-                                            </button>
+                                        />
+                                    </div>)
+                                    }
+                                    <br/><br/>
+                                    {(activity.expired) &&
+                                    (<a href={"/activityDetail/" + activity.id} className={"float-right"}>
+                                        <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
+                                        </button>
 
-                                        </a>)
-                                        }
+                                    </a>)
+                                    }
                                 </div>
 
                                 <hr/>

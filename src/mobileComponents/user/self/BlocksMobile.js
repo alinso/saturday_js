@@ -4,6 +4,7 @@ import ProfilePicMobile from "../../common/ProfilePicMobile";
 import UserFullNameMobile from "../../common/UserFullNameMobile";
 import JSUtil from "../../../util/JSUtil";
 import BackToProfileMobile from "../../common/BackToProfileMobile";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -23,7 +24,7 @@ class BlocksMobile extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/block/myBlocks', Security.authHeader())
+        axios.get(Globals.serviceUrl+'block/myBlocks', Security.authHeader())
             .then(function (response) {
                 self.setState({blocks: response.data});
             })
@@ -37,7 +38,7 @@ class BlocksMobile extends React.Component {
         const self = this;
 
         if (window.confirm(" Engellediğiniz, " + name + " üzerindeki engeli kaldıracaksınız, emin misiniz?"))
-            axios.get('http://localhost:8080/block/block/' + id, Security.authHeader())
+            axios.get(Globals.serviceUrl+'block/block/' + id, Security.authHeader())
                 .then(function (response) {
 
                     let blocks = self.state.blocks;
@@ -63,7 +64,7 @@ class BlocksMobile extends React.Component {
                                     <ProfilePicMobile
                                         userId={block.id}
                                         profilePicName={block.profilePicName}
-                                        cssClass={"profilePicSmall"}
+                                        cssClass={"profilePicSmallMobile"}
                                     />
                                     <br/>
                                     <UserFullNameMobile

@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import AlertMobile from '../../common/AlertMobile';
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -25,7 +26,7 @@ class ForgottenPasswordMobile extends React.Component {
     sendResetPasswordLinkMail(mail) {
         let self = this;
 
-        axios.get('http://localhost:8080/user/forgottenPassword/' + mail)
+        axios.get(Globals.serviceUrl+'user/forgottenPassword/' + mail)
             .then(function (response) {
                 console.log(response);
                 self.setState({"mailSentMessage": "Şifre Güncelleme Linki Gönderildi"});
@@ -57,42 +58,41 @@ class ForgottenPasswordMobile extends React.Component {
 
 
         return (
-            <div className="row outer">
-                <div className="col-md-6 m-x-auto container">
-                    <h5 className="display-4 text-center">Şifremi Unuttum</h5>
-                    <hr/>
-                    {mailSentMessage && (
-                        <AlertMobile type="alert-success" message={mailSentMessage}/>
-                    )}
-                    <form onSubmit={this.onSubmit}>
+            <div className="full-width container">
+                <h5 className="text-center">Şifremi Unuttum</h5>
+                <hr/>
+                {mailSentMessage && (
+                    <AlertMobile type="alert-success" message={mailSentMessage}/>
+                )}
+                <form onSubmit={this.onSubmit}>
 
-                        <div className="form-group">
-                            <label for="mail">Şifrenizi yenilemek için E-Posta adresinizi Giriniz</label>
-                            <input
-                                type="email"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.userWarningMessage
-                                })}
-                                placeholder="E-Posta"
-                                name="mail"
-                                value={this.state.mail}
-                                onChange={this.onChange}
-                                required
-                            />
-                            {errors.userWarningMessage && (
-                                <div className="invalid-feedback">
-                                    {errors.userWarningMessage}
-                                </div>
-                            )}
-                        </div>
+                    <div className="form-group">
+                        <label for="mail">Şifrenizi yenilemek için E-Posta adresinizi Giriniz</label>
                         <input
-                            type="submit"
-                            value={"Şifre Sıfırlama Linki Gönder"}
-                            className="btn btn-primary btn-block mt-4"
-                            disabled={this.state.isSubmitDisabled}
+                            type="email"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.userWarningMessage
+                            })}
+                            placeholder="E-Posta"
+                            name="mail"
+                            value={this.state.mail}
+                            onChange={this.onChange}
+                            required
                         />
-                    </form>
-                </div>
+                        {errors.userWarningMessage && (
+                            <div className="invalid-feedback">
+                                {errors.userWarningMessage}
+                            </div>
+                        )}
+                    </div>
+                    <input
+                        type="submit"
+                        value={"Şifre Sıfırlama Linki Gönder"}
+                        className="btn btn-primary btn-block mt-4"
+                        disabled={this.state.isSubmitDisabled}
+                    />
+                </form><br/>
+                <a href="/login">Giriş Yap</a> | <a href="/register">Kaydol</a>
             </div>
 
         )

@@ -4,6 +4,7 @@ import classnames from "classnames";
 import ProfilePicMobile from "../common/ProfilePicMobile";
 import UserFullNameMobile from "../common/UserFullNameMobile";
 import UserUtil from "../../util/UserUtil";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -55,7 +56,7 @@ class ReviewFormMobile extends React.Component {
     saveReference(referenceDto) {
 
         const self = this;
-        axios.post('http://localhost:8080/review/writeReview/', referenceDto, Security.authHeader())
+        axios.post(Globals.serviceUrl+'review/writeReview/', referenceDto, Security.authHeader())
             .then(function (response) {
                 self.setState({saved: true});
             })
@@ -69,7 +70,7 @@ class ReviewFormMobile extends React.Component {
         let self = this;
 
         //get the reader user
-        axios.get('http://localhost:8080/user/profile/' + this.props.match.params.id)
+        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id)
             .then(function (response) {
 
                 self.setState({profileDto: response.data});
@@ -80,7 +81,7 @@ class ReviewFormMobile extends React.Component {
             });
 
 
-        axios.get('http://localhost:8080/review/haveIMeetThisUserRecently/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'review/haveIMeetThisUserRecently/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
 
                 //we have met
@@ -118,7 +119,7 @@ class ReviewFormMobile extends React.Component {
                 <ProfilePicMobile
                     userId={this.props.match.params.id}
                     profilePicName={this.state.profileDto.profilePicName}
-                    cssClass={"profilePicSmall"}
+                    cssClass={"profilePicSmallMobile"}
                 /> &nbsp;
                 <UserFullNameMobile
                     name={this.state.profileDto.name}
@@ -154,14 +155,14 @@ class ReviewFormMobile extends React.Component {
                         }
                     </div>
                     <div className="form-group">
-                        <label className="customRadioLabel">Olumlu&nbsp;</label>
+                        <label className="customRadioLabelMobile">Olumlu&nbsp;</label>
                         <input type="radio"
                                name="isPositive"
                                value={true}
                                onChange={this.onChange}
                                className="customRadio"
                         />&nbsp;&nbsp;&nbsp;&nbsp;
-                        <label className="customRadioLabel">Olumsuz&nbsp;</label>
+                        <label className="customRadioLabelMobile">Olumsuz&nbsp;</label>
                         <input type="radio"
                                name="isPositive"
                                onChange={this.onChange}

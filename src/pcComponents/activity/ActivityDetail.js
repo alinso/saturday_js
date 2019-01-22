@@ -5,6 +5,7 @@ import UserFullName from "../common/UserFullName";
 import ActivityInfoBlock from "../common/ActivityInfoBlock";
 import ActivityRequestButtons from "../common/ActivityRequestButtons";
 import UserUtil from "../../util/UserUtil";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -24,7 +25,7 @@ class ActivityDetail extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/activity/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({activity: response.data});
             })
@@ -36,7 +37,7 @@ class ActivityDetail extends React.Component {
 
     joinMeeting(id) {
         const self = this;
-        axios.get('http://localhost:8080/request/sendRequest/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'request/sendRequest/' + id, Security.authHeader())
             .then(function (response) {
 
                 let currentMeetingNew = Object.assign({}, self.state.activity);

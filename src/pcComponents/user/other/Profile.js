@@ -3,6 +3,7 @@ import Security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
 import ProfilePic from "../../common/ProfilePic";
 import UserFullName from "../../common/UserFullName";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 const isMobile = require('is-mobile');
@@ -36,7 +37,7 @@ class Profile extends React.Component {
         let self = this;
         let userId = this.props.match.params.id;
 
-        axios.get('http://localhost:8080/user/profile/' + userId)
+        axios.get(Globals.serviceUrl+'user/profile/' + userId)
             .then(function (response) {
                 self.setState(response.data);
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
@@ -54,19 +55,19 @@ class Profile extends React.Component {
 
 
         if (Security.isValidToken())
-            axios.get('http://localhost:8080/review/isReviewedBefore/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl+'review/isReviewedBefore/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isReviewedBefore": response.data});
                 });
 
 
         if (Security.isValidToken())
-            axios.get('http://localhost:8080/follow/isFollowing/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl+'follow/isFollowing/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isFollowing": response.data});
                 });
         if (Security.isValidToken())
-            axios.get('http://localhost:8080/block/isBlocked/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl+'block/isBlocked/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isBlocked": response.data});
                 });
@@ -75,7 +76,7 @@ class Profile extends React.Component {
 
     follow() {
         const self = this;
-        axios.get('http://localhost:8080/follow/follow/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'follow/follow/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({"isFollowing": response.data});
             })
@@ -88,7 +89,7 @@ class Profile extends React.Component {
         const self = this;
         if(!this.state.isBlocked) {
             if (window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
-                axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl+'block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"isBlocked": response.data});
                         window.location = "/";
@@ -97,7 +98,7 @@ class Profile extends React.Component {
 
         if(this.state.isBlocked) {
             if (window.confirm("Bu kişinin engelini kaldırmak istediğinizden emin misiniz?"))
-                axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl+'block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"isBlocked": response.data});
                     });
@@ -134,7 +135,7 @@ class Profile extends React.Component {
                 <div className={"row"}>
                     <button onClick={this.follow} className={"btn btn-dark profileButton "}><strong>
                         <i className="far fa-bell-slash"/>
-                    </strong>Bildirimleri Kapat
+                    </strong>Listemden Çıkar
                     </button>
                 </div>
             )
@@ -144,7 +145,7 @@ class Profile extends React.Component {
             return (<div className={"row"}>
                     <button onClick={this.follow} className={"btn btn-dark profileButton"}><strong><i
                         className="far fa-bell"/></strong>
-                        Bildirimleri Aç
+                        Listeme Ekle
                     </button>
                 </div>
             )

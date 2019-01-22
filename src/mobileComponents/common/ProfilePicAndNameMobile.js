@@ -18,7 +18,7 @@ class ProfilePicAndNameMobile extends React.Component {
                 <ProfilePicMobile
                 userId={this.props.userId}
                 profilePicName={this.props.profilePicName}
-                cssClass={"profilePicSmall"}
+                cssClass={"profilePicSmallMobile"}
                 />
                 <UserFullNameMobile
                 userId={this.props.userId}

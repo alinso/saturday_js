@@ -3,6 +3,7 @@ import security from "../../../security/Security";
 import {isMobile} from 'react-device-detect';
 import Lightbox from 'react-images';
 import UserUtil from "../../../util/UserUtil";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -31,7 +32,7 @@ class Album extends React.Component {
     fillFields() {
         let self = this;
 
-        axios.get('http://localhost:8080/photo/album/' + this.props.match.params.id, security.authHeader())
+        axios.get(Globals.serviceUrl+'photo/album/' + this.props.match.params.id, security.authHeader())
             .then(function (response) {
                 self.setState({photoNames: response.data.photoNames});
                 self.setState({fullName: response.data.fullName});

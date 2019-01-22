@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import classnames from "classnames";
 import security from "../../../security/Security";
 import AlertMobile from "../../common/AlertMobile";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -26,7 +27,7 @@ class LoginMobile extends Component {
         const self = this;
         try {
             // post => LoginMobile Request
-            axios.post("http://localhost:8080/user/login", LoginRequest)
+            axios.post(Globals.serviceUrl+"user/login", LoginRequest)
                 .then(function (res) {
                     const {token} = res.data;
                     const {profilePicName} = res.data;
@@ -62,8 +63,8 @@ class LoginMobile extends Component {
     render() {
         const {errors} = this.state;
         return (
-            <div className="loginOuter">
-                <div className="loginContainer">
+            <div className="loginOuterMobile">
+                <div className="loginContainerMobile">
                     <h5 className=" text-center">Giriş Yap</h5>
                     {errors.errorMessage && (
                         <AlertMobile type="alert-danger" message={errors.errorMessage}/>

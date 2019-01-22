@@ -10,7 +10,7 @@ class ActivityEditButtonsMobile extends React.Component {
     render() {
 
         if (this.props.userId === parseInt(localStorage.getItem("userId"))) {
-            return (<div className={"activityListActivityEditButtons"}>
+            return (<div className={"float-right"}>
                     <a href={"/activityRequests/" + this.props.activityId}>
                         <button className="btn btn-success meetingProcess">
                             <i className="fas fa-users"/>

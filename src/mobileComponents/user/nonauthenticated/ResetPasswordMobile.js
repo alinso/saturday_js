@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -25,7 +26,7 @@ class ResetPasswordMobile extends React.Component {
     resetPassword(resetPasswordDto) {
         let self = this;
 
-        axios.post('http://localhost:8080/user/resetPassword/', resetPasswordDto)
+        axios.post(Globals.serviceUrl+'user/resetPassword/', resetPasswordDto)
             .then(function (response) {
                 console.log(response);
                 self.setState({"passwordHasResetMessage": "Şifreniz Güncellendi"});

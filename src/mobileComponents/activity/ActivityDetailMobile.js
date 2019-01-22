@@ -5,6 +5,7 @@ import UserFullNameMobile from "../common/UserFullNameMobile";
 import ActivityInfoBlockMobile from "../common/ActivityInfoBlockMobile";
 import ActivityRequestButtonsMobile from "../common/ActivityRequestButtonsMobile";
 import UserUtil from "../../util/UserUtil";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -24,7 +25,7 @@ class ActivityDetailMobile extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/activity/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals+'activity/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({activity: response.data});
             })
@@ -36,7 +37,7 @@ class ActivityDetailMobile extends React.Component {
 
     joinMeeting(id) {
         const self = this;
-        axios.get('http://localhost:8080/request/sendRequest/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'request/sendRequest/' + id, Security.authHeader())
             .then(function (response) {
 
                 let currentMeetingNew = Object.assign({}, self.state.activity);
@@ -59,12 +60,12 @@ class ActivityDetailMobile extends React.Component {
                     <div className={"full-width"}>
                         <div className="float-left">
                             <ProfilePicMobile
-                                cssClass={"profilePicSmall"}
+                                cssClass={"profilePicSmallMobile"}
                                 userId={activity.profileDto.id}
                                 profilePicName={activity.profileDto.profilePicName}
                             />
                         </div>
-                        <div className={"float-left activityListDetailContainer text-align-left"}>
+                        <div className={"float-left activityListDetailContainerMobile text-align-left"}>
                             <UserFullNameMobile
                                 name={activity.profileDto.name}
                                 userId={activity.profileDto.id}
@@ -106,7 +107,7 @@ class ActivityDetailMobile extends React.Component {
                                         <ProfilePicMobile
                                             userId={attendant.id}
                                             profilePicName={attendant.profilePicName}
-                                            cssClass={"profilePicSmall"}
+                                            cssClass={"profilePicSmallMobile"}
                                         />
                                     </div>
                                     <div className="half-left">

@@ -7,6 +7,7 @@ import JSUtil from "../../util/JSUtil";
 import AlertMobile from "../common/AlertMobile";
 import ActivityEditButtonsMobile from "../common/ActivityEditButtonsMobile";
 import BackToProfileMobile from "../common/BackToProfileMobile";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -32,7 +33,7 @@ class ActivityRequestsMobile extends React.Component {
     fillPage() {
         const self = this;
 
-        axios.get('http://localhost:8080/activity/activityWithRequests/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/activityWithRequests/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
                 self.setState({photoName: response.data.photoName});
@@ -54,7 +55,7 @@ class ActivityRequestsMobile extends React.Component {
         if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
             return;
 
-        axios.get("http://localhost:8080/activity/delete/" + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+"activity/delete/" + id, Security.authHeader())
             .then(res => {
                 window.location = "/profile/" + localStorage.getItem("userId");
             });
@@ -62,7 +63,7 @@ class ActivityRequestsMobile extends React.Component {
 
     toggleApprove(id) {
         const self = this;
-        axios.get('http://localhost:8080/request/approveRequest/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'request/approveRequest/' + id, Security.authHeader())
             .then(function (response) {
                 let requests = self.state.requests;
                 let currentRequestOld = requests.filter(obj => {
@@ -145,7 +146,7 @@ class ActivityRequestsMobile extends React.Component {
                                 <ProfilePicMobile
                                     userId={request.profileDto.id}
                                     profilePicName={request.profileDto.profilePicName}
-                                    cssClass={"profilePicSmall"}
+                                    cssClass={"profilePicSmallMobile"}
                                 /><br/>
                                 <UserFullNameMobile
                                     userId={request.profileDto.id}

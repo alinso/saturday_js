@@ -3,6 +3,7 @@ import Security from "../../../security/Security";
 import UserFullNameMobile from "../../common/UserFullNameMobile";
 import BlocksMobile from "./BlocksMobile";
 import BackToProfileMobile from "../../common/BackToProfileMobile";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -22,7 +23,7 @@ class ReferenceCodesMobile extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/reference/myReferences', Security.authHeader())
+        axios.get(Globals.serviceUrl+'reference/myReferences', Security.authHeader())
             .then(function (response) {
                 self.setState({references: response.data});
             })

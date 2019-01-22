@@ -27,20 +27,21 @@ class MessageBox extends React.Component {
                 this.messageList = div;
             }}>
                 {this.props.messages.map(function (message) {
-                        let msgClass = "outgoingMessage";
+                        let msgClass = "breakLine outgoingMessage";
                         console.log(message.reader.id);
                         if (message.reader.id.toString() === localStorage.getItem("userId")) {
-                            msgClass = "incomingMessage";
+                            msgClass = "breakLine incomingMessage";
                         }
 
-                        return (<div className={msgClass+"Container"}>
+                        return (<div><div className={msgClass+"Container"}>
                                 <div className={msgClass}>
-                                <span dangerouslySetInnerHTML={{__html: message.message}}/>
-
+                                    {message.message}
                                     <span className={"messageDate"}>
                                     {message.createdAt}
                                 </span>
                                 </div>
+                            </div>
+                            <div className={"clear-both"}/>
                             </div>
                         )
                     }

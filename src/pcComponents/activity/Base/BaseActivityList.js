@@ -1,6 +1,7 @@
 import React from "react";
 import Security from "../../../security/Security";
 import JSUtil from "../../../util/JSUtil";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -19,7 +20,7 @@ class BaseActivityList extends React.Component {
 
     joinActivity(id){
         const self = this;
-        axios.get('http://localhost:8080/request/sendRequest/'+id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'request/sendRequest/'+id, Security.authHeader())
             .then(function (response) {
                 let activities = self.state.activities;
                 let currentMeetingOld = activities.filter(obj => {
@@ -48,7 +49,7 @@ class BaseActivityList extends React.Component {
         if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
             return;
 
-        axios.get("http://localhost:8080/activity/delete/" + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+"activity/delete/" + id, Security.authHeader())
             .then(res => {
 
                 let meetings = self.state.activities;

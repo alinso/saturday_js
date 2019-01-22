@@ -3,6 +3,7 @@ import Security from "../../security/Security";
 import "../../react-datetime.css";
 import BaseActivityForm from "./Base/BaseActivityForm";
 import CityUtil from "../../util/CityUtil";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -17,7 +18,7 @@ class CreateActivity extends BaseActivityForm{
 
     loadCities(){
         const self=this;
-        axios.get('http://localhost:8080/city/all/', Security.authHeader())
+        axios.get(Globals.serviceUrl+'city/all/', Security.authHeader())
             .then(function (response) {
                 let result =CityUtil.setCitiesForSelect(response.data);
                 self.setState({cities:result.cities});
@@ -31,7 +32,7 @@ class CreateActivity extends BaseActivityForm{
     createActivity(newActivity) {
         let self = this;
         console.log(newActivity);
-        axios.post('http://localhost:8080/activity/create', newActivity, Security.authHeader())
+        axios.post(Globals.serviceUrl+'activity/create', newActivity, Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Kaydedildi, iyi eğlenceler :)"});

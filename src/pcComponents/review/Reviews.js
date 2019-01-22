@@ -3,6 +3,7 @@ import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import UserUtil from "../../util/UserUtil";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -24,7 +25,7 @@ class Reviews extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/review/reviewsOfUser/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'review/reviewsOfUser/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({reviews: response.data});
             })
@@ -32,7 +33,7 @@ class Reviews extends React.Component {
                 console.log(error.response);
             });
 
-        axios.get('http://localhost:8080/user/profile/' + this.props.match.params.id)
+        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id)
             .then(function (response) {
                 self.setState({"profileDto": response.data});
             })

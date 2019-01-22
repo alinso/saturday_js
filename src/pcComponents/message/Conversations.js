@@ -4,6 +4,7 @@ import classnames from "classnames";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import MessageBox from "./DisplayMessages";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -25,7 +26,7 @@ class Conversations extends React.Component {
 
         let self = this;
 
-        axios.get('http://localhost:8080/message/conversations', Security.authHeader())
+        axios.get(Globals.serviceUrl+'message/conversations', Security.authHeader())
             .then(function (response) {
                 self.setState({conversations: response.data});
             })
@@ -33,7 +34,7 @@ class Conversations extends React.Component {
                 self.setState({"errors": error.response.data});
             });
 
-        axios.get('http://localhost:8080/notification/readMessages', Security.authHeader());
+        axios.get(Globals.serviceUrl+'notification/readMessages', Security.authHeader());
 
     }
 
@@ -68,8 +69,8 @@ class Conversations extends React.Component {
                                         </div>
                                     </div>
                                     <a href={"/message/"+conversation.profileDto.id} className={"col-md-7 conversationText"}>
-                                    <div className={"col-md-12 "}>
-                                        <span dangerouslySetInnerHTML={{__html: conversation.lastMessage}}/>
+                                    <div className={"col-md-12 breakLine"}>
+                                       {conversation.lastMessage.substring(0,100)+"..."}
                                     </div>
                                     </a>
                                 </div>)

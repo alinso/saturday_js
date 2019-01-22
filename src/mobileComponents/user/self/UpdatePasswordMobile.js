@@ -3,6 +3,7 @@ import classnames from "classnames";
 import security from "../../../security/Security";
 import AlertMobile from "../../common/AlertMobile";
 import BackToProfileMobile from "../../common/BackToProfileMobile";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -31,7 +32,7 @@ class UpdatePasswordMobile extends React.Component {
         let self = this;
 
 
-        axios.post('http://localhost:8080/user/updatePassword', changePasswordDto, security.authHeader())
+        axios.post(Globals.serviceUrl+'user/updatePassword', changePasswordDto, security.authHeader())
             .then(function (response) {
                 console.log(response);
                 self.setState({"passwordUpdatedMessage": "Şifreniz Güncellendi"});

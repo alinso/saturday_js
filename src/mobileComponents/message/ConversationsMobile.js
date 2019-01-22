@@ -4,6 +4,7 @@ import classnames from "classnames";
 import ProfilePicMobile from "../common/ProfilePicMobile";
 import UserFullNameMobile from "../common/UserFullNameMobile";
 import MessageBox from "./DisplayMessagesMobile";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -25,7 +26,7 @@ class ConversationsMobile extends React.Component {
 
         let self = this;
 
-        axios.get('http://localhost:8080/message/conversations', Security.authHeader())
+        axios.get(Globals.serviceUrl+'message/conversations', Security.authHeader())
             .then(function (response) {
                 self.setState({conversations: response.data});
             })
@@ -33,7 +34,7 @@ class ConversationsMobile extends React.Component {
                 self.setState({"errors": error.response.data});
             });
 
-        axios.get('http://localhost:8080/notification/readMessages', Security.authHeader());
+        axios.get(Globals.serviceUrl+'notification/readMessages', Security.authHeader());
 
     }
 
@@ -42,7 +43,7 @@ class ConversationsMobile extends React.Component {
 
         return (
             <div className={"full-width container"}>
-                <h5 className={"profileTitle"}><i className="fas fa-comments"/>Tüm Konuşmalar</h5>
+                <h5 className={"profileTitleMobile"}><i className="fas fa-comments"/>Tüm Konuşmalar</h5>
                 <hr/>
                 {
                     this.state.conversations.map(function (conversation) {
@@ -51,7 +52,7 @@ class ConversationsMobile extends React.Component {
                                 <div className={"full-width"}>
                                     <div className={"float-left text-align-left"}>
                                         <ProfilePicMobile
-                                            cssClass={"profilePicSmall"}
+                                            cssClass={"profilePicSmallMobile"}
                                             userId={conversation.profileDto.id}
                                             profilePicName={conversation.profileDto.profilePicName}
                                         />
@@ -65,7 +66,7 @@ class ConversationsMobile extends React.Component {
                                             surname={conversation.profileDto.surname}
                                         />
                                         <a href={"/message/" + conversation.profileDto.id}
-                                           className={"float-left conversationText"}>
+                                           className={"float-left conversationTextMobile"}>
                                             <div className={""}>
                                                 <span dangerouslySetInnerHTML={{__html: conversation.lastMessage}}/>
                                             </div>

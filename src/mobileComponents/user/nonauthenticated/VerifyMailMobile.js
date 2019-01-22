@@ -1,5 +1,6 @@
 import React from "react";
 import security from "../../../security/Security";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -20,7 +21,7 @@ class VerifyMailMobile extends React.Component {
         const token = this.props.match.params.token;
 
 
-        axios.get('http://localhost:8080/user/verifyMail/' + token)
+        axios.get(Globals.serviceUrl+'user/verifyMail/' + token)
             .then(function (response) {
             })
             .catch(function (error) {

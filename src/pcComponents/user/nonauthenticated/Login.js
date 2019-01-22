@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import classnames from "classnames";
 import security from "../../../security/Security";
 import Alert from "../../common/Alert";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -25,9 +26,12 @@ class Login extends Component {
     login(LoginRequest) {
         const self = this;
         try {
+
             // post => LoginMobile Request
-            axios.post("http://localhost:8080/user/login", LoginRequest)
+            axios.post(Globals.serviceUrl+"user/login", LoginRequest)
                 .then(function (res) {
+                    console.log("dd")
+
                     const {token} = res.data;
                     const {profilePicName} = res.data;
                     const {cityId} = res.data;
@@ -51,7 +55,6 @@ class Login extends Component {
             username: this.state.username,
             password: this.state.password
         };
-
         this.login(LoginRequest);
     }
 
@@ -98,9 +101,11 @@ class Login extends Component {
                             />
 
                         </div>
-                        <input type="submit" value="Giriş Yap"
+                        <button type="submit"
                                className="btn btn-info btn-block mt-4"
-                        disabled={this.state.isSubmitDisabled}/>
+                                disabled={this.state.isSubmitDisabled}>
+                            <i className="fas fa-sync-alt fa-spin" hidden={!this.state.isSubmitDisabled}></i> Giriş Yap
+                        </button>
                     </form>
                     <br/>
                     <a href="/forgottenPassword">Şifremi Unuttum</a>

@@ -8,6 +8,7 @@ import ActivityRequestButtonsMobile from "./common/ActivityRequestButtonsMobile"
 import ActivityInfoBlockMobile from "./common/ActivityInfoBlockMobile";
 import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
+import Globals from "../util/Globals";
 
 const axios = require('axios');
 let self;
@@ -31,7 +32,7 @@ class DashboardMobile extends BaseActivityListMobile {
     fillPage(cityId) {
         const self = this;
 
-        axios.get('http://localhost:8080/activity/findAllByCityId/' + cityId, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/findAllByCityId/' + cityId, Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
             })
@@ -43,7 +44,7 @@ class DashboardMobile extends BaseActivityListMobile {
 
     loadCities() {
         const self = this;
-        axios.get('http://localhost:8080/city/all/', Security.authHeader())
+        axios.get(Globals.serviceUrl+'city/all/', Security.authHeader())
             .then(function (response) {
                 let result = CityUtil.setCitiesForSelect(response.data);
                 self.setState({cities: result.cities});
@@ -74,10 +75,10 @@ class DashboardMobile extends BaseActivityListMobile {
                                     <ProfilePicMobile
                                         userId={activity.profileDto.id}
                                         profilePicName={activity.profileDto.profilePicName}
-                                        cssClass={"profilePicSmall"}
+                                        cssClass={"profilePicSmallMobile"}
                                     />
                                 </div>
-                                <div className={"float-left activityListDetailContainer text-align-left"}>
+                                <div className={"float-left activityListDetailContainerMobile text-align-left"}>
                                     <UserFullNameMobile
                                         userId={activity.profileDto.id}
                                         profilePicName={activity.profileDto.profilePicName}
@@ -97,11 +98,13 @@ class DashboardMobile extends BaseActivityListMobile {
                                         userId={activity.profileDto.id}
                                         deleteMeeting={() => self.deleteActivity(activity.id)}
                                     />
-                                    <ActivityRequestButtonsMobile
-                                        userId={activity.profileDto.id}
-                                        joinActivity={() => self.joinActivity(activity.id)}
-                                        thisUserJoined={activity.thisUserJoined}
-                                    />
+                                    <div className={"float-right"}>
+                                        <ActivityRequestButtonsMobile
+                                            userId={activity.profileDto.id}
+                                            joinActivity={() => self.joinActivity(activity.id)}
+                                            thisUserJoined={activity.thisUserJoined}
+                                        />
+                                    </div>
                                 </div>
                                 <hr/>
                             </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Security from "../../security/Security";
 import UserFullNameMobile from "../common/UserFullNameMobile";
 import ProfilePicMobile from "../common/ProfilePicMobile";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -25,7 +26,7 @@ class NotificationsMobile extends React.Component {
 
 
         const self = this;
-        axios.get('http://localhost:8080/notification/allNotifications/', Security.authHeader())
+        axios.get(Globals.serviceUrl+'notification/allNotifications/', Security.authHeader())
             .then(function (response) {
                 self.setState({notifications: response.data});
             })
@@ -33,7 +34,7 @@ class NotificationsMobile extends React.Component {
                 self.setState({"errors": error.response.data});
             });
 
-        axios.get('http://localhost:8080/notification/readExceptMessages', Security.authHeader());
+        axios.get(Globals.serviceUrl+'notification/readExceptMessages', Security.authHeader());
 
     }
 
@@ -99,7 +100,7 @@ class NotificationsMobile extends React.Component {
         const self = this;
         return (
             <div className="full-width container">
-                <h5 className={"profileTitle"}>Tüm Bildirimler</h5>
+                <h5 className={"profileTitleMobile"}>Tüm Bildirimler</h5>
                 {(this.state.notifications.length === 0) && (
                     <h4>Hiç bildirim yok!</h4>
                 )}
@@ -114,11 +115,11 @@ class NotificationsMobile extends React.Component {
                                         <ProfilePicMobile
                                             userId={not.trigger.id}
                                             profilePicName={not.trigger.profilePicName}
-                                            cssClass={"profilePicSmall"}
+                                            cssClass={"profilePicSmallMobile"}
                                         />
                                     </div>
                                 )}
-                                <div className={"notificationText text-align-left"}>
+                                <div className={"notificationTextMobile text-align-left"}>
 
                                     <div className={"full-width text-align-right messageDate"}>
                                         {not.createdAtString}

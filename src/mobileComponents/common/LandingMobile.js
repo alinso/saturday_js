@@ -1,37 +1,31 @@
 import React, {Component} from "react";
-import ScrollableAnchor from 'react-scrollable-anchor'
-import AOS from 'aos';
-import 'aos/dist/aos.css'; // You can also use <link> for styles
-
-AOS.init();
 
 class LandingMobile extends Component {
 
     render() {
         return (
-            <div className={"landingContainer"}>
-                <div className={"landingSlide"}>
+            <div className={"landingContainerMobile"}>
+                <div className={"landingSlideMobile"}>
 
-                    <div className={"landingSlideTitleContainer"}>
-                        <h5 className={"landingSlideTitle m-auto"}>Activity Friend</h5>
+                    <div className={"landingSlideMobileTitleContainer"}>
+                        <h5 className={"landingSlideMobileTitle m-auto"}>Activity Friend</h5>
                     </div>
                 </div>
                 <br/>
                 <div className={"half-left"}>
                     <a href={"/login"}>
-                        <button className={"btn btn-primary landingLoginRegister"}>Giriş Yap</button>
+                        <button className={"btn btn-primary landingLoginRegisterMobile"}>Giriş Yap</button>
                     </a>
                 </div>
                 <div className={"half-left"}>
                     <a href={"register"}>
-                        <button className={"btn btn-info landingLoginRegister"}>Kaydol</button>
+                        <button className={"btn btn-info landingLoginRegisterMobile"}>Kaydol</button>
                     </a>
                 </div>
                 <div className={"clear-both"}/>
-                <div className={"landingSlideTextContainer"}>
-                    <h6 className={"landingSlideText m-auto"}>Tüm aktivitelerinde sana eşlik edebilecek insanlarla
-                        tanış!</h6>
-                </div>
+                <br/>
+                    <h5 className={"m-auto"}>Tüm aktivitelerinde sana eşlik edebilecek insanlarla
+                        tanış!</h5>
 
                 <div className={"full-width"}>
                     <h4 className={"landingTitle"}>Activity Friend Nedir?</h4>
@@ -94,7 +88,7 @@ class LandingMobile extends Component {
                 <br/>
                 <div className={"full-width"}>
                     <div className={"landing_parallax"}>
-                        <div className={"landing_parallax_text"}>
+                        <div className={"landing_parallax_textMobile"}>
                             Sosyal medya yalnızlaştırır,<br/>
                             Activity Friend sosyalleştirir.
                         </div>

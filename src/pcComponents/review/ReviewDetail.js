@@ -4,6 +4,7 @@ import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import ActivityInfoBlock from "../common/ActivityInfoBlock";
 import ActivityRequestButtons from "../common/ActivityRequestButtons";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -23,7 +24,7 @@ class ReviewDetail extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/review/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'review/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({review: response.data});
             })

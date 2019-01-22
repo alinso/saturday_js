@@ -8,6 +8,7 @@ import ActivityEditButtons from "../common/ActivityEditButtons";
 import ActivityRequestButtons from "../common/ActivityRequestButtons";
 import ActivityInfoBlock from "../common/ActivityInfoBlock";
 import UserUtil from "../../util/UserUtil";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -52,7 +53,7 @@ class UserActivities extends BaseActivityList {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 let activitiesCreated = [];
                 let activitiesJoined = [];
@@ -72,7 +73,7 @@ class UserActivities extends BaseActivityList {
             });
 
 
-        axios.get('http://localhost:8080/user/profile/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({creator: response.data});
             })
@@ -127,7 +128,7 @@ class UserActivities extends BaseActivityList {
                                         <ProfilePic
                                             userId={activity.profileDto.id}
                                             profilePicName={activity.profileDto.profilePicName}
-                                            cssClass={"profilePicMedium"}
+                                            cssClass={"profilePicSmall"}
                                         />
 
                                     </div>
@@ -139,7 +140,7 @@ class UserActivities extends BaseActivityList {
                                         />
                                         <ActivityInfoBlock photoName={activity.photoName} detail={activity.detail}/>
                                         <div className={"row"}>
-                                            <div className={"col-md-8 meetingDeadLine"}>
+                                            <div className={"col-md-6 meetingDeadLine"}>
                                                 <button className={"btn btn-warning"}> {activity.deadLineString}</button>
                                             </div>
                                             <div className={"col-md-3"}>

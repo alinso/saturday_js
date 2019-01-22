@@ -3,6 +3,7 @@ import security from "../../../security/Security";
 import {isMobile} from 'react-device-detect';
 import Lightbox from 'react-images';
 import UserUtil from "../../../util/UserUtil";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -31,7 +32,7 @@ class AlbumMobile extends React.Component {
     fillFields() {
         let self = this;
 
-        axios.get('http://localhost:8080/photo/album/' + this.props.match.params.id, security.authHeader())
+        axios.get(Globals.serviceUrl+'photo/album/' + this.props.match.params.id, security.authHeader())
             .then(function (response) {
                 self.setState({photoNames: response.data.photoNames});
                 self.setState({fullName: response.data.fullName});
@@ -72,7 +73,7 @@ class AlbumMobile extends React.Component {
             <div className="row outer">
                 <div className="col-md-8 m-x-auto container">
 
-                        <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
+                        <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitleMobile"}>
                             <i className="fas fa-camera-retro"/> {this.state.fullName}</a> Fotoğrafları</h5>
                     <hr/>
                     <div className="row">
@@ -97,7 +98,7 @@ class AlbumMobile extends React.Component {
                         }
                     </div>
                     {(this.props.match.params.id==localStorage.getItem("userId")) &&(
-                        <a className={"profileTitle"} href={"/myAlbum"}><i className="fas fa-edit"/>Albümü Düzenle</a>
+                        <a className={"profileTitleMobile"} href={"/myAlbum"}><i className="fas fa-edit"/>Albümü Düzenle</a>
                     )}
                     </div>
                 </div>

@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 import Security from "../../security/Security";
 import ProfilePic from "./ProfilePic";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -21,7 +22,7 @@ class UserHeader extends React.Component {
 
 
         const self = this;
-        axios.get('http://localhost:8080/notification/newNotifications/', Security.authHeader())
+        axios.get(Globals.serviceUrl+'notification/newNotifications/', Security.authHeader())
             .then(function (response) {
                 self.setState({notifications: response.data});
 

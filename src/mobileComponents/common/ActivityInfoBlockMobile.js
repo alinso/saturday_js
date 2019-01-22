@@ -9,7 +9,7 @@ class ActivityInfoBlockMobile extends React.Component {
 
     render() {
 
-            return(<div className={"activityListActivityDetail"}>
+            return(<div className={"activityListActivityDetailMobile"}>
                 {this.props.detail}
 
             {(this.props.photoName!=null) &&(

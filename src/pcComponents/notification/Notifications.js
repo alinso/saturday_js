@@ -2,6 +2,7 @@ import React from "react";
 import Security from "../../security/Security";
 import UserFullName from "../common/UserFullName";
 import ProfilePic from "../common/ProfilePic";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -25,7 +26,7 @@ class Notifications extends React.Component {
 
 
         const self = this;
-        axios.get('http://localhost:8080/notification/allNotifications/', Security.authHeader())
+        axios.get(Globals.serviceUrl+'notification/allNotifications/', Security.authHeader())
             .then(function (response) {
                 self.setState({notifications: response.data});
             })
@@ -33,7 +34,7 @@ class Notifications extends React.Component {
                 self.setState({"errors": error.response.data});
             });
 
-        axios.get('http://localhost:8080/notification/readExceptMessages', Security.authHeader());
+        axios.get(Globals.serviceUrl+'notification/readExceptMessages', Security.authHeader());
 
     }
 

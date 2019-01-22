@@ -7,6 +7,7 @@ import Alert from "../../common/Alert";
 import Select from 'react-select'
 import CityUtil from "../../../util/CityUtil";
 import {WithContext as ReactTags} from 'react-tag-input';
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 const KeyCodes = {
@@ -49,7 +50,7 @@ class UpdateInfo extends React.Component {
         console.log(this.props);
         let self = this;
 
-        axios.get('http://localhost:8080/user/myProfile/', security.authHeader())
+        axios.get(Globals.serviceUrl+'user/myProfile/', security.authHeader())
             .then(function (response) {
                 self.setState(response.data);
                 self.setState({"errors": {}});
@@ -64,7 +65,7 @@ class UpdateInfo extends React.Component {
 
 
         let self = this;
-        axios.get('http://localhost:8080/city/all/', security.authHeader())
+        axios.get(Globals.serviceUrl+'city/all/', security.authHeader())
             .then(function (response) {
                 let result = CityUtil.setCitiesForSelect(response.data);
                 self.setState({cities: result.cities});
@@ -76,7 +77,7 @@ class UpdateInfo extends React.Component {
 
     updateUser(newUser) {
         let self = this;
-        axios.post('http://localhost:8080/user/updateInfo', newUser, security.authHeader())
+        axios.post(Globals.serviceUrl+'user/updateInfo', newUser, security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Bilgileriniz Güncellendi"});

@@ -4,6 +4,7 @@ import Validator from "../../../util/Validator";
 import InputMask from "react-input-mask";
 import Alert from "../../common/Alert";
 import Security from "../../../security/Security";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -37,7 +38,7 @@ class Register extends React.Component {
     createUser(newUser) {
         console.log(newUser);
         let self = this;
-        axios.post('http://localhost:8080/user/register', newUser)
+        axios.post(Globals.serviceUrl+'user/register', newUser)
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"registrationCompletedMessage": "Mailinize aktivasyon linki gönderilmiştir, linke tıklayarak hesabınızı aktifleştirebilirsiniz"});
@@ -238,13 +239,13 @@ class Register extends React.Component {
                             )}
                         </div>
 
-                        <input
+                        <button
                             type="submit"
-                            value="Hesap Oluştur"
                             className="btn btn-success btn-block mt-4"
                             disabled={this.state.isSubmitDisabled}
-                        />
+                        ><i className="fas fa-sync-alt fa-spin" hidden={!this.state.isSubmitDisabled}> </i> Hesap Oluştur</button>
                     </form>
+
                     <br/>
                 </div>
             </div>

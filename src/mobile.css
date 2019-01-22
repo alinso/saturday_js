@@ -1,117 +1,55 @@
-html, body {
+
+.AppMobile {
     height: 100%;
-    margin: 0;
+    text-align: center;
     font-size: 0.9rem;
 }
 
-.App {
-    height: 100%;
-    text-align: center;
-}
-#root{
-    height: 100%;
-}
 
-.activityListActivityEditButtons{
- float: right;
-}
 
-.profilePicLarge{
-    object-fit: cover;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
-.profilePicSmall{
+.profilePicSmallMobile{
     object-fit: cover;
     width:50px;
     height: 50px;
     border-radius: 50%;
 }
 
-.profilePicXSmall{
-    object-fit: cover;
-    width:50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.conversationContainer{
-    background: #8db3f9;
-    margin-bottom: 10px;
-    padding: 5px;
-    border-radius: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-
-.notificationRow{
-    border-bottom: 2px solid #eaebf1;
-}
-.notificationText{
+.notificationTextMobile{
     padding-top: 0px;
     margin-left: 53px;
 }
-.profileMeta{
+.profileMetaMobile{
     width: 200px;
     margin-top: 25px;
     height: 100px;
 }
-.conversationText{
+.conversationTextMobile{
     background: #ffffff;
     padding: 10px;
     color: black;
     border-radius: 10px;
     width: 80%;
 }
-.conversationText:hover{
+.conversationTextMobile:hover{
     text-decoration: none;
 }
 
-.profilePicMedium{
-    object-fit: cover;
-    width:120px;
-    height: 120px;
-    border-radius: 50%;
-}
-
-.registerPic{
-    width:100% ;
-}
-.profileTitle{
+.profileTitleMobile{
     color:gray;
     font-size: 0.9rem;
     font-weight: bold;
 }
-.profileTitle:hover{
+.profileTitleMobile:hover{
     text-decoration: none;
     color:blue;
 }
-.my-interests{
+.my-interestsMobile{
     font-size: 13px;
     margin: 5px;
 }
 
-.uploadBrowseButton{
-    border: 1px dotted gray;
-    padding: 6px;
-    color: gray;
-}
-.meetingProcess{
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-left: 5px;
-}
 
-.uploadBrowseButton:hover{
-    border: 1px dotted gray;
-    padding: 6px;
-    color: gray;
-    background: #bbbbbb;
-}
-
-.hamburgerContainer{
+.hamburgerContainerMobile{
     overflow: hidden;
     background-color: #02a8af;
     position: fixed;
@@ -120,26 +58,24 @@ html, body {
     width: 50%;
     right: 0px;
 }
-.hamburgerMenuItem{
+.hamburgerMenuItemMobile{
     width: 100%;
     height: 30px;
     border-bottom: 1px solid white;
 }
-.displayNone{
-    display: none;
-}
 
-.hamburgerMenuItem a{
+
+.hamburgerMenuItemMobile a{
     color:white;
     font-weight: 600;
 }
-.hamburgerButton{
+.hamburgerButtonMobile{
     font-size: 2.2em;
     float: right;
     margin-right: 10px;
 }
 
-.navbar_mobile {
+.navbarMobile {
     overflow: hidden;
     background-color: #02a8af;
     position: fixed;
@@ -147,7 +83,7 @@ html, body {
     width: 100%;
 }
 
-.navbar_mobile a {
+.navbarMobile a {
     float: left;
     display: block;
     color: #f2f2f2;
@@ -157,101 +93,57 @@ html, body {
     font-size: 17px;
 }
 
-.navbar_mobile a:hover {
+.navbarMobile a:hover {
     background: #f1f1f1;
     color: black;
 }
 
-.navbar_mobile a.active {
+.navbarMobile a.active {
     background-color: #534269;
     color: white;
 }
 
 
-.menuIcon{
+.menuIconMobile{
     font-size: 25px;
 }
 
-.main {
-    padding: 16px;
-    margin-bottom: 30px;
-}
-.albumPhoto{
-    width: 90%;
-    object-fit: cover;
-    height: 200px;
-}
+/*.mainMobile {*/
+    /*padding: 16px;*/
+    /*margin-bottom: 30px;*/
+/*}*/
 
-.userFullName{
-    color: #563918;
-    text-decoration: none;
-}
-.userFullName:hover{
-    text-decoration: none;
-    color: #282c34
-}
 
-.reviewTypeActivity{
-    font-style: italic;
-    color: #504a4a;
-}
-
-.rdtStatic .rdtPicker
-{
-    width: 100%;
-}
-.newNotification{
-    background-color: #69ec76;
-}
-.clear-both{
-    clear: both;
-}
-.settingsTitles{
+.settingsTitlesMobile{
     float: left;
     width: 50%;
 }
-.profileActions{
-    padding: 5px;
-}
-.half-left{
-    float: left;
-    width: 48%;
-}
-.settingsTitles a{
+/*.profileActionsMobile{*/
+    /*padding: 5px;*/
+/*}*/
+
+.settingsTitlesMobile a{
     color: #7f868f;
     font-weight: 600;
     font-size: 1.1rem;
 }
 
-.activeTitle{
-    color:black;
-    font-weight: bold;
-    cursor: pointer;
-}
-.loginContainer{
+.loginContainerMobile{
     padding: 15px;
     height: 300px;
     opacity: 0.9;
 }
-.color-white{
-    color:white;
-}
-.btn-menuColor{
+
+.btn-menuColorMobile{
     background-color: #c1dfe0;
 }
-.registerContainer{
+.registerContainerMobile{
     background: #233a48;
     padding: 15px;
     height: 100vh;
 }
 
-.passiveTitle{
-    color:#a9a5a5;
-    font-weight: bold;
-    cursor: pointer;
-
-}
-.landing_parallax_text{
+.landing_parallax_textMobile{
     padding: 40px;
     background-color: #2b292a;
     color: white;
@@ -260,215 +152,51 @@ html, body {
     opacity: 0.7;
     text-align: center;
 }
-.landingBottom{
-    height: 200px;
-}
-.breakLine{
-    white-space: pre-line;
-}
-.howitworks1{
-    background: #e1dae8;
-    padding: 10px;
-}
-.howitworks2{
-    background-color: #c9ea64;
-    padding: 10px;
-}
-.landing_parallax {
-    /* The image used */
-    background-image: url("/img/landing_fixed_middle.jpg");
 
-    /* Set a specific height */
-    height: 250px;
 
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.activeTitle:hover, .passiveTitle:hover{
-    color: black;
-}
-
-.reviewTypeFriend{
-    font-style: italic;
-    color: gray;
-}
-.landingSlide{
+.landingSlideMobile{
     width: 100%;
     height: 385px;
     background-image: url(/img/landing_mobile_slide.png);
     background-size: cover;
 }
-.landingTitleCounter{
-    font-size: 2em;
-}
+/*.landingSlideTitleMobile{*/
+    /*color: #ffffff;*/
+    /*font-weight: 600;*/
+    /*border: 1px solid white;*/
+    /*padding: 3px;*/
+    /*width: 90%;*/
+    /*border-radius: 9px;*/
+/*}*/
+/*.landingSlideTextMobile{*/
+    /*color: #3d3530;*/
+    /*font-weight: 600;*/
+    /*padding: 9px;*/
+    /*border-bottom: 2px dotted gray;*/
 
-
-
-.landingSlideTitle{
-    color: #ffffff;
-    font-weight: 600;
-    border: 1px solid white;
-    padding: 3px;
-    width: 90%;
-    border-radius: 9px;
-}
-.full-width{
-    width: 100%;
-}
-.landingTitle{
-    margin-top: 25px;
-    color: #a68375;
-    font-weight: 600;
-}
-.landingSlideText{
-    color: #3d3530;
-    font-weight: 600;
-    padding: 9px;
-    border-bottom: 2px dotted gray;
-
-}
-.landingSlideTitleContainer{
-    padding-top: 5px;
-}
-.landingSlideTextContainer{
-    padding-top: 20px;
-}
-.landingLoginRegister{
+/*}*/
+/*.landingSlideTitleContainerMobile{*/
+    /*padding-top: 5px;*/
+/*}*/
+.landingLoginRegisterMobile{
     width: 90%;
 }
-.landingContainer{
+.landingContainerMobile{
     width: 100%;
     padding: 5px;
 }
-.landingText{
-    color: #646f7f;
-    font-weight: 600;
-}
-.landingIcons{
-    font-size: 2em;
-    color: #a68375;
-}
-.landingFeatures{
-    background: white;
-    padding-top: 25px;
-}
-.lightOnGreen{
-    color: #69ec76;
-}
 
-.outgoingMessageContainer{
-    width: 80%;
-    float: right;
-}
-.incomingMessageContainer{
-    width: 80%;
-    float: left;
-}
-.meetingDeadLine{
-    text-align: left;
-    padding-left: 40px;
-}
-.float-left{
-    float: left;
-}
-.float-right{
-    float: right;
-}
-.meetingFormPhoto{
-    width: 100%;
-    margin-bottom: 15px;
-    max-height: 400px;
-}
-.activityListActivityDetail{
+.activityListActivityDetailMobile{
     white-space: pre-line;
 }
-.activityListDetailContainer {
+.activityListDetailContainerMobile{
     width: 82%;
     margin-left: 5px;
 }
 
-.messageBox{
-    background: #f5f0e8;
-    padding: 10px;
-    border-radius: 5px;
-    height: 350px;
-    overflow-y: scroll;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-.incomingMessage, .outgoingMessage{
-    border-radius: 12px;
-    margin-bottom: 5px;
-}
 
-.messageDate{
-    color: gray;
-    float: right;
-    margin-right: -2px;
-    font-size: 14px;
-    margin-left: 5px;
-    margin-top: 8px;
-}
-.incomingMessage{
-    background: #b3b7e6;
-    padding: 9px 9px 3px;
-    float: left;
 
-}
-
-.outgoingMessage{
-    background: #85e847;
-    padding: 9px 9px 3px;
-    float:right ;
-
-}
-.footer{
-    padding-top: 10px;
-    height: 50px;
-}
-.profileContent{
-    padding-right: 20px;
-}
-
-.profileTitleDiv{
-    margin-left: 15px;
-    float: left;
-}
-.profileButton{
-    margin-bottom: 4px;
-    width: 90%;
-}
-.profileButtons{
-    margin-top: 10px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #eaebf1;
-    padding-bottom: 10px;
-}
-.meetingListPhoto{
-    width: 98%;
-    object-fit: cover;
-    max-height: 470px;
-}
-
-.container{
-    background: white;
-    padding-top: 15px;
-    padding-bottom: 50px;
-}
-
-.outer{
-    background: #eaebf1;
-    min-height: 100%;
-    width: 100%;
-    margin-bottom: -50px;
-
-}
-
-.loginOuter{
+.loginOuterMobile{
     background-image: url(/img/login_mobile.png);
     background-size: cover;
     min-height: 100%;
@@ -477,29 +205,9 @@ html, body {
     margin-bottom: -50px;
 
 }
-.text-align-left{
-    text-align: left;
-}
-
-.text-align-center{
-    text-align: center;
-}
 
 
-.negativeReview{
-    color:red;
-}
-
-.positiveReview{
-    color:blue;
-}
-
-
-.meetingListSingleMeetingContainer{
-    padding: 5px;
-    border-bottom: 2px solid #eaebf1;
-}
-.reviewBlock{
+.reviewBlockMobile{
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #c1c2ca;
@@ -509,36 +217,6 @@ html, body {
     margin-top: 5px;
 }
 
-.searchItemContainer{
-    margin-bottom: 5px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #d8c8c8;
-}
-.customRadioLabel{
+.customRadioLabelMobile{
     font-size: 1em;
-}
-.customRadio{
-    -webkit-appearance:button;
-    -moz-appearance:button;
-    appearance:button;
-    border:4px solid #ccc;
-    border-top-color:#bbb;
-    border-left-color:#bbb;
-    background:#fff;
-    width:25px;
-    height:25px;
-    border-radius:50%;
-}
-.customRadio:checked{
-    border:10px solid #4099ff;
-}
-
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
 }

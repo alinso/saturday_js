@@ -4,6 +4,7 @@ import Validator from "../../../util/Validator";
 import InputMask from "react-input-mask";
 import AlertMobile from "../../common/AlertMobile";
 import Security from "../../../security/Security";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -37,7 +38,7 @@ class RegisterMobile extends React.Component {
     createUser(newUser) {
         console.log(newUser);
         let self = this;
-        axios.post('http://localhost:8080/user/register', newUser)
+        axios.post(Globals.serviceUrl+'user/register', newUser)
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"registrationCompletedMessage": "Mailinize aktivasyon linki gönderilmiştir, linke tıklayarak hesabınızı aktifleştirebilirsiniz"});
@@ -85,7 +86,7 @@ class RegisterMobile extends React.Component {
         const {errors} = this.state;
         const show = {display: "inline"}
         return (
-            <div className="full-width registerContainer">
+            <div className="full-width registerContainerMobile">
                 <h6 className={"color-white"}>Activity Friend'e Katıl!</h6>
                 {registrationCompletedMessage && (
                     <AlertMobile type="alert-success" message={registrationCompletedMessage}/>
@@ -198,14 +199,14 @@ class RegisterMobile extends React.Component {
                         )}
                     </div>
                     <div className="form-group">
-                        <label className="customRadioLabel color-white">Erkek&nbsp;</label>
+                        <label className="customRadioLabelMobile color-white">Erkek&nbsp;</label>
                         <input type="radio"
                                name="gender"
                                value="MALE"
                                onChange={this.onChange}
                                className="customRadio"
                         />&nbsp;&nbsp;&nbsp;&nbsp;
-                        <label className="customRadioLabel color-white">Kadın&nbsp;</label>
+                        <label className="customRadioLabelMobile color-white">Kadın&nbsp;</label>
                         <input type="radio"
                                name="gender"
                                onChange={this.onChange}

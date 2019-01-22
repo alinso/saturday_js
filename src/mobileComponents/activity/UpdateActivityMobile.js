@@ -2,6 +2,7 @@ import React from "react";
 import Security from "../../security/Security";
 import BaseActivityFormMobile from "./Base/BaseActivityFormMobile";
 import CityUtil from "../../util/CityUtil";
+import Globals from "../../util/Globals";
 
 const moment=require("moment");
 const axios = require('axios');
@@ -18,7 +19,7 @@ class UpdateActivityMobile extends BaseActivityFormMobile {
 
     loadCities(){
         const self=this;
-        axios.get('http://localhost:8080/city/all/', Security.authHeader())
+        axios.get(Globals.serviceUrl+'city/all/', Security.authHeader())
             .then(function (response) {
                 let result =CityUtil.setCitiesForSelect(response.data);
                 self.setState({cities:result.cities});
@@ -31,7 +32,7 @@ class UpdateActivityMobile extends BaseActivityFormMobile {
     fillPage() {
         const self = this;
 
-        axios.get('http://localhost:8080/activity/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
                 self.setState({deadLineString: response.data.deadLineString});
@@ -55,7 +56,7 @@ class UpdateActivityMobile extends BaseActivityFormMobile {
     updateActivity(meeting) {
         console.log(meeting);
         let self = this;
-        axios.post('http://localhost:8080/activity/update', meeting, Security.authHeader())
+        axios.post(Globals.serviceUrl+'activity/update', meeting, Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Kaydedildi, iyi eğlenceler :)"});

@@ -1,6 +1,7 @@
 import React from "react";
 import security from "../../../security/Security";
 import Lightbox from 'react-images';
+import Globals from "../../../util/Globals";
 
 
 const axios = require('axios');
@@ -33,7 +34,7 @@ class MyAlbum extends React.Component {
         let self = this;
         let userId = localStorage.getItem("userId");
 
-        axios.get('http://localhost:8080/photo/album/' + userId, security.authHeader())
+        axios.get(Globals.serviceUrl+'photo/album/' + userId, security.authHeader())
             .then(function (response) {
                 self.setState({photoNames: response.data.photoNames});
             })
@@ -62,7 +63,7 @@ class MyAlbum extends React.Component {
             }
         }
 
-        axios.post("http://localhost:8080/photo/upload", data, security.authHeader(), {
+        axios.post(Globals.serviceUrl+"photo/upload", data, security.authHeader(), {
             onUploadProgress: ProgressEvent => {
                 this.setState({
                     loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
@@ -83,7 +84,7 @@ class MyAlbum extends React.Component {
         if (!window.confirm("Bu fotoğrafı kalıcı olarak silmek istiiyor musunuz?"))
             return;
 
-        axios.post("http://localhost:8080/photo/delete", {"fileName": photoName}, security.authHeader())
+        axios.post(Globals.serviceUrl+"photo/delete", {"fileName": photoName}, security.authHeader())
             .then(res => {
 
                 let photoNames = self.state.photoNames;

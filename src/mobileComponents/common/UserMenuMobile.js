@@ -1,6 +1,7 @@
 import React from "react";
 import Security from "../../security/Security";
 import {withRouter} from 'react-router-dom';
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -54,7 +55,7 @@ class UserMenuMobile extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/notification/newNotifications/', Security.authHeader())
+        axios.get(Globals.serviceUrl+'notification/newNotifications/', Security.authHeader())
             .then(function (response) {
                 self.setState({notifications: response.data});
                 response.data.map(function (not) {
@@ -75,15 +76,10 @@ class UserMenuMobile extends React.Component {
 
 
     render() {
-        let messageLinkProps = {title: "Mesajlar", class: "fas fa-2x fa-envelope"};
-        let notificationLinkProps = {title: "Bildirimler", class: "fa fa-2x fa-bell"};
-
-        if (this.state.messageNotification === true) {
-            messageLinkProps = {title: "Yeni Mesaj", class: "fas fa-2x fa-envelope lightOnGreen"};
-        }
+        let notificationLinkProps = {title: "Bildirimler", class: "fa fa-bell"};
 
         if (this.state.notification === true) {
-            notificationLinkProps = {title: "Yeni Bildirim!", class: "fas fa-2x fa-bell lightOnGreen"};
+            notificationLinkProps = {title: "Yeni Bildirim!", class: "fas fa-bell lightOnGreen"};
         }
 
 
@@ -92,36 +88,36 @@ class UserMenuMobile extends React.Component {
         const {createActive}  =this.state;
         const {notActive}  =this.state;
         return (<div>
-                <div className={this.state.hamburgerOpen ? "hamburgerContainer" : "displayNone"}>
-                    <div className={"hamburgerMenuItem"}>
+                <div className={this.state.hamburgerOpen ? "hamburgerContainerMobile" : "displayNone"}>
+                    <div className={"hamburgerMenuItemMobile"}>
                         <a href={"/profile/"+localStorage.getItem("userId")}>Profilim</a>
                     </div>
-                    <div className={"hamburgerMenuItem"}>
+                    <div className={"hamburgerMenuItemMobile"}>
                         <a href={"/conversations"}>Mesajlar</a>
                     </div>
 
-                    <div className={"hamburgerMenuItem"}>
-                        <a href={"/"}>Profilim</a>
+                    <div className={"hamburgerMenuItemMobile"}>
+                        <a href={"/searchUser"}>Kullanıcı Ara</a>
                     </div>
-                    <div className={"hamburgerMenuItem"}>
+                    <div className={"hamburgerMenuItemMobile"}>
                         <a href={"/logout"}>Çıkış</a>
                     </div>
 
                 </div>
-                <div className="navbar_mobile">
+                <div className="navbarMobile">
                     <a href="/" className={seedActive ? "active" :""}>
-                        <span className={"menuIcon"}> <i className="fas fa-globe-americas"/></span>
-                        <span className={"menuTitle"} hidden={!seedActive}> Ana Sayfa</span>
+                        <span className={"menuIconMobile"}> <i className="fas fa-globe-americas"/></span>
+                        <span className={"menuTitle"} hidden={!seedActive}> Akış</span>
                     </a>
                     <a href="/createActivity"  className={createActive ? "active" :""}>
-                        <span className={"menuIcon"}> <i className="fas fa-glass-cheers"/></span>
-                        <span className={"menuTitle"} hidden={!createActive}> + Aktivite</span>
+                        <span className={"menuIconMobile"}> <i className="fas fa-glass-cheers"/></span>
+                        <span className={"menuTitle"} hidden={!createActive}>Aktivite</span>
                     </a>
                     <a href="/notifications"  className={notActive ? "active" :""}>
-                        <span className={"menuIcon"}> <i className="far fa-bell"/></span>
+                        <span className={"menuIconMobile"}> <i title={notificationLinkProps.title} className={notificationLinkProps.class}/></span>
                         <span className={"menuTitle"} hidden={!notActive}> Bildirimler</span>
                     </a>
-                    <span className={"hamburgerButton"} onClick={this.hamburgerToggle}>
+                    <span className={"hamburgerButtonMobile"} onClick={this.hamburgerToggle}>
                         {!this.state.hamburgerOpen && (<i className="fas fa-bars"/>)}
                         {this.state.hamburgerOpen && (<i className="fas fa-times"/>)}
                     </span>

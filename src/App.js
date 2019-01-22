@@ -65,17 +65,10 @@ import ReviewsMobile from "./mobileComponents/review/ReviewsMobile";
 import ReviewDetailMobile from "./mobileComponents/review/ReviewDetailMobile";
 import NotificationsMobile from "./mobileComponents/notification/NotificationsMobile";
 import UserMenuMobile from "./mobileComponents/common/UserMenuMobile";
-import GuestMenuMobile from "./mobileComponents/common/GuestMenuMobile";
 
 const isMobile = require('is-mobile');
-
-if(!isMobile()) {
-require('./pc.css');
-}
-if(isMobile()) {
-    require('./mobile.css');
-}
-
+require("./pc.css");
+require("./mobile.css")
 
 class App extends Component {
 
@@ -167,7 +160,7 @@ class App extends Component {
         if(isMobile())
             return (
                 <Router>
-                    <div className="App">
+                    <div className="AppMobile">
                         {/*non authenticated*/}
                         {!security.isValidToken() && <Route exact path="/" component={LandingMobile}/>}
                         {security.isValidToken() && <Route exact path="/" component={DashboardMobile}/>}

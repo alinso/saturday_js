@@ -3,6 +3,7 @@ import Security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
 import ProfilePicMobile from "../../common/ProfilePicMobile";
 import UserFullNameMobile from "../../common/UserFullNameMobile";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 const isMobile = require('is-mobile');
@@ -36,7 +37,7 @@ class ProfileMobile extends React.Component {
         let self = this;
         let userId = this.props.match.params.id;
 
-        axios.get('http://localhost:8080/user/profile/' + userId)
+        axios.get(Globals.serviceUrl+'user/profile/' + userId)
             .then(function (response) {
                 self.setState(response.data);
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
@@ -54,19 +55,19 @@ class ProfileMobile extends React.Component {
 
 
         if (Security.isValidToken())
-            axios.get('http://localhost:8080/review/isReviewedBefore/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl+'review/isReviewedBefore/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isReviewedBefore": response.data});
                 });
 
 
         if (Security.isValidToken())
-            axios.get('http://localhost:8080/follow/isFollowing/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl+'follow/isFollowing/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isFollowing": response.data});
                 });
         if (Security.isValidToken())
-            axios.get('http://localhost:8080/block/isBlocked/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl+'block/isBlocked/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isBlocked": response.data});
                 });
@@ -75,7 +76,7 @@ class ProfileMobile extends React.Component {
 
     follow() {
         const self = this;
-        axios.get('http://localhost:8080/follow/follow/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'follow/follow/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({"isFollowing": response.data});
             })
@@ -88,7 +89,7 @@ class ProfileMobile extends React.Component {
         const self = this;
         if (!this.state.isBlocked) {
             if (window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
-                axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl+'block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"isBlocked": response.data});
                         window.location = "/";
@@ -97,7 +98,7 @@ class ProfileMobile extends React.Component {
 
         if (this.state.isBlocked) {
             if (window.confirm("Bu kişinin engelini kaldırmak istediğinizden emin misiniz?"))
-                axios.get('http://localhost:8080/block/block/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl+'block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"isBlocked": response.data});
                     });
@@ -109,7 +110,8 @@ class ProfileMobile extends React.Component {
         if (this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <a href={"/message/" + this.props.match.params.id} className={"full-width"}>
-                    <button className={"btn btn-menuColor profileButton"}><strong><i className="far fa-comment"/></strong>Mesaj
+                    <button className={"btn btn-menuColorMobile profileButton"}><strong><i
+                        className="far fa-comment"/></strong>Mesaj
                     </button>
                 </a>)
         }
@@ -119,7 +121,7 @@ class ProfileMobile extends React.Component {
         if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <a href={"/reviewForm/" + this.props.match.params.id} className={"full-width"}>
-                    <button className={"btn btn-menuColor profileButton"}><strong><i className="far fa-edit"/></strong>Yorum
+                    <button className={"btn btn-menuColorMobile profileButton"}><strong><i className="far fa-edit"/></strong>Yorum
                         Yaz
                     </button>
                 </a>
@@ -132,9 +134,9 @@ class ProfileMobile extends React.Component {
         if (this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <div className={"full-width"}>
-                    <button onClick={this.follow} className={"btn btn-menuColor profileButton "}><strong>
+                    <button onClick={this.follow} className={"btn btn-menuColorMobile profileButton "}><strong>
                         <i className="far fa-bell-slash"/>
-                    </strong>Listeden Çıkar
+                    </strong>Listemden Çıkar
                     </button>
                 </div>
             )
@@ -142,9 +144,9 @@ class ProfileMobile extends React.Component {
 
         if (!this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (<div className={"full-width"}>
-                    <button onClick={this.follow} className={"btn btn-menuColor profileButton"}><strong><i
+                    <button onClick={this.follow} className={"btn btn-menuColorMobile profileButton"}><strong><i
                         className="far fa-bell"/></strong>
-                        Listeye Ekle
+                        Listeme Ekle
                     </button>
                 </div>
             )
@@ -157,7 +159,7 @@ class ProfileMobile extends React.Component {
             return (
                 <div className={"full-width"}>
                     <button onClick={this.block}
-                            className={"btn btn-menuColor profileButton"}><strong><i className="fas fa-ban"/></strong>Engelle
+                            className={"btn btn-menuColorMobile profileButton"}><strong><i className="fas fa-ban"/></strong>Engelle
                     </button>
                 </div>
             )
@@ -166,7 +168,7 @@ class ProfileMobile extends React.Component {
             return (
                 <div className={"full-width"}>
                     <button onClick={this.block}
-                            className={"btn btn-menuColor profileButton"}><strong><i className="fas fa-ban"/></strong>Engeli
+                            className={"btn btn-menuColorMobile profileButton"}><strong><i className="fas fa-ban"/></strong>Engeli
                         Kaldır
                     </button>
                 </div>
@@ -183,11 +185,19 @@ class ProfileMobile extends React.Component {
             <div className="full-width container">
                 <div className={"full-width"}>
 
-                    <a href={"/updateProfilePic/"} className={"float-left"}>
-                        <img className={"profilePicMedium"}
+                    {(localStorage.getItem("userId") === this.props.match.params.id) && (
+                        <a href={"/updateProfilePic/"} className={"float-left"}>
+                            <img className={"profilePicMedium"}
+                                 src={UserUtil.buildProfilePicUrl(this.state.profilePicName)}/>
+                        </a>
+                    )}
+
+                    {(localStorage.getItem("userId") !== this.props.match.params.id) && (
+                        <img className={"profilePicMedium float-left"}
                              src={UserUtil.buildProfilePicUrl(this.state.profilePicName)}/>
-                    </a>
-                    <div className={"float-left profileMeta"}>
+                    )}
+
+                    <div className={"float-left profileMetaMobile"}>
                         <UserFullNameMobile
                             name={this.state.name}
                             surname={this.state.surname}
@@ -217,13 +227,13 @@ class ProfileMobile extends React.Component {
                 </div>
                 {(this.props.match.params.id === localStorage.getItem("userId")) &&
                 (<div className={"full-width"}>
-                        <div className={"text-align-left settingsTitles"}>
+                        <div className={"text-align-left settingsTitlesMobile"}>
                             <a href="/myAlbum/"><i className="fas fa-images"/> Albüm</a><br/>
                             <a href="/updateInfo/"><i className="fas fa-info-circle"/>Bilgilerim</a><br/>
                             <a href="/updatePassword/"><i className="fas fa-key"/> Şifre</a><br/>
                         </div>
 
-                        <div className={"text-align-left settingsTitles"}>
+                        <div className={"text-align-left settingsTitlesMobile"}>
                             <a href="/referenceCodes/"><i className="fas fa-check"/> Referanslar</a><br/>
                             <a href="/followings/"><i className="fas fa-bell"/> Bildirim</a><br/>
                             <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a>
@@ -233,19 +243,19 @@ class ProfileMobile extends React.Component {
                     </div>
                 )}
                 <br/>
-                <div className={"profileTitleContainer full-width"}>
-                    <div className="profileTitleDiv">
-                        <a className="profileTitle" href={"/album/" + this.props.match.params.id}>
+                <div className={"profileTitleMobileContainer full-width"}>
+                    <div className="profileTitleMobileDiv">
+                        <a className="profileTitleMobile" href={"/album/" + this.props.match.params.id}>
                             Fotoğraflar({this.state.photoCount})
                         </a>
                     </div>
-                    <div className="profileTitleDiv">
-                        <a className="profileTitle" href={"/reviews/" + this.props.match.params.id}>
+                    <div className="profileTitleMobileDiv">
+                        <a className="profileTitleMobile" href={"/reviews/" + this.props.match.params.id}>
                             Yorumlar ({this.state.reviewCount})
                         </a>
                     </div>
-                    <div className="profileTitleDiv">
-                        <a className="profileTitle"
+                    <div className="profileTitleMobileDiv">
+                        <a className="profileTitleMobile"
                            href={"/userActivities/" + this.props.match.params.id}>
                             Buluşmalar({this.state.activityCount})
                         </a>
@@ -260,7 +270,7 @@ class ProfileMobile extends React.Component {
                         {
                             this.state.interestsArray.map(function (interest) {
                                 return (<span
-                                        className="badge badge-pill badge-success my-interests">{interest}</span>
+                                        className="badge badge-pill badge-success my-interestsMobile">{interest}</span>
                                 )
                             })
                         }

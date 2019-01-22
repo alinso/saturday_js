@@ -2,6 +2,7 @@ import React from "react";
 import UserUtil from "../../../util/UserUtil";
 import ProfilePic from "../../common/ProfilePic";
 import UserFullName from "../../common/UserFullName";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -27,7 +28,7 @@ class SearchUser extends React.Component {
     searchUser(searchTerm) {
         let self = this;
 
-        axios.get('http://localhost:8080/user/search/' + searchTerm)
+        axios.get(Globals.serviceUrl+'user/search/' + searchTerm)
             .then(function (response) {
                 if (response.data.length === 0)
                     self.setState({"userNotFoundMessage": "Kullanıcı Bulunamadı"});

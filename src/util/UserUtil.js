@@ -1,4 +1,5 @@
 import Security from "../security/Security";
+import Globals from "./Globals";
 const axios = require('axios');
 
 class UserUtil{
@@ -18,7 +19,7 @@ class UserUtil{
     }
 
     static redirectIsBlocked(id){
-        axios.get('http://localhost:8080/block/isBlocked/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'block/isBlocked/' + id, Security.authHeader())
             .then(function (response) {
                 if(response.data)
                     window.location="/profile/"+id;

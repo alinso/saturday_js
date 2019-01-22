@@ -8,7 +8,7 @@ class BackToProfileMobile extends React.Component {
 
     render() {
         return (
-            <div className={"full-width"}><a className={"profileTitle"} href={"/profile/"+localStorage.getItem("userId")}>
+            <div className={"full-width"}><a className={"profileTitleMobile"} href={"/profile/"+localStorage.getItem("userId")}>
                 <i className="fas fa-reply"/> Profile Dön
             </a>
             <hr/>

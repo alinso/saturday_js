@@ -6,6 +6,7 @@ import UserUtil from "../../util/UserUtil";
 import JSUtil from "../../util/JSUtil";
 import Alert from "../common/Alert";
 import ActivityEditButtons from "../common/ActivityEditButtons";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -31,7 +32,7 @@ class ActivityRequests extends React.Component {
     fillPage() {
         const self = this;
 
-        axios.get('http://localhost:8080/activity/activityWithRequests/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/activityWithRequests/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
                 self.setState({photoName: response.data.photoName});
@@ -53,7 +54,7 @@ class ActivityRequests extends React.Component {
         if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
             return;
 
-        axios.get("http://localhost:8080/activity/delete/" + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+"activity/delete/" + id, Security.authHeader())
             .then(res => {
                 window.location="/profile/"+localStorage.getItem("userId");
             });
@@ -61,7 +62,7 @@ class ActivityRequests extends React.Component {
 
     toggleApprove(id) {
         const self = this;
-        axios.get('http://localhost:8080/request/approveRequest/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'request/approveRequest/' + id, Security.authHeader())
             .then(function (response) {
                 let requests = self.state.requests;
                 let currentRequestOld = requests.filter(obj => {

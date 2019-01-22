@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import security from "../../../security/Security";
 import Alert from "../../common/Alert";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -30,7 +31,7 @@ class UpdatePassword extends React.Component {
         let self = this;
 
 
-        axios.post('http://localhost:8080/user/updatePassword', changePasswordDto, security.authHeader())
+        axios.post(Globals.serviceUrl+'user/updatePassword', changePasswordDto, security.authHeader())
             .then(function (response) {
                 console.log(response);
                 self.setState({"passwordUpdatedMessage":"Şifreniz Güncellendi"});

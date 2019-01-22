@@ -2,6 +2,8 @@ import React from "react";
 import security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
 import SinglePhotoSelectorMobile from "../../common/SinglePhotoSelectorMobile";
+import BackToProfileMobile from "../../common/BackToProfileMobile";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -28,7 +30,7 @@ class UpdateProfilePicMobile extends React.Component {
         let self = this;
         let userId = localStorage.getItem("userId");
 
-        axios.get('http://localhost:8080/user/myProfile/', security.authHeader())
+        axios.get(Globals.serviceUrl+'user/myProfile/', security.authHeader())
             .then(function (response) {
                 console.log(response);
                 self.setState({"profilePicUrl": UserUtil.buildProfilePicUrl(response.data.profilePicName)});
@@ -50,14 +52,14 @@ class UpdateProfilePicMobile extends React.Component {
 
     handleUpload = () => {
         const data = new FormData();
-        if(this.state.selectedFile==null){
-            this.setState({"errors":{file:"Fotoğraf dosyası seçmelisin"}});
+        if (this.state.selectedFile == null) {
+            this.setState({"errors": {file: "Fotoğraf dosyası seçmelisin"}});
             return;
         }
         data.append('file', this.state.selectedFile, this.state.selectedFile.name);
         const self = this;
         axios
-            .post("http://localhost:8080/user/updateProfilePic", data, security.authHeader(), {
+            .post(Globals.serviceUrl+"user/updateProfilePic", data, security.authHeader(), {
                 onUploadProgress: ProgressEvent => {
                     this.setState({
                         loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),
@@ -81,21 +83,19 @@ class UpdateProfilePicMobile extends React.Component {
         const {isFileSelected} = this.state;
 
         return (
-            <div className="row outer">
-                <div className="col-md-6 m-x-auto container">
+            <div className="full-width container">
+                <BackToProfileMobile/>
+                <h5>Profil Fotoğrafını Güncelle</h5>
+                <img className="profilePicLarge" src={this.state.profilePicUrl}/>
+                <br/>
+                <SinglePhotoSelectorMobile
+                    onChange={this.handleSelectedFile}
+                    isFileSelected={isFileSelected}
+                    error={errors.file}
+                />
 
-                    <h3>Profil Fotoğrafını Güncelle</h3>
-                    <img className="profilePicLarge" src={this.state.profilePicUrl}/>
-                    <br/>
-                    <SinglePhotoSelectorMobile
-                        onChange={this.handleSelectedFile}
-                        isFileSelected={isFileSelected}
-                        error={errors.file}
-                    />
-
-                    <div>
-                        <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafı Yükle</button>
-                    </div>
+                <div>
+                    <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafı Yükle</button>
                 </div>
             </div>
         )

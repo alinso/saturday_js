@@ -4,6 +4,7 @@ import classnames from "classnames";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
 import UserUtil from "../../util/UserUtil";
+import Globals from "../../util/Globals";
 const axios = require('axios');
 
 
@@ -54,7 +55,7 @@ class ReviewForm extends React.Component {
     saveReference(referenceDto) {
 
         const self = this;
-        axios.post('http://localhost:8080/review/writeReview/', referenceDto, Security.authHeader())
+        axios.post(Globals.serviceUrl+'review/writeReview/', referenceDto, Security.authHeader())
             .then(function (response) {
                 self.setState({saved: true});
             })
@@ -68,7 +69,7 @@ class ReviewForm extends React.Component {
         let self = this;
 
         //get the reader user
-        axios.get('http://localhost:8080/user/profile/' + this.props.match.params.id)
+        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id)
             .then(function (response) {
 
                 self.setState({profileDto: response.data});
@@ -81,7 +82,7 @@ class ReviewForm extends React.Component {
 
 
 
-        axios.get('http://localhost:8080/review/haveIMeetThisUserRecently/' + this.props.match.params.id,Security.authHeader())
+        axios.get(Globals.serviceUrl+'review/haveIMeetThisUserRecently/' + this.props.match.params.id,Security.authHeader())
             .then(function (response) {
 
                 //we have met

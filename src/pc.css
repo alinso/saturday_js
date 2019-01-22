@@ -11,25 +11,7 @@ html, body {
 #root{
     height: 100%;
 }
-/*.App-logo {*/
-  /*animation: App-logo-spin infinite 20s linear;*/
-  /*height: 40vmin;*/
-/*}*/
 
-/*.App-header {*/
-  /*background-color: #282c34;*/
-  /*min-height: 100vh;*/
-  /*display: flex;*/
-  /*flex-direction: column;*/
-  /*align-items: center;*/
-  /*justify-content: center;*/
-  /*font-size: calc(10px + 2vmin);*/
-  /*color: white;*/
-/*}*/
-
-/*.App-link {*/
-  /*color: #61dafb;*/
-/*}*/
 
 .profilePicLarge{
   object-fit: cover;
@@ -71,7 +53,9 @@ html, body {
 .conversationText:hover{
     text-decoration: none;
 }
-
+.displayNone{
+    display: none;
+}
 .profilePicMedium{
     object-fit: cover;
     width:120px;
@@ -120,7 +104,9 @@ html, body {
     color: gray;
     background: #bbbbbb;
 }
-
+.clear-both{
+    clear: both;
+}
 .nav-link a{
   color: white;
 }
@@ -245,8 +231,9 @@ height: 200px;
 .landingTitleCounter{
     font-size: 2em;
 }
-
-
+.full-width{
+    width: 100%;
+}
 
 .landingSlideTitle{
     color: #51456c;
@@ -257,9 +244,7 @@ height: 200px;
     border-radius: 9px;
 
 }
-.imgFullWidth{
-    width: 100%;
-}
+
 .landingTitle{
     margin-top: 25px;
     color: #a68375;
@@ -297,7 +282,7 @@ height: 200px;
     padding-top: 25px;
 }
 .lightOnGreen{
-    color: #69ec76;
+    color: #eff70a;
 }
 .bg-menu{
     background: linear-gradient(45deg,#00c4cc,#534269);
@@ -343,7 +328,6 @@ height: 200px;
   border-radius: 5px;
   height: 350px;
   overflow-y: scroll;
-  border-radius: 5px;
   margin-bottom: 10px;
 }
 .incomingMessage, .outgoingMessage{
@@ -394,6 +378,11 @@ margin-bottom: 4px;
     border-bottom: 2px solid #eaebf1;
     padding-bottom: 10px;
 }
+.half-left{
+    float: left;
+    width: 48%;
+}
+
 .meetingListPhoto{
   width: 98%;
   object-fit: cover;
@@ -476,14 +465,4 @@ margin-bottom: 4px;
 }
 .customRadio:checked{
   border:10px solid #4099ff;
-}
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

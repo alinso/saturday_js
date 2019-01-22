@@ -2,6 +2,7 @@ import React from "react";
 import security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
 import SinglePhotoSelector from "../../common/SinglePhotoSelector";
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -28,7 +29,7 @@ class UpdateProfilePic extends React.Component {
         let self = this;
         let userId = localStorage.getItem("userId");
 
-        axios.get('http://localhost:8080/user/myProfile/', security.authHeader())
+        axios.get(Globals.serviceUrl+'user/myProfile/', security.authHeader())
             .then(function (response) {
                 console.log(response);
                 self.setState({"profilePicUrl": UserUtil.buildProfilePicUrl(response.data.profilePicName)});
@@ -57,7 +58,7 @@ class UpdateProfilePic extends React.Component {
         data.append('file', this.state.selectedFile, this.state.selectedFile.name);
         const self = this;
         axios
-            .post("http://localhost:8080/user/updateProfilePic", data, security.authHeader(), {
+            .post(Globals.serviceUrl+"user/updateProfilePic", data, security.authHeader(), {
                 onUploadProgress: ProgressEvent => {
                     this.setState({
                         loaded: (ProgressEvent.loaded / ProgressEvent.total * 100),

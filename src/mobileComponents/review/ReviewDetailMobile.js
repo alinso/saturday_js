@@ -5,6 +5,7 @@ import UserFullNameMobile from "../common/UserFullNameMobile";
 import ActivityInfoBlockMobile from "../common/ActivityInfoBlockMobile";
 import ActivityRequestButtonsMobile from "../common/ActivityRequestButtonsMobile";
 import BackToProfileMobile from "../common/BackToProfileMobile";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -24,7 +25,7 @@ class ReviewDetailMobile extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/review/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'review/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({review: response.data});
             })
@@ -48,10 +49,10 @@ class ReviewDetailMobile extends React.Component {
                             <ProfilePicMobile
                                 userId={review.writer.id}
                                 profilePicName={review.writer.profilePicName}
-                                cssClass={"profilePicSmall"}
+                                cssClass={"profilePicSmallMobile"}
                             />
                         </div>
-                        <div className={"float-left reviewBlock"}>
+                        <div className={"float-left reviewBlockMobile"}>
                             <UserFullNameMobile
                                 name={review.writer.name}
                                 userId={review.writer.id}

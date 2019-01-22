@@ -3,6 +3,7 @@ import Security from "../../../security/Security";
 import ProfilePic from "../../common/ProfilePic";
 import UserFullName from "../../common/UserFullName";
 import JSUtil from "../../../util/JSUtil";
+import Globals from "../../../util/Globals";
 const axios = require('axios');
 
 
@@ -21,7 +22,7 @@ class Blocks extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/block/myBlocks', Security.authHeader())
+        axios.get(Globals.serviceUrl+'block/myBlocks', Security.authHeader())
             .then(function (response) {
                 self.setState({blocks: response.data});
             })
@@ -35,7 +36,7 @@ class Blocks extends React.Component {
         const self  =this;
 
         if(window.confirm(" Engellediğiniz, "+name+" üzerindeki engeli kaldıracaksınız, emin misiniz?"))
-            axios.get('http://localhost:8080/block/block/' + id, Security.authHeader())
+            axios.get(Globals.serviceUrl+'block/block/' + id, Security.authHeader())
                 .then(function (response) {
 
                     let blocks = self.state.blocks;

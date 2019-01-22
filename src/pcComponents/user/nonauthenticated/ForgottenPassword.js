@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import Alert from '../../common/Alert';
+import Globals from "../../../util/Globals";
 
 const axios = require('axios');
 
@@ -25,7 +26,7 @@ class ForgottenPassword extends React.Component {
     sendResetPasswordLinkMail(mail) {
         let self = this;
 
-        axios.get('http://localhost:8080/user/forgottenPassword/' + mail)
+        axios.get(Globals.serviceUrl+'user/forgottenPassword/' + mail)
             .then(function (response) {
                 console.log(response);
                 self.setState({"mailSentMessage": "Şifre Güncelleme Linki Gönderildi"});

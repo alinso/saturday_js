@@ -5,6 +5,7 @@ import ProfilePicMobile from "../common/ProfilePicMobile";
 import UserFullNameMobile from "../common/UserFullNameMobile";
 import MessageBoxMobile from "./DisplayMessagesMobile";
 import UserUtil from "../../util/UserUtil";
+import Globals from "../../util/Globals";
 
 const axios = require('axios');
 
@@ -49,7 +50,7 @@ class MessagePageMobile extends React.Component {
     sendMessage(messageDto) {
 
         const self = this;
-        axios.post('http://localhost:8080/message/send/', messageDto, Security.authHeader())
+        axios.post(Globals.serviceUrl+'message/send/', messageDto, Security.authHeader())
             .then(function (response) {
                 let messages = self.state.messages;
                 let newMessage = response.data;
@@ -68,7 +69,7 @@ class MessagePageMobile extends React.Component {
         let self = this;
 
         //get the reader user
-        axios.get('http://localhost:8080/user/profile/' + this.props.match.params.id)
+        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id)
             .then(function (response) {
                 self.setState({readerProfile: response.data});
             })
@@ -79,7 +80,7 @@ class MessagePageMobile extends React.Component {
 
 
         //get messages
-        axios.get('http://localhost:8080/message/getMessagesForReader/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'message/getMessagesForReader/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({messages: response.data});
             })
@@ -97,7 +98,7 @@ class MessagePageMobile extends React.Component {
                 <ProfilePicMobile
                     userId={this.props.match.params.id}
                     profilePicName={this.state.readerProfile.profilePicName}
-                    cssClass={"profilePicSmall"} />
+                    cssClass={"profilePicSmallMobile"} />
                 &nbsp;
                 <UserFullNameMobile
                     name={this.state.readerProfile.name}

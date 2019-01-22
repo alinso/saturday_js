@@ -3,6 +3,7 @@ import Security from "../../../security/Security";
 import ProfilePic from "../../common/ProfilePic";
 import UserFullName from "../../common/UserFullName";
 import JSUtil from "../../../util/JSUtil";
+import Globals from "../../../util/Globals";
 const axios = require('axios');
 
 
@@ -21,7 +22,7 @@ class Followings extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get('http://localhost:8080/follow/myFollowings', Security.authHeader())
+        axios.get(Globals.serviceUrl+'follow/myFollowings', Security.authHeader())
             .then(function (response) {
                 self.setState({followings: response.data});
             })
@@ -35,7 +36,7 @@ class Followings extends React.Component {
         const self  =this;
 
         if(window.confirm("Artık "+name+" ile ilgili bildirim almayacaksınız, emin misiniz?"))
-        axios.get('http://localhost:8080/follow/follow/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'follow/follow/' + id, Security.authHeader())
             .then(function (response) {
 
                 let followings = self.state.followings;

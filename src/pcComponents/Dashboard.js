@@ -8,6 +8,8 @@ import ActivityRequestButtons from "./common/ActivityRequestButtons";
 import ActivityInfoBlock from "./common/ActivityInfoBlock";
 import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
+import Globals from "../util/Globals";
+import AlertMobile from "../mobileComponents/common/AlertMobile";
 
 const axios = require('axios');
 let self;
@@ -31,7 +33,7 @@ class Dashboard extends BaseActivityList {
     fillPage(cityId) {
         const self = this;
 
-        axios.get('http://localhost:8080/activity/findAllByCityId/' + cityId, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/findAllByCityId/' + cityId, Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
             })
@@ -43,7 +45,7 @@ class Dashboard extends BaseActivityList {
 
     loadCities() {
         const self = this;
-        axios.get('http://localhost:8080/city/all/', Security.authHeader())
+        axios.get(Globals.serviceUrl+'city/all/', Security.authHeader())
             .then(function (response) {
                 let result = CityUtil.setCitiesForSelect(response.data);
                 self.setState({cities: result.cities});
@@ -70,6 +72,12 @@ class Dashboard extends BaseActivityList {
                             <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                         <hr/>
                     </div>
+                    {(localStorage.getItem("cityId") === "null") &&
+                    (<AlertMobile
+                    type={"alert-warning"}
+                    message={"Varsayılan şehrin için Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
+                    />)
+                    }
                     {
                         self.state.activities.map(function (activity, i) {
                             return (
@@ -94,7 +102,7 @@ class Dashboard extends BaseActivityList {
                                             detail={activity.detail}
                                         />
                                         <div className={"row"}>
-                                            <div className={"col-md-8 meetingDeadLine"}>
+                                            <div className={"col-md-6 meetingDeadLine"}>
                                                 <i className="far fa-clock">{activity.deadLineString}</i>
                                             </div>
                                             <div className={"col-md-4"}>
