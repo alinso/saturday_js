@@ -109,7 +109,7 @@ class Dashboard extends BaseActivityList {
                                                 <ActivityEditButtons
                                                     activityId={activity.id}
                                                     userId={activity.profileDto.id}
-                                                    deleteMeeting={() => self.deleteActivity(activity.id)}
+                                                    deleteActivity={() => self.deleteActivity(activity.id)}
                                                 />
                                                 <ActivityRequestButtons
                                                     userId={activity.profileDto.id}

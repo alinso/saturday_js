@@ -59,9 +59,6 @@ class UserMenuMobile extends React.Component {
             .then(function (response) {
                 self.setState({notifications: response.data});
                 response.data.map(function (not) {
-                    if (not.notificationType.toString() === "MESSAGE")
-                        self.setState({messageNotification: true});
-                    if (not.notificationType.toString() !== "MESSAGE")
                         self.setState({notification: true});
                 });
             })

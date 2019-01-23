@@ -110,7 +110,7 @@ class Profile extends React.Component {
         if (this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <a href={"/message/" + this.props.match.params.id} className={"row"}>
-                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-comment"/></strong>Mesaj
+                    <button className={"btn btn-success profileButton"}><strong><i className="far fa-comment"/></strong> Mesaj
                     </button>
                 </a>)
         }
@@ -120,8 +120,7 @@ class Profile extends React.Component {
         if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <a href={"/reviewForm/" + this.props.match.params.id} className={"row"}>
-                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-edit"/></strong>Yorum
-                        Yaz
+                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-edit"/></strong> Yorum Yaz
                     </button>
                 </a>
             )
@@ -135,7 +134,7 @@ class Profile extends React.Component {
                 <div className={"row"}>
                     <button onClick={this.follow} className={"btn btn-dark profileButton "}><strong>
                         <i className="far fa-bell-slash"/>
-                    </strong>Listemden Çıkar
+                    </strong> Listemden Çıkar
                     </button>
                 </div>
             )
@@ -144,8 +143,7 @@ class Profile extends React.Component {
         if (!this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (<div className={"row"}>
                     <button onClick={this.follow} className={"btn btn-dark profileButton"}><strong><i
-                        className="far fa-bell"/></strong>
-                        Listeme Ekle
+                        className="far fa-bell"/></strong> Listeme Ekle
                     </button>
                 </div>
             )
@@ -158,7 +156,7 @@ class Profile extends React.Component {
             return (
                 <div className={"row"}>
                     <button onClick={this.block}
-                            className={"btn btn-dark profileButton"}><strong><i className="fas fa-ban"/></strong>Engelle
+                            className={"btn btn-danger profileButton"}><strong><i className="fas fa-ban"/></strong> Engelle
                     </button>
                 </div>
             )
@@ -167,7 +165,7 @@ class Profile extends React.Component {
             return (
                 <div className={"row"}>
                     <button onClick={this.block}
-                            className={"btn btn-dark profileButton"}><strong><i className="fas fa-ban"/></strong>Engeli Kaldır
+                            className={"btn btn-danger profileButton"}><strong><i className="fas fa-ban"/></strong> Engeli Kaldır
                     </button>
                 </div>
             )
@@ -236,7 +234,7 @@ class Profile extends React.Component {
                                     <div className="profileTitleDiv">
                                         <a className="profileTitle"
                                            href={"/userActivities/" + this.props.match.params.id}>
-                                            Buluşmalar({this.state.activityCount})
+                                            Aktiviteler({this.state.activityCount})
                                         </a>
                                     </div>
                                 </div>

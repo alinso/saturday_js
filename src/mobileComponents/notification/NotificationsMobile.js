@@ -33,7 +33,7 @@ class NotificationsMobile extends React.Component {
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
             });
-
+        axios.get(Globals.serviceUrl+'notification/readMessages', Security.authHeader());
         axios.get(Globals.serviceUrl+'notification/readExceptMessages', Security.authHeader());
 
     }

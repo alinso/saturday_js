@@ -96,7 +96,7 @@ class DashboardMobile extends BaseActivityListMobile {
                                     <ActivityEditButtonsMobile
                                         activityId={activity.id}
                                         userId={activity.profileDto.id}
-                                        deleteMeeting={() => self.deleteActivity(activity.id)}
+                                        deleteActivity={() => self.deleteActivity(activity.id)}
                                     />
                                     <div className={"float-right"}>
                                         <ActivityRequestButtonsMobile

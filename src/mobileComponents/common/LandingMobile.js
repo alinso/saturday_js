@@ -7,11 +7,12 @@ class LandingMobile extends Component {
             <div className={"landingContainerMobile"}>
                 <div className={"landingSlideMobile"}>
 
-                    <div className={"landingSlideMobileTitleContainer"}>
-                        <h5 className={"landingSlideMobileTitle m-auto"}>Activity Friend</h5>
-                    </div>
+
                 </div>
-                <br/>
+                <h4 className={"landingTitle"}>[LOGO] Activity Friend</h4>
+                <div className={"col-md-6 m-auto"}>
+                    <hr/>
+                </div>
                 <div className={"half-left"}>
                     <a href={"/login"}>
                         <button className={"btn btn-primary landingLoginRegisterMobile"}>Giriş Yap</button>
@@ -24,14 +25,11 @@ class LandingMobile extends Component {
                 </div>
                 <div className={"clear-both"}/>
                 <br/>
-                    <h5 className={"m-auto"}>Tüm aktivitelerinde sana eşlik edebilecek insanlarla
-                        tanış!</h5>
+                <h5 className={"m-auto"}>Tüm aktivitelerinde sana eşlik edebilecek insanlarla
+                    tanış!</h5>
 
                 <div className={"full-width"}>
-                    <h4 className={"landingTitle"}>Activity Friend Nedir?</h4>
-                    <div className={"col-md-6 m-auto"}>
-                        <hr/>
-                    </div>
+                    <hr/>
                     <div className={"full-width"}>
                         <div className={"landingText"}>
                             <div className={"landingIcons"}>
@@ -54,7 +52,7 @@ class LandingMobile extends Component {
                         </div>
                     </div>
                     <div className={"full-width"}>
-                        <img src={"/img/activity_friend_about.jpeg"} className={"full-width"}/>
+                        <img src={"/img/landing_middle.png"} className={"full-width"}/>
                     </div>
                 </div>
                 <h4 className={"landingTitle"}>Özellikler</h4>
@@ -97,7 +95,7 @@ class LandingMobile extends Component {
                 </div>
                 <h4 className={"landingTitle"}>Activity Friend Nasıl Çalışır?</h4>
                 <hr/>
-                <div className={" howitworks1 landingText"}>
+                <div className={" howitworks1"}>
                     <h4><i className="far fa-play-circle"/> hareketi başlat.</h4>
                     <hr/>
                     <span className={"landingTitleCounter"}>1.</span> Bugün veya bu haftasonu ne
@@ -107,7 +105,7 @@ class LandingMobile extends Component {
                     <span className={"landingTitleCounter"}>2.</span> Planına dahil olmak isteyen insanlar
                     arasından dilediğini seç!
                 </div>
-                <div className={" howitworks2 landingText"}>
+                <div className={" howitworks2"}>
                     <h4><i className="far fa-hand-point-down"/> veya katıl.</h4>
                     <hr/>
                     <span className={"landingTitleCounter"}>1.</span> Yarın akşam veya cuma öğleden sonra
@@ -118,11 +116,14 @@ class LandingMobile extends Component {
                 <hr/>
                 <img className={"full-width"} src={"/img/all_birds.jpg"}/>
                 <br/><br/>
-                <a href={"/register"}>
-                    <button className={"btn btn-success"}><h4><i className="fab fa-angellist"/>Aramıza
-                        Sen De Katıl !</h4></button>
+                <div className={"landingText"}>
+                    <h1><i className="fab fa-angellist"/></h1><br/>
+                <h4>Dışarıda Hayat Var!</h4><br/>
+                </div>
+                    <a href={"/register"}>
+                    <button className={"btn btnJoin"}><h1>Hadi sen de gel</h1></button>
                 </a>
-                <hr/>
+
 
                 <br/><br/><br/><br/>
                 <div className={"row landingText"}>

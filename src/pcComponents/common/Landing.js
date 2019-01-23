@@ -31,6 +31,7 @@ class Landing extends Component {
                         </div>
                         <div className={"row"}>
                             <div data-aos="fade-right" className={"col-md-6 landingText"}>
+                                <br/><br/>
                                 <div className={"landingIcons"}>
                                     <i className="fas fa-bowling-ball"/>&nbsp;&nbsp;
                                     <i className="fas fa-glass-cheers"/>&nbsp;&nbsp;
@@ -49,7 +50,7 @@ class Landing extends Component {
                                 güvenle paylaşabilirsin.
                             </div>
                             <div className={"col-md-6"} data-aos="fade-left">
-                                <img src={"/img/activity_friend_about.jpeg"} className={"imgFullWidth"}/>
+                                <img src={"/img/landing_middle.png"} className={"full-width"}/>
                             </div>
                         </div>
                     </div>
@@ -65,7 +66,7 @@ class Landing extends Component {
                         <div className={"row"}>
                             <div className={"col-md-2"}>&nbsp;</div>
                             <div className={"col-md-2"} data-aos="fade-right">
-                                <img src={"/img/activity_friend_features.png"} className={"imgFullWidth"}/>
+                                <img src={"/img/activity_friend_features.png"} className={"full-width"}/>
                             </div>
                             <div data-aos="fade-left" className={"col-md-6 landingText"}>
                                 <div className={"row"}>
@@ -122,7 +123,7 @@ class Landing extends Component {
                         </div>
                         <div className={"row"}>
 
-                            <div data-aos="flip-right" className={"col-md-6 howitworks1 landingText"}>
+                            <div data-aos="flip-right" className={"col-md-6 howitworks1"}>
                                 <h4><i className="far fa-play-circle"/> hareketi başlat.</h4>
                                 <span className={"landingTitleCounter"}>1.</span> Bugün veya bu haftasonu ne
                                 planlıyorsun,
@@ -131,7 +132,7 @@ class Landing extends Component {
                                 <span className={"landingTitleCounter"}>2.</span> Planına dahil olmak isteyen insanlar
                                 arasından dilediğini seç!
                             </div>
-                            <div data-aos="flip-left" className={"col-md-6 howitworks2 landingText"}>
+                            <div data-aos="flip-left" className={"col-md-6 howitworks2"}>
                                 <h4><i className="far fa-hand-point-down"/> veya katıl.</h4>
 
                                 <span className={"landingTitleCounter"}>1.</span> Yarın akşam veya cuma öğleden sonra
@@ -143,13 +144,14 @@ class Landing extends Component {
                         <hr/>
                         <div className={"row"}>
                             <div data-aos="zoom-in-up" className={"col-md-6 text-align-left landingText"}>
-                                <img className={"imgFullWidth"} src={"/img/all_birds.jpg"}/>
+                                <img className={"full-width"} src={"/img/all_birds.jpg"}/>
                             </div>
-                            <div data-aos="zoom-in-up" className={"col-md-6 text-align-left landingText"}>
-                                <h3><i className="fas fa-certificate"/> Henüz Yeniyiz</h3><br/>
-                                <h3><i className="fas fa-heart"/> İlk katılanları hep hatırlayacağız</h3><br/>
+                            <div data-aos="zoom-in-up" className={"col-md-6 text-align-center landingText"}>
+                                <br/>
+                                <h1><i className="fab fa-angellist"/></h1>
+                                <h4> Dışarıda Hayat Var!</h4><br/>
                                 <a href={"/register"}>
-                                    <button className={"btn btn-success"}><h1><i className="fab fa-angellist"/>Aramıza Sen De Katıl !</h1></button>
+                                    <button className={"btn btnJoin"}><h1>Hadi sen de gel</h1></button>
                                 </a>
                             </div>
                         </div>
@@ -162,7 +164,6 @@ class Landing extends Component {
                     <div className={"col-md-9 m-auto landingBottom"}>
                         <br/><br/><br/><br/>
                         <div className={"row landingText"}>
-                            <div className={"col-md-4"}><h3><i className="fab fa-whatsapp"/> 0553 591 9925</h3></div>
                             <div className={"col-md-4"}><h3><i className="fab fa-instagram"/>/activityfriend</h3></div>
                             <div className={"col-md-4"}><h3><i className="far fa-envelope"/> friend@activityfriend.net
                             </h3></div>

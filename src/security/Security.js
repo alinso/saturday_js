@@ -32,6 +32,7 @@ class Security {
 
     static protect() {
        if(!Security.isValidToken()){
+           window.stop();
            this.logout();
        }
     }

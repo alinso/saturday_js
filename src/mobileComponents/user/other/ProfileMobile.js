@@ -228,22 +228,22 @@ class ProfileMobile extends React.Component {
                 {(this.props.match.params.id === localStorage.getItem("userId")) &&
                 (<div className={"full-width"}>
                         <div className={"text-align-left settingsTitlesMobile"}>
-                            <a href="/myAlbum/"><i className="fas fa-images"/> Albüm</a><br/>
-                            <a href="/updateInfo/"><i className="fas fa-info-circle"/>Bilgilerim</a><br/>
-                            <a href="/updatePassword/"><i className="fas fa-key"/> Şifre</a><br/>
+                            <a href="/myAlbum/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-images"/> Albüm</button></a><br/>
+                            <a href="/updateInfo/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-info-circle"/>Bilgilerim</button></a><br/>
+                            <a href="/updatePassword/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-key"/> Şifre</button></a><br/>
                         </div>
 
                         <div className={"text-align-left settingsTitlesMobile"}>
-                            <a href="/referenceCodes/"><i className="fas fa-check"/> Referanslar</a><br/>
-                            <a href="/followings/"><i className="fas fa-bell"/> Bildirim</a><br/>
-                            <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a>
+                            <a href="/referenceCodes/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-check"/> Referanslar</button></a><br/>
+                            <a href="/followings/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-bell"/> Bildirim</button></a><br/>
+                            <a href="/blocks/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-ban"/> Engel Listesi</button></a>
                         </div>
                         <div className={"clear-both"}></div>
 
                     </div>
                 )}
                 <br/>
-                <div className={"profileTitleMobileContainer full-width"}>
+                <div className={"full-width text-align-center"}>
                     <div className="profileTitleMobileDiv">
                         <a className="profileTitleMobile" href={"/album/" + this.props.match.params.id}>
                             Fotoğraflar({this.state.photoCount})
@@ -257,7 +257,7 @@ class ProfileMobile extends React.Component {
                     <div className="profileTitleMobileDiv">
                         <a className="profileTitleMobile"
                            href={"/userActivities/" + this.props.match.params.id}>
-                            Buluşmalar({this.state.activityCount})
+                            Aktiviteler({this.state.activityCount})
                         </a>
                     </div>
                     <div className={"clear-both"}></div>

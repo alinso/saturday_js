@@ -193,12 +193,21 @@ height: 200px;
     white-space: pre-line;
 }
 .howitworks1{
-    background: #e1dae8;
+    background: #1baebb;
+    color: white;
+    font-weight: 600;
     padding: 10px;
 }
 .howitworks2{
-    background-color: #c9ea64;
+    color: white;
+    background-color: #4f466d;
     padding: 10px;
+    font-weight: 600;
+}
+
+.btnJoin{
+    background-color: #4f466d;
+    color: white;
 }
 .landing_parallax {
     /* The image used */
@@ -371,6 +380,7 @@ height: 50px;
 .profileButton{
 margin-bottom: 4px;
     width: 90%;
+    font-size: 0.8rem;
 }
 .profileButtons{
     margin-top: 10px;
