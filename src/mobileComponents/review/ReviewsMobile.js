@@ -85,9 +85,9 @@ class ReviewsMobile extends React.Component {
                                     {!review.positive && (<strong className={"negativeReview"}><i
                                         className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
                                     , &nbsp;
-                                    {review.positive && (
+                                    {(review.reviewType==="FRIEND") && (
                                         <span className={"reviewTypeFriend  "}>Arkadaş Referansı</span>)}
-                                    {!review.positive && (
+                                    {(review.reviewType==="MEETING") && (
                                         <strong className={"reviewTypeActivity"}>Aktivite Referansı</strong>)}
                                     <br/>
                                     {review.review}
