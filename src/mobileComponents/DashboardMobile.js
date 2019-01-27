@@ -9,6 +9,8 @@ import ActivityInfoBlockMobile from "./common/ActivityInfoBlockMobile";
 import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
 import Globals from "../util/Globals";
+import AlertMobile from "./common/AlertMobile";
+import ActivityInfoBlock from "../pcComponents/common/ActivityInfoBlock";
 
 const axios = require('axios');
 let self;
@@ -67,6 +69,12 @@ class DashboardMobile extends BaseActivityListMobile {
             <div className="full-width container">
                 <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                 <hr/>
+                {(localStorage.getItem("cityId") === "null") &&
+                (<AlertMobile
+                    type={"alert-warning"}
+                    message={"Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
+                />)
+                }
                 {
                     self.state.activities.map(function (activity, i) {
                         return (
@@ -88,6 +96,8 @@ class DashboardMobile extends BaseActivityListMobile {
                                     <ActivityInfoBlockMobile
                                         photoName={activity.photoName}
                                         detail={activity.detail}
+                                        hashtags={activity.hashtagListString}
+
                                     />
                                     <br/>
                                     <div className={"float-left"}>

@@ -249,10 +249,10 @@ class UpdateInfo extends React.Component {
                             />
                         </div>
                         <div className="form-group  text-align-left textareaBreakLine">
-                            Bize film ve kitap önerir misin?
+                            Bize film, kitap, şarkı önerir misin?
                                         <textarea
                                             className={classnames("form-control form-control-lg")}
-                                            placeholder="Neden Burdasın..."
+                                            placeholder="Godfather, Suç ve Ceza, Hotel California..."
                                             name="motivation"
                                             value={this.state.motivation}
                                             onChange={this.onChange}
@@ -260,10 +260,10 @@ class UpdateInfo extends React.Component {
                         </div>
 
                         <div className="form-group  text-align-left">
-                            İlgi alanların neler? (araya virgül koyarak yazmalısın)
+                            İlgi alanların neler? (#hashtag)
                             <textarea
                                    className={classnames("form-control form-control-lg")}
-                                   placeholder="Scuba Diving, Bungee Jumping..."
+                                   placeholder="#resim #sinema #fotoğrafçılık"
                                    name="interests"
                                    value={this.state.interests}
                                    onChange={this.onChange}
@@ -275,7 +275,7 @@ class UpdateInfo extends React.Component {
                             <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                             <div ></div>
                             {errors.cityId && (
-                                <div className="invalid-feedback">
+                                <div>
                                     {errors.cityId &&(errors.cityId)}
                                 </div>
 

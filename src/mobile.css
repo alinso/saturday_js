@@ -96,6 +96,15 @@ float: left;
     text-decoration: none;
     font-size: 17px;
 }
+.timeSelectMobile{
+    width: 81px;
+}
+.timeSelectLabelMobile{
+    margin-top: 10px;
+}
+.timeSelectContainerMobile{
+    width:245px;
+}
 
 .navbarMobile a:hover {
     background: #f1f1f1;

@@ -192,6 +192,11 @@ height: 200px;
 .breakLine{
     white-space: pre-line;
 }
+.completeProfileLink{
+    height: 25px;
+    background: #cde6c1;
+    margin-bottom: 3px;
+}
 .howitworks1{
     background: #1baebb;
     color: white;

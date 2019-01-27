@@ -20,19 +20,20 @@ class Security {
 
 
     static logout() {
+
         localStorage.removeItem("jwtToken");
         localStorage.removeItem("userId");
         localStorage.removeItem("cityId");
         localStorage.removeItem("profilePicName");
+        console.trace();
+         window.location = "/login";
+         return "";
 
-        window.location = "/login";
-        return "";
     }
 
 
     static protect() {
        if(!Security.isValidToken()){
-           window.stop();
            this.logout();
        }
     }

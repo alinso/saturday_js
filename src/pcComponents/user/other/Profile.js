@@ -4,6 +4,7 @@ import UserUtil from "../../../util/UserUtil";
 import ProfilePic from "../../common/ProfilePic";
 import UserFullName from "../../common/UserFullName";
 import Globals from "../../../util/Globals";
+import CompleteProfile from "../../common/CompleteProfile";
 
 const axios = require('axios');
 const isMobile = require('is-mobile');
@@ -19,12 +20,14 @@ class Profile extends React.Component {
             profilePicName: "",
             isReviewedBefore: false,
             isFollowing: false,
-            isBlocked:false,
+            isBlocked: false,
             about: "",
             age: "",
             motivation: "",
             interestsArray: [],
             activityCount: 0,
+            photoCount: 0,
+            reviewCount: 0,
             errors: {}
         };
 
@@ -37,14 +40,14 @@ class Profile extends React.Component {
         let self = this;
         let userId = this.props.match.params.id;
 
-        axios.get(Globals.serviceUrl+'user/profile/' + userId)
+        axios.get(Globals.serviceUrl + 'user/profile/' + userId)
             .then(function (response) {
                 self.setState(response.data);
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
                 self.setState({"profilePicName": response.data.profilePicName});
 
                 if (response.data.interests != null) {
-                    let interests = response.data.interests.split(",");
+                    let interests = response.data.interests.split("#");
                     self.setState({interestsArray: interests});
                 }
             })
@@ -55,19 +58,19 @@ class Profile extends React.Component {
 
 
         if (Security.isValidToken())
-            axios.get(Globals.serviceUrl+'review/isReviewedBefore/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'review/isReviewedBefore/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isReviewedBefore": response.data});
                 });
 
 
         if (Security.isValidToken())
-            axios.get(Globals.serviceUrl+'follow/isFollowing/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'follow/isFollowing/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isFollowing": response.data});
                 });
         if (Security.isValidToken())
-            axios.get(Globals.serviceUrl+'block/isBlocked/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'block/isBlocked/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isBlocked": response.data});
                 });
@@ -76,7 +79,7 @@ class Profile extends React.Component {
 
     follow() {
         const self = this;
-        axios.get(Globals.serviceUrl+'follow/follow/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'follow/follow/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({"isFollowing": response.data});
             })
@@ -87,18 +90,18 @@ class Profile extends React.Component {
 
     block() {
         const self = this;
-        if(!this.state.isBlocked) {
+        if (!this.state.isBlocked) {
             if (window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
-                axios.get(Globals.serviceUrl+'block/block/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl + 'block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"isBlocked": response.data});
                         window.location = "/";
                     });
         }
 
-        if(this.state.isBlocked) {
+        if (this.state.isBlocked) {
             if (window.confirm("Bu kişinin engelini kaldırmak istediğinizden emin misiniz?"))
-                axios.get(Globals.serviceUrl+'block/block/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl + 'block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"isBlocked": response.data});
                     });
@@ -110,7 +113,8 @@ class Profile extends React.Component {
         if (this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <a href={"/message/" + this.props.match.params.id} className={"row"}>
-                    <button className={"btn btn-success profileButton"}><strong><i className="far fa-comment"/></strong> Mesaj
+                    <button className={"btn btn-success profileButton"}><strong><i
+                        className="far fa-comment"/></strong> Mesaj
                     </button>
                 </a>)
         }
@@ -120,7 +124,8 @@ class Profile extends React.Component {
         if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <a href={"/reviewForm/" + this.props.match.params.id} className={"row"}>
-                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-edit"/></strong> Yorum Yaz
+                    <button className={"btn btn-dark profileButton"}><strong><i className="far fa-edit"/></strong> Yorum
+                        Yaz
                     </button>
                 </a>
             )
@@ -156,7 +161,8 @@ class Profile extends React.Component {
             return (
                 <div className={"row"}>
                     <button onClick={this.block}
-                            className={"btn btn-danger profileButton"}><strong><i className="fas fa-ban"/></strong> Engelle
+                            className={"btn btn-danger profileButton"}><strong><i
+                        className="fas fa-ban"/></strong> Engelle
                     </button>
                 </div>
             )
@@ -165,7 +171,8 @@ class Profile extends React.Component {
             return (
                 <div className={"row"}>
                     <button onClick={this.block}
-                            className={"btn btn-danger profileButton"}><strong><i className="fas fa-ban"/></strong> Engeli Kaldır
+                            className={"btn btn-danger profileButton"}><strong><i
+                        className="fas fa-ban"/></strong> Engeli Kaldır
                     </button>
                 </div>
             )
@@ -204,7 +211,8 @@ class Profile extends React.Component {
                                 {(this.props.match.params.id === localStorage.getItem("userId")) &&
                                 (
                                     <div className={"text-align-left settingsTitles"}>
-                                        <a href="/updateProfilePic/"><i className="far fa-smile-wink"/> Profil Fotoğrafım</a><br/>
+                                        <a href="/updateProfilePic/"><i className="far fa-smile-wink"/> Profil
+                                            Fotoğrafım</a><br/>
                                         <a href="/myAlbum/"><i className="fas fa-images"/> Albüm</a><br/>
                                         <a href="/updateInfo/"><i className="fas fa-info-circle"/> Bilgilerim</a><br/>
                                         <a href="/updatePassword/"><i className="fas fa-key"/> Şifre Güncelle</a><br/>
@@ -212,7 +220,18 @@ class Profile extends React.Component {
                                         <a href="/followings/"><i className="fas fa-bell"/> Bildirim Listem</a><br/>
                                         <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a>
                                     </div>
+
                                 )}
+
+                                <CompleteProfile
+                                userId={this.props.match.params.id}
+                                profilePicName = {this.state.profilePicName}
+                                age={this.state.age}
+                                about={this.state.about}
+                                interestsArray={this.state.interestsArray}
+                                photoCount={this.state.photoCount}
+                                />
+
 
                             </div>
 
@@ -247,8 +266,9 @@ class Profile extends React.Component {
                                         <hr/>
                                         {
                                             this.state.interestsArray.map(function (interest) {
+                                                if(interest!=="")
                                                 return (<span
-                                                        className="badge badge-pill badge-success my-interests">{interest}</span>
+                                                        className="badge badge-pill badge-success my-interests">{"#"+interest}</span>
                                                 )
                                             })
                                         }
@@ -269,7 +289,7 @@ class Profile extends React.Component {
 
                             <div className="row card">
                                 <div className="card-body">
-                                    <h5 className="card-title">Neden Burdayım?</h5>
+                                    <h5 className="card-title">Şunları önerebilirim?</h5>
                                     <hr/>
                                     <span className={"breakLine"}>
                                     {this.state.motivation}

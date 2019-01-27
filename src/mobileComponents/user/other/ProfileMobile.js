@@ -4,6 +4,7 @@ import UserUtil from "../../../util/UserUtil";
 import ProfilePicMobile from "../../common/ProfilePicMobile";
 import UserFullNameMobile from "../../common/UserFullNameMobile";
 import Globals from "../../../util/Globals";
+import CompleteProfile from "../../../pcComponents/common/CompleteProfile";
 
 const axios = require('axios');
 const isMobile = require('is-mobile');
@@ -44,7 +45,7 @@ class ProfileMobile extends React.Component {
                 self.setState({"profilePicName": response.data.profilePicName});
 
                 if (response.data.interests != null) {
-                    let interests = response.data.interests.split(",");
+                    let interests = response.data.interests.split("#");
                     self.setState({interestsArray: interests});
                 }
             })
@@ -242,6 +243,14 @@ class ProfileMobile extends React.Component {
 
                     </div>
                 )}
+                <CompleteProfile
+                    userId={this.props.match.params.id}
+                    profilePicName = {this.state.profilePicName}
+                    age={this.state.age}
+                    about={this.state.about}
+                    interestsArray={this.state.interestsArray}
+                    photoCount={this.state.photoCount}
+                />
                 <br/>
                 <div className={"full-width text-align-center"}>
                     <div className="profileTitleMobileDiv">
@@ -269,8 +278,9 @@ class ProfileMobile extends React.Component {
                         <hr/>
                         {
                             this.state.interestsArray.map(function (interest) {
+                                if(interest!=="")
                                 return (<span
-                                        className="badge badge-pill badge-success my-interestsMobile">{interest}</span>
+                                        className="badge badge-pill badge-success my-interestsMobile">{"#"+interest}</span>
                                 )
                             })
                         }
@@ -290,7 +300,7 @@ class ProfileMobile extends React.Component {
                 <br/>
                 <div className="card">
                     <div className="card-body">
-                        <h5 className="card-title">Neden Burdayım?</h5>
+                        <h5 className="card-title">Şunları önerebilirim?</h5>
                         <hr/>
                         <span className={"breakLine"}>
                                     {this.state.motivation}

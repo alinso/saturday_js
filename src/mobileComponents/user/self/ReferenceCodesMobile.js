@@ -4,6 +4,8 @@ import UserFullNameMobile from "../../common/UserFullNameMobile";
 import BlocksMobile from "./BlocksMobile";
 import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
+import ProfilePic from "../../../pcComponents/common/ProfilePic";
+import UserFullName from "../../../pcComponents/common/UserFullName";
 
 const axios = require('axios');
 
@@ -14,6 +16,7 @@ class ReferenceCodesMobile extends React.Component {
         Security.protect()
 
         this.state = {
+            me: {},
             references: [],
             erorrs: {}
         };
@@ -22,8 +25,14 @@ class ReferenceCodesMobile extends React.Component {
     }
 
     fillPage() {
+
         const self = this;
-        axios.get(Globals.serviceUrl+'reference/myReferences', Security.authHeader())
+
+        axios.get(Globals.serviceUrl + 'user/profile/' + localStorage.getItem("userId"))
+            .then(function (response) {
+                self.setState({me: response.data});
+            });
+        axios.get(Globals.serviceUrl + 'reference/myReferences', Security.authHeader())
             .then(function (response) {
                 self.setState({references: response.data});
             })
@@ -36,47 +45,38 @@ class ReferenceCodesMobile extends React.Component {
     render() {
         const self = this;
         return (
-                <div className="full-width container">
-                    <BackToProfileMobile/>
-                    <h5>Sisteme referanssız üye olunamıyor, siz de bu referans kodları ile başkalarının üye olmasını
-                        sağlayabilirsiniz</h5>
-                    <hr/>
-                    <div className={"full-width"}>
-                        <div className={"half-left"}>
-                            Referans Kodu
-                            <hr/>
-                        </div>
-                        <div className={"half-left"}>
-                            Kullanım Durumu
-                        <hr/>
-                        </div>
-                        <div className={"clear-both"}/>
-                    </div>
-                    {
-                        self.state.references.map(function (reference, i) {
-                            return (
-                                <div className={"full-width"}>
-                                    <div className={"half-left"}>
-                                        <h4>{reference.referenceCode}</h4>
-                                    </div>
-                                    <div className={"half-left"}>
-                                        {reference.child && (
-                                            <UserFullNameMobile
-                                                userId={reference.child.id}
-                                                name={reference.child.name}
-                                                surname={reference.child.surname}
-                                            />)
-                                        }
-                                        {!reference.child && (
-                                            <h4>Kullanılmamış</h4>)
-                                        }
-                                    </div>
-                                    <div className={"clear-both"}/>
+            <div className="full-width container">
+                <BackToProfileMobile/>
+                <h5>Arkadaşlarına vermen gereken referans kodu :{this.state.me.referenceCode}</h5>
+                <hr/>
+
+                <h4>Referans olduğum kişiler</h4>
+                <hr/>
+
+                {
+                    self.state.references.map(function (reference, i) {
+                        return (
+                            <div className={"row"}>
+                                <div className={"float-left"}>
+                                    <ProfilePic
+                                        profilePicName={reference.profilePicName}
+                                        userId={reference.id}
+                                        cssClass={"profilePicSmall"}
+                                    />
                                 </div>
-                            );
-                        })
-                    }
-                </div>
+                                <div className={"float-left"}>
+                                    <br/>
+                                    <UserFullName
+                                        userId={reference.id}
+                                        name={reference.name}
+                                        surname={reference.surname}
+                                    />
+                                </div>
+                            </div>
+                        );
+                    })
+                }
+            </div>
         )
     }
 }

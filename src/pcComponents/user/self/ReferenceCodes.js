@@ -2,6 +2,7 @@ import React from "react";
 import Security from "../../../security/Security";
 import UserFullName from "../../common/UserFullName";
 import Globals from "../../../util/Globals";
+import ProfilePic from "../../common/ProfilePic";
 
 const axios = require('axios');
 
@@ -12,6 +13,7 @@ class ReferenceCodes extends React.Component {
         Security.protect()
 
         this.state = {
+            me: {},
             references: [],
             erorrs: {}
         };
@@ -21,7 +23,14 @@ class ReferenceCodes extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get(Globals.serviceUrl+'reference/myReferences', Security.authHeader())
+
+            axios.get(Globals.serviceUrl + 'user/profile/' + localStorage.getItem("userId"))
+                .then(function (response) {
+                    self.setState({me: response.data});
+                });
+
+
+        axios.get(Globals.serviceUrl + 'reference/myReferences', Security.authHeader())
             .then(function (response) {
                 self.setState({references: response.data});
             })
@@ -36,42 +45,38 @@ class ReferenceCodes extends React.Component {
         return (
             <div className="row outer">
                 <div className="col-md-6 m-x-auto container">
-                    <h5>Sisteme referanssız üye olunamıyor, siz de bu referans kodları ile başkalarının üye olmasını
-                        sağlayabilirsiniz</h5>
+                    <h5>Arkadaşlarına vermen gereken referans kodu :{this.state.me.referenceCode}</h5>
+                    <hr/>
+
+                    <h4>Referans olduğum kişiler</h4>
                     <hr/>
                     <div className={"row"}>
-                        <div className={"col-md-4 col-sm-4"}>
-                            Referans Kodu
-                            <hr/>
-                        </div>
-                        <div className={"col-md-8 col-sm-8"}>
-                            Kullanım Durumu
-                        <hr/>
-                        </div>
+                        {
+                            self.state.references.map(function (reference, i) {
+                                    return (
+                                        <div className={"col-md-6 col-sm-6"}>
+                                            <div className={"row"}>
+                                                <div className={"col-md-3"}>
+                                                    <ProfilePic
+                                                        profilePicName={reference.profilePicName}
+                                                        userId={reference.id}
+                                                        cssClass={"profilePicSmall"}
+                                                    />
+                                                </div>
+                                                <div className={"col-md-8 text-align-left"}>
+                                                    <br/>
+                                                    <UserFullName
+                                                        userId={reference.id}
+                                                        name={reference.name}
+                                                        surname={reference.surname}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>)
+                                }
+                            )
+                        }
                     </div>
-                    {
-                        self.state.references.map(function (reference, i) {
-                            return (
-                                <div className={"row"}>
-                                    <div className={"col-md-4 col-sm-4"}>
-                                        <h4>{reference.referenceCode}</h4>
-                                    </div>
-                                    <div className={"col-md-8 col-sm-8"}>
-                                        {reference.child && (
-                                            <UserFullName
-                                                userId={reference.child.id}
-                                                name={reference.child.name}
-                                                surname={reference.child.surname}
-                                            />)
-                                        }
-                                        {!reference.child && (
-                                            <h4>Kullanılmamış</h4>)
-                                        }
-                                    </div>
-                                </div>
-                            );
-                        })
-                    }
                 </div>
             </div>
         )

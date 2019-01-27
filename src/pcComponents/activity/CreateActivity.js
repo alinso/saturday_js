@@ -6,13 +6,13 @@ import CityUtil from "../../util/CityUtil";
 import Globals from "../../util/Globals";
 
 const axios = require('axios');
+const moment = require('moment');
 
 
 class CreateActivity extends BaseActivityForm{
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
-        this.getInitDeadLine = this.getInitDeadLine.bind(this);
         this.loadCities();
     }
 
@@ -44,18 +44,14 @@ class CreateActivity extends BaseActivityForm{
             });
     }
 
-    getInitDeadLine(){
-        if(this.state.deadLineString===""){
-            return new Date();
-        }
-        else
-            return this.state.deadLineString;
-    }
 
     onSubmit(e) {
         e.preventDefault();
 
         this.setState({isSubmitDisabled: true});
+
+        const deadLineString  =this.state.deadLine.date+" "+this.state.deadLine.hour.value+":"+this.state.deadLine.minute.value;
+
 
         const data = new FormData();
         if (this.state.selectedFile != null)
@@ -63,7 +59,8 @@ class CreateActivity extends BaseActivityForm{
 
         data.append("cityId",this.state.city.value);
         data.append("detail", this.state.detail);
-        data.append("deadLineString",this.state.deadLineString);
+        data.append("hashtagListString", this.state.hashtagListString);
+        data.append("deadLineString",deadLineString);
         this.createActivity(data);
     }
 

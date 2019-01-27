@@ -13,7 +13,6 @@ class UpdateActivity extends BaseActivityForm {
         super(props);
         this.fillPage();
         this.onSubmit = this.onSubmit.bind(this);
-        this.getInitDeadLine = this.getInitDeadLine.bind(this);
         this.loadCities();
     }
 
@@ -35,22 +34,24 @@ class UpdateActivity extends BaseActivityForm {
         axios.get(Globals.serviceUrl+'activity/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
-                self.setState({deadLineString: response.data.deadLineString});
                 self.setState({photoName: response.data.photoName});
                 self.setState({id: response.data.id});
+                self.setState({hashtagListString:response.data.hashtagListString});
                 self.setState({city:{label:response.data.city.name, value: response.data.city.id}});
+
+                const dateFromDb = moment(response.data.deadLineString, 'DD/MM/YYYY HH:mm').toDate();
+                const hourFromDb = dateFromDb.getHours();
+                const minuteFromDb = dateFromDb.getMinutes();
+
+                let formattedDate = moment(dateFromDb).format("DD/MM/YYYY");
+
+                self.setState({deadLine:{date:formattedDate,hour:{label:hourFromDb,value:hourFromDb}, minute:{label:minuteFromDb, value:minuteFromDb}}});
 
             })
             .catch(function (error) {
                 console.log(error.response);
             });
 
-    }
-    getInitDeadLine(){
-            if(this.state.deadLineString==="")
-                return false;
-
-            return moment(this.state.deadLineString, 'DD/MM/YYYY HH:mm').toDate();
     }
 
     updateActivity(meeting) {
@@ -74,15 +75,17 @@ class UpdateActivity extends BaseActivityForm {
 
         this.setState({isSubmitDisabled: true});
 
-        console.log(this.state.city);
+        const deadLineString  =this.state.deadLine.date+" "+this.state.deadLine.hour.value+":"+this.state.deadLine.minute.value;
+
 
         const data = new FormData();
         if (this.state.selectedFile != null)
             data.append('file', this.state.selectedFile, this.state.selectedFile.name);
         data.append("detail", this.state.detail);
         data.append("cityId", this.state.city.value);
-        data.append("deadLineString", this.state.deadLineString);
+        data.append("deadLineString", deadLineString);
         data.append("id", this.props.match.params.id);
+        data.append("hashtagListString", this.state.hashtagListString);
 
         this.updateActivity(data);
     }

@@ -100,6 +100,7 @@ class Dashboard extends BaseActivityList {
                                         <ActivityInfoBlock
                                             photoName={activity.photoName}
                                             detail={activity.detail}
+                                            hashtags={activity.hashtagListString}
                                         />
                                         <div className={"row"}>
                                             <div className={"col-md-6 meetingDeadLine"}>
