@@ -15,6 +15,7 @@ class SearchUserMobile extends React.Component {
         this.state = {
             searchText: "",
             userNotFoundMessage: false,
+            type: "NAME",
             users: [],
             errors: {}
         };
@@ -28,17 +29,29 @@ class SearchUserMobile extends React.Component {
 
     searchUser(searchTerm) {
         let self = this;
+        if (this.state.type === "NAME")
+            axios.get(Globals.serviceUrl + 'user/search/' + searchTerm)
+                .then(function (response) {
+                    if (response.data.length === 0)
+                        self.setState({"userNotFoundMessage": "Kullanıcı Bulunamadı"});
+                    self.setState({"users": response.data});
+                })
+                .catch(function (error) {
+                    console.log(error.response);
+                });
 
-        axios.get(Globals.serviceUrl+'user/search/' + searchTerm)
-            .then(function (response) {
-                if (response.data.length === 0)
-                    self.setState({"userNotFoundMessage": "Kullanıcı Bulunamadı"});
-                self.setState({"users": response.data});
-                console.log(this.state.users);
-            })
-            .catch(function (error) {
-                console.log(error.response);
-            });
+        if (this.state.type === "HASHTAG")
+            axios.get(Globals.serviceUrl + 'hashtag/findUsers/' + searchTerm)
+                .then(function (response) {
+                    if (response.data.length === 0)
+                        self.setState({"userNotFoundMessage": "Kullanıcı Bulunamadı"});
+                    self.setState({"users": response.data});
+                    console.log(this.state.users);
+                })
+                .catch(function (error) {
+                    console.log(error.response);
+                });
+
     }
 
     searchFromUrlQuery(searchText) {
@@ -47,7 +60,7 @@ class SearchUserMobile extends React.Component {
     }
 
     onChange(e) {
-        this.setState({"searchText": e.target.value});
+        this.setState({[e.target.name]: e.target.value});
     }
 
     onSubmit(e) {
@@ -57,19 +70,27 @@ class SearchUserMobile extends React.Component {
     }
 
     componentDidMount() {
-        let url = this.props.location.search;
-        if (url) {
-            let fullname = url.split("fullname=")[1];
+        let urlQUery = this.props.location.search;
+        let fullname = urlQUery.split("fullname=")[1];
+        let hashtag = urlQUery.split("hashtag=")[1];
+
+
+        if (fullname) {
             fullname = fullname.replace("+", " ");
+            this.state.type = "NAME";
             this.searchFromUrlQuery(fullname);
         }
+        if (hashtag) {
+            this.state.type = "HASHTAG";
+            this.searchFromUrlQuery(hashtag);
+        }
     }
+
 
     render() {
 
         const {userNotFoundMessage} = this.state;
         const self = this;
-        let profilePicUrl;
 
         return (
             <div className="full-width container">
@@ -80,11 +101,29 @@ class SearchUserMobile extends React.Component {
                         <input
                             className="form-control form-control-lg"
                             type="text"
-                            placeholder="İsim Giriniz"
+                            placeholder="Ara..."
                             name="searchText"
                             value={this.state.searchText}
                             onChange={this.onChange}
                             required
+                        />
+                        <br/>
+                        <label>İsim&nbsp;</label>
+                        <input type="radio"
+                               name="type"
+                               value="NAME"
+                               className={"customRadio"}
+                               onChange={this.onChange}
+                               checked={this.state.type === "NAME"}
+                        />&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label>Hashtag&nbsp;</label>
+                        <input type="radio"
+                               name="type"
+                               className={"customRadio"}
+                               onChange={this.onChange}
+                               value="HASHTAG"
+                               checked={this.state.type === "HASHTAG"}
                         />
                         <input
                             type="submit" value="Kullanıcı Ara"

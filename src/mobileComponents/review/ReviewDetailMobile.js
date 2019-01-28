@@ -2,8 +2,6 @@ import React from "react";
 import Security from "../../security/Security";
 import ProfilePicMobile from "../common/ProfilePicMobile";
 import UserFullNameMobile from "../common/UserFullNameMobile";
-import ActivityInfoBlockMobile from "../common/ActivityInfoBlockMobile";
-import ActivityRequestButtonsMobile from "../common/ActivityRequestButtonsMobile";
 import BackToProfileMobile from "../common/BackToProfileMobile";
 import Globals from "../../util/Globals";
 

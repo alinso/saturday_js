@@ -38,7 +38,7 @@ class BaseActivityListMobile extends React.Component {
                 self.setState({activities:activities});
             })
             .catch(function (error) {
-                console.log(error.response);
+                alert(error.response.data.userWarningMessage);
             });
     }
 

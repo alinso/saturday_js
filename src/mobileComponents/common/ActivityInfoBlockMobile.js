@@ -10,9 +10,8 @@ class ActivityInfoBlockMobile extends React.Component {
     render() {
 
         let hashtags = [];
-        if (this.props.hashtags != null) {
-            hashtags = this.props.hashtags.split("#");
-            console.log(this.props.hashtagListString);
+        if (this.props.hashtagListString != null) {
+            hashtags = this.props.hashtagListString.split("#");
         }
 
 
@@ -21,7 +20,7 @@ class ActivityInfoBlockMobile extends React.Component {
             <br/>
             {hashtags.map(function (tag) {
                     if (tag !== "")
-                        return (<a>{"#" + tag}</a>)
+                        return (<a href={"/hashtagActivity/"+tag}>{"#" + tag}</a>)
                 }
             )}
 

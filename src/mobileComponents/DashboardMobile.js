@@ -10,7 +10,8 @@ import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
 import Globals from "../util/Globals";
 import AlertMobile from "./common/AlertMobile";
-import ActivityInfoBlock from "../pcComponents/common/ActivityInfoBlock";
+import ActivityListItem from "../pcComponents/common/ActivityListItem";
+import ActivityListItemMobile from "./common/ActivityListItemMobile";
 
 const axios = require('axios');
 let self;
@@ -78,46 +79,7 @@ class DashboardMobile extends BaseActivityListMobile {
                 {
                     self.state.activities.map(function (activity, i) {
                         return (
-                            <div key={i} className={"row meetingListSingleMeetingContainer"}>
-                                <div className={"float-left"}>
-                                    <ProfilePicMobile
-                                        userId={activity.profileDto.id}
-                                        profilePicName={activity.profileDto.profilePicName}
-                                        cssClass={"profilePicSmallMobile"}
-                                    />
-                                </div>
-                                <div className={"float-left activityListDetailContainerMobile text-align-left"}>
-                                    <UserFullNameMobile
-                                        userId={activity.profileDto.id}
-                                        profilePicName={activity.profileDto.profilePicName}
-                                        name={activity.profileDto.name}
-                                        surname={activity.profileDto.surname}
-                                    />
-                                    <ActivityInfoBlockMobile
-                                        photoName={activity.photoName}
-                                        detail={activity.detail}
-                                        hashtags={activity.hashtagListString}
-
-                                    />
-                                    <br/>
-                                    <div className={"float-left"}>
-                                        <i className="far fa-clock">{activity.deadLineString}</i>
-                                    </div>
-                                    <ActivityEditButtonsMobile
-                                        activityId={activity.id}
-                                        userId={activity.profileDto.id}
-                                        deleteActivity={() => self.deleteActivity(activity.id)}
-                                    />
-                                    <div className={"float-right"}>
-                                        <ActivityRequestButtonsMobile
-                                            userId={activity.profileDto.id}
-                                            joinActivity={() => self.joinActivity(activity.id)}
-                                            thisUserJoined={activity.thisUserJoined}
-                                        />
-                                    </div>
-                                </div>
-                                <hr/>
-                            </div>
+                            <ActivityListItemMobile activity={activity} deleteActivity={self.deleteActivity} joinActivity={self.joinActivity}/>
                         );
                     })}
             </div>

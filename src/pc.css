@@ -177,6 +177,12 @@ font-weight: bold;
     cursor: pointer;
 
 }
+
+.paymentIcons{
+    font-size: 25px;
+    color: #4397f9;
+}
+
 .landing_parallax_text{
     padding: 40px;
     background-color: #2b292a;

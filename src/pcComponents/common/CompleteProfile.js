@@ -23,7 +23,7 @@ class CompleteProfile extends React.Component {
         if (this.props.about !== "")
             point = point + 20;
 
-        if (this.props.interestsArray.length > 0)
+        if (this.props.interestsArray.length > 1)
             point = point + 10;
 
         if (this.props.photoCount > 0)
@@ -56,7 +56,7 @@ class CompleteProfile extends React.Component {
                         {(this.props.about === "") && (
                             <a href={"/updateInfo"}>   <div  className={"completeProfileLink"}>Hakkımda yok</div></a>
                         )}
-                        {(this.props.interestsArray.length === 0) && (
+                        {(this.props.interestsArray.length <2) && (
                             <a href={"/updateInfo"}>  <div  className={"completeProfileLink"}>İlgi alanları yok</div></a>
                         )}
                         {(this.props.photoCount === 0) && (

@@ -9,6 +9,8 @@ import ActivityRequestButtonsMobile from "../common/ActivityRequestButtonsMobile
 import ActivityInfoBlockMobile from "../common/ActivityInfoBlockMobile";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
+import ActivityListItem from "../../pcComponents/common/ActivityListItem";
+import ActivityListItemMobile from "../common/ActivityListItemMobile";
 
 const axios = require('axios');
 
@@ -53,7 +55,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
 
     fillPage() {
         const self = this;
-        axios.get(Globals.serviceUrl+'activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 let activitiesCreated = [];
                 let activitiesJoined = [];
@@ -73,7 +75,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
             });
 
 
-        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'user/profile/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({creator: response.data});
             })
@@ -116,54 +118,9 @@ class UserActivitiesMobile extends BaseActivityListMobile {
                 {
                     self.state.activities.map(function (activity, i) {
                         return (
-                            <div className={"row meetingListSingleMeetingContainer"}>
-                                <div className="float-left">
-                                    <ProfilePicMobile
-                                        userId={activity.profileDto.id}
-                                        profilePicName={activity.profileDto.profilePicName}
-                                        cssClass={"profilePicSmallMobile"}
-                                    />
-                                </div>
-                                <div className={"activityListDetailContainerMobile float-left text-align-left"}>
-                                    <UserFullNameMobile
-                                        name={activity.profileDto.name}
-                                        userId={activity.profileDto.id}
-                                        surname={activity.profileDto.surname}
-                                    />
-                                    <ActivityInfoBlockMobile
-                                        photoName={activity.photoName}
-                                        detail={activity.detail}/>
-                                    <br/>
-                                    <div className={"float-left"}>
-                                        <i className="far fa-clock">{activity.deadLineString}</i>
-                                    </div>
-                                    <ActivityEditButtonsMobile
-                                        activityId={activity.id}
-                                        userId={activity.profileDto.id}
-                                        deleteActivity={() => self.deleteActivity(activity.id)}
-                                    />
-                                    {(!activity.expired) &&
-                                    (<div className={"float-right"}>
+                            <ActivityListItemMobile activity={activity} deleteActivity={self.deleteActivity}
+                                              joinActivity={self.joinActivity}/>
 
-                                        <ActivityRequestButtonsMobile
-                                            userId={activity.profileDto.id}
-                                            joinMeeting={() => self.joinActivity(activity.id)}
-                                            thisUserJoined={activity.thisUserJoined}
-                                        />
-                                    </div>)
-                                    }
-                                    <br/><br/>
-                                    {(activity.expired) &&
-                                    (<a href={"/activityDetail/" + activity.id} className={"float-right"}>
-                                        <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
-                                        </button>
-
-                                    </a>)
-                                    }
-                                </div>
-
-                                <hr/>
-                            </div>
                         );
                     })}
             </div>

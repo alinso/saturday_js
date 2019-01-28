@@ -72,7 +72,7 @@ class ActivityDetail extends React.Component {
                                     userId={activity.profileDto.id}
                                     surname={activity.profileDto.surname}
                                 />
-                                <ActivityInfoBlock photoName={activity.photoName} detail={activity.detail}/>
+                                <ActivityInfoBlock photoName={activity.photoName} detail={activity.detail} hashtagListString={activity.hashtagListString}/>
                                 <div className={"row"}>
                                     <div className={"col-md-9 meetingListUserMeta"}>
                                         <button className={"btn btn-warning"}> {activity.deadLineString}</button>

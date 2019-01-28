@@ -306,7 +306,6 @@ class UpdateInfo extends React.Component {
                             <div className="invalid-feedback">
                                 {errors.gender &&(errors.gender)}
                             </div>
-
                         </div>
                         <div className="form-group  text-align-left">
                             <input

@@ -180,10 +180,7 @@ class Profile extends React.Component {
 
     }
 
-
     render() {
-
-
         return (
             <div className="row outer">
                 <div className="col-md-6 m-x-auto container">
@@ -202,6 +199,14 @@ class Profile extends React.Component {
                             />
                             <h5>{this.state.gender} / {this.state.age}</h5>
                             <h4>{this.state.point} <i className="far fa-star"/></h4>
+                            <hr/>
+                            {(this.props.match.params.id === localStorage.getItem("userId")) &&
+                            (
+                            <a href={"/getPremium"}>
+                                <button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium Ol !</strong> </button>
+                            </a>
+                            )}
+                        <hr/>
                             <div className={"col-md-12"}>
                                 {this.sendMessageButton()}
                                 {this.reviewButton()}
@@ -224,12 +229,12 @@ class Profile extends React.Component {
                                 )}
 
                                 <CompleteProfile
-                                userId={this.props.match.params.id}
-                                profilePicName = {this.state.profilePicName}
-                                age={this.state.age}
-                                about={this.state.about}
-                                interestsArray={this.state.interestsArray}
-                                photoCount={this.state.photoCount}
+                                    userId={this.props.match.params.id}
+                                    profilePicName={this.state.profilePicName}
+                                    age={this.state.age}
+                                    about={this.state.about}
+                                    interestsArray={this.state.interestsArray}
+                                    photoCount={this.state.photoCount}
                                 />
 
 
@@ -266,10 +271,10 @@ class Profile extends React.Component {
                                         <hr/>
                                         {
                                             this.state.interestsArray.map(function (interest) {
-                                                if(interest!=="")
-                                                return (<span
-                                                        className="badge badge-pill badge-success my-interests">{"#"+interest}</span>
-                                                )
+                                                if (interest !== "")
+                                                    return (<a href={"/searchUser?hashtag=" + interest}> <span
+                                                            className="badge badge-pill badge-success my-interests">{"#" + interest}</span></a>
+                                                    )
                                             })
                                         }
                                     </div>

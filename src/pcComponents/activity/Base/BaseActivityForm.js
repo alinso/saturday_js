@@ -34,7 +34,8 @@ class BaseActivityForm extends React.Component {
             minutes: [],
             hours: {},
             city: {},
-            errors: {}
+            errors: {},
+            activityLimitExceeded:false
         };
 
         this.onChange = this.onChange.bind(this);
@@ -136,6 +137,14 @@ class BaseActivityForm extends React.Component {
                 <div className={"col-md-6 offset-3 container"}><Alert
                     type={"alert-warning"}
                     message={"Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
+                /></div>
+            </div>)
+        }
+        if (this.state.activityLimitExceeded) {
+            return (<div className="row outer">
+                <div className={"col-md-6 offset-3 container"}><Alert
+                    type={"alert-warning"}
+                    message={"Haftada e fazla 2 aktivite oluşturabilirsin"}
                 /></div>
             </div>)
         }

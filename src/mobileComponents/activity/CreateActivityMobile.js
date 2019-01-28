@@ -13,6 +13,18 @@ class CreateActivityMobile extends BaseActivityFormMobile{
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.loadCities();
+        this.checkActivityLimit();
+    }
+
+    checkActivityLimit(){
+        const self=this;
+        axios.get(Globals.serviceUrl+'premium/checkActivityLimit/', Security.authHeader())
+            .then(function (response) {
+            })
+            .catch(function (error) {
+                self.setState({activityLimitExceeded:true});
+            });
+
     }
 
     loadCities(){

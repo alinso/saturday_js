@@ -9,6 +9,7 @@ import ActivityRequestButtons from "../common/ActivityRequestButtons";
 import ActivityInfoBlock from "../common/ActivityInfoBlock";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
+import ActivityListItem from "../common/ActivityListItem";
 
 const axios = require('axios');
 
@@ -123,54 +124,7 @@ class UserActivities extends BaseActivityList {
                     {
                         self.state.activities.map(function (activity, i) {
                             return (
-                                <div className={"row meetingListSingleMeetingContainer"}>
-                                    <div className="col-md-2 meetingListProfile">
-                                        <ProfilePic
-                                            userId={activity.profileDto.id}
-                                            profilePicName={activity.profileDto.profilePicName}
-                                            cssClass={"profilePicSmall"}
-                                        />
-
-                                    </div>
-                                    <div className={"col-md-10  text-align-left "}>
-                                        <UserFullName
-                                            name={activity.profileDto.name}
-                                            userId={activity.profileDto.id}
-                                            surname={activity.profileDto.surname}
-                                        />
-                                        <ActivityInfoBlock photoName={activity.photoName} detail={activity.detail}/>
-                                        <div className={"row"}>
-                                            <div className={"col-md-6 meetingDeadLine"}>
-                                                <button className={"btn btn-warning"}> {activity.deadLineString}</button>
-                                            </div>
-                                            <div className={"col-md-3"}>
-                                                <ActivityEditButtons
-                                                    activityId={activity.id}
-                                                    userId={activity.profileDto.id}
-                                                    deleteActivity={() => self.deleteActivity(activity.id)}
-                                                />
-                                                {(!activity.expired) &&
-                                                (<ActivityRequestButtons
-                                                    userId={activity.profileDto.id}
-                                                    joinMeeting={() => self.joinActivity(activity.id)}
-                                                    thisUserJoined={activity.thisUserJoined}
-                                                />)
-                                                }
-                                                <br/>
-                                                {(activity.expired) &&
-                                                (<a href={"/activityDetail/" + activity.id}>
-                                                    <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
-                                                    </button>
-
-                                                </a>)
-                                                }
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
-                                </div>
+                                <ActivityListItem activity={activity} deleteActivity={self.deleteActivity} joinActivity={self.joinActivity}/>
                             );
                         })}
                 </div>

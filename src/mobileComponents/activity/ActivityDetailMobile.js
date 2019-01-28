@@ -71,7 +71,7 @@ class ActivityDetailMobile extends React.Component {
                                 userId={activity.profileDto.id}
                                 surname={activity.profileDto.surname}
                             />
-                            <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail}/>
+                            <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail} hashtagListString={activity.hashtagListString}/>
                             <div className={"clear-both"}/>
                             <br/>
                             <div className={"float-left"}>

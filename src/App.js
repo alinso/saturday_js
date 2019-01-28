@@ -65,6 +65,10 @@ import ReviewsMobile from "./mobileComponents/review/ReviewsMobile";
 import ReviewDetailMobile from "./mobileComponents/review/ReviewDetailMobile";
 import NotificationsMobile from "./mobileComponents/notification/NotificationsMobile";
 import UserMenuMobile from "./mobileComponents/common/UserMenuMobile";
+import HashtagActivity from "./pcComponents/activity/HashtagActivity";
+import HashtagActivityMobile from "./mobileComponents/activity/HashtagActivityMobile";
+import PremiumForm from "./pcComponents/premium/PremiumForm";
+import PremiumFormMobile from "./mobileComponents/premium/PremiumFormMobile";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -138,6 +142,7 @@ class App extends Component {
                     {<Route exact path="/userActivities/:id" component={UserActivities}/>}
                     {<Route exact path="/ActivityRequests/:id" component={ActivityRequests}/>}
                     {<Route exact path="/ActivityDetail/:id" component={ActivityDetail}/>}
+                    {<Route exact path="/hashtagActivity/:hashtag" component={HashtagActivity}/>}
 
                     {<Route exact path="/message/:id" component={MessagePage}/>}
                     {<Route exact path="/conversations/" component={Conversations}/>}
@@ -147,6 +152,7 @@ class App extends Component {
                     {<Route exact path="/review/:id" component={ReviewDetail}/>}
 
                     {<Route exact path="/notifications/" component={Notifications}/>}
+                    {<Route exact path="/getPremium/" component={PremiumForm}/>}
 
 
                     {this.setPcFooter()}
@@ -189,6 +195,8 @@ class App extends Component {
                         {<Route exact path="/userActivities/:id" component={UserActivitiesMobile}/>}
                         {<Route exact path="/ActivityRequests/:id" component={ActivityRequestsMobile}/>}
                         {<Route exact path="/ActivityDetail/:id" component={ActivityDetailMobile}/>}
+                        {<Route exact path="/hashtagActivity/:hashtag" component={HashtagActivityMobile}/>}
+
 
                         {<Route exact path="/message/:id" component={MessagePageMobile}/>}
                         {<Route exact path="/conversations/" component={ConversationsMobile}/>}
@@ -198,6 +206,8 @@ class App extends Component {
                         {<Route exact path="/review/:id" component={ReviewDetailMobile}/>}
 
                         {<Route exact path="/notifications/" component={NotificationsMobile}/>}
+                        {<Route exact path="/getPremium/" component={PremiumFormMobile}/>}
+
 
 
                         {this.setMobileMenu()}

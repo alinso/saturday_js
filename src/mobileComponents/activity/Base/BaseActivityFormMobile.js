@@ -6,6 +6,7 @@ import SinglePhotoSelectorMobile from "../../common/SinglePhotoSelectorMobile";
 import Select from 'react-select'
 import CityUtil from "../../../util/CityUtil";
 import AlertMobile from "../../common/AlertMobile";
+import Alert from "../../../pcComponents/common/Alert";
 
 const moment = require("moment");
 
@@ -32,7 +33,8 @@ class BaseActivityFormMobile extends React.Component {
             isSubmitDisabled: false,
             cities: [],
             city: {},
-            errors: {}
+            errors: {},
+            activityLimitExceeded:false
         };
 
         this.onChange = this.onChange.bind(this);
@@ -139,6 +141,15 @@ class BaseActivityFormMobile extends React.Component {
                     message={"Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
                 />
             </div>)
+        }
+
+        if (this.state.activityLimitExceeded) {
+            return (
+                <div className={"ull-width container"}><Alert
+                    type={"alert-warning"}
+                    message={"Haftada e fazla 2 aktivite oluşturabilirsin"}
+                /></div>
+            )
         }
 
         const {savedMessage} = this.state;

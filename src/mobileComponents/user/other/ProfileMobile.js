@@ -38,7 +38,7 @@ class ProfileMobile extends React.Component {
         let self = this;
         let userId = this.props.match.params.id;
 
-        axios.get(Globals.serviceUrl+'user/profile/' + userId)
+        axios.get(Globals.serviceUrl + 'user/profile/' + userId)
             .then(function (response) {
                 self.setState(response.data);
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
@@ -56,19 +56,19 @@ class ProfileMobile extends React.Component {
 
 
         if (Security.isValidToken())
-            axios.get(Globals.serviceUrl+'review/isReviewedBefore/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'review/isReviewedBefore/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isReviewedBefore": response.data});
                 });
 
 
         if (Security.isValidToken())
-            axios.get(Globals.serviceUrl+'follow/isFollowing/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'follow/isFollowing/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isFollowing": response.data});
                 });
         if (Security.isValidToken())
-            axios.get(Globals.serviceUrl+'block/isBlocked/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'block/isBlocked/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isBlocked": response.data});
                 });
@@ -77,7 +77,7 @@ class ProfileMobile extends React.Component {
 
     follow() {
         const self = this;
-        axios.get(Globals.serviceUrl+'follow/follow/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'follow/follow/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({"isFollowing": response.data});
             })
@@ -90,7 +90,7 @@ class ProfileMobile extends React.Component {
         const self = this;
         if (!this.state.isBlocked) {
             if (window.confirm("Bu kişiyi engellemek istediğinizden emin misiniz?"))
-                axios.get(Globals.serviceUrl+'block/block/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl + 'block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"isBlocked": response.data});
                         window.location = "/";
@@ -99,7 +99,7 @@ class ProfileMobile extends React.Component {
 
         if (this.state.isBlocked) {
             if (window.confirm("Bu kişinin engelini kaldırmak istediğinizden emin misiniz?"))
-                axios.get(Globals.serviceUrl+'block/block/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl + 'block/block/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"isBlocked": response.data});
                     });
@@ -122,7 +122,8 @@ class ProfileMobile extends React.Component {
         if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <a href={"/reviewForm/" + this.props.match.params.id} className={"full-width"}>
-                    <button className={"btn btn-menuColorMobile profileButton"}><strong><i className="far fa-edit"/></strong>Yorum
+                    <button className={"btn btn-menuColorMobile profileButton"}><strong><i
+                        className="far fa-edit"/></strong>Yorum
                         Yaz
                     </button>
                 </a>
@@ -160,7 +161,8 @@ class ProfileMobile extends React.Component {
             return (
                 <div className={"full-width"}>
                     <button onClick={this.block}
-                            className={"btn btn-menuColorMobile profileButton"}><strong><i className="fas fa-ban"/></strong>Engelle
+                            className={"btn btn-menuColorMobile profileButton"}><strong><i
+                        className="fas fa-ban"/></strong>Engelle
                     </button>
                 </div>
             )
@@ -169,7 +171,8 @@ class ProfileMobile extends React.Component {
             return (
                 <div className={"full-width"}>
                     <button onClick={this.block}
-                            className={"btn btn-menuColorMobile profileButton"}><strong><i className="fas fa-ban"/></strong>Engeli
+                            className={"btn btn-menuColorMobile profileButton"}><strong><i
+                        className="fas fa-ban"/></strong>Engeli
                         Kaldır
                     </button>
                 </div>
@@ -212,6 +215,16 @@ class ProfileMobile extends React.Component {
                     <div className={"clear-both"}/>
                 </div>
 
+                {(localStorage.getItem("userId") === this.props.match.params.id) && (
+                    <div className={"full-width"}>
+                        <hr/>
+                        <a href={"/getPremium"}>
+                            <button className={"btn btn-success"}><i className="fas fa-crown"/>
+                                <strong>Premium Ol !</strong></button>
+                        </a>
+                        <hr/>
+                    </div>
+                )}
 
                 <div className={"full-width"}>
                     <div className={"half-left"}>
@@ -229,15 +242,39 @@ class ProfileMobile extends React.Component {
                 {(this.props.match.params.id === localStorage.getItem("userId")) &&
                 (<div className={"full-width"}>
                         <div className={"text-align-left settingsTitlesMobile"}>
-                            <a href="/myAlbum/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-images"/> Albüm</button></a><br/>
-                            <a href="/updateInfo/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-info-circle"/>Bilgilerim</button></a><br/>
-                            <a href="/updatePassword/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-key"/> Şifre</button></a><br/>
+                            <a href="/myAlbum/">
+                                <button className={"btn btn-menuColorMobile profileButton"}><i
+                                    className="fas fa-images"/> Albüm
+                                </button>
+                            </a><br/>
+                            <a href="/updateInfo/">
+                                <button className={"btn btn-menuColorMobile profileButton"}><i
+                                    className="fas fa-info-circle"/>Bilgilerim
+                                </button>
+                            </a><br/>
+                            <a href="/updatePassword/">
+                                <button className={"btn btn-menuColorMobile profileButton"}><i
+                                    className="fas fa-key"/> Şifre
+                                </button>
+                            </a><br/>
                         </div>
 
                         <div className={"text-align-left settingsTitlesMobile"}>
-                            <a href="/referenceCodes/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-check"/> Referanslar</button></a><br/>
-                            <a href="/followings/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-bell"/> Bildirim</button></a><br/>
-                            <a href="/blocks/"><button className={"btn btn-menuColorMobile profileButton"}><i className="fas fa-ban"/> Engel Listesi</button></a>
+                            <a href="/referenceCodes/">
+                                <button className={"btn btn-menuColorMobile profileButton"}><i
+                                    className="fas fa-check"/> Referanslar
+                                </button>
+                            </a><br/>
+                            <a href="/followings/">
+                                <button className={"btn btn-menuColorMobile profileButton"}><i
+                                    className="fas fa-bell"/> Bildirim
+                                </button>
+                            </a><br/>
+                            <a href="/blocks/">
+                                <button className={"btn btn-menuColorMobile profileButton"}><i
+                                    className="fas fa-ban"/> Engel Listesi
+                                </button>
+                            </a>
                         </div>
                         <div className={"clear-both"}></div>
 
@@ -245,7 +282,7 @@ class ProfileMobile extends React.Component {
                 )}
                 <CompleteProfile
                     userId={this.props.match.params.id}
-                    profilePicName = {this.state.profilePicName}
+                    profilePicName={this.state.profilePicName}
                     age={this.state.age}
                     about={this.state.about}
                     interestsArray={this.state.interestsArray}
@@ -278,10 +315,10 @@ class ProfileMobile extends React.Component {
                         <hr/>
                         {
                             this.state.interestsArray.map(function (interest) {
-                                if(interest!=="")
-                                return (<span
-                                        className="badge badge-pill badge-success my-interestsMobile">{"#"+interest}</span>
-                                )
+                                if (interest !== "")
+                                    return (<a href={"/searchUser?hashtag=" + interest}> <span
+                                            className="badge badge-pill badge-success my-interestsMobile">{"#" + interest}</span></a>
+                                    )
                             })
                         }
                     </div>

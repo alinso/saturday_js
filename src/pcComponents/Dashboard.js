@@ -10,6 +10,7 @@ import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
 import Globals from "../util/Globals";
 import AlertMobile from "../mobileComponents/common/AlertMobile";
+import ActivityListItem from "./common/ActivityListItem";
 
 const axios = require('axios');
 let self;
@@ -81,49 +82,7 @@ class Dashboard extends BaseActivityList {
                     {
                         self.state.activities.map(function (activity, i) {
                             return (
-                                <div key={i} className={"row meetingListSingleMeetingContainer"}>
-                                    <div className="col-md-2 col-sm-2 meetingListProfile">
-                                        <ProfilePic
-                                            userId={activity.profileDto.id}
-                                            profilePicName={activity.profileDto.profilePicName}
-                                            cssClass={"profilePicSmall"}
-                                        />
-
-                                    </div>
-                                    <div className={"col-md-10 text-align-left"}>
-                                        <UserFullName
-                                            userId={activity.profileDto.id}
-                                            profilePicName={activity.profileDto.profilePicName}
-                                            name={activity.profileDto.name}
-                                            surname={activity.profileDto.surname}
-                                        />
-                                        <ActivityInfoBlock
-                                            photoName={activity.photoName}
-                                            detail={activity.detail}
-                                            hashtags={activity.hashtagListString}
-                                        />
-                                        <div className={"row"}>
-                                            <div className={"col-md-6 meetingDeadLine"}>
-                                                <i className="far fa-clock">{activity.deadLineString}</i>
-                                            </div>
-                                            <div className={"col-md-4"}>
-                                                <ActivityEditButtons
-                                                    activityId={activity.id}
-                                                    userId={activity.profileDto.id}
-                                                    deleteActivity={() => self.deleteActivity(activity.id)}
-                                                />
-                                                <ActivityRequestButtons
-                                                    userId={activity.profileDto.id}
-                                                    joinActivity={() => self.joinActivity(activity.id)}
-                                                    thisUserJoined={activity.thisUserJoined}
-                                                />
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
-                                </div>
+                            <ActivityListItem activity={activity} deleteActivity={self.deleteActivity} joinActivity={self.joinActivity}/>
                             );
                         })}
                 </div>
