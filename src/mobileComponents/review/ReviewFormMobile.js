@@ -141,7 +141,7 @@ class ReviewFormMobile extends React.Component {
                                 onChange={this.onChange}
                                 disabled={disabled}
                             />
-                        {this.state.errors.reference && (
+                        {this.state.errors.review && (
                             <div className="invalid-feedback">
                                 {this.state.errors.review}
                             </div>
@@ -159,6 +159,7 @@ class ReviewFormMobile extends React.Component {
                                value={true}
                                onChange={this.onChange}
                                className="customRadio"
+                               checked={this.state.isPositive}
                         />&nbsp;&nbsp;&nbsp;&nbsp;
                         <label className="customRadioLabelMobile">Olumsuz&nbsp;</label>
                         <input type="radio"
@@ -167,10 +168,7 @@ class ReviewFormMobile extends React.Component {
                                value={false}
                                className="customRadio"
                         />
-                        <br/>
-                        <div className="invalid-feedback">
-                            {this.state.errors.isPositive}
-                        </div>
+
 
                     </div>
 
