@@ -51,9 +51,7 @@ class ReviewDetail extends React.Component {
                             </div>
                             <div className={"col-md-10 col-sm-10 text-align-left"}>
                                 <UserFullName
-                                    name={review.writer.name}
-                                    userId={review.writer.id}
-                                    surname={review.writer.surname}
+                                    user={review.writer}
                                 />
                                 <div className={"reviewBlock"}>
                                     {review.positive && (

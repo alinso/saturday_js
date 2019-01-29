@@ -2,6 +2,7 @@ import React from "react";
 import Globals from "../../util/Globals";
 import Alert from "../common/Alert";
 import Security from "../../security/Security";
+import JSUtil from "../../util/JSUtil";
 
 const axios = require('axios');
 
@@ -13,11 +14,24 @@ class PremiumForm extends React.Component {
         this.state = {
             duration: "THREE_MONTHS",
             message: false,
-            errors: {}
+            errors: {},
+            isSubmitDisabled: true,
+            latestPremiumDate:null
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.buttonToggle = this.buttonToggle.bind(this);
+        this.fillPage();
+    }
+
+
+    fillPage(){
+        let self  =this;
+        axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/', Security.authHeader())
+            .then(function (response) {
+                self.setState({latestPremiumDate: response.data});
+            });
     }
 
     buyPremium(premium) {
@@ -35,6 +49,20 @@ class PremiumForm extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
+    copyIban(){;
+        JSUtil.selectText("iban");
+        document.execCommand("copy");
+        alert("iban kopyalandı");
+    }
+    buttonToggle(e) {
+        if (this.state.isSubmitDisabled)
+            this.setState({isSubmitDisabled: false});
+
+
+        if (!this.state.isSubmitDisabled)
+            this.setState({isSubmitDisabled: true});
+    }
+
     onSubmit(e) {
         e.preventDefault();
         const premium = {
@@ -50,6 +78,12 @@ class PremiumForm extends React.Component {
         return (
             <div className="row outer">
                 <div className="col-md-6 m-x-auto container">
+
+                    {(this.state.latestPremiumDate!=null) && (
+                        <Alert type="alert-success" message={"Zaten premium üyesiniz, bir sonraki aldığınız paket var olan paket üzerine eklenecektir." +
+                        " Şu an premium bitiş tarihiniz :" +this.state.latestPremiumDate}/>
+
+                    )}
                     <h4>Premium Ol, Fark Yarat!</h4>
                     <hr/>
                     <div className={"row"}>
@@ -75,11 +109,6 @@ class PremiumForm extends React.Component {
 
                     <hr/>
 
-                    {this.state.message && (
-                        <Alert type="alert-success" message={this.state.message}/>
-
-                    )}
-
                     <form onSubmit={this.onSubmit}>
 
                         <div className="form-group">
@@ -95,7 +124,7 @@ class PremiumForm extends React.Component {
                                    onChange={this.onChange}
                                    value="THREE_MONTHS"
                                    className="customRadio"
-                                   checked={true}
+                                   checked={this.state.duration === "THREE_MONTHS"}
                             />&nbsp;
                             <label className="customRadioLabel">3 Ay (₺39,90)&nbsp;</label>
                             &nbsp;&nbsp;&nbsp;&nbsp;
@@ -109,14 +138,36 @@ class PremiumForm extends React.Component {
                             <br/>
 
                         </div>
-                        [ödeme formu]
+                        <span className={"premiumWarning"}>Kredi Kartı ile ödeme sistemimiz henüz açılmadı. Şimdilik sadece havale alabilliyoruz.
+                            Havale sonrası aşağıdaki butonu tıklayarak anında premium olabilirsiniz.
+                            Sözünüze güveniyor ve havale gönderimini kontrol etmeden üyeliğinizi aktifleştiriyoruz.(Kötüye kullanım -30 puan)
+                        </span>
+                        <br/><hr/>
+                        <div className={"col-md-12 text-align-left"}>
+                            Havale Bilgileri : IBAN  <span id={"iban"}>TR160006400000142760517045</span>&nbsp;
+                            <button type={"button"} onClick={this.copyIban} className={"btn btn-primary"}>kopyala</button><br/>
+                            İş Bankası, Ali İnsan Soyaslan
+                        </div>
+                        <div className={"col-md-12 havaleCode text-align-left"}>
+                            <strong>Havale Açıklaması
+                                : {this.state.duration.substring(0, 1) + "-" + localStorage.getItem("userId")}</strong>
+                        </div>
+                        <hr/>
+                        {this.state.message && (
+                            <Alert type="alert-success" message={this.state.message}/>
+
+                        )}
+                        <input onClick={this.buttonToggle} type={"checkbox"} name="havale"/> Havaleyi yaptım, premium
+                        üyeliğimi aktifleştir.
                         <button
                             type="submit"
                             className="btn btn-success btn-block mt-4"
                             disabled={this.state.isSubmitDisabled}
-                        ><i className="fas fa-sync-alt fa-spin" hidden={!this.state.isSubmitDisabled}/>
+                        >
                             <i className="fas fa-crown"/> <strong>Premium Ol</strong>
                         </button>
+                        <span className={"premiumWarning"}> Ayrıca eğer 5 kişiye referans olursanız 1 ay premium üyelik hediyemiz.<br/>
+                            Detaylı Bilgi : mail@activityfriend.net, whatsapp:0553 591 9925</span>
                     </form>
 
                     <br/>

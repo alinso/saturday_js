@@ -101,9 +101,7 @@ class MessagePage extends React.Component {
                         profilePicName={this.state.readerProfile.profilePicName}
                     />
                     <UserFullName
-                        name={this.state.readerProfile.name}
-                        surname={this.state.readerProfile.surname}
-                        userId={this.state.readerProfile.id}
+                        user={this.state.readerProfile}
                     />
                     <div className={"col-md-10 m-auto"}>
                     <MessageBox

@@ -61,9 +61,7 @@ class Conversations extends React.Component {
                                             </div>
                                             <div className={"col-md-8  col-sm-8  text-align-left"}>
                                                 <UserFullName
-                                                    userId={conversation.profileDto.id}
-                                                    name={conversation.profileDto.name}
-                                                    surname={conversation.profileDto.surname}
+                                                    user={conversation.profileDto}
                                                 />
                                             </div>
                                         </div>

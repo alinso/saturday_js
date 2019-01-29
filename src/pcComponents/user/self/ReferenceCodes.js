@@ -66,9 +66,7 @@ class ReferenceCodes extends React.Component {
                                                 <div className={"col-md-8 text-align-left"}>
                                                     <br/>
                                                     <UserFullName
-                                                        userId={reference.id}
-                                                        name={reference.name}
-                                                        surname={reference.surname}
+                                                        user={reference}
                                                     />
                                                 </div>
                                             </div>

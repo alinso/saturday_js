@@ -52,9 +52,7 @@ class ReviewDetailMobile extends React.Component {
                         </div>
                         <div className={"float-left reviewBlockMobile"}>
                             <UserFullNameMobile
-                                name={review.writer.name}
-                                userId={review.writer.id}
-                                surname={review.writer.surname}
+                                user={review.writer}
                             /><br/>
                             {review.positive && (
                                 <strong className={"positiveReview"}><i

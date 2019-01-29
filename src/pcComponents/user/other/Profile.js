@@ -2,12 +2,11 @@ import React from "react";
 import Security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
 import ProfilePic from "../../common/ProfilePic";
-import UserFullName from "../../common/UserFullName";
 import Globals from "../../../util/Globals";
 import CompleteProfile from "../../common/CompleteProfile";
 
 const axios = require('axios');
-const isMobile = require('is-mobile');
+
 
 
 class Profile extends React.Component {
@@ -28,6 +27,7 @@ class Profile extends React.Component {
             activityCount: 0,
             photoCount: 0,
             reviewCount: 0,
+            userPremium:false,
             errors: {}
         };
 
@@ -44,7 +44,6 @@ class Profile extends React.Component {
             .then(function (response) {
                 self.setState(response.data);
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
-                self.setState({"profilePicName": response.data.profilePicName});
 
                 if (response.data.interests != null) {
                     let interests = response.data.interests.split("#");
@@ -181,6 +180,8 @@ class Profile extends React.Component {
     }
 
     render() {
+
+        console.log(this.state.userPremium);
         return (
             <div className="row outer">
                 <div className="col-md-6 m-x-auto container">
@@ -191,16 +192,19 @@ class Profile extends React.Component {
                                 userId={this.props.match.params.id}
                             />
                             <br/>
-                            <UserFullName
-                                name={this.state.name}
-                                surname={this.state.surname}
-                                userId={this.props.match.params.id}
-                                point={this.state.point}
-                            />
-                            <h5>{this.state.gender} / {this.state.age}</h5>
+                            <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
+                                <strong>
+                                    {this.state.userPremium &&(
+                                        <span><i className="far fa-check-circle"/>&nbsp;</span>
+                                    )}
+                                    {this.state.name + " " + this.state.surname}</strong>
+                            </a><br/>
+
+
+                            <span>{this.state.gender} / {this.state.age}</span>
                             <h4>{this.state.point} <i className="far fa-star"/></h4>
                             <hr/>
-                            {(this.props.match.params.id === localStorage.getItem("userId")) &&
+                            {(this.props.match.params.id === localStorage.getItem("userId") && !this.state.userPremium) &&
                             (
                             <a href={"/getPremium"}>
                                 <button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium Ol !</strong> </button>

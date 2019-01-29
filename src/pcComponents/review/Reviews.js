@@ -74,9 +74,7 @@ class Reviews extends React.Component {
                                     </div>
                                     <div className={"col-md-10 col-sm-10 text-align-left"}>
                                         <UserFullName
-                                            userId={review.writer.id}
-                                            name={review.writer.name}
-                                            surname={review.writer.surname}
+                                            user={review.writer}
                                         />
 
                                         <div className={"reviewBlock"}>

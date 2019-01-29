@@ -24,10 +24,7 @@ class ActivityListItem extends React.Component {
             </div>
             <div className={"col-md-10 text-align-left"}>
                 <UserFullName
-                    userId={this.props.activity.profileDto.id}
-                    profilePicName={this.props.activity.profileDto.profilePicName}
-                    name={this.props.activity.profileDto.name}
-                    surname={this.props.activity.profileDto.surname}
+                    user={this.props.activity.profileDto}
                 />
                 <ActivityInfoBlock
                     photoName={this.props.activity.photoName}

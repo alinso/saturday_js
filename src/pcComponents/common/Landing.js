@@ -44,7 +44,7 @@ class Landing extends Component {
                                 dahil olmak isteyen birçok insana ulaşabilirsin.
                                 Sen de aynı şekilde insanların aktivitelerini görebilir ve onlara dahil olabilirsin<br/><br/>
                                 Activity Friend'in en önemli taraflarından biri de içeriğindeki insan kalitesini çok
-                                ciddiye almasıdır. Referansı olmayan kişiler üye olamadığı gibi
+                                ciddiye almasıdır. Geniş değil, doğru kitleye ulaşmaya çalışıyoruz. Activity Friend'de
                                 kadın ve erkek kullanıcı sayısı dengelidir.(%5 maksimum fark sınırı). Kullanıcılarla
                                 ilgili yazılan yorum ve puanları inceleyip aktivitelerini
                                 güvenle paylaşabilirsin.
@@ -80,7 +80,7 @@ class Landing extends Component {
                                         <h1><i className="fas fa-venus-mars"/></h1>
                                         Kadın-Erkek Sayısı!<br/>
                                         Hemen her ortamda bir cinsiyetin ezici çoğunlukta olduğu ülkemizde, kadın-erkek
-                                        sayısını dengeleyen örnek bir sistem olmayı hedefliyoruz
+                                        sayısını dengeleyen örnek bir sistem olmayı hedefliyoruz.
                                     </div>
                                 </div>
                                 <div className={"row"}>
@@ -94,8 +94,9 @@ class Landing extends Component {
                                     <div className={"col-md-6"}>
                                         <h1><i className="fas fa-crown"/></h1>
                                         İki Kat Eğlence!<br/>
-                                        Konser,piknik,rakı-balık,kahve falı,yürüyüş,karaoke... Her ne yapmak istiyorsan
-                                        birlikte yapalım, eğlenceyi ikiye katlayalım
+                                        Konser, piknik, rakı-balık, kahve falı, yürüyüş, karaoke, paraşüt... Her ne
+                                        yapmak istiyorsan
+                                        birlikte yapalım, eğlenceyi ikiye katlayalım.
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +107,7 @@ class Landing extends Component {
                 <div className={"col-md-12"}>
                     <div className={"landing_parallax"}>
                         <div className={"landing_parallax_text  col-md-12 m-auto"}>
-                            Sosyal medya yalnızlaştırır,<br/>
+                            Sosyal medya yalnızlaştırır!<br/>
                             Activity Friend sosyalleştirir.
                         </div>
 
@@ -125,7 +126,7 @@ class Landing extends Component {
 
                             <div data-aos="flip-right" className={"col-md-6 howitworks1"}>
                                 <h4><i className="far fa-play-circle"/> hareketi başlat.</h4>
-                                <span className={"landingTitleCounter"}>1.</span> Bugün veya bu haftasonu ne
+                                <span className={"landingTitleCounter"}>1.</span> Bugün veya önümüzdeki günlerde ne
                                 planlıyorsun,
                                 paylaş.
                                 <br/><br/>
@@ -135,7 +136,7 @@ class Landing extends Component {
                             <div data-aos="flip-left" className={"col-md-6 howitworks2"}>
                                 <h4><i className="far fa-hand-point-down"/> veya katıl.</h4>
 
-                                <span className={"landingTitleCounter"}>1.</span> Yarın akşam veya cuma öğleden sonra
+                                <span className={"landingTitleCounter"}>1.</span> Bu akşam veya birkaç gün içinde
                                 kim ne yapıyor gör!
                                 <br/><br/>
                                 <span className={"landingTitleCounter"}>2.</span> Dilediğin kişinin planına dahil ol!
@@ -163,10 +164,12 @@ class Landing extends Component {
                 <ScrollableAnchor id={'contact'}>
                     <div className={"col-md-9 m-auto landingBottom"}>
                         <br/><br/><br/><br/>
-                        <div className={"row landingText"}>
-                            <div className={"col-md-4"}><h3><i className="fab fa-instagram"/>/activityfriend</h3></div>
-                            <div className={"col-md-4"}><h3><i className="far fa-envelope"/> friend@activityfriend.net
-                            </h3></div>
+                        <div className={"row   landingText"}>
+                            <div className={"col-md-4 text-align-left"}>
+                                <h5><i className="fab fa-instagram"/>/activityfriend</h5>
+                                <h5><i className="far fa-envelope"/> mail@activityfriend.net</h5></div>
+                            <div className={"col-md-4"}><h5>Temsilci Ol</h5><h5>Reklam Ver</h5></div>
+                            <div className={"col-md-4 text-align-left"}><h5>Gizlilik Politikası</h5><h5>Kişisel Verilerin Korunması</h5></div>
                         </div>
                     </div>
                 </ScrollableAnchor>

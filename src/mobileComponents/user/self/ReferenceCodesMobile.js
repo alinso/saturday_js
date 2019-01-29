@@ -1,7 +1,5 @@
 import React from "react";
 import Security from "../../../security/Security";
-import UserFullNameMobile from "../../common/UserFullNameMobile";
-import BlocksMobile from "./BlocksMobile";
 import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 import ProfilePic from "../../../pcComponents/common/ProfilePic";
@@ -67,9 +65,7 @@ class ReferenceCodesMobile extends React.Component {
                                 <div className={"float-left"}>
                                     <br/>
                                     <UserFullName
-                                        userId={reference.id}
-                                        name={reference.name}
-                                        surname={reference.surname}
+                                        user={reference}
                                     />
                                 </div>
                             </div>

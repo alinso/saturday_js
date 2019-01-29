@@ -146,9 +146,7 @@ class SearchUserMobile extends React.Component {
                             />
                             <br/>
                             <UserFullNameMobile
-                                userId={user.id}
-                                name={user.name}
-                                surname={user.surname}
+                                user={user}
                             />
                         </div>
                         <div className={"half-left"}>

@@ -128,9 +128,7 @@ class NotificationsMobile extends React.Component {
                                     {(not.trigger) &&
                                     (<div className={"notificationUserName"}>
                                             <UserFullNameMobile
-                                        userId={not.trigger.id}
-                                        name={not.trigger.name}
-                                        surname={not.trigger.surname}
+                                        user={not.trigger}
                                         /><br/></div>
                                     )}
 

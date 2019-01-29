@@ -1,15 +1,9 @@
 import React from "react";
 import Security from "../../security/Security";
-import ProfilePicMobile from "../common/ProfilePicMobile";
-import UserFullNameMobile from "../common/UserFullNameMobile";
 import '../../util/JSUtil';
 import BaseActivityListMobile from "./Base/BaseActivityListMobile";
-import ActivityEditButtonsMobile from "../common/ActivityEditButtonsMobile";
-import ActivityRequestButtonsMobile from "../common/ActivityRequestButtonsMobile";
-import ActivityInfoBlockMobile from "../common/ActivityInfoBlockMobile";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
-import ActivityListItem from "../../pcComponents/common/ActivityListItem";
 import ActivityListItemMobile from "../common/ActivityListItemMobile";
 
 const axios = require('axios');

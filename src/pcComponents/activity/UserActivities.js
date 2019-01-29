@@ -1,12 +1,7 @@
 import React from "react";
 import Security from "../../security/Security";
-import ProfilePic from "../common/ProfilePic";
-import UserFullName from "../common/UserFullName";
 import '../../util/JSUtil';
 import BaseActivityList from "./Base/BaseActivityList";
-import ActivityEditButtons from "../common/ActivityEditButtons";
-import ActivityRequestButtons from "../common/ActivityRequestButtons";
-import ActivityInfoBlock from "../common/ActivityInfoBlock";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
 import ActivityListItem from "../common/ActivityListItem";

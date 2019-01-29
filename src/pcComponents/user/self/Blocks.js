@@ -67,9 +67,7 @@ class Blocks extends React.Component {
                                     </div>
                                     <div className={"col-md-5 col-sm-5"}>
                                         <UserFullName
-                                            userId={block.id}
-                                            name={block.name}
-                                            surname={block.surname}
+                                            user={block}
                                         />
                                     </div>
                                     <div className={"col-md-3col-sm-3"}>

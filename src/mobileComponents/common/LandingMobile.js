@@ -45,8 +45,7 @@ class LandingMobile extends Component {
                             Sen de aynı şekilde insanların aktivitelerini görebilir ve onlara dahil
                             olabilirsin<br/><br/>
                             Activity Friend'in en önemli taraflarından biri de içeriğindeki insan kalitesini çok
-                            ciddiye almasıdır. Referansı olmayan kişiler üye olamadığı gibi
-                            kadın ve erkek kullanıcı sayısı dengelidir.(%5 maksimum fark sınırı). Kullanıcılarla
+                            ciddiye almasıdır. Geniş değil, doğru kitleye ulaşmaya çalışıyoruz. Activity Friend'de kadın ve erkek kullanıcı sayısı dengelidir.(%5 maksimum fark sınırı). Kullanıcılarla
                             ilgili yazılan yorum ve puanları inceleyip aktivitelerini
                             güvenle paylaşabilirsin.
                         </div>
@@ -67,7 +66,7 @@ class LandingMobile extends Component {
                     <h1><i className="fas fa-venus-mars"/></h1>
                     Kadın-Erkek Sayısı!<br/>
                     Hemen her ortamda bir cinsiyetin ezici çoğunlukta olduğu ülkemizde, kadın-erkek
-                    sayısını dengeleyen örnek bir sistem olmayı hedefliyoruz
+                    sayısını dengeleyen örnek bir sistem olmayı hedefliyoruz.
                 </div>
 
                 <div className={"full-width landingText"}>
@@ -80,14 +79,14 @@ class LandingMobile extends Component {
                 <div className={"full-width landingText"}>
                     <h1><i className="fas fa-crown"/></h1>
                     İki Kat Eğlence!<br/>
-                    Konser,piknik,rakı-balık,kahve falı,yürüyüş,karaoke... Her ne yapmak istiyorsan
-                    birlikte yapalım, eğlenceyi ikiye katlayalım
+                    Konser, piknik, rakı-balık, kahve falı, yürüyüş, karaoke, paraşüt... Her ne yapmak istiyorsan
+                    birlikte yapalım, eğlenceyi ikiye katlayalım.
                 </div>
                 <br/>
                 <div className={"full-width"}>
                     <div className={"landing_parallax"}>
                         <div className={"landing_parallax_textMobile"}>
-                            Sosyal medya yalnızlaştırır,<br/>
+                            Sosyal medya yalnızlaştırır!<br/>
                             Activity Friend sosyalleştirir.
                         </div>
                     </div>
@@ -98,7 +97,7 @@ class LandingMobile extends Component {
                 <div className={" howitworks1"}>
                     <h4><i className="far fa-play-circle"/> hareketi başlat.</h4>
                     <hr/>
-                    <span className={"landingTitleCounter"}>1.</span> Bugün veya bu haftasonu ne
+                    <span className={"landingTitleCounter"}>1.</span> Bugün veya önümüzdeki günlerde ne
                     planlıyorsun,
                     paylaş.
                     <br/><br/>
@@ -108,7 +107,7 @@ class LandingMobile extends Component {
                 <div className={" howitworks2"}>
                     <h4><i className="far fa-hand-point-down"/> veya katıl.</h4>
                     <hr/>
-                    <span className={"landingTitleCounter"}>1.</span> Yarın akşam veya cuma öğleden sonra
+                    <span className={"landingTitleCounter"}>1.</span> Yarın akşam veya birkaç gün içinde
                     kim ne yapıyor gör!
                     <br/><br/>
                     <span className={"landingTitleCounter"}>2.</span> Dilediğin kişinin planına dahil ol!
@@ -125,11 +124,11 @@ class LandingMobile extends Component {
                 </a>
 
 
-                <br/><br/><br/><br/>
-                <div className={"row landingText"}>
-                    <div className={"col-md-4"}><h5><i className="fab fa-instagram"/>/activityfriend</h5></div>
-                    <div className={"col-md-4"}><h5><i className="far fa-envelope"/> friend@activityfriend.net
-                    </h5></div>
+                <br/><br/><br/><hr/>
+                <div className={"text-align-left landingText "}>
+                    <div className={"col-md-4"}><h6><i className="fab fa-instagram"/>/activityfriend</h6></div>
+                    <div className={"col-md-4"}><h6><i className="far fa-envelope"/> friend@activityfriend.net
+                    </h6></div>
                 </div>
             </div>
 

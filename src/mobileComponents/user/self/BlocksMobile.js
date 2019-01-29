@@ -68,9 +68,7 @@ class BlocksMobile extends React.Component {
                                     />
                                     <br/>
                                     <UserFullNameMobile
-                                        userId={block.id}
-                                        name={block.name}
-                                        surname={block.surname}
+                                        user={block}
                                     />
                                 </div>
                                 <div className={"half-left"}><br/>

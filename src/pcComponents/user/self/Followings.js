@@ -67,9 +67,7 @@ class Followings extends React.Component {
                                     </div>
                                     <div className={"col-md-5 col-sm-5"}>
                                         <UserFullName
-                                        userId={following.id}
-                                        name={following.name}
-                                        surname={following.surname}
+                                        user={following}
                                         />
                                     </div>
                                     <div className={"col-md-3col-sm-3"}>

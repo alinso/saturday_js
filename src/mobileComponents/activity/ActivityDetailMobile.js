@@ -67,9 +67,7 @@ class ActivityDetailMobile extends React.Component {
                         </div>
                         <div className={"float-left activityListDetailContainerMobile text-align-left"}>
                             <UserFullNameMobile
-                                name={activity.profileDto.name}
-                                userId={activity.profileDto.id}
-                                surname={activity.profileDto.surname}
+                                name={activity.profileDto}
                             />
                             <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail} hashtagListString={activity.hashtagListString}/>
                             <div className={"clear-both"}/>
@@ -112,9 +110,7 @@ class ActivityDetailMobile extends React.Component {
                                     </div>
                                     <div className="half-left">
                                         <UserFullNameMobile
-                                            userId={attendant.id}
-                                            name={attendant.name}
-                                            surname={attendant.surname}
+                                            user={attendant}
                                         /><br/>
                                         {UserUtil.translateGender(attendant.gender)} / {attendant.age}
                                         <br/>

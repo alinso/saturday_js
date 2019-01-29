@@ -155,9 +155,7 @@ class SearchUser extends React.Component {
                             </div>
                             <div className="col-md-5">
                                 <UserFullName
-                                    userId={user.id}
-                                    name={user.name}
-                                    surname={user.surname}
+                                    user={user}
                                 />
                                 <h5>{UserUtil.translateGender(user.gender)} / {user.age}</h5>
                                 <h4>{user.point} <i className="far fa-star"/></h4>

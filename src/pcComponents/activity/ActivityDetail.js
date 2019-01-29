@@ -67,11 +67,7 @@ class ActivityDetail extends React.Component {
                                 />
                             </div>
                             <div className={"col-md-9 text-align-left"}>
-                                <UserFullName
-                                    name={activity.profileDto.name}
-                                    userId={activity.profileDto.id}
-                                    surname={activity.profileDto.surname}
-                                />
+                                <UserFullName user={activity.profileDto}/>
                                 <ActivityInfoBlock photoName={activity.photoName} detail={activity.detail} hashtagListString={activity.hashtagListString}/>
                                 <div className={"row"}>
                                     <div className={"col-md-9 meetingListUserMeta"}>
@@ -111,11 +107,7 @@ class ActivityDetail extends React.Component {
                                                 profilePicName={attendant.profilePicName}
                                                 cssClass={"profilePicMedium"}
                                             />
-                                            <UserFullName
-                                                userId={attendant.id}
-                                                name={attendant.name}
-                                                surname={attendant.surname}
-                                            />
+                                            <UserFullName user={attendant}/>
                                             {UserUtil.translateGender(attendant.gender)} / {attendant.age}
                                             <br/>
                                         </div>

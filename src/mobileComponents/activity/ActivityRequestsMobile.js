@@ -149,9 +149,7 @@ class ActivityRequestsMobile extends React.Component {
                                     cssClass={"profilePicSmallMobile"}
                                 /><br/>
                                 <UserFullNameMobile
-                                    userId={request.profileDto.id}
-                                    name={request.profileDto.name}
-                                    surname={request.profileDto.surname}
+                                    user={request.profileDto}
                                 />
                             </div>
                                 <div className={"half-left"}>

@@ -122,9 +122,7 @@ class ReviewFormMobile extends React.Component {
                     cssClass={"profilePicSmallMobile"}
                 /> &nbsp;
                 <UserFullNameMobile
-                    name={this.state.profileDto.name}
-                    surname={this.state.profileDto.surname}
-                    userId={this.state.profileDto.id}
+                    user={this.state.profileDto}
                 />
                 <br/><br/>
                 <span>{label}</span>

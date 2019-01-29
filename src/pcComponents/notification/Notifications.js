@@ -123,9 +123,7 @@ class Notifications extends React.Component {
                                     <div className={"col-md-8 notificationText text-align-left"}>
                                         {(not.trigger)&&
                                         (<UserFullName
-                                            userId={not.trigger.id}
-                                            name={not.trigger.name}
-                                            surname={not.trigger.surname}
+                                            user={not.trigger}
                                         />)}
                                         {(not.notificationType === "REQUEST") &&
                                         self.newRequestText(not.message)

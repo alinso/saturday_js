@@ -124,9 +124,7 @@ class ReviewForm extends React.Component {
                         profilePicName={this.state.profileDto.profilePicName}
                     />
                     <UserFullName
-                        name={this.state.profileDto.name}
-                        surname={this.state.profileDto.surname}
-                        userId={this.state.profileDto.id}
+                        user={this.state.profileDto}
                     />
                     <h4>{label}</h4>
 

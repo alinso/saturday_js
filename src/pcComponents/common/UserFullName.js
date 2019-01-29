@@ -10,8 +10,12 @@ class UserFullName extends React.Component {
     render() {
         return (
             <div>
-                <a className="userFullName" href={"/profile/" + this.props.userId}>
-                <strong>{this.props.name + " " + this.props.surname}</strong>
+                <a className="userFullName" href={"/profile/" + this.props.user.id}>
+                <strong>
+                    {this.props.user.userPremium &&(
+                        <span><i className="far fa-check-circle"/>&nbsp;</span>
+                    )}
+                    {this.props.user.name + " " + this.props.user.surname}</strong>
             </a></div>
         )
     }

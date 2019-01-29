@@ -177,12 +177,19 @@ font-weight: bold;
     cursor: pointer;
 
 }
-
+#iban{
+    border: none;
+    padding: 5px;
+    background-color: white;
+}
 .paymentIcons{
     font-size: 25px;
     color: #4397f9;
 }
-
+.premiumWarning{
+    font-size: 0.9rem;
+    color: #255d2a;
+}
 .landing_parallax_text{
     padding: 40px;
     background-color: #2b292a;

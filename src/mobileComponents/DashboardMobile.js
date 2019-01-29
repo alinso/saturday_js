@@ -1,16 +1,10 @@
 import React from "react";
 import Security from "../security/Security";
-import ProfilePicMobile from "./common/ProfilePicMobile";
-import UserFullNameMobile from "./common/UserFullNameMobile";
 import BaseActivityListMobile from "./activity/Base/BaseActivityListMobile";
-import ActivityEditButtonsMobile from "./common/ActivityEditButtonsMobile";
-import ActivityRequestButtonsMobile from "./common/ActivityRequestButtonsMobile";
-import ActivityInfoBlockMobile from "./common/ActivityInfoBlockMobile";
 import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
 import Globals from "../util/Globals";
 import AlertMobile from "./common/AlertMobile";
-import ActivityListItem from "../pcComponents/common/ActivityListItem";
 import ActivityListItemMobile from "./common/ActivityListItemMobile";
 
 const axios = require('axios');

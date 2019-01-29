@@ -101,9 +101,7 @@ class MessagePageMobile extends React.Component {
                     cssClass={"profilePicSmallMobile"} />
                 &nbsp;
                 <UserFullNameMobile
-                    name={this.state.readerProfile.name}
-                    surname={this.state.readerProfile.surname}
-                    userId={this.state.readerProfile.id}
+                    user={this.state.readerProfile}
                 />
                 <br/>   <br/>
                 <div className={"col-md-10 m-auto"}>

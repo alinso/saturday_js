@@ -68,9 +68,7 @@ class FollowingsMobile extends React.Component {
                                     />
                                     <br/>
                                     <UserFullNameMobile
-                                        userId={following.id}
-                                        name={following.name}
-                                        surname={following.surname}
+                                        user={following}
                                     />
                                 </div>
                                 <div className={"half-left"}><br/>

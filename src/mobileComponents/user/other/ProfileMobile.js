@@ -1,8 +1,6 @@
 import React from "react";
 import Security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
-import ProfilePicMobile from "../../common/ProfilePicMobile";
-import UserFullNameMobile from "../../common/UserFullNameMobile";
 import Globals from "../../../util/Globals";
 import CompleteProfile from "../../../pcComponents/common/CompleteProfile";
 
@@ -202,12 +200,13 @@ class ProfileMobile extends React.Component {
                     )}
 
                     <div className={"float-left profileMetaMobile"}>
-                        <UserFullNameMobile
-                            name={this.state.name}
-                            surname={this.state.surname}
-                            userId={this.props.match.params.id}
-                            point={this.state.point}
-                        />
+                        <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
+                            <strong>
+                                {this.state.userPremium &&(
+                                    <span><i className="far fa-check-circle"/>&nbsp;</span>
+                                )}
+                                {this.state.name + " " + this.state.surname}</strong>
+                        </a><br/>
 
                         <h5>{this.state.gender} / {this.state.age}</h5>
                         <h4>{this.state.point} <i className="far fa-star"/></h4>

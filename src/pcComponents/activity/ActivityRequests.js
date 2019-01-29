@@ -153,9 +153,7 @@ class ActivityRequests extends React.Component {
                                                 cssClass={"profilePicMedium"}
                                             />
                                             <UserFullName
-                                                userId={request.profileDto.id}
-                                                name={request.profileDto.name}
-                                                surname={request.profileDto.surname}
+                                                user={request.profileDto}
                                             />
                                             {UserUtil.translateGender(request.profileDto.gender)} / {request.profileDto.age}
                                             <br/>

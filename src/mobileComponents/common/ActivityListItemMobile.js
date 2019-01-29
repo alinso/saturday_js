@@ -25,9 +25,7 @@ class ActivityListItemMobile extends React.Component {
                 </div>
                 <div className={"activityListDetailContainerMobile float-left text-align-left"}>
                     <UserFullNameMobile
-                        name={this.props.activity.profileDto.name}
-                        userId={this.props.activity.profileDto.id}
-                        surname={this.props.activity.profileDto.surname}
+                        user={this.props.activity.profileDto}
                     />
                     <ActivityInfoBlockMobile
                         photoName={this.props.activity.photoName}

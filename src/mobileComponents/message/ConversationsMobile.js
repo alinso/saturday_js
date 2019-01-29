@@ -61,9 +61,7 @@ class ConversationsMobile extends React.Component {
                                         <br/>
                                         &nbsp;
                                         <UserFullNameMobile
-                                            userId={conversation.profileDto.id}
-                                            name={conversation.profileDto.name}
-                                            surname={conversation.profileDto.surname}
+                                            user={conversation.profileDto}
                                         />
                                         <a href={"/message/" + conversation.profileDto.id}
                                            className={"float-left conversationTextMobile"}>
