@@ -86,14 +86,14 @@ class UserActivities extends BaseActivityList {
         return (
             <div className="row outer">
                 <div className="col-md-5 m-x-auto container">
-                    {this.state.activitiesCreated[0] && (
+                    {(this.state.creator.activityCount>0) && (
                         <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
                             <i className="fas fa-comments"/>
                             {self.state.creator.name + " " + self.state.creator.surname}
                         </a> bugüne kadar neler yaptı?
                         </h5>
                     )}
-                    {!this.state.activitiesCreated[0] && (
+                    {(this.state.creator.activityCount==0) && (
                         <h5><a href={"/profile/" + this.props.match.params.id} className={"profileTitle"}>
                             <i className="fas fa-comments"/>
                             {self.state.creator.name + " " + self.state.creator.surname}

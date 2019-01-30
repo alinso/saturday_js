@@ -9,7 +9,8 @@ class LandingMobile extends Component {
 
 
                 </div>
-                <h4 className={"landingTitle"}>[LOGO] Activity Friend</h4>
+                <br/>
+                <img src={"/img/site-logo-purple.png"}/>
                 <div className={"col-md-6 m-auto"}>
                     <hr/>
                 </div>

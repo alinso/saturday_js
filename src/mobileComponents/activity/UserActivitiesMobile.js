@@ -85,14 +85,14 @@ class UserActivitiesMobile extends BaseActivityListMobile {
         const self = this;
         return (
             <div className="full-width container">
-                {this.state.activitiesCreated[0] && (
+                {(this.state.creator.activityCount>0) && (
                     <h6><a href={"/profile/" + this.props.match.params.id} className={"profileTitleMobile"}>
                         <i className="fas fa-comments"/>
                         {self.state.creator.name + " " + self.state.creator.surname}
                     </a> bugüne kadar neler yaptı?
                     </h6>
                 )}
-                {!this.state.activitiesCreated[0] && (
+                {(this.state.creator.activityCount==0) && (
                     <h6><a href={"/profile/" + this.props.match.params.id} className={"profileTitleMobile"}>
                         <i className="fas fa-comments"/>
                         {self.state.creator.name + " " + self.state.creator.surname}

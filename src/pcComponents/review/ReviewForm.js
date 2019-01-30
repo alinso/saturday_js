@@ -174,7 +174,7 @@ class ReviewForm extends React.Component {
 
                         <input
                             type="submit"
-                            value="Yorumus Kaydet"
+                            value="Yorumu Kaydet"
                             className="btn btn-primary btn-block mt-4"
                             disabled={disabled}
                         />

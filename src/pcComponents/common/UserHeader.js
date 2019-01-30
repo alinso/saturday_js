@@ -62,7 +62,7 @@ class UserHeader extends React.Component {
                 <div className="container-fluid col-md-8">
                     <div className="navbar-header">
                         <Link className="navbar-brand" to="/">
-                            <strong>AF Logo</strong>
+                            <img src={"/img/site-logo.png"}/>
                         </Link>
                     </div>
 
