@@ -16,6 +16,8 @@ class PremiumFormMobile extends React.Component {
             duration: "THREE_MONTHS",
             message: false,
             isSubmitDisabled:true,
+            latestPremiumDate:null,
+            profileDto:{},
             errors: {}
         };
 
@@ -23,7 +25,23 @@ class PremiumFormMobile extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.buttonToggle = this.buttonToggle.bind(this);
 
+        this.fillPage();
     }
+    fillPage(){
+        let self  =this;
+
+        axios.get(Globals.serviceUrl + 'user/profile/'+localStorage.getItem("userId"), Security.authHeader())
+            .then(function (response) {
+                self.setState({profileDto: response.data});
+            });
+
+        axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/', Security.authHeader())
+            .then(function (response) {
+                self.setState({latestPremiumDate: response.data});
+            });
+    }
+
+
     copyIban(){;
         JSUtil.selectText("iban");
         document.execCommand("copy");
@@ -68,7 +86,11 @@ class PremiumFormMobile extends React.Component {
             <div className="full-width container">
 
                 <BackToProfileMobile/>
+                {(this.state.profileDto.userPremium) && (
+                    <Alert type="alert-success" message={"Zaten premium üyesiniz, bir sonraki aldığınız paket var olan paket üzerine eklenecektir." +
+                    " Şu an premium bitiş tarihiniz :" +this.state.latestPremiumDate}/>
 
+                )}
                 <h4>Premium Ol, Fark Yarat!</h4>
                 <hr/>
                 <h6>Her Ay Çekiliş ve Sürpriz Aktiviteler!</h6>

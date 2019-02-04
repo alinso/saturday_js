@@ -204,7 +204,7 @@ class Profile extends React.Component {
                             <span>{this.state.gender} / {this.state.age}</span>
                             <h4>{this.state.point} <i className="far fa-star"/></h4>
                             <hr/>
-                            {(this.props.match.params.id === localStorage.getItem("userId") && !this.state.userPremium) &&
+                            {(this.props.match.params.id === localStorage.getItem("userId")) &&
                             (
                             <a href={"/getPremium"}>
                                 <button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium Ol !</strong> </button>

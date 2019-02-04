@@ -16,7 +16,8 @@ class PremiumForm extends React.Component {
             message: false,
             errors: {},
             isSubmitDisabled: true,
-            latestPremiumDate:null
+            latestPremiumDate:null,
+            profileDto: {}
         };
 
         this.onChange = this.onChange.bind(this);
@@ -28,6 +29,12 @@ class PremiumForm extends React.Component {
 
     fillPage(){
         let self  =this;
+
+        axios.get(Globals.serviceUrl + 'user/profile/'+localStorage.getItem("userId"), Security.authHeader())
+            .then(function (response) {
+                self.setState({profileDto: response.data});
+            });
+
         axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/', Security.authHeader())
             .then(function (response) {
                 self.setState({latestPremiumDate: response.data});
@@ -79,7 +86,7 @@ class PremiumForm extends React.Component {
             <div className="row outer">
                 <div className="col-md-6 m-x-auto container">
 
-                    {(this.state.latestPremiumDate!=null) && (
+                    {(this.state.profileDto.userPremium) && (
                         <Alert type="alert-success" message={"Zaten premium üyesiniz, bir sonraki aldığınız paket var olan paket üzerine eklenecektir." +
                         " Şu an premium bitiş tarihiniz :" +this.state.latestPremiumDate}/>
 

@@ -79,6 +79,8 @@ class UserHeader extends React.Component {
                         <li className="nav-item nav-link">
                             <a href={"/notifications/"}><i className={notificationLinkProps.class} title={notificationLinkProps.title}/></a>
                         </li>
+
+
                         <li className={"nav-item nav-link"}>
                             <form className="form-inline my-2 my-lg-0" method="get" action="/searchUser">
                                 <input className="form-control mr-sm-2" type="search" name="fullname"

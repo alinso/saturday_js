@@ -97,6 +97,9 @@ class UserMenuMobile extends React.Component {
                         <a href={"/searchUser"}>Kullanıcı Ara</a>
                     </div>
                     <div className={"hamburgerMenuItemMobile"}>
+                        <a href={"/info"}>Nasıl Çalışır</a>
+                    </div>
+                    <div className={"hamburgerMenuItemMobile"}>
                         <a href={"/logout"}>Çıkış</a>
                     </div>
 

@@ -20,7 +20,7 @@ class Footer extends React.Component {
                             <i className="fab fa-instagram"/> instagram</a>
                     </div>
                     <div className={"col-md-3"}>
-                        <a className={"profileTitle"} href={"/"}>
+                        <a className={"profileTitle"} href={"/info"}>
                             <i className="fas fa-cog"/> nasıl çalışır</a>
                     </div>
                 </div>

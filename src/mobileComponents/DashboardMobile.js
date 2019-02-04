@@ -29,7 +29,7 @@ class DashboardMobile extends BaseActivityListMobile {
     fillPage(cityId) {
         const self = this;
 
-        axios.get(Globals.serviceUrl+'activity/findAllByCityId/' + cityId, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId, Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
             })
@@ -37,11 +37,17 @@ class DashboardMobile extends BaseActivityListMobile {
                 console.log(error.response);
             });
 
+        axios.get(Globals.serviceUrl + 'm/ok', Security.authHeader())
+            .then(function (response) {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+            });
     }
 
     loadCities() {
         const self = this;
-        axios.get(Globals.serviceUrl+'city/all/', Security.authHeader())
+        axios.get(Globals.serviceUrl + 'city/all/', Security.authHeader())
             .then(function (response) {
                 let result = CityUtil.setCitiesForSelect(response.data);
                 self.setState({cities: result.cities});
@@ -49,7 +55,6 @@ class DashboardMobile extends BaseActivityListMobile {
             })
             .catch(function (error) {
             });
-
     }
 
     onSelectChange(e) {
@@ -73,7 +78,8 @@ class DashboardMobile extends BaseActivityListMobile {
                 {
                     self.state.activities.map(function (activity, i) {
                         return (
-                            <ActivityListItemMobile activity={activity} deleteActivity={self.deleteActivity} joinActivity={self.joinActivity}/>
+                            <ActivityListItemMobile activity={activity} deleteActivity={self.deleteActivity}
+                                                    joinActivity={self.joinActivity}/>
                         );
                     })}
             </div>

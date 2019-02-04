@@ -227,7 +227,7 @@ class Register extends React.Component {
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": errors.referenceCode
                                 })}
-                                placeholder="Referans Kodu"
+                                placeholder="Referans Kodu(Zorunlu değil, boş kalabilir)"
                                 name="referenceCode"
                                 value={this.state.referenceCode}
                                 onChange={this.onChange}

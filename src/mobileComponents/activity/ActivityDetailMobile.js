@@ -25,7 +25,7 @@ class ActivityDetailMobile extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get(Globals+'activity/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'activity/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({activity: response.data});
             })
@@ -53,7 +53,6 @@ class ActivityDetailMobile extends React.Component {
         const self = this;
 
 
-        console.log(activity);
         if (activity.profileDto !== undefined) {
             return (
                 <div className={"full-with container"}>
@@ -67,7 +66,7 @@ class ActivityDetailMobile extends React.Component {
                         </div>
                         <div className={"float-left activityListDetailContainerMobile text-align-left"}>
                             <UserFullNameMobile
-                                name={activity.profileDto}
+                                user={activity.profileDto}
                             />
                             <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail} hashtagListString={activity.hashtagListString}/>
                             <div className={"clear-both"}/>

@@ -15,7 +15,7 @@ class UserUtil{
         if (profilePicName === "")
             return "/img//user.png";
         else
-            return "/upload/profile/" + profilePicName;
+            return "/upload/" + profilePicName;
     }
 
     static redirectIsBlocked(id){
