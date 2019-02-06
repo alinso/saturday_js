@@ -45,7 +45,7 @@ class Landing extends Component {
                                 Sen de aynı şekilde insanların aktivitelerini görebilir ve onlara dahil olabilirsin<br/><br/>
                                 Activity Friend'in en önemli taraflarından biri de içeriğindeki insan kalitesini çok
                                 ciddiye almasıdır. Geniş değil, doğru kitleye ulaşmaya çalışıyoruz. Activity Friend'de
-                                kadın ve erkek kullanıcı sayısı dengelidir.(%5 maksimum fark sınırı). Kullanıcılarla
+                                kadın ve erkek kullanıcı sayısı dengelidir. Kullanıcılarla
                                 ilgili yazılan yorum ve puanları inceleyip aktivitelerini
                                 güvenle paylaşabilirsin.
                             </div>

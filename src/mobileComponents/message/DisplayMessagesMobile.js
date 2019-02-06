@@ -23,20 +23,19 @@ class MessageBoxMobile extends React.Component {
     render() {
 
         return (
-            <div className="messageBox" ref={(div) => {
+            <div className="messageBoxMobile" ref={(div) => {
                 this.messageList = div;
             }}>
                 {this.props.messages.map(function (message) {
-                        let msgClass = "outgoingMessage";
+                        let msgClass = "breakLine outgoingMessage";
                         console.log(message.reader.id);
                         if (message.reader.id.toString() === localStorage.getItem("userId")) {
-                            msgClass = "incomingMessage";
+                            msgClass = "breakLine incomingMessage";
                         }
 
-                        return (<div className={msgClass+"Container"}>
+                        return (<div className={msgClass + "Container"}>
                                 <div className={msgClass}>
-                                <span dangerouslySetInnerHTML={{__html: message.message}}/>
-
+                                    {message.message}
                                     <span className={"messageDate"}>
                                     {message.createdAt}
                                 </span>

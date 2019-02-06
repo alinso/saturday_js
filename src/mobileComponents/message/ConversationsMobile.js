@@ -66,7 +66,7 @@ class ConversationsMobile extends React.Component {
                                         <a href={"/message/" + conversation.profileDto.id}
                                            className={"float-left conversationTextMobile"}>
                                             <div className={""}>
-                                                <span dangerouslySetInnerHTML={{__html: conversation.lastMessage}}/>
+                                                {conversation.lastMessage.substring(0,100)+"..."}
                                             </div>
                                         </a>
                                     </div>

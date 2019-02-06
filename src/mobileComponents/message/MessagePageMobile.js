@@ -104,11 +104,9 @@ class MessagePageMobile extends React.Component {
                     user={this.state.readerProfile}
                 />
                 <br/>   <br/>
-                <div className={"col-md-10 m-auto"}>
                     <MessageBoxMobile
                         messages={this.state.messages}
                     />
-                </div>
 
                 <form onSubmit={this.onSubmit}>
 

@@ -41,7 +41,7 @@ class Register extends React.Component {
         axios.post(Globals.serviceUrl+'user/register', newUser)
             .then(function (response) {
                 self.setState({"errors": {}});
-                self.setState({"registrationCompletedMessage": "Mailinize aktivasyon linki gönderilmiştir, linke tıklayarak hesabınızı aktifleştirebilirsiniz"});
+                self.setState({"registrationCompletedMessage": "Mailine aktivasyon linki gönderdik (bu bazen birkaç dakika sürebilir veya spama düşebilir) linke tıklayarak hesabını aktifleştirebilirsin."});
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
@@ -227,7 +227,7 @@ class Register extends React.Component {
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": errors.referenceCode
                                 })}
-                                placeholder="Referans Kodu(Zorunlu değil, boş kalabilir)"
+                                placeholder="Referans Kodu(Zorunlu değil,boş kalabilir)"
                                 name="referenceCode"
                                 value={this.state.referenceCode}
                                 onChange={this.onChange}

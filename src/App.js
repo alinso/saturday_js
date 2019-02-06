@@ -71,6 +71,10 @@ import PremiumForm from "./pcComponents/premium/PremiumForm";
 import PremiumFormMobile from "./mobileComponents/premium/PremiumFormMobile";
 import Info from "./pcComponents/info/Info";
 import InfoMobile from "./mobileComponents/info/InfoMobile";
+import AboutMobile from "./mobileComponents/info/AboutMobile";
+import ContactMobile from "./mobileComponents/info/ContactMobile";
+import Contact from "./pcComponents/info/Contact";
+import About from "./pcComponents/info/About";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -156,6 +160,8 @@ class App extends Component {
                     {<Route exact path="/notifications/" component={Notifications}/>}
                     {<Route exact path="/getPremium/" component={PremiumForm}/>}
                     {<Route exact path="/info/" component={Info}/>}
+                    {<Route exact path="/contact/" component={Contact}/>}
+                    {<Route exact path="/about/" component={About}/>}
 
 
                     {this.setPcFooter()}
@@ -211,6 +217,8 @@ class App extends Component {
                         {<Route exact path="/notifications/" component={NotificationsMobile}/>}
                         {<Route exact path="/getPremium/" component={PremiumFormMobile}/>}
                         {<Route exact path="/info/" component={InfoMobile}/>}
+                        {<Route exact path="/about/" component={AboutMobile}/>}
+                        {<Route exact path="/contact/" component={ContactMobile}/>}
 
 
 

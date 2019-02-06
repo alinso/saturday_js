@@ -81,7 +81,7 @@ class AlbumMobile extends React.Component {
                             photoSet.push({"src": "/upload/" + photoName});
                             return (
                                 <div key={"key" + i} className="col-md-4">
-                                    <img className="albumPhoto" src={"/upload/" + photoName}
+                                    <img className="albumPhotoMobile" src={"/upload/" + photoName}
                                          onClick={() => self.openLightbox(i)}/>
                                     <br/><br/>
                                 </div>)
@@ -100,6 +100,7 @@ class AlbumMobile extends React.Component {
                     {(this.props.match.params.id==localStorage.getItem("userId")) &&(
                         <a className={"profileTitleMobile"} href={"/myAlbum"}><i className="fas fa-edit"/>Albümü Düzenle</a>
                     )}
+                    <br/><br/>
                     </div>
                 </div>
         )

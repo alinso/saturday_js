@@ -1,21 +1,9 @@
 import React from "react";
-import Security from "../../security/Security";
 
 
 class Info extends React.Component {
     constructor(props) {
         super(props);
-        Security.protect();
-        this.state = {
-            duration: "THREE_MONTHS",
-            message: false,
-            errors: {},
-            isSubmitDisabled: true,
-            latestPremiumDate: null,
-            profileDto: {}
-        };
-
-
     }
 
     render() {
@@ -29,10 +17,10 @@ class Info extends React.Component {
                     <h5><i className="fas fa-gift"/> Fırsatlar</h5>
                     <span>Biz kulaktan kulağa yayılmak, insanları arkadaşlarıyla birlikte kazanmak istiyoruz.<br/> Bu nedenle referans olan kişilere de hediyeler veriyoruz.
                         1. Profilinizde "Referans Ol" linkinde bulunan referans kodu ile kaydolan her 5 kişi için 1 aylık premium üyelik kazanacaksınız.<br/><br/>
-                         2. ilgili ay içindeki her referansınız için, her ay sonu yapacağımız <strong>Boyner'den 300 TL'lik hediye çeki</strong> çekişilişimize katılım
+                         2. ilgili ay içindeki her referansınız için, her ay sonu yapacağımız <strong>Boyner'den 3 kişiye 100'er TL'lik (Toplam 300 TL) hediye çeki</strong> çekişilişimize katılım
                         hakkınız olacak.(3 kişiye referans olan birinin kazanma şansı bir kişiye referans olan birinin kazanma şansının 3 katı)
                         <br/><br/>
-                        3. Henüz çok yeniyiz, bu yüzden ilk 500 kullanıcıya 1 aylık premium üyelik hediye ediyoruz :)
+                        3. Henüz çok yeniyiz, bu yüzden ilk 500 kullanıcıya 1 aylık premium üyelik hediye ediyoruz :)<br/>
                         4. Her ay tüm üyeler içide yapacağımız çekilişle sürpriz aktivitelere ücretsiz katılabileceksiniz. Her ayın sürprizi o ayın başında yayınlanacak.
                     </span><br/><br/>
                     <hr/>
@@ -53,8 +41,8 @@ class Info extends React.Component {
                     </span>
                     <hr/>
                     <h5><i className="fas fa-cogs"/> İşleyiş</h5>
-                    <span>Activity Friend işleyişi aşırı derecede basittir, çünkü ekran başında değil dışarıda gerçek insanlarla sosyalleşenizi istiyoruz.
-                    Yapmak istediğinizi toplulukla paylaşırsınız, gelmek isteyenler istek gönderir, dilediğiniz oyalar ve iletişime geçersiniz. Gönderilen istekleri
+                    <span>Activity Friend işleyişi aşırı derecede basittir, çünkü ekran başında değil dışarıda gerçek insanlarla sosyalleşmenizi istiyoruz.
+                    Yapmak istediğinizi toplulukla paylaşırsınız, gelmek isteyenler istek gönderir, dilediğinizi onaylar ve iletişime geçersiniz. Gönderilen istekleri
                         sadece aktiviteyi paylaşan ve istek gönderen kişi görür.<br/>
                         <br/>Biz insanların <strong>premium üye olmadan sistemi rahatça kullanabilmelerini istiyoruz.</strong> Bu yüzden tüm kullanıcılar
                         haftada 2 aktivite açabilir ve günde 5 istek gönderebilir. Bu sayıların herkesin rahatça hareket edebileceği düzeyde olduğunu düşünüyoruz.

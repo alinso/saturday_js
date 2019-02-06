@@ -70,6 +70,7 @@ class UpdateProfilePicMobile extends React.Component {
                 self.setState({"profilePicUrl": "/upload/profile/" + res.data});
                 localStorage.setItem("profilePicName", res.data);
                 self.setState({errors: false});
+                window.location ="/profile/"+localStorage.getItem("userId");
 
             })
             .catch(function (error) {

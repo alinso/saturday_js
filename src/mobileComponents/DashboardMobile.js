@@ -72,7 +72,7 @@ class DashboardMobile extends BaseActivityListMobile {
                 {(localStorage.getItem("cityId") === "null") &&
                 (<AlertMobile
                     type={"alert-warning"}
-                    message={"Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
+                    message={"Akışı görebilmek için Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
                 />)
                 }
                 {

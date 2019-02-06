@@ -8,11 +8,11 @@ class Footer extends React.Component {
             <div className={"col-md-5 m-auto footer"}>
                 <div className={"row"}>
                     <div className={"col-md-3"}>
-                        <a className={"profileTitle"} href={"/"}>
+                        <a className={"profileTitle"} href={"/about"}>
                             <i className="fas fa-info-circle"/> hakkında</a>
                     </div>
                     <div className={"col-md-3"}>
-                        <a className={"profileTitle"} href={"/"}>
+                        <a className={"profileTitle"} href={"/contact"}>
                             <i className="far fa-envelope"/> iletişim</a>
                     </div>
                     <div className={"col-md-3"}>

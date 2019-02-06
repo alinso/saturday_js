@@ -4,57 +4,64 @@
     text-align: center;
     font-size: 0.9rem;
 }
+
 .copyIbanButtonMobile {
     padding: 2px;
     font-size: 0.8rem;
 }
 
-.profilePicSmallMobile{
+.profilePicSmallMobile {
     object-fit: cover;
-    width:50px;
+    width: 50px;
     height: 50px;
     border-radius: 50%;
 }
 
-.notificationTextMobile{
+.notificationTextMobile {
     padding-top: 0px;
     margin-left: 53px;
 }
-.profileMetaMobile{
+
+.profileMetaMobile {
     width: 200px;
     margin-top: 25px;
     height: 100px;
 }
-.conversationTextMobile{
+
+.conversationTextMobile {
     background: #ffffff;
     padding: 10px;
     color: black;
     border-radius: 10px;
     width: 80%;
 }
-.conversationTextMobile:hover{
+
+.conversationTextMobile:hover {
     text-decoration: none;
 }
 
-.profileTitleMobile{
-    color:gray;
+.profileTitleMobile {
+    color: gray;
     font-size: 0.9rem;
     font-weight: bold;
 }
-.profileTitleMobile:hover{
+
+.profileTitleMobile:hover {
     text-decoration: none;
-    color:blue;
+    color: blue;
 }
-.profileTitleMobileDiv{
-float: left;
+
+.profileTitleMobileDiv {
+    float: left;
     padding: 5px;
 }
-.my-interestsMobile{
+
+.my-interestsMobile {
     font-size: 13px;
     margin: 5px;
 }
 
-.hamburgerContainerMobile{
+.hamburgerContainerMobile {
     overflow: hidden;
     background-color: #02a8af;
     position: fixed;
@@ -63,19 +70,20 @@ float: left;
     width: 50%;
     right: 0px;
 }
-.hamburgerMenuItemMobile{
+
+.hamburgerMenuItemMobile {
     width: 100%;
     border-bottom: 1px solid white;
     height: 34px;
     font-size: 1.2em;
 }
 
-
-.hamburgerMenuItemMobile a{
-    color:white;
+.hamburgerMenuItemMobile a {
+    color: white;
     font-weight: 600;
 }
-.hamburgerButtonMobile{
+
+.hamburgerButtonMobile {
     font-size: 2.2em;
     float: right;
     margin-right: 10px;
@@ -89,6 +97,10 @@ float: left;
     width: 100%;
 }
 
+.albumPhotoMobile {
+    width: 90%;
+}
+
 .navbarMobile a {
     float: left;
     display: block;
@@ -98,14 +110,17 @@ float: left;
     text-decoration: none;
     font-size: 17px;
 }
-.timeSelectMobile{
+
+.timeSelectMobile {
     width: 81px;
 }
-.timeSelectLabelMobile{
+
+.timeSelectLabelMobile {
     margin-top: 10px;
 }
-.timeSelectContainerMobile{
-    width:245px;
+
+.timeSelectContainerMobile {
+    width: 245px;
 }
 
 .navbarMobile a:hover {
@@ -113,52 +128,65 @@ float: left;
     color: black;
 }
 
+.messageBoxMobile {
+    width: 100%;
+    background: #f5f0e8;
+    border-radius: 5px;
+    height: 350px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
+
+.fontMobile {
+    font-size: 0.8rem;
+}
+
 .navbarMobile a.active {
     background-color: #534269;
     color: white;
 }
 
-
-.menuIconMobile{
+.menuIconMobile {
     font-size: 25px;
 }
 
 /*.mainMobile {*/
-    /*padding: 16px;*/
-    /*margin-bottom: 30px;*/
+/*padding: 16px;*/
+/*margin-bottom: 30px;*/
 /*}*/
 
-
-.settingsTitlesMobile{
+.settingsTitlesMobile {
     float: left;
     width: 50%;
 }
+
 /*.profileActionsMobile{*/
-    /*padding: 5px;*/
+/*padding: 5px;*/
 /*}*/
 
-.settingsTitlesMobile a{
+.settingsTitlesMobile a {
     color: #7f868f;
     font-weight: 600;
     font-size: 1.1rem;
 }
 
-.loginContainerMobile{
+.loginContainerMobile {
     padding: 15px;
     height: 300px;
     opacity: 0.9;
 }
 
-.btn-menuColorMobile{
+.btn-menuColorMobile {
     background-color: #c1dfe0;
 }
-.registerContainerMobile{
+
+.registerContainerMobile {
     background: #233a48;
     padding: 15px;
     height: 100vh;
 }
 
-.landing_parallax_textMobile{
+.landing_parallax_textMobile {
     padding: 40px;
     background-color: #2b292a;
     color: white;
@@ -168,50 +196,50 @@ float: left;
     text-align: center;
 }
 
-
-.landingSlideMobile{
+.landingSlideMobile {
     width: 100%;
     height: 385px;
     background-image: url(/img/landing_mobile_slide.jpg);
     background-size: cover;
 }
+
 /*.landingSlideTitleMobile{*/
-    /*color: #ffffff;*/
-    /*font-weight: 600;*/
-    /*border: 1px solid white;*/
-    /*padding: 3px;*/
-    /*width: 90%;*/
-    /*border-radius: 9px;*/
+/*color: #ffffff;*/
+/*font-weight: 600;*/
+/*border: 1px solid white;*/
+/*padding: 3px;*/
+/*width: 90%;*/
+/*border-radius: 9px;*/
 /*}*/
 /*.landingSlideTextMobile{*/
-    /*color: #3d3530;*/
-    /*font-weight: 600;*/
-    /*padding: 9px;*/
-    /*border-bottom: 2px dotted gray;*/
+/*color: #3d3530;*/
+/*font-weight: 600;*/
+/*padding: 9px;*/
+/*border-bottom: 2px dotted gray;*/
 
 /*}*/
 /*.landingSlideTitleContainerMobile{*/
-    /*padding-top: 5px;*/
+/*padding-top: 5px;*/
 /*}*/
-.landingLoginRegisterMobile{
+.landingLoginRegisterMobile {
     width: 90%;
 }
-.landingContainerMobile{
+
+.landingContainerMobile {
     width: 100%;
     padding: 5px;
 }
 
-.activityListActivityDetailMobile{
+.activityListActivityDetailMobile {
     white-space: pre-line;
 }
-.activityListDetailContainerMobile{
+
+.activityListDetailContainerMobile {
     width: 82%;
     margin-left: 5px;
 }
 
-
-
-.loginOuterMobile{
+.loginOuterMobile {
     background-image: url(/img/login_mobile.png);
     background-size: cover;
     min-height: 100%;
@@ -221,8 +249,7 @@ float: left;
 
 }
 
-
-.reviewBlockMobile{
+.reviewBlockMobile {
     padding: 10px;
     border-radius: 10px;
     border: 1px solid #c1c2ca;
@@ -232,6 +259,6 @@ float: left;
     margin-top: 5px;
 }
 
-.customRadioLabelMobile{
+.customRadioLabelMobile {
     font-size: 1em;
 }

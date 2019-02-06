@@ -33,7 +33,6 @@ class UpdateProfilePic extends React.Component {
             .then(function (response) {
                 console.log(response);
                 self.setState({"profilePicUrl": UserUtil.buildProfilePicUrl(response.data.profilePicName)});
-
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
@@ -69,6 +68,7 @@ class UpdateProfilePic extends React.Component {
                 self.setState({"profilePicUrl": "/upload/profile/" + res.data});
                 localStorage.setItem("profilePicName", res.data);
                 self.setState({errors: false});
+                window.location ="/profile/"+localStorage.getItem("userId");
 
             })
             .catch(function (error) {

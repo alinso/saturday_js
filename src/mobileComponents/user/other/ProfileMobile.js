@@ -218,7 +218,7 @@ class ProfileMobile extends React.Component {
                     <div className={"full-width"}>
                         <hr/>
                         <a href={"/getPremium"}>
-                            <button className={"btn btn-success"}><i className="fas fa-crown"/>
+                            <button className={"btn btn-success fontMobile"}><i className="fas fa-crown"/>
                                 <strong>Premium Ol !</strong></button>
                         </a>
                         <hr/>
