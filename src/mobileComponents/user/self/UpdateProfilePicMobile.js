@@ -97,6 +97,7 @@ class UpdateProfilePicMobile extends React.Component {
 
                 <div>
                     <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafı Yükle</button>
+                    <br/>(Max:3MB)
                 </div>
             </div>
         )

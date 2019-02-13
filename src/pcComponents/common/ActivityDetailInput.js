@@ -22,14 +22,14 @@ class ActivityDetailInput extends React.Component {
                                 value={this.props.detail}
                                 onChange={this.props.onChange}
                             />
-            </div>
-            <label className={"col-md-3 text-align-left"}><i className="fas fa-bars"/> Hashtag Ekle:</label>
+            </div><br/>
+            <label className={"col-md-3 text-align-left"}><i className="fas fa-hashtag"/> Hashtag Ekle:</label>
             <div className={"col-md-9"}>
                             <textarea
                                 className={classnames("form-control form-control-lg breakLine", {
                                     "is-invalid": this.props.error
                                 })}
-                                placeholder="#gezi #spor #doğa"
+                                placeholder="#gezi #spor #doğa #sinema"
                                 name="hashtagListString"
                                 value={this.props.hashtagListString}
                                 onChange={this.props.onChange}

@@ -116,7 +116,7 @@ class UpdateInfo extends React.Component {
             id: localStorage.getItem("userId"),
             name: this.state.name,
             surname: this.state.surname,
-            email: this.state.email,
+            email: this.state.email.trim(),
             phone: phoneValidationResult.phoneNumer,
             bDateString: this.state.bDateString,
             gender: this.state.gender,

@@ -68,7 +68,7 @@ class RegisterMobile extends React.Component {
         const newUser = {
             name: this.state.name,
             surname: this.state.surname,
-            email: this.state.email,
+            email: this.state.email.trim(),
             phone: phoneValidationResult.phoneNumer,
             password: this.state.password,
             confirmPassword: this.state.confirmPassword,

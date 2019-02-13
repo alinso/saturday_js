@@ -23,7 +23,7 @@ class ActivityDetailInputMobil extends React.Component {
                 onChange={this.props.onChange}
             />
 
-            <label><i className="fas fa-bars"/> Hashtag:</label>
+            <label><i className="fas fa-hashtag"/> Hashtag:</label>
 
             <textarea
                 className={classnames("form-control form-control-lg breakLine", {
