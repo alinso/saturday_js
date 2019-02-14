@@ -75,6 +75,10 @@ import AboutMobile from "./mobileComponents/info/AboutMobile";
 import ContactMobile from "./mobileComponents/info/ContactMobile";
 import Contact from "./pcComponents/info/Contact";
 import About from "./pcComponents/info/About";
+import ADashboard from "./jshfsadf/ADashboard";
+import AEventCreate from "./jshfsadf/ACreateEvent";
+import EventList from "./pcComponents/event/EventList";
+import AEventList from "./jshfsadf/AEventList";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -162,6 +166,13 @@ class App extends Component {
                     {<Route exact path="/info/" component={Info}/>}
                     {<Route exact path="/contact/" component={Contact}/>}
                     {<Route exact path="/about/" component={About}/>}
+
+
+                    {<Route exact path="/events/" component={EventList}/>}
+
+                    {<Route exact path="/sgjklnmf/dashboard" component={ADashboard}/>}
+                    {<Route exact path="/sgjklnmf/eventCreate" component={AEventCreate}/>}
+                    {<Route exact path="/sgjklnmf/eventList" component={AEventList}/>}
 
 
                     {this.setPcFooter()}
