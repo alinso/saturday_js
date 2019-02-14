@@ -1,6 +1,7 @@
 import React from "react";
 import Globals from "../util/Globals";
 import Security from "../security/Security";
+import AdminMenu from "./AdminMenu";
 
 const axios = require('axios');
 
@@ -29,10 +30,9 @@ class ADashboard extends React.Component {
     render() {
 
         return (
-            <div className="row outer">
-                <div className={"col-md-6 offset-3 container"}>
-                    <span>admin</span>
-                    <a href={"/sgjklnmf/eventList"}>Etkinlikler</a>
+            <div className="full-width adminOuter">
+                <AdminMenu/>
+                <div className={"col-md-9"}>
                 </div>
             </div>
 

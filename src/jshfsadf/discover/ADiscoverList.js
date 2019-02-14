@@ -1,11 +1,12 @@
 import React from "react";
-import Security from "../security/Security";
-import Globals from "../util/Globals";
+import Security from "../../security/Security";
+import Globals from "../../util/Globals";
+import AdminMenu from "../AdminMenu";
 
 const axios = require('axios');
 
 
-class AEventList extends React.Component {
+class ADiscoverList extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
@@ -20,7 +21,7 @@ class AEventList extends React.Component {
 
     fillPage() {
         let self = this;
-        axios.get(Globals.serviceUrl + 'event/findNonExpiredEvents', Security.authHeader())
+        axios.get(Globals.serviceUrl + 'discover/findNonExpiredDiscovers', Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({events: response.data});
@@ -37,18 +38,15 @@ class AEventList extends React.Component {
 
 
         return (
-            <div className="row outer">
-                <div className={"col-md-6 offset-3 container"}>
-                    <a href={"/sgjklnmf/eventCreate"}>Yeni Etkinlik Oluştur</a>
+            <div className="row adminOuter">
+                <AdminMenu/>
+                <div className={"col-md-6"}>
+                    <a href={"/sgjklnmf/discoverCreate"}>Yeni Keşfet Ekle</a>
                     {
                         this.state.events.map(function (event, i) {
                             return (
                                 <div>
                                     <h4>{event.title}</h4>
-                                    <span>{event.detail}</span><br/>
-                                    <span>{event.dtString}</span><br/>
-                                    <span>{event.photoName}</span><br/>
-                                    <span>[bunu sil]</span>
                                 </div>
                             )
                         })
@@ -61,4 +59,4 @@ class AEventList extends React.Component {
 }
 
 
-export default AEventList;
+export default ADiscoverList;
