@@ -33,6 +33,7 @@ class ADiscoverCreate extends BaseDiscoverForm {
         axios.post(Globals.serviceUrl + Globals.adminUrl+'createDiscover', newDiscover, Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
+                self.setState({"savedMessage":"Kaydedildi"})
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
@@ -54,6 +55,7 @@ class ADiscoverCreate extends BaseDiscoverForm {
         data.append("cityId", this.state.city.value);
         data.append("detail", this.state.detail);
         data.append("title", this.state.title);
+        data.append("youtube", this.state.youtube);
         this.createDiscover(data);
     }
 

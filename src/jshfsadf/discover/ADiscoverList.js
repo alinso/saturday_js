@@ -42,11 +42,12 @@ class ADiscoverList extends React.Component {
                 <AdminMenu/>
                 <div className={"col-md-6"}>
                     <a href={"/sgjklnmf/discoverCreate"}>Yeni Keşfet Ekle</a>
+                    <br/><br/>
                     {
                         this.state.events.map(function (event, i) {
                             return (
-                                <div>
-                                    <h4>{event.title}</h4>
+                                <div className={"col-md-3 float-left"}>
+                                    <h5><a href={"/sgjklnmf/discoverUpdate/" + event.id}>{event.title}</a></h5>
                                 </div>
                             )
                         })

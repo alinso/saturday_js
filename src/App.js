@@ -79,6 +79,7 @@ import ADashboard from "./jshfsadf/ADashboard";
 import EventList from "./pcComponents/event/EventList";
 import ADiscoverList from "./jshfsadf/discover/ADiscoverList";
 import ADiscoverCreate from "./jshfsadf/discover/ADiscoverCreate";
+import ADiscoverUpdate from "./jshfsadf/discover/ADiscoverUpdate";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -172,6 +173,7 @@ class App extends Component {
 
                     {<Route exact path="/sgjklnmf/dashboard" component={ADashboard}/>}
                     {<Route exact path="/sgjklnmf/discoverCreate" component={ADiscoverCreate}/>}
+                    {<Route exact path="/sgjklnmf/discoverUpdate/:id" component={ADiscoverUpdate}/>}
                     {<Route exact path="/sgjklnmf/discoverList" component={ADiscoverList}/>}
 
 

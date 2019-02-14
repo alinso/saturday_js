@@ -12,19 +12,6 @@ class ADashboard extends React.Component {
         Security.protect();
 
         this.state = {};
-        this.loadPage();
-
-    }
-
-    loadPage() {
-        let self = this;
-        axios.get(Globals.serviceUrl + 'sdklsdf/dashboard', Security.authHeader())
-            .then(function (response) {
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                console.log(error.response);
-            });
     }
 
     render() {

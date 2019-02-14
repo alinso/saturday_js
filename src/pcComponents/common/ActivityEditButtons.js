@@ -17,7 +17,7 @@ class ActivityEditButtons extends React.Component {
                         </button>
                     </a>
                     <a href={"/updateActivity/" + this.props.activityId}>
-                    <button onClick={this.props.updateActivity}
+                    <button onClick={this.props.updateDiscover}
                             className="btn btn-info meetingProcess"><i className="fas fa-edit"/>
                     </button>
                     </a>

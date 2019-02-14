@@ -14,6 +14,7 @@ class BaseDiscoverForm extends React.Component {
         this.state = {
             id: null,
             detail: "",
+            title:"",
             photoName: null,
             savedMessage: false,
             selectedFile: null,
@@ -22,6 +23,7 @@ class BaseDiscoverForm extends React.Component {
             cities: [],
             city: {},
             errors: {},
+            youtube:""
         };
 
         this.onChange = this.onChange.bind(this);
@@ -85,13 +87,23 @@ class BaseDiscoverForm extends React.Component {
                                 onChange={this.onChange}
                             />
                         </div>
+                        <div className="form-group text-align-left">
+                            <input
+                                type="text"
+                                className={classnames("form-control form-control-lg")}
+                                placeholder="Youtube"
+                                name="youtube"
+                                value={this.state.youtube}
+                                onChange={this.onChange}
+                            />
+                        </div>
                         <div className={"row"}>
                             <textarea
                                 className={classnames("form-control form-control-lg breakLine")}
                                 placeholder="detaylar"
                                 name="detail"
-                                value={this.props.detail}
-                                onChange={this.props.onChange}
+                                value={this.state.detail}
+                                onChange={this.onChange}
                             />
                         </div>
 
