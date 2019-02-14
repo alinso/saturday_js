@@ -3,7 +3,9 @@ html, body {
     margin: 0;
     font-family:  Montserrat,SansSerif;
 }
-
+.btn{
+    font-size: 0.9rem;
+}
 .App {
  height: 100%;
   text-align: center;

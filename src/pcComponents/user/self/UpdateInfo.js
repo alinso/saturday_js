@@ -6,7 +6,6 @@ import InputMask from "react-input-mask";
 import Alert from "../../common/Alert";
 import Select from 'react-select'
 import CityUtil from "../../../util/CityUtil";
-import {WithContext as ReactTags} from 'react-tag-input';
 import Globals from "../../../util/Globals";
 
 const axios = require('axios');

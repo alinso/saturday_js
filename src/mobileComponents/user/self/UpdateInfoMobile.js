@@ -6,7 +6,6 @@ import InputMask from "react-input-mask";
 import AlertMobile from "../../common/AlertMobile";
 import Select from 'react-select'
 import CityUtil from "../../../util/CityUtil";
-import {WithContext as ReactTags} from 'react-tag-input';
 import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 
