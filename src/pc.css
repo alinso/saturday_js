@@ -497,6 +497,10 @@ margin-bottom: 4px;
 .customRadio:checked{
   border:10px solid #4099ff;
 }
+.complainOnMessagePage{
+ float: right;
+ font-size: 0.9rem;
+}
 .adminMenu{
     height: 100vh;
     background-color: yellow;

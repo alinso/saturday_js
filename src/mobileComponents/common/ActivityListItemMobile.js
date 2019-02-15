@@ -33,7 +33,7 @@ class ActivityListItemMobile extends React.Component {
                         hashtagListString={this.props.activity.hashtagListString}
                     />
                     <br/>
-                    <div className={"float-left"}>
+                    <div className={"float-left"} title={"Planlanan Aktivite Zamanı"}>
                         <i className="far fa-clock">{this.props.activity.deadLineString}</i>
                     </div>
                     <ActivityEditButtonsMobile

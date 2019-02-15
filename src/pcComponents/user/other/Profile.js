@@ -8,7 +8,6 @@ import CompleteProfile from "../../common/CompleteProfile";
 const axios = require('axios');
 
 
-
 class Profile extends React.Component {
     constructor(props) {
         super(props);
@@ -27,7 +26,7 @@ class Profile extends React.Component {
             activityCount: 0,
             photoCount: 0,
             reviewCount: 0,
-            userPremium:false,
+            userPremium: false,
             errors: {}
         };
 
@@ -119,6 +118,17 @@ class Profile extends React.Component {
         }
     }
 
+    complainButton() {
+        if (this.props.match.params.id !== localStorage.getItem("userId")) {
+            return (
+                <a href={"/complain/" + this.props.match.params.id} className={"row"}>
+                    <button className={"btn btn-danger profileButton"}><strong>
+                        <i className="fas fa-exclamation"/></strong> Şikayet Et
+                    </button>
+                </a>)
+        }
+    }
+
     reviewButton() {
         if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
@@ -194,7 +204,7 @@ class Profile extends React.Component {
                             <br/>
                             <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
                                 <strong>
-                                    {this.state.userPremium &&(
+                                    {this.state.userPremium && (
                                         <span><i className="far fa-check-circle"/>&nbsp;</span>
                                     )}
                                     {this.state.name + " " + this.state.surname}</strong>
@@ -206,16 +216,18 @@ class Profile extends React.Component {
                             <hr/>
                             {(this.props.match.params.id === localStorage.getItem("userId")) &&
                             (
-                            <a href={"/getPremium"}>
-                                <button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium Ol !</strong> </button>
-                            </a>
+                                <a href={"/getPremium"}>
+                                    <button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium
+                                        Ol !</strong></button>
+                                </a>
                             )}
-                        <hr/>
+                            <hr/>
                             <div className={"col-md-12"}>
                                 {this.sendMessageButton()}
                                 {this.reviewButton()}
                                 {this.followButton()}
                                 {this.blockButton()}
+                                {this.complainButton()}
 
                                 {(this.props.match.params.id === localStorage.getItem("userId")) &&
                                 (

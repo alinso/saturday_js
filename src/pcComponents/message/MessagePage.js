@@ -107,6 +107,7 @@ class MessagePage extends React.Component {
                     <MessageBox
                         messages={this.state.messages}
                     />
+                        <a className={"complainOnMessagePage"} href={"/complain/"+this.state.readerProfile.id}>Şikayet Et</a>
                     </div>
 
                     <form onSubmit={this.onSubmit}>

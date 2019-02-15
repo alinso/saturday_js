@@ -80,6 +80,8 @@ import EventList from "./pcComponents/event/EventList";
 import ADiscoverList from "./jshfsadf/discover/ADiscoverList";
 import ADiscoverCreate from "./jshfsadf/discover/ADiscoverCreate";
 import ADiscoverUpdate from "./jshfsadf/discover/ADiscoverUpdate";
+import Complain from "./pcComponents/user/other/Complain";
+import ComplainMobile from "./mobileComponents/user/other/ComplainMobile";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -167,6 +169,7 @@ class App extends Component {
                     {<Route exact path="/info/" component={Info}/>}
                     {<Route exact path="/contact/" component={Contact}/>}
                     {<Route exact path="/about/" component={About}/>}
+                    {<Route exact path="/complain/:id/" component={Complain}/>}
 
 
                     {<Route exact path="/events/" component={EventList}/>}
@@ -232,6 +235,7 @@ class App extends Component {
                         {<Route exact path="/info/" component={InfoMobile}/>}
                         {<Route exact path="/about/" component={AboutMobile}/>}
                         {<Route exact path="/contact/" component={ContactMobile}/>}
+                        {<Route exact path="/complain/:id/" component={ComplainMobile}/>}
 
 
 

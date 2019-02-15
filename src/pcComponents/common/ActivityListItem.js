@@ -32,7 +32,7 @@ class ActivityListItem extends React.Component {
                     hashtagListString={this.props.activity.hashtagListString}
                 />
                 <div className={"row"}>
-                    <div className={"col-md-6 meetingDeadLine"}>
+                    <div className={"col-md-6 meetingDeadLine"} title={"Planlanan Aktivite Zamanı"}>
                         <i className="far fa-clock">{this.props.activity.deadLineString}</i>
                     </div>
                     <div className={"col-md-4"}>

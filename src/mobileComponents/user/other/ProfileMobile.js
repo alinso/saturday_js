@@ -116,6 +116,16 @@ class ProfileMobile extends React.Component {
         }
     }
 
+    complainButton() {
+        if (this.props.match.params.id !== localStorage.getItem("userId")) {
+            return (
+                <a className={"complainOnMessagePage"} href={"/complain/"+this.props.match.params.id}>
+                    Bu profili şikayet et</a>
+            )
+        }
+    }
+
+
     reviewButton() {
         if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
@@ -202,7 +212,7 @@ class ProfileMobile extends React.Component {
                     <div className={"float-left profileMetaMobile"}>
                         <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
                             <strong>
-                                {this.state.userPremium &&(
+                                {this.state.userPremium && (
                                     <span><i className="far fa-check-circle"/>&nbsp;</span>
                                 )}
                                 {this.state.name + " " + this.state.surname}</strong>
@@ -343,6 +353,9 @@ class ProfileMobile extends React.Component {
                                     </span>
                     </div>
                 </div>
+                <br/>
+                {this.complainButton()}
+
                 <br/><br/><br/>
             </div>
         )

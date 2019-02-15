@@ -19,7 +19,14 @@ class ADiscoverCreate extends BaseDiscoverForm {
         axios.get(Globals.serviceUrl + 'city/all/', Security.authHeader())
             .then(function (response) {
                 let result = CityUtil.setCitiesForSelect(response.data);
-                self.setState({cities: result.cities});
+                //all cities
+                let citiesWithAll  = [];
+               const allCities =  {"value":0,"label":"Tüm Şehirler"};
+                citiesWithAll.push(allCities);
+                citiesWithAll = citiesWithAll.concat(result.cities);
+                //all cities finish
+
+                self.setState({cities: citiesWithAll});
                 self.setState({city: result.selectedCity});
             })
             .catch(function (error) {

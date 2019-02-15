@@ -20,7 +20,15 @@ class ADiscoverUpdate extends BaseDiscoverForm {
         axios.get(Globals.serviceUrl+'city/all/', Security.authHeader())
             .then(function (response) {
                 let result =CityUtil.setCitiesForSelect(response.data);
-                self.setState({cities:result.cities});
+
+               //all cities
+                let citiesWithAll  = [];
+                const allCities =  {"value":0,"label":"Tüm Şehirler"};
+                citiesWithAll.push(allCities);
+                citiesWithAll = citiesWithAll.concat(result.cities);
+                //all cities finish
+
+                self.setState({cities:citiesWithAll});
             })
             .catch(function (error) {
             });
@@ -37,11 +45,11 @@ class ADiscoverUpdate extends BaseDiscoverForm {
                 self.setState({photoName: response.data.photoName});
                 self.setState({id: response.data.id});
                 self.setState({youtube: response.data.youtube});
-                self.setState({city:{label:response.data.city.name, value: response.data.city.id}});
+                if(response.data.city!==null)
+                    self.setState({city:{label:response.data.city.name, value: response.data.city.id}});
+                else
+                    self.setState({city:{label:"Tüm Şehirler", value: 0}});
 
-            })
-            .catch(function (error) {
-                console.log(error.response);
             });
 
     }
