@@ -2,7 +2,6 @@ import React from "react";
 import UserUtil from "../../../util/UserUtil";
 import ProfilePicMobile from "../../common/ProfilePicMobile";
 import UserFullNameMobile from "../../common/UserFullNameMobile";
-import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 
 const axios = require('axios');
@@ -16,13 +15,54 @@ class SearchUserMobile extends React.Component {
             searchText: "",
             userNotFoundMessage: false,
             type: "NAME",
+            pageNum: 0,
+            noMoreRecords: false,
             users: [],
             errors: {}
         };
 
+        this.loadMore= this.loadMore.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        let self = this;
+        window.onscroll = function (ev) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                self.loadMore();
+            }
+        };
 
+    }
+    loadMore() {
+        const self = this;
+        let newPageNum = this.state.pageNum + 1;
+        this.setState({pageNum: newPageNum});
+
+        if (this.state.type === "NAME")
+            axios.get(Globals.serviceUrl + 'user/search/' + this.state.searchText +"/"+ newPageNum)
+                .then(function (response) {
+                    if (response.data.length === 0) {
+                        self.setState({noMoreRecords: true});
+                        return;
+                    }
+                    let newUsers = self.state.users;
+                    newUsers = newUsers.concat(response.data);
+                    console.log(newUsers);
+                    self.setState({"users": newUsers});
+                });
+
+
+        if (this.state.type === "HASHTAG")
+            axios.get(Globals.serviceUrl + 'hashtag/findUsers/' +  this.state.searchText +"/"+ newPageNum)
+                .then(function (response) {
+                    if (response.data.length === 0) {
+                        self.setState({noMoreRecords: true});
+                        return;
+                    }
+                    let newUsers = self.state.users;
+                    newUsers = newUsers.concat(response.data);
+                    self.setState({"users": newUsers});
+                    console.log(this.state.users);
+                });
 
     }
 
@@ -30,23 +70,28 @@ class SearchUserMobile extends React.Component {
     searchUser(searchTerm) {
         let self = this;
         if (this.state.type === "NAME")
-            axios.get(Globals.serviceUrl + 'user/search/' + searchTerm)
+            axios.get(Globals.serviceUrl + 'user/search/' + searchTerm + "/" + this.state.pageNum)
                 .then(function (response) {
+                    self.setState({"users": response.data});
+                    self.setState({"userNotFoundMessage": false});
+
                     if (response.data.length === 0)
                         self.setState({"userNotFoundMessage": "Kullanıcı Bulunamadı"});
-                    self.setState({"users": response.data});
+
                 })
                 .catch(function (error) {
                     console.log(error.response);
                 });
 
         if (this.state.type === "HASHTAG")
-            axios.get(Globals.serviceUrl + 'hashtag/findUsers/' + searchTerm)
+            axios.get(Globals.serviceUrl + 'hashtag/findUsers/' + searchTerm+"/"+this.state.pageNum)
                 .then(function (response) {
+                    self.setState({"userNotFoundMessage": false});
+                    self.setState({"users": response.data});
+
                     if (response.data.length === 0)
                         self.setState({"userNotFoundMessage": "Kullanıcı Bulunamadı"});
-                    self.setState({"users": response.data});
-                    console.log(this.state.users);
+
                 })
                 .catch(function (error) {
                     console.log(error.response);
@@ -94,7 +139,6 @@ class SearchUserMobile extends React.Component {
 
         return (
             <div className="full-width container">
-                <BackToProfileMobile/>
                 <form onSubmit={this.onSubmit}>
 
                     <div className="form-group">
@@ -156,6 +200,9 @@ class SearchUserMobile extends React.Component {
                         <div className={"clear-both"}/>
                     </div>)
                 })}
+                <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha
+                    fazla göster...
+                </button>
 
             </div>
 

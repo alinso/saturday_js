@@ -2,7 +2,6 @@ import React from "react";
 import classnames from "classnames";
 import security from "../../../security/Security";
 import AlertMobile from "../../common/AlertMobile";
-import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 
 const axios = require('axios');
@@ -70,7 +69,6 @@ class UpdatePasswordMobile extends React.Component {
 
         return (
             <div className="full-width container">
-                <BackToProfileMobile/>
 
                 <h5 className="text-center">Şifre Güncelle</h5>
                 <hr/>

@@ -6,7 +6,6 @@ import InputMask from "react-input-mask";
 import AlertMobile from "../../common/AlertMobile";
 import Select from 'react-select'
 import CityUtil from "../../../util/CityUtil";
-import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 
 const axios = require('axios');
@@ -137,7 +136,6 @@ class UpdateInfoMobile extends React.Component {
 
         return (
             <div className="full-width container">
-                <BackToProfileMobile/>
                 <h4 className=" text-center">Bilgilerimi Düzenle</h4>
                 <hr/>
                 {savedMessage && (

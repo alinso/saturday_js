@@ -3,7 +3,6 @@ import Security from "../../../security/Security";
 import ProfilePicMobile from "../../common/ProfilePicMobile";
 import UserFullNameMobile from "../../common/UserFullNameMobile";
 import JSUtil from "../../../util/JSUtil";
-import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 
 const axios = require('axios');
@@ -54,7 +53,6 @@ class FollowingsMobile extends React.Component {
         const self = this;
         return (
             <div className="full-width container">
-                <BackToProfileMobile/>
                 <h5>Bildirim Aldığım kişiler</h5>
                 {
                     self.state.followings.map(function (following, i) {

@@ -6,7 +6,6 @@ import UserUtil from "../../util/UserUtil";
 import JSUtil from "../../util/JSUtil";
 import AlertMobile from "../common/AlertMobile";
 import ActivityEditButtonsMobile from "../common/ActivityEditButtonsMobile";
-import BackToProfileMobile from "../common/BackToProfileMobile";
 import Globals from "../../util/Globals";
 
 const axios = require('axios');
@@ -96,14 +95,12 @@ class ActivityRequestsMobile extends React.Component {
         //sayfa bulunamadı common componentine cevir
         if (this.state.errors.recordNotFound404Message) {
             return (<div className="full-width">
-                <BackToProfileMobile/>
                 Sayfa Bulunamadı
             </div>)
         }
 
         return (
             <div className={"full-width container"}>
-                <BackToProfileMobile/>
                 <div className={"full-width meetingListMeetingText"}>
 
                     {this.state.detail}

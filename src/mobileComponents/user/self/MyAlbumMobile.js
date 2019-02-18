@@ -1,7 +1,5 @@
 import React from "react";
 import security from "../../../security/Security";
-import Lightbox from 'react-images';
-import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 
 
@@ -97,7 +95,6 @@ class MyAlbumMobile extends React.Component {
         const self = this;
         return (
             <div className="container">
-                <BackToProfileMobile/>
                 {this.state.photoNames.map((photoName, i) => {
                         photoSet.push({"src": "/upload/" + photoName});
                         return (<div key={"key" + i} className="col-md-4">

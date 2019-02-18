@@ -2,7 +2,6 @@ import React from "react";
 import security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
 import SinglePhotoSelectorMobile from "../../common/SinglePhotoSelectorMobile";
-import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 
 const axios = require('axios');
@@ -85,7 +84,6 @@ class UpdateProfilePicMobile extends React.Component {
 
         return (
             <div className="full-width container">
-                <BackToProfileMobile/>
                 <h5>Profil Fotoğrafını Güncelle</h5>
                 <img className="profilePicLarge" src={this.state.profilePicUrl}/>
                 <br/>

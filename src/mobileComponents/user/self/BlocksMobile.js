@@ -3,7 +3,6 @@ import Security from "../../../security/Security";
 import ProfilePicMobile from "../../common/ProfilePicMobile";
 import UserFullNameMobile from "../../common/UserFullNameMobile";
 import JSUtil from "../../../util/JSUtil";
-import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 
 const axios = require('axios');
@@ -54,7 +53,6 @@ class BlocksMobile extends React.Component {
         const self = this;
         return (
             <div className="full-width container">
-                <BackToProfileMobile/>
                 <h5>Engellediğim kişiler</h5>
                 {
                     self.state.blocks.map(function (block, i) {

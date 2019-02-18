@@ -2,7 +2,6 @@ import React from "react";
 import Globals from "../../util/Globals";
 import Alert from "../common/AlertMobile";
 import Security from "../../security/Security";
-import BackToProfileMobile from "../common/BackToProfileMobile";
 import JSUtil from "../../util/JSUtil";
 
 const axios = require('axios');
@@ -85,7 +84,6 @@ class PremiumFormMobile extends React.Component {
         return (
             <div className="full-width container">
 
-                <BackToProfileMobile/>
                 {(this.state.profileDto.userPremium) && (
                     <Alert type="alert-success" message={"Zaten premium üyesiniz, bir sonraki aldığınız paket var olan paket üzerine eklenecektir." +
                     " Şu an premium bitiş tarihiniz :" +this.state.latestPremiumDate}/>

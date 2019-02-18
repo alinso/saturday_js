@@ -1,6 +1,5 @@
 import React from "react";
 import Security from "../../../security/Security";
-import BackToProfileMobile from "../../common/BackToProfileMobile";
 import Globals from "../../../util/Globals";
 import ProfilePic from "../../../pcComponents/common/ProfilePic";
 import UserFullName from "../../../pcComponents/common/UserFullName";
@@ -44,7 +43,6 @@ class ReferenceCodesMobile extends React.Component {
         const self = this;
         return (
             <div className="full-width container">
-                <BackToProfileMobile/>
                 <h5>Arkadaşlarına vermen gereken referans kodu :{this.state.me.referenceCode}</h5>
                 <hr/>
 

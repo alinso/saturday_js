@@ -2,7 +2,6 @@ import React from "react";
 import Security from "../../security/Security";
 import ProfilePicMobile from "../common/ProfilePicMobile";
 import UserFullNameMobile from "../common/UserFullNameMobile";
-import BackToProfileMobile from "../common/BackToProfileMobile";
 import Globals from "../../util/Globals";
 
 const axios = require('axios');
@@ -40,7 +39,6 @@ class ReviewDetailMobile extends React.Component {
         if (review.writer !== undefined) {
             return (
                 <div className="full-width container">
-                    <BackToProfileMobile/>
                     <h5>Sizin için yeni bir yorum yapıldı!</h5>
                     <div className={"full-width"}>
                         <div className={"float-left"}>

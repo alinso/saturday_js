@@ -17,19 +17,47 @@ class DashboardMobile extends BaseActivityListMobile {
         this.state = {
             activities: [],
             cities: [],
-            city: {}
+            city: {},
+            pageNum: 0,
+            noMoreRecords: false
+
         };
 
+        this.loadMore = this.loadMore.bind(this);
         this.fillPage = this.fillPage.bind(this);
         this.fillPage(localStorage.getItem("cityId"));
         this.loadCities();
         self = this;
+        window.onscroll = function(ev) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                self.loadMore();
+            }
+        };
+
+    }
+    loadMore() {
+        const self = this;
+        let newPageNum = this.state.pageNum + 1;
+        this.setState({pageNum: newPageNum});
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + localStorage.getItem("cityId") + "/" + newPageNum, Security.authHeader())
+            .then(function (response) {
+                console.log(response.data);
+
+                if(response.data.length===0){
+                    self.setState({noMoreRecords:true});
+                    return;
+                }
+
+                let newActivities = self.state.activities;
+                newActivities = newActivities.concat(response.data);
+                self.setState({activities: newActivities});
+            });
     }
 
     fillPage(cityId) {
         const self = this;
 
-        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId+"/"+this.state.pageNum, Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
             })
@@ -82,6 +110,8 @@ class DashboardMobile extends BaseActivityListMobile {
                                                     joinActivity={self.joinActivity}/>
                         );
                     })}
+                <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha fazla göster...</button>
+
             </div>
         )
     }
