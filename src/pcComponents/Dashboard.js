@@ -20,13 +20,12 @@ class Dashboard extends BaseActivityList {
             city: {},
             pageNum: 0,
             noMoreRecords: false
-
         };
 
         this.fillPage = this.fillPage.bind(this);
         this.loadMore = this.loadMore.bind(this);
-        this.fillPage();
         this.loadCities();
+        this.fillPage(localStorage.getItem("cityId"));
         self = this;
         window.onscroll = function(ev) {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
@@ -35,10 +34,11 @@ class Dashboard extends BaseActivityList {
         };
     }
 
-    fillPage() {
+    fillPage(cityId) {
         const self = this;
 
-        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + localStorage.getItem("cityId") + "/" + this.state.pageNum, Security.authHeader())
+        console.log(this.state.city);
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId+ "/" + this.state.pageNum, Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
             })
@@ -52,7 +52,7 @@ class Dashboard extends BaseActivityList {
         const self = this;
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
-        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + localStorage.getItem("cityId") + "/" + newPageNum, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + this.state.city.id + "/" + newPageNum, Security.authHeader())
             .then(function (response) {
                 console.log(response.data);
 
