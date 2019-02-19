@@ -39,7 +39,7 @@ class DashboardMobile extends BaseActivityListMobile {
         const self = this;
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
-        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + localStorage.getItem("cityId") + "/" + newPageNum, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + this.state.city.value + "/" + newPageNum, Security.authHeader())
             .then(function (response) {
                 console.log(response.data);
 
@@ -57,7 +57,7 @@ class DashboardMobile extends BaseActivityListMobile {
     fillPage(cityId) {
         const self = this;
 
-        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId+"/"+this.state.pageNum, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId+"/0", Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
             })
@@ -88,6 +88,8 @@ class DashboardMobile extends BaseActivityListMobile {
     onSelectChange(e) {
         self.fillPage(e.value);
         self.setState({city: e});
+        self.setState({pageNum:0});
+        self.setState({noMoreRecords:false});
     }
 
 

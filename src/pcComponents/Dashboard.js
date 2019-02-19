@@ -37,8 +37,7 @@ class Dashboard extends BaseActivityList {
     fillPage(cityId) {
         const self = this;
 
-        console.log(this.state.city);
-        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId+ "/" + this.state.pageNum, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId+ "/0", Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
             })
@@ -49,10 +48,12 @@ class Dashboard extends BaseActivityList {
     }
 
     loadMore() {
+        console.log(this.state.city);
+
         const self = this;
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
-        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + this.state.city.id + "/" + newPageNum, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + this.state.city.value + "/" + newPageNum, Security.authHeader())
             .then(function (response) {
                 console.log(response.data);
 
@@ -77,12 +78,13 @@ class Dashboard extends BaseActivityList {
             })
             .catch(function (error) {
             });
-
     }
 
     onSelectChange(e) {
         self.fillPage(e.value);
         self.setState({city: e});
+        self.setState({pageNum:0});
+        self.setState({noMoreRecords:false});
     }
 
 
