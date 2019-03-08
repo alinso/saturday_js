@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import DownloadAppLink from "./DownloadAppLink";
 
 class LandingMobile extends Component {
 
@@ -9,6 +10,7 @@ class LandingMobile extends Component {
 
 
                 </div>
+
                 <br/>
                 <img src={"/img/site-logo-purple.png"}/>
                 <div className={"col-md-6 m-auto"}>
@@ -46,7 +48,8 @@ class LandingMobile extends Component {
                             Sen de aynı şekilde insanların aktivitelerini görebilir ve onlara dahil
                             olabilirsin<br/><br/>
                             Activity Friend'in en önemli taraflarından biri de içeriğindeki insan kalitesini çok
-                            ciddiye almasıdır. Geniş değil, doğru kitleye ulaşmaya çalışıyoruz. Activity Friend'de kadın ve erkek kullanıcı sayısı dengelidir. Kullanıcılarla
+                            ciddiye almasıdır. Geniş değil, doğru kitleye ulaşmaya çalışıyoruz. Activity Friend'de kadın
+                            ve erkek kullanıcı sayısı dengelidir. Kullanıcılarla
                             ilgili yazılan yorum ve puanları inceleyip aktivitelerini
                             güvenle paylaşabilirsin.
                         </div>
@@ -84,6 +87,8 @@ class LandingMobile extends Component {
                     birlikte yapalım, eğlenceyi ikiye katlayalım.
                 </div>
                 <br/>
+                <DownloadAppLink/>
+                <br/><br/><br/>
                 <div className={"full-width"}>
                     <div className={"landing_parallax"}>
                         <div className={"landing_parallax_textMobile"}>
@@ -118,14 +123,15 @@ class LandingMobile extends Component {
                 <br/><br/>
                 <div className={"landingText"}>
                     <h1><i className="fab fa-angellist"/></h1><br/>
-                <h4>Dışarıda Hayat Var!</h4><br/>
+                    <h4>Dışarıda Hayat Var!</h4><br/>
                 </div>
-                    <a href={"/register"}>
+                <a href={"/register"}>
                     <button className={"btn btnJoin"}><h1>Hadi sen de gel</h1></button>
                 </a>
 
 
-                <br/><br/><br/><hr/>
+                <br/><br/><br/>
+                <hr/>
                 <div className={"text-align-left landingText "}>
                     <div className={"col-md-4"}><h6><i className="fab fa-instagram"/>/activityfriend</h6></div>
                     <div className={"col-md-4"}><h6><i className="far fa-envelope"/> friend@activityfriend.net

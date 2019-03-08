@@ -27,7 +27,7 @@ class RegisterMobile extends React.Component {
             gender: "UNSELECTED",
             referenceCode: "",
             isSubmitDisabled: false,
-            registrationCompletedMessage: false,
+            registrationCompleted: false,
             errors: {}
         };
 
@@ -41,7 +41,8 @@ class RegisterMobile extends React.Component {
         axios.post(Globals.serviceUrl+'user/register', newUser)
             .then(function (response) {
                 self.setState({"errors": {}});
-                self.setState({"registrationCompletedMessage": "Mailine aktivasyon linki gönderdik (bu bazen birkaç dakika sürebilir veya spama düşebilir) linke tıklayarak hesabını aktifleştirebilirsin."});
+                //  self.setState({"registrationCompletedMessage": "Mailine aktivasyon linki gönderdik (bu bazen birkaç dakika sürebilir veya spama düşebilir) linke tıklayarak hesabını aktifleştirebilirsin."});
+                  self.setState({"registrationCompleted": true});
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
@@ -82,18 +83,26 @@ class RegisterMobile extends React.Component {
 
     render() {
 
-        const {registrationCompletedMessage} = this.state;
+        const {registrationCompleted} = this.state;
         const {errors} = this.state;
         const show = {display: "inline"}
+        document.body.className = 'registerBody';
+
+
         return (
             <div className="full-width registerContainerMobile">
                 <h6 className={"color-white"}>Activity Friend'e Katıl!</h6>
-                {registrationCompletedMessage && (
-                    <AlertMobile type="alert-success" message={registrationCompletedMessage}/>
+
+                {registrationCompleted && (
+                    <div className={"registerCompletedMessage"}>
+                        <h6 >Kayıt Tamamlandı</h6>
+                        <span>Bize katıldığın için teşekkür ederiz. </span><br/>
+                        <a className={"color-white"} href={"/login"}><btn className="btn btn-success">Giriş İçin Tıkla</btn></a>
+                    </div>
 
                 )}
 
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit} hidden={registrationCompleted}>
                     <div className="form-group">
                         <input
                             type="text"
@@ -247,6 +256,7 @@ class RegisterMobile extends React.Component {
                 <br/>
                 <a href={"/"} className={"color-white"}>Anasayfa</a> <span className={"color-white"}>|</span> <a
                 href={"/login"} className={"color-white"}>Giriş Yap</a>
+
             </div>
 
         );

@@ -41,7 +41,8 @@ class Register extends React.Component {
         axios.post(Globals.serviceUrl+'user/register', newUser)
             .then(function (response) {
                 self.setState({"errors": {}});
-                self.setState({"registrationCompletedMessage": "Mailine aktivasyon linki gönderdik (bu bazen birkaç dakika sürebilir veya spama düşebilir) linke tıklayarak hesabını aktifleştirebilirsin."});
+                // self.setState({"registrationCompletedMessage": "Mailine aktivasyon linki gönderdik (bu bazen birkaç dakika sürebilir veya spama düşebilir) linke tıklayarak hesabını aktifleştirebilirsin."});
+                 self.setState({"registrationCompletedMessage": "Kayıt tamamlandı, giriş sayfasından yapabilirsin"});
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});

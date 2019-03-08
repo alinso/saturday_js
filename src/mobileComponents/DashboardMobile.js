@@ -16,6 +16,7 @@ class DashboardMobile extends BaseActivityListMobile {
 
         this.state = {
             activities: [],
+            userCount: 0,
             cities: [],
             city: {},
             pageNum: 0,
@@ -28,13 +29,14 @@ class DashboardMobile extends BaseActivityListMobile {
         this.fillPage(localStorage.getItem("cityId"));
         this.loadCities();
         self = this;
-        window.onscroll = function(ev) {
+        window.onscroll = function (ev) {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 self.loadMore();
             }
         };
 
     }
+
     loadMore() {
         const self = this;
         let newPageNum = this.state.pageNum + 1;
@@ -43,8 +45,8 @@ class DashboardMobile extends BaseActivityListMobile {
             .then(function (response) {
                 console.log(response.data);
 
-                if(response.data.length===0){
-                    self.setState({noMoreRecords:true});
+                if (response.data.length === 0) {
+                    self.setState({noMoreRecords: true});
                     return;
                 }
 
@@ -57,7 +59,7 @@ class DashboardMobile extends BaseActivityListMobile {
     fillPage(cityId) {
         const self = this;
 
-        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId+"/0", Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId + "/0", Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
             })
@@ -68,6 +70,13 @@ class DashboardMobile extends BaseActivityListMobile {
         axios.get(Globals.serviceUrl + 'm/ok', Security.authHeader())
             .then(function (response) {
                 console.log(response.data);
+            })
+            .catch(function (error) {
+            });
+
+        axios.get(Globals.serviceUrl + 'user/userCount', Security.authHeader())
+            .then(function (response) {
+                self.setState({userCount: response.data});
             })
             .catch(function (error) {
             });
@@ -88,8 +97,8 @@ class DashboardMobile extends BaseActivityListMobile {
     onSelectChange(e) {
         self.fillPage(e.value);
         self.setState({city: e});
-        self.setState({pageNum:0});
-        self.setState({noMoreRecords:false});
+        self.setState({pageNum: 0});
+        self.setState({noMoreRecords: false});
     }
 
 
@@ -112,7 +121,11 @@ class DashboardMobile extends BaseActivityListMobile {
                                                     joinActivity={self.joinActivity}/>
                         );
                     })}
-                <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha fazla göster...</button>
+                    <span className={"discoverInfo"}>Toplam kullanıcı sayısı: {this.state.userCount}</span><br/>
+                <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha
+                    fazla göster...
+                </button>
+                <br/><br/>
 
             </div>
         )

@@ -24,6 +24,7 @@ class MessagePage extends React.Component {
             errors: {}
         };
 
+        this.deleteConvo = this.deleteConvo.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -50,13 +51,13 @@ class MessagePage extends React.Component {
     sendMessage(messageDto) {
 
         const self = this;
-        axios.post(Globals.serviceUrl+'message/send/', messageDto, Security.authHeader())
+        axios.post(Globals.serviceUrl + 'message/send/', messageDto, Security.authHeader())
             .then(function (response) {
                 let messages = self.state.messages;
                 let newMessage = response.data;
                 messages.push(newMessage);
                 self.setState({messages: messages});
-                self.setState({message:""});
+                self.setState({message: ""});
 
             })
             .catch(function (error) {
@@ -69,7 +70,7 @@ class MessagePage extends React.Component {
         let self = this;
 
         //get the reader user
-        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id)
+        axios.get(Globals.serviceUrl + 'user/profile/' + this.props.match.params.id)
             .then(function (response) {
                 self.setState({readerProfile: response.data});
             })
@@ -80,7 +81,7 @@ class MessagePage extends React.Component {
 
 
         //get messages
-        axios.get(Globals.serviceUrl+'message/getMessagesForReader/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'message/getMessagesForReader/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({messages: response.data});
             })
@@ -88,6 +89,17 @@ class MessagePage extends React.Component {
                 self.setState({"errors": error.response.data});
             });
 
+    }
+
+
+    deleteConvo() {
+        if (window.confirm("Bu konuşmayı silmek istediğinden emin misin?")) {
+            axios.get(Globals.serviceUrl + 'message/deleteConversation/' + this.props.match.params.id, Security.authHeader())
+                .then(function (response) {
+                    window.location="/conversations";
+
+                });
+        }
     }
 
 
@@ -104,15 +116,22 @@ class MessagePage extends React.Component {
                         user={this.state.readerProfile}
                     />
                     <div className={"col-md-10 m-auto"}>
-                    <MessageBox
-                        messages={this.state.messages}
-                    />
-                        <a className={"complainOnMessagePage"} href={"/complain/"+this.state.readerProfile.id}>Şikayet Et</a>
+                        <MessageBox
+                            messages={this.state.messages}
+                        />
+                        <div>
+                            <button onClick={()=>this.deleteConvo()} className={"btn btn-danger float-left"}>Konuşmayı Sil</button>
+                            <a className={"complainOnMessagePage"} href={"/complain/" + this.state.readerProfile.id}>Şikayet
+                                Et</a>
+                        </div>
+                        <div className={"clear-both"}/>
+                        <br/>
                     </div>
 
                     <form onSubmit={this.onSubmit}>
 
                         <div className="form-group">
+
                             <textarea
                                 className={classnames("form-control form-control-lg", {
                                     "is-invalid": this.state.errors.message

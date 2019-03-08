@@ -420,6 +420,10 @@ margin-bottom: 4px;
   max-height: 470px;
 }
 
+.discoverInfo {
+    font-size: 0.7rem;
+    color: #c5a8a8;
+}
 .city-filter-label{
     margin-top:7px
 }
@@ -435,6 +439,9 @@ margin-bottom: 4px;
     width: 100%;
     margin-bottom: -50px;
 
+}
+.discoverPhoto{
+    width: 80%;
 }
 
 .loginOuter{

@@ -3,6 +3,7 @@ import classnames from "classnames";
 import security from "../../../security/Security";
 import Alert from "../../common/Alert";
 import Globals from "../../../util/Globals";
+import DownloadAppLink from "../../../mobileComponents/common/DownloadAppLink";
 
 const axios = require('axios');
 
@@ -110,6 +111,8 @@ class Login extends Component {
                     <br/>
                     <a href="/forgottenPassword">Şifremi Unuttum</a>
                 </div>
+
+
             </div>
 
         );

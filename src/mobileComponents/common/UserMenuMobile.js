@@ -16,7 +16,8 @@ class UserMenuMobile extends React.Component {
             seedActive: false,
             createActive: false,
             notActive: false,
-            hamburgerOpen:false
+            hamburgerOpen:false,
+            discoverActive:false
         };
 
 
@@ -32,17 +33,28 @@ class UserMenuMobile extends React.Component {
             this.setState({seedActive: false});
             this.setState({createActive: true});
             this.setState({notActive: false});
+            this.setState({discoverActive: false});
+
         }
         if (pathname === "/notifications") {
-            console.log("xx");
             this.setState({seedActive: false});
             this.setState({createActive: false});
             this.setState({notActive: true});
+            this.setState({discoverActive: false});
+
         }
         if (pathname === "/") {
             this.setState({seedActive: true});
             this.setState({createActive: false});
             this.setState({notActive: false});
+            this.setState({discoverActive: false});
+
+        }
+        if (pathname === "/discover") {
+            this.setState({seedActive: false});
+            this.setState({createActive: false});
+            this.setState({notActive: false});
+            this.setState({discoverActive: true});
         }
     }
 
@@ -84,6 +96,7 @@ class UserMenuMobile extends React.Component {
         const {seedActive}  =this.state;
         const {createActive}  =this.state;
         const {notActive}  =this.state;
+        const {discoverActive}  =this.state;
         return (<div>
                 <div className={this.state.hamburgerOpen ? "hamburgerContainerMobile" : "displayNone"}>
                     <div className={"hamburgerMenuItemMobile"}>
@@ -113,9 +126,15 @@ class UserMenuMobile extends React.Component {
                         <span className={"menuIconMobile"}> <i className="fas fa-glass-cheers"/></span>
                         <span className={"menuTitle"} hidden={!createActive}>Aktivite</span>
                     </a>
+
+                    <a href="/discover"  className={discoverActive ? "active" :""}>
+                        <span className={"menuIconMobile"}> <i className="fas fa-dice"/></span>
+                        <span className={"menuTitle"} hidden={!discoverActive}> Jumanji</span>
+                    </a>
+
                     <a href="/notifications"  className={notActive ? "active" :""}>
                         <span className={"menuIconMobile"}> <i title={notificationLinkProps.title} className={notificationLinkProps.class}/></span>
-                        <span className={"menuTitle"} hidden={!notActive}> Bildirimler</span>
+                        <span className={"menuTitle"} hidden={!notActive}> Bildirim</span>
                     </a>
                     <span className={"hamburgerButtonMobile"} onClick={this.hamburgerToggle}>
                         {!this.state.hamburgerOpen && (<i className="fas fa-bars"/>)}

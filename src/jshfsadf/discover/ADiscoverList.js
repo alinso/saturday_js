@@ -52,7 +52,12 @@ class ADiscoverList extends React.Component {
                             )
                         })
                     }
-                </div>
+                    <br/>
+                    <br/>&nbsp;
+                    <br/>
+                    <br/><hr/>
+                    </div>
+
             </div>
 
         );

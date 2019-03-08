@@ -23,7 +23,7 @@ class MessagePageMobile extends React.Component {
             readerProfile: {},
             errors: {}
         };
-
+        this.deleteConvo = this.deleteConvo.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -34,6 +34,16 @@ class MessagePageMobile extends React.Component {
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
     }
+
+    deleteConvo() {
+        if (window.confirm("Bu konuşmayı silmek istediğinden emin misin?")) {
+            axios.get(Globals.serviceUrl + 'message/deleteConversation/' + this.props.match.params.id, Security.authHeader())
+                .then(function (response) {
+                    window.location="/conversations";
+                });
+        }
+    }
+
 
 
     onSubmit(e) {
@@ -107,7 +117,14 @@ class MessagePageMobile extends React.Component {
                     <MessageBoxMobile
                         messages={this.state.messages}
                     />
-                <a className={"complainOnMessagePage"} href={"/complain/"+this.state.readerProfile.id}>Şikayet Et</a>
+                <div>
+                    <button onClick={()=>this.deleteConvo()} className={"btn btn-danger float-left"}>Konuşmayı Sil</button>
+                    <a className={"complainOnMessagePage"} href={"/complain/" + this.state.readerProfile.id}>Şikayet
+                        Et</a>
+                </div>
+                <div className={"clear-both"}/>
+                <br/>
+
 
                 <form onSubmit={this.onSubmit}>
 

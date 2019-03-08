@@ -76,12 +76,13 @@ import ContactMobile from "./mobileComponents/info/ContactMobile";
 import Contact from "./pcComponents/info/Contact";
 import About from "./pcComponents/info/About";
 import ADashboard from "./jshfsadf/ADashboard";
-import EventList from "./pcComponents/event/EventList";
+import Discover from "./pcComponents/event/Discover";
 import ADiscoverList from "./jshfsadf/discover/ADiscoverList";
 import ADiscoverCreate from "./jshfsadf/discover/ADiscoverCreate";
 import ADiscoverUpdate from "./jshfsadf/discover/ADiscoverUpdate";
 import Complain from "./pcComponents/user/other/Complain";
 import ComplainMobile from "./mobileComponents/user/other/ComplainMobile";
+import DiscoverMobile from "./mobileComponents/discover/DiscoverMobile";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -172,7 +173,7 @@ class App extends Component {
                     {<Route exact path="/complain/:id/" component={Complain}/>}
 
 
-                    {<Route exact path="/events/" component={EventList}/>}
+                    {<Route exact path="/discover/" component={Discover}/>}
 
                     {<Route exact path="/sgjklnmf/dashboard" component={ADashboard}/>}
                     {<Route exact path="/sgjklnmf/discoverCreate" component={ADiscoverCreate}/>}
@@ -236,7 +237,7 @@ class App extends Component {
                         {<Route exact path="/about/" component={AboutMobile}/>}
                         {<Route exact path="/contact/" component={ContactMobile}/>}
                         {<Route exact path="/complain/:id/" component={ComplainMobile}/>}
-
+                        {<Route exact path="/discover/" component={DiscoverMobile}/>}
 
 
 

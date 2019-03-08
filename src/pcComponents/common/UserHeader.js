@@ -71,6 +71,10 @@ class UserHeader extends React.Component {
                             <a href="/createActivity" className={"doSometingLink"} title={"Yeni Aktivite"}>
                                 <i className="fas fa-2x fa-glass-cheers"/></a>
                         </li>
+                        <li className="nav-item nav-link">
+                            <a href="/discover" className={"doSometingLink"} title={"Jumanji"}>
+                                <i className="fas fa-2x fa-dice"/></a>
+                        </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right ">
                         <li className="nav-item nav-link">

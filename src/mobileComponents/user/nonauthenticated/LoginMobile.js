@@ -3,6 +3,7 @@ import classnames from "classnames";
 import security from "../../../security/Security";
 import AlertMobile from "../../common/AlertMobile";
 import Globals from "../../../util/Globals";
+import DownloadAppLink from "../../common/DownloadAppLink";
 
 const axios = require('axios');
 
@@ -10,13 +11,13 @@ class LoginMobile extends Component {
     constructor() {
         super();
 
-        if(localStorage.getItem("jwtToken")){
+        if (localStorage.getItem("jwtToken")) {
             security.logout();
         }
         this.state = {
             username: "",
             password: "",
-            isSubmitDisabled:false,
+            isSubmitDisabled: false,
             errors: {}
         };
         this.onChange = this.onChange.bind(this);
@@ -27,16 +28,16 @@ class LoginMobile extends Component {
         const self = this;
         try {
             // post => LoginMobile Request
-            axios.post(Globals.serviceUrl+"user/login", LoginRequest)
+            axios.post(Globals.serviceUrl + "user/login", LoginRequest)
                 .then(function (res) {
                     const {token} = res.data;
                     const {profilePicName} = res.data;
                     const {cityId} = res.data;
-                    security.setLoginCredentials(token, profilePicName,cityId);
+                    security.setLoginCredentials(token, profilePicName, cityId);
                     window.location = "/";
                 }).catch(function (error) {
                 console.log(error.response.data);
-                self.setState({isSubmitDisabled:false});
+                self.setState({isSubmitDisabled: false});
                 self.setState({"errors": error.response.data});
             });
         } catch (err) {
@@ -47,7 +48,7 @@ class LoginMobile extends Component {
 
     onSubmit(e) {
         e.preventDefault();
-        this.setState({isSubmitDisabled:true});
+        this.setState({isSubmitDisabled: true});
         const LoginRequest = {
             username: this.state.username,
             password: this.state.password
@@ -69,7 +70,7 @@ class LoginMobile extends Component {
                     {errors.errorMessage && (
                         <AlertMobile type="alert-danger" message={errors.errorMessage}/>
 
-                        )}
+                    )}
                     {errors.userWarningMessage && (
                         <AlertMobile type="alert-danger" message={errors.userWarningMessage}/>
                     )}
@@ -101,10 +102,14 @@ class LoginMobile extends Component {
                         </div>
                         <input type="submit" value="Giriş Yap"
                                className="btn btn-info btn-block mt-4"
-                        disabled={this.state.isSubmitDisabled}/>
+                               disabled={this.state.isSubmitDisabled}/>
                     </form>
                     <br/>
                     <a href="/forgottenPassword">Şifremi Unuttum</a> | <a href="/register">Kaydol</a>
+                    <br/>
+                    <div className={"bottom"}>
+                        <DownloadAppLink/>
+                    </div>
                 </div>
             </div>
 
