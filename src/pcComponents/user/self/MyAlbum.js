@@ -17,6 +17,7 @@ class MyAlbum extends React.Component {
             errors: {},
             photoNames: [],
             loaded: 0,
+            filesReady:"",
             selectedPhotos: []
         };
         this.handleUpload = this.handleUpload.bind(this);
@@ -45,10 +46,17 @@ class MyAlbum extends React.Component {
     }
 
     handleSelectedFiles = event => {
+
+        if(event.target.files.length>3){
+            alert("Tek seferde en fazla 3 dosya seçebilirsin");
+            return;
+        }
+
         this.setState({
             selectedPhotos: event.target.files,
             loaded: 0,
-        })
+        });
+        this.setState({filesReady:"Fotorağlar yüklemeye hazır"})
     };
 
     handleUpload = () => {
@@ -75,6 +83,8 @@ class MyAlbum extends React.Component {
                 let allPhotosCombined = oldPhotos.concat(res.data);
                 self.setState({photoNames: allPhotosCombined});
             });
+        this.setState({filesReady:""})
+
     };
 
 
@@ -153,14 +163,15 @@ class MyAlbum extends React.Component {
                     </div>
                     <label className="btn btn-default">
                         <div className="uploadBrowseButton">Fotoğrafları Seç</div>
+                        <span>(1 foto : max 4 MB)</span>
+
                         <input type="file" hidden name="photos[]" onChange={this.handleSelectedFiles} multiple/>
                     </label>
+
                     <div>
+                        <div> {this.state.filesReady}</div>
                         <button className="btn btn-primary" onClick={this.handleUpload}>Fotoğrafları Yükle</button>
                     </div>
-                    {(this.state.loaded > 0) &&
-                    <div> {Math.round(this.state.loaded)} %</div>
-                    }
                 </div>
             </div>
         )

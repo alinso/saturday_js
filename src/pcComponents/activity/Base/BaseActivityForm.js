@@ -134,10 +134,10 @@ class BaseActivityForm extends React.Component {
 
         if (localStorage.getItem("cityId") === "null") {
             return (<div className="row outer">
-                <div className={"col-md-6 offset-3 container"}><Alert
-                    type={"alert-warning"}
-                    message={"Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
-                /></div>
+                <div className={"col-md-6 offset-3 container"}>
+                    <a href="/updateInfo"> <div className={"alert alert-danger"}>
+                    Akışı görebilmek için buraya tıklayıp ŞEHİR  ve TELEFON bilgisi girmelisin</div></a>
+                </div>
             </div>)
         }
         if (this.state.activityLimitExceeded) {
@@ -161,8 +161,7 @@ class BaseActivityForm extends React.Component {
                 <div className={"col-md-6 offset-3 container"}>
                     <div className={"col-md-8 m-auto"}>
                         <h4> Aktivite Oluştur</h4>
-                        <span>Bugünlerde ne planlıyorsun, birkaç saat içinde yakınlardaki bir parkta yürüyüş yapmak mı, yoksa haftasonu sinemaya gitmek mi..
-                         Her ne planlıyorsan bizimle paylaş, birlikte yapalım!</span>
+                        <span>Bugünlerde ne planlıyorsun, her ne yapmak istiyorsan bizimle paylaş, birlikte yapalım!</span>
 
 
                         {savedMessage && (

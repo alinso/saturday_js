@@ -99,10 +99,9 @@ class Dashboard extends BaseActivityList {
                         <hr/>
                     </div>
                     {(localStorage.getItem("cityId") === "null") &&
-                    (<AlertMobile
-                        type={"alert-warning"}
-                        message={"Akışı görebilmek için Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
-                    />)
+
+                    (<a href="/updateInfo"> <div className={"alert alert-danger"}>
+                        Akışı görebilmek için Profilim->Bilgilerim kısmından ŞEHİR  ve TELEFON bilgisi girmelisin</div></a>)
                     }
                     {
                         self.state.activities.map(function (activity, i) {

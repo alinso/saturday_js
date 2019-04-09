@@ -43,6 +43,7 @@ class ReferenceCodesMobile extends React.Component {
         const self = this;
         return (
             <div className="full-width container">
+                <h4>Arkaşalarını davet, birlikte büyüyelim!</h4>
                 <h5>Arkadaşlarına vermen gereken referans kodu :{this.state.me.referenceCode}</h5>
                 <hr/>
 

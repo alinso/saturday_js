@@ -119,8 +119,8 @@ class ProfileMobile extends React.Component {
     complainButton() {
         if (this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
-                <a className={"complainOnMessagePage"} href={"/complain/"+this.props.match.params.id}>
-                    Bu profili şikayet et</a>
+                <a className={"full-width"} href={"/complain/"+this.props.match.params.id}>
+                    <button className={"btn btn-menuColorMobile profileButton"}><i className="far fa-angry"></i> Şikayet et</button></a>
             )
         }
     }
@@ -224,26 +224,28 @@ class ProfileMobile extends React.Component {
                     <div className={"clear-both"}/>
                 </div>
 
-                {(localStorage.getItem("userId") === this.props.match.params.id) && (
-                    <div className={"full-width"}>
-                        <hr/>
-                        <a href={"/getPremium"}>
-                            <button className={"btn btn-success fontMobile"}><i className="fas fa-crown"/>
-                                <strong>Premium Ol !</strong></button>
-                        </a>
-                        <hr/>
-                    </div>
-                )}
+                {/*{(localStorage.getItem("userId") === this.props.match.params.id) && (*/}
+                    {/*<div className={"full-width"}>*/}
+                        {/*<hr/>*/}
+                        {/*<a href={"/getPremium"}>*/}
+                            {/*<button className={"btn btn-success fontMobile"}><i className="fas fa-crown"/>*/}
+                                {/*<strong>Premium Ol !</strong></button>*/}
+                        {/*</a>*/}
+                        {/*<hr/>*/}
+                    {/*</div>*/}
+                {/*)}*/}
 
                 <div className={"full-width"}>
                     <div className={"half-left"}>
                         {this.sendMessageButton()}
                         {this.followButton()}
+                        {this.reviewButton()}
+
                     </div>
                     <div className={"half-left "}>
 
                         {this.blockButton()}
-                        {this.reviewButton()}
+                        {this.complainButton()}
 
                     </div>
                     <div className={"clear-both"}/>
@@ -269,11 +271,11 @@ class ProfileMobile extends React.Component {
                         </div>
 
                         <div className={"text-align-left settingsTitlesMobile"}>
-                            <a href="/referenceCodes/">
-                                <button className={"btn btn-menuColorMobile profileButton"}><i
-                                    className="fas fa-check"/> Referanslar
-                                </button>
-                            </a><br/>
+                            {/*<a href="/referenceCodes/">*/}
+                                {/*<button className={"btn btn-menuColorMobile profileButton"}><i*/}
+                                    {/*className="fas fa-check"/> Referans Ol*/}
+                                {/*</button>*/}
+                            {/*</a><br/>*/}
                             <a href="/followings/">
                                 <button className={"btn btn-menuColorMobile profileButton"}><i
                                     className="fas fa-bell"/> Bildirim
@@ -354,7 +356,7 @@ class ProfileMobile extends React.Component {
                     </div>
                 </div>
                 <br/>
-                {this.complainButton()}
+
 
                 <br/><br/><br/>
             </div>

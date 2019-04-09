@@ -45,7 +45,8 @@ class ReferenceCodes extends React.Component {
         return (
             <div className="row outer">
                 <div className="col-md-6 m-x-auto container">
-                    <h5>Arkadaşlarına vermen gereken referans kodu :{this.state.me.referenceCode}</h5>
+                    <h4>Arkaşalarını davet, birlikte büyüyelim!</h4>
+                    <h6>Arkadaşlarına vermen gereken referans kodu :{this.state.me.referenceCode}</h6>
                     <hr/>
 
                     <h4>Referans olduğum kişiler</h4>

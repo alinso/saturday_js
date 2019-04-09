@@ -193,7 +193,11 @@
 .registerBody{
     background: #233a48;
 }
-
+.userTermsMobile{
+    width: 80%;
+    margin-left: 10%;
+    font-size: 0.7rem;
+}
 .landing_parallax_textMobile {
     padding: 40px;
     background-color: #2b292a;
@@ -209,6 +213,10 @@
     height: 385px;
     background-image: url(/img/landing_mobile_slide.jpg);
     background-size: cover;
+}
+
+.waitingApprovalMobile{
+    background-color: red;
 }
 
 /*.landingSlideTitleMobile{*/
@@ -232,12 +240,29 @@
 .landingLoginRegisterMobile {
     width: 90%;
 }
-
+input[type=checkbox]
+{
+    /* Double-sized Checkboxes */
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    padding: 10px;
+}
+.shareOnWhatsapp {
+    padding: 7px;
+    background: orange;
+    border-radius: 5px;
+    color: white;
+}
 .landingContainerMobile {
     width: 100%;
    /* padding: 5px;*/
 }
-
+.messageWarning {
+    font-size: 0.7rem;
+    color: #615757;
+}
 .androidDownloadLink{
     width: 95%;
 }

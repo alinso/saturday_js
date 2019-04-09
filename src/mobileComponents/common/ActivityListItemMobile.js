@@ -33,8 +33,13 @@ class ActivityListItemMobile extends React.Component {
                         hashtagListString={this.props.activity.hashtagListString}
                     />
                     <br/>
-                    <div className={"float-left"} title={"Planlanan Aktivite Zamanı"}>
-                        <i className="far fa-clock">{this.props.activity.deadLineString}</i>
+                    <div className={"float-left"}>
+                        <ActivityRequestButtonsMobile
+                            userId={this.props.activity.profileDto.id}
+                            joinActivity={() => this.props.joinActivity(this.props.activity.id)}
+                            thisUserJoined={this.props.activity.thisUserJoined}
+                        />
+
                     </div>
                     <ActivityEditButtonsMobile
                         activityId={this.props.activity.id}
@@ -43,12 +48,7 @@ class ActivityListItemMobile extends React.Component {
                     />
                     {(!this.props.activity.expired) &&
                     (<div className={"float-right"}>
-
-                        <ActivityRequestButtonsMobile
-                            userId={this.props.activity.profileDto.id}
-                            joinActivity={() => this.props.joinActivity(this.props.activity.id)}
-                            thisUserJoined={this.props.activity.thisUserJoined}
-                        />
+                        <i className="far fa-clock">{this.props.activity.deadLineString}</i>
                     </div>)
                     }
                     <br/><br/>

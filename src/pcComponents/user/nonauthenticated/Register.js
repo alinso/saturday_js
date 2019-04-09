@@ -1,3 +1,4 @@
+
 import React from "react";
 import classnames from "classnames";
 import Validator from "../../../util/Validator";
@@ -28,11 +29,13 @@ class Register extends React.Component {
             referenceCode: "",
             isSubmitDisabled:false,
             registrationCompletedMessage: false,
+            userGuide:false,
             errors: {}
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.toggleCheckBox= this.toggleCheckBox.bind(this);
     }
 
     createUser(newUser) {
@@ -55,8 +58,17 @@ class Register extends React.Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
+    toggleCheckBox(){
+        this.setState({"userGuide":!this.state.userGuide});
+    }
+
     onSubmit(e) {
         e.preventDefault();
+
+        if(!this.state.userGuide){
+            alert("Kullanım koşullarını kabul etmelisiniz");
+            return;
+        }
         let phoneValidationResult = Validator.validatePhoneNumber(this.state.phone);
 
         if (!phoneValidationResult.valid) {
@@ -70,7 +82,7 @@ class Register extends React.Component {
             name: this.state.name,
             surname: this.state.surname,
             email: this.state.email.trim(),
-            phone: phoneValidationResult.phoneNumer,
+             phone: phoneValidationResult.phoneNumer,
             password: this.state.password,
             confirmPassword: this.state.confirmPassword,
             gender: this.state.gender,
@@ -222,23 +234,11 @@ class Register extends React.Component {
                             </div>
 
                         </div>
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.referenceCode
-                                })}
-                                placeholder="Referans Kodu(Zorunlu değil,boş kalabilir)"
-                                name="referenceCode"
-                                value={this.state.referenceCode}
-                                onChange={this.onChange}
-                            />
-                            {errors.referenceCode && (
-                                <div className="color-white">
-                                    {errors.referenceCode}
-                                </div>
-                            )}
-                        </div>
+
+                        <input name={"userGuide"} onClick={this.toggleCheckBox} type={"checkbox"}/>
+                        <label className={"color-white"} ><a className={"color-white"} href={"/userGuide"}>
+                            <strong>Kullanım koşulları</strong></a>'nı ve <a  className={"color-white"}  href={"/privacyPolicy"}><strong>Gizlilik Politikası</strong></a>'nı
+                            okudum ve kabul ediyorum.</label>
 
                         <button
                             type="submit"

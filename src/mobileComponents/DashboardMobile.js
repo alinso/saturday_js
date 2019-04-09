@@ -28,13 +28,14 @@ class DashboardMobile extends BaseActivityListMobile {
         this.fillPage = this.fillPage.bind(this);
         this.fillPage(localStorage.getItem("cityId"));
         this.loadCities();
+
+
         self = this;
         window.onscroll = function (ev) {
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 self.loadMore();
             }
         };
-
     }
 
     loadMore() {
@@ -62,6 +63,8 @@ class DashboardMobile extends BaseActivityListMobile {
         axios.get(Globals.serviceUrl + 'activity/findAllByCityId/' + cityId + "/0", Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
+
+
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -106,14 +109,23 @@ class DashboardMobile extends BaseActivityListMobile {
         const self = this;
         return (
             <div className="full-width container">
+
+
                 <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                 <hr/>
+                {/*<strong><a href={"/help2"}> <i className="fab fa-youtube"/>Her hafta bir aktiviteyi kanalımıza taşıyoruz</a></strong><br/>*/}
+                <strong><a href={"/help"}> <i className="fas fa-meh-rolling-eyes"/>Geleceğim deyip gelmeyenler</a></strong><br/>
+                <strong><a href={"/help2"}> <i className="fas fa-venus"/>Yeni erkek kullanıcı kayıtlarını durdurduk</a></strong>
+
+                <hr/>
                 {(localStorage.getItem("cityId") === "null") &&
-                (<AlertMobile
-                    type={"alert-warning"}
-                    message={"Akışı görebilmek için Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
-                />)
+                (<a href="/updateInfo">
+                    <div className={"alert alert-danger"}>
+                        Akışı görebilmek için buraya tıklayıp ŞEHİR ve TELEFON bilgisi girmelisin
+                    </div>
+                </a>)
                 }
+
                 {
                     self.state.activities.map(function (activity, i) {
                         return (
@@ -121,7 +133,7 @@ class DashboardMobile extends BaseActivityListMobile {
                                                     joinActivity={self.joinActivity}/>
                         );
                     })}
-                    <span className={"discoverInfo"}>Toplam kullanıcı sayısı: {this.state.userCount}</span><br/>
+                <span className={"discoverInfo"}>Toplam kullanıcı sayısı: {this.state.userCount}</span><br/>
                 <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha
                     fazla göster...
                 </button>

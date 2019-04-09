@@ -36,6 +36,7 @@ class DiscoverMobile extends React.Component {
         const {discover} = this.state;
         return (
             <div className="full-width container">
+
                 <div>
                     <h4>{discover.title}</h4>
                     <img src={"/upload/" + discover.photoName} className={"meetingListPhoto"}/><br/><br/>

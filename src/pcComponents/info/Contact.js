@@ -14,7 +14,7 @@ class Contact extends React.Component {
                 <div className={"col-md-6 text-align-left container"}>
                     <h4>İletişim</h4>
                     <hr/>
-                    Her türlü geri dönüşünüz için mail@activityfriend.net veya Whatsapp 0553 591 9925 kanalları
+                    Her türlü geri dönüşünüz için instagramdan(@activityfriend),  mail@activityfriend.net(bunu tavsiye etmiyoruz, mail atmak çok yavaş bir iletişim şekli) veya Whatsapp 0553 591 9925 kanalları
                     üzerinden bizimle iletişime geçebilirsiniz.<br/>
                     Yeni, amatör ve sıfırdan başlayan bu projemizde tüm fikirler bizim için değerlidir.
                 </div>

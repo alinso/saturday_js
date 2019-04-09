@@ -17,7 +17,7 @@ class ActivityDetailInput extends React.Component {
                                 className={classnames("form-control form-control-lg breakLine", {
                                     "is-invalid": this.props.error
                                 })}
-                                placeholder="Nereye gideceksin.. Ne zaman gideceksin.. gibi detaylar"
+                                placeholder="Ne yapmak, nereye gitmek istiyorsun, biraz detay ver"
                                 name="detail"
                                 value={this.props.detail}
                                 onChange={this.props.onChange}
@@ -29,7 +29,7 @@ class ActivityDetailInput extends React.Component {
                                 className={classnames("form-control form-control-lg breakLine", {
                                     "is-invalid": this.props.error
                                 })}
-                                placeholder="#gezi #spor #doğa #sinema"
+                                placeholder="#gezi #spor #doğa #sanat"
                                 name="hashtagListString"
                                 value={this.props.hashtagListString}
                                 onChange={this.props.onChange}

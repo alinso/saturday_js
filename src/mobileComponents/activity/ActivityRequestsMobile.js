@@ -125,7 +125,9 @@ class ActivityRequestsMobile extends React.Component {
                 <div className={"clear-both"}/>
                 <hr/>
                 <div className={"full-width"}>
-                    <strong>Katılmak İsteyen Kişiler</strong>
+                    <strong>Katılmak İsteyen Kişiler</strong><br/>
+                    <strong>Geleceğim deyip gelmeyen veya son anda haber verenlere MUTLAKA olumusuz yorum yaz!</strong>
+
                     {this.state.errors.userWarningMessage && (
                         <AlertMobile
                             type={"alert-danger"}

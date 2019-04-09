@@ -131,7 +131,9 @@ class ActivityRequests extends React.Component {
                         </div>
                         <div className={"col-md-12"}>
                             <hr/>
-                            <strong>Katılmak İsteyen Kişiler</strong>
+                            <strong>Katılmak İsteyen Kişiler</strong><br/>
+                            <strong>Geleceğim deyip gelmeyen veya son anda haber verenlere MUTLAKA olumusuz yorum yaz!</strong>
+
                             {this.state.errors.userWarningMessage && (
                                 <Alert
                                     type={"alert-danger"}

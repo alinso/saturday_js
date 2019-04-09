@@ -8,28 +8,28 @@ import AdminMenu from "../AdminMenu";
 
 class BaseDiscoverForm extends React.Component {
     constructor(props) {
-        super(props);
-        Security.protect();
+            super(props);
+            Security.protect();
 
-        this.state = {
-            id: null,
-            detail: "",
-            title:"",
-            photoName: null,
-            savedMessage: false,
-            selectedFile: null,
-            isFileSelected: false,
-            isSubmitDisabled: false,
-            cities: [],
-            city: {},
-            errors: {},
-            youtube:""
-        };
+            this.state = {
+                id: null,
+                detail: "",
+                title:"",
+                photoName: null,
+                savedMessage: false,
+                selectedFile: null,
+                isFileSelected: false,
+                isSubmitDisabled: false,
+                cities: [],
+                city: {},
+                errors: {},
+                youtube:""
+            };
 
-        this.onChange = this.onChange.bind(this);
-        this.handleSelectedFile = this.handleSelectedFile.bind(this);
-        this.loadCities = this.loadCities.bind(this);
-        this.onSelectChange = this.onSelectChange.bind(this);
+            this.onChange = this.onChange.bind(this);
+            this.handleSelectedFile = this.handleSelectedFile.bind(this);
+            this.loadCities = this.loadCities.bind(this);
+            this.onSelectChange = this.onSelectChange.bind(this);
 
     }
 

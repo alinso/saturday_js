@@ -119,8 +119,8 @@ class MessagePageMobile extends React.Component {
                     />
                 <div>
                     <button onClick={()=>this.deleteConvo()} className={"btn btn-danger float-left"}>Konuşmayı Sil</button>
-                    <a className={"complainOnMessagePage"} href={"/complain/" + this.state.readerProfile.id}>Şikayet
-                        Et</a>
+                    <a className={"complainOnMessagePage"} href={"/complain/" + this.state.readerProfile.id}><button className={"btn btn-success"}> Şikayet
+                        Et</button></a>
                 </div>
                 <div className={"clear-both"}/>
                 <br/>
@@ -150,6 +150,9 @@ class MessagePageMobile extends React.Component {
                         value="Gönder"
                         className="btn btn-primary btn-block mt-4"
                     />
+                    <br/>
+                    <span className={"messageWarning"}> Rahatsız edici, ısrarcı, uygulama amacı dışında yazanları bize bildir(aramızda kalacak). Burada iyi ve az insan olsun istiyoruz.<br/>
+                                Ve unutma hayır, "HAYIR!" demektir!</span>
                 </form>
                 <br/>
             </div>

@@ -11,13 +11,20 @@ class ActivityRequestButtonsMobile extends React.Component {
 
         if (this.props.userId !== parseInt(localStorage.getItem("userId"))) {
             return (
-                <button
-                    onClick={() => this.props.joinActivity()}
-                    className="btn btn-success">
-                    {this.props.thisUserJoined && (<span><i className="fas fa-times"/>&nbsp;iptal et</span>)}
-                    {!this.props.thisUserJoined && (<span><i className="fas fa-arrow-right"/>&nbsp; katıl!</span>)}
-                </button>
-            )
+                <div>
+                    {this.props.thisUserJoined && (<button
+                            onClick={() => this.props.joinActivity()}
+                            className="btn btn-danger">
+                            <span><i
+                                className="fas fa-times"/>&nbsp;istek gönderdin</span>
+                        </button>
+                    )}
+                    {!this.props.thisUserJoined && (<button
+                        onClick={() => this.props.joinActivity()}
+                        className="btn btn-success">
+                        <span className={""}><i className="fas fa-mug-hot"/>&nbsp; katıl</span>
+                    </button>)}
+                </div>)
         }
         else {
             return "";

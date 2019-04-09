@@ -3,7 +3,13 @@ class Validator {
 
     static validatePhoneNumber(number) {
 
-        let result = {}
+        let result = {};
+
+        if(number===null)
+        {
+            result.valid=false;
+            return result;
+        }
         let tel = number.toString();
         tel = tel.replace(/[^\d]/g, '');
         result.phoneNumer = tel;

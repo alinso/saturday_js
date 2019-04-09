@@ -136,10 +136,8 @@ class BaseActivityFormMobile extends React.Component {
 
         if (localStorage.getItem("cityId") === "null") {
             return (<div className="full-width container">
-                <AlertMobile
-                    type={"alert-warning"}
-                    message={"Profilim->Bilgilerim kısmından şehir seçimi yapmalısın!"}
-                />
+                <a href="/updateInfo"> <div className={"alert alert-danger"}>
+                    Akışı görebilmek için buraya tıklayıp ŞEHİR  ve TELEFON bilgisi girmelisin</div></a>
             </div>)
         }
 
@@ -161,8 +159,7 @@ class BaseActivityFormMobile extends React.Component {
         return (
             <div className={"full-width container"}>
                 <h4> Aktivite Oluştur</h4>
-                <span>Bugünlerde ne planlıyorsun, birkaç saat içinde yakınlardaki bir parkta yürüyüş yapmak mı, yoksa haftasonu sinemaya gitmek mi..
-                         Her ne planlıyorsan bizimle paylaş, birlikte yapalım!</span>
+                <span>Bugünlerde ne planlıyorsun, her ne yapmak istiyorsan bizimle paylaş, birlikte yapalım!</span>
 
                 {photoName && (
                     <img className={"meetingFormPhoto"} src={"/upload/" + photoName}/>
@@ -239,6 +236,8 @@ class BaseActivityFormMobile extends React.Component {
                         disabled={this.state.isSubmitDisabled}
                     />
                 </form>
+                <br/>
+                <br/>
                 <br/>
             </div>
 

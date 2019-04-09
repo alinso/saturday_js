@@ -214,18 +214,18 @@ class Profile extends React.Component {
                             <span>{this.state.gender} / {this.state.age}</span>
                             <h4>{this.state.point} <i className="far fa-star"/></h4>
                             <hr/>
-                            {(this.props.match.params.id === localStorage.getItem("userId")) &&
-                            (
-                                <a href={"/getPremium"}>
-                                    <button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium
-                                        Ol !</strong></button>
-                                </a>
-                            )}
+                            {/*{(this.props.match.params.id === localStorage.getItem("userId")) &&*/}
+                            {/*(*/}
+                                {/*<a href={"/getPremium"}>*/}
+                                    {/*<button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium*/}
+                                        {/*Ol !</strong></button>*/}
+                                {/*</a>*/}
+                            {/*)}*/}
                             <hr/>
                             <div className={"col-md-12"}>
                                 {this.sendMessageButton()}
                                 {this.reviewButton()}
-                                {this.followButton()}
+                                {this.followButton()}.
                                 {this.blockButton()}
                                 {this.complainButton()}
 
@@ -237,7 +237,7 @@ class Profile extends React.Component {
                                         <a href="/myAlbum/"><i className="fas fa-images"/> Albüm</a><br/>
                                         <a href="/updateInfo/"><i className="fas fa-info-circle"/> Bilgilerim</a><br/>
                                         <a href="/updatePassword/"><i className="fas fa-key"/> Şifre Güncelle</a><br/>
-                                        <a href="/referenceCodes/"><i className="fas fa-check"/> Referanslarım</a><br/>
+                                        {/*<a href="/referenceCodes/"><i className="fas fa-check"/> Referans Ol</a><br/>*/}
                                         <a href="/followings/"><i className="fas fa-bell"/> Bildirim Listem</a><br/>
                                         <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a>
                                     </div>

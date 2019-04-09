@@ -83,6 +83,13 @@ import ADiscoverUpdate from "./jshfsadf/discover/ADiscoverUpdate";
 import Complain from "./pcComponents/user/other/Complain";
 import ComplainMobile from "./mobileComponents/user/other/ComplainMobile";
 import DiscoverMobile from "./mobileComponents/discover/DiscoverMobile";
+import UserGuideMobile from "./mobileComponents/info/UserGuideMobile";
+import UserGuide from "./pcComponents/info/UserGuide";
+import PrivacyPolicyMobile from "./mobileComponents/info/PrivacyPolicyMobile";
+import PrivacyPolicy from "./pcComponents/info/PrivacyPolicy";
+import HelpMobile from "./mobileComponents/info/HelpMobile";
+import APolice from "./jshfsadf/police/APolice";
+import HelpMobile2 from "./mobileComponents/info/HelpMobile2";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -170,15 +177,19 @@ class App extends Component {
                     {<Route exact path="/info/" component={Info}/>}
                     {<Route exact path="/contact/" component={Contact}/>}
                     {<Route exact path="/about/" component={About}/>}
+
+                    {<Route exact path="/userGuide/" component={UserGuide}/>}
+                    {<Route exact path="/privacyPolicy/" component={PrivacyPolicy}/>}
                     {<Route exact path="/complain/:id/" component={Complain}/>}
 
 
                     {<Route exact path="/discover/" component={Discover}/>}
 
-                    {<Route exact path="/sgjklnmf/dashboard" component={ADashboard}/>}
-                    {<Route exact path="/sgjklnmf/discoverCreate" component={ADiscoverCreate}/>}
-                    {<Route exact path="/sgjklnmf/discoverUpdate/:id" component={ADiscoverUpdate}/>}
-                    {<Route exact path="/sgjklnmf/discoverList" component={ADiscoverList}/>}
+                    {<Route exact path="/kjshfgjhskjfh/dashboard" component={ADashboard}/>}
+                    {<Route exact path="/kjshfgjhskjfh/discoverCreate" component={ADiscoverCreate}/>}
+                    {<Route exact path="/kjshfgjhskjfh/discoverUpdate/:id" component={ADiscoverUpdate}/>}
+                    {<Route exact path="/kjshfgjhskjfh/discoverList" component={ADiscoverList}/>}
+                    {<Route exact path="/kjshfgjhskjfh/police" component={APolice}/>}
 
 
                     {this.setPcFooter()}
@@ -236,10 +247,19 @@ class App extends Component {
                         {<Route exact path="/info/" component={InfoMobile}/>}
                         {<Route exact path="/about/" component={AboutMobile}/>}
                         {<Route exact path="/contact/" component={ContactMobile}/>}
+                        {<Route exact path="/userGuide/" component={UserGuideMobile}/>}
+                        {<Route exact path="/privacyPolicy/" component={PrivacyPolicyMobile}/>}
+                        {<Route exact path="/help/" component={HelpMobile}/>}
+                        {<Route exact path="/help2/" component={HelpMobile2}/>}
+
                         {<Route exact path="/complain/:id/" component={ComplainMobile}/>}
                         {<Route exact path="/discover/" component={DiscoverMobile}/>}
 
-
+                        {<Route exact path="/kjshfgjhskjfh/dashboard" component={ADashboard}/>}
+                        {<Route exact path="/kjshfgjhskjfh/discoverCreate" component={ADiscoverCreate}/>}
+                        {<Route exact path="/kjshfgjhskjfh/discoverUpdate/:id" component={ADiscoverUpdate}/>}
+                        {<Route exact path="/kjshfgjhskjfh/discoverList" component={ADiscoverList}/>}
+                        {<Route exact path="/kjshfgjhskjfh/police" component={APolice}/>}
 
                         {this.setMobileMenu()}
 

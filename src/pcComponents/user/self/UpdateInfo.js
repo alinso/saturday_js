@@ -259,7 +259,9 @@ class UpdateInfo extends React.Component {
                         </div>
 
                         <div className="form-group  text-align-left">
-                            İlgi alanların neler? (#hashtag)
+                            İlgi alanların neler? (# ile ayırmalısın)<br/>
+                            (#marvel motosiklet pastacılık ->yanlış)<br/>
+                            (#marvel #motosiklet #pastacılık ->doğru)
                             <textarea
                                    className={classnames("form-control form-control-lg")}
                                    placeholder="#resim #sinema #fotoğrafçılık"
@@ -289,6 +291,7 @@ class UpdateInfo extends React.Component {
                                    className={"customRadio"}
                                    onChange={this.onChange}
                                    checked={this.state.gender === "MALE"}
+                                   disabled={true}
                             />&nbsp;&nbsp;&nbsp;&nbsp;
 
                             <label>Kadın&nbsp;</label>
@@ -300,6 +303,8 @@ class UpdateInfo extends React.Component {
                                    onChange={this.onChange}
                                    value="FEMALE"
                                    checked={this.state.gender === "FEMALE"}
+                                   disabled={true}
+
                             />
                             <br/>
                             <div className="invalid-feedback">

@@ -48,7 +48,7 @@ class ReviewsMobile extends React.Component {
         const self = this;
 
         return (
-            <div className="container">
+            <div className=" full-width container">
                 <h5>İnsanlar <a href={"/profile/" + this.props.match.params.id} className={"profileTitleMobile"}>
                     <i className="fas fa-comments"/> {self.state.profileDto.name + " " + self.state.profileDto.surname}
                 </a> için ne diyor?
@@ -90,11 +90,12 @@ class ReviewsMobile extends React.Component {
                                     <br/>
                                     {review.review}
                                 </div>
+                                <div className={"clear-both"}> </div>
                             </div>
-
                         );
                     })
                 }
+<hr/><br/>
             </div>
         )
     }

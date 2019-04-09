@@ -16,17 +16,45 @@ class ConversationsMobile extends React.Component {
 
         this.state = {
             conversations: [],
-            errors: {}
+            errors: {},
+            pageNum: 0,
+            noMoreRecords: false
         };
 
+        let self = this;
         this.fillPage();
+        this.loadMore  =this.loadMore.bind(this);
+        window.onscroll = function (ev) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                self.loadMore();
+            }
+        };
+    }
+
+
+    loadMore() {
+        const self = this;
+        let newPageNum = this.state.pageNum + 1;
+        this.setState({pageNum: newPageNum});
+        axios.get(Globals.serviceUrl + 'message/conversations' + "/" + newPageNum, Security.authHeader())
+            .then(function (response) {
+
+                if (response.data.length === 0) {
+                    self.setState({noMoreRecords: true});
+                    return;
+                }
+
+                let newConversations = self.state.conversations;
+                newConversations = newConversations.concat(response.data);
+                self.setState({conversations: newConversations});
+            });
     }
 
     fillPage() {
 
         let self = this;
 
-        axios.get(Globals.serviceUrl+'message/conversations', Security.authHeader())
+        axios.get(Globals.serviceUrl + 'message/conversations/0', Security.authHeader())
             .then(function (response) {
                 self.setState({conversations: response.data});
             })
@@ -34,7 +62,7 @@ class ConversationsMobile extends React.Component {
                 self.setState({"errors": error.response.data});
             });
 
-        axios.get(Globals.serviceUrl+'notification/readMessages', Security.authHeader());
+        axios.get(Globals.serviceUrl + 'notification/readMessages', Security.authHeader());
 
     }
 
@@ -66,7 +94,7 @@ class ConversationsMobile extends React.Component {
                                         <a href={"/message/" + conversation.profileDto.id}
                                            className={"float-left conversationTextMobile"}>
                                             <div className={""}>
-                                                {conversation.lastMessage.substring(0,100)+"..."}
+                                                {conversation.lastMessage.substring(0, 100) + "..."}
                                             </div>
                                         </a>
                                     </div>
@@ -77,6 +105,11 @@ class ConversationsMobile extends React.Component {
                         )
                     })
                 }
+                <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha
+                    fazla göster...
+                </button>
+                <br/><br/><br/>
+
             </div>
         );
     }

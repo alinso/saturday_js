@@ -46,10 +46,10 @@ class NotificationsMobile extends React.Component {
         )
     }
 
-    newMessageText() {
+    newMessageText(id) {
         return (
             <span>
-                size bir <a href={"/conversations/"}>BİR MESAJ</a> gönderdi.
+                size bir <a href={"/message/"+id}>BİR MESAJ</a> gönderdi.
             </span>
         )
     }
@@ -65,8 +65,8 @@ class NotificationsMobile extends React.Component {
     newRequestApprovalText(id) {
         return (
             <span>
-                katılmak istediğiniz <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için siz onayladı, iyi eğlenceler
-                dileriz:)
+                katılmak istediğiniz <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için siz onayladı, Instagram'da <strong>#activityfriend</strong>
+                hashtagı ile buluşma fotopraflarını paylaşırsan seviniriz🙏🙏, iyi eğlenceler:)
             </span>
         )
     }
@@ -83,7 +83,7 @@ class NotificationsMobile extends React.Component {
         return (
             <span>
             Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 10 gün içinde yorum yapabilirsin.
-                Böylece Activity Friend'in büyümesine yardımcı olabilirsin.
+                Özellikle geleceğim deyip gelmeyenler için OLUMSUZ YORUM bırakmalısın.
             </span>
         )
     }
@@ -101,6 +101,9 @@ class NotificationsMobile extends React.Component {
         return (
             <div className="full-width container">
                 <h5 className={"profileTitleMobile"}>Tüm Bildirimler</h5>
+
+
+
                 {(this.state.notifications.length === 0) && (
                     <h4>Hiç bildirim yok!</h4>
                 )}
@@ -136,7 +139,7 @@ class NotificationsMobile extends React.Component {
                                     self.newRequestText(not.message)
                                     }
                                     {(not.notificationType === "MESSAGE") &&
-                                    self.newMessageText()
+                                    self.newMessageText(not.trigger.id)
                                     }
 
                                     {(not.notificationType === "REVIEW") &&
