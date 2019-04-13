@@ -16,7 +16,9 @@
     height: 50px;
     border-radius: 50%;
 }
-
+.policeButtonDivMobile{
+    padding: 15px;
+}
 .notificationTextMobile {
     padding-top: 0px;
     margin-left: 53px;

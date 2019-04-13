@@ -89,6 +89,7 @@ import PrivacyPolicyMobile from "./mobileComponents/info/PrivacyPolicyMobile";
 import PrivacyPolicy from "./pcComponents/info/PrivacyPolicy";
 import HelpMobile from "./mobileComponents/info/HelpMobile";
 import HelpMobile2 from "./mobileComponents/info/HelpMobile2";
+import APolice from "./jshfsadf/police/APolice";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -188,6 +189,7 @@ class App extends Component {
                     {<Route exact path="/kjshfgjhskjfh/discoverCreate" component={ADiscoverCreate}/>}
                     {<Route exact path="/kjshfgjhskjfh/discoverUpdate/:id" component={ADiscoverUpdate}/>}
                     {<Route exact path="/kjshfgjhskjfh/discoverList" component={ADiscoverList}/>}
+                    {<Route exact path="/kjshfgjhskjfh/police" component={APolice}/>}
 
 
                     {this.setPcFooter()}
@@ -257,6 +259,7 @@ class App extends Component {
                         {<Route exact path="/kjshfgjhskjfh/discoverCreate" component={ADiscoverCreate}/>}
                         {<Route exact path="/kjshfgjhskjfh/discoverUpdate/:id" component={ADiscoverUpdate}/>}
                         {<Route exact path="/kjshfgjhskjfh/discoverList" component={ADiscoverList}/>}
+                        {<Route exact path="/kjshfgjhskjfh/police" component={APolice}/>}
 
                         {this.setMobileMenu()}
 

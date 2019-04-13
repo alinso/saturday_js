@@ -17,4 +17,4 @@ unzip /tmp/build.zip -d .
 mv build/* /var/www/activityfriend.net/public_html/
 mv ../upload upload
 rm /tmp/build.zip
-exit;
+exit
