@@ -1,0 +1,24 @@
+#!/bin/bash
+mv src/util/Globals.js src/util/Globals_local.js
+mv Globals_deploy.js src/util/Globals.js
+npm run build
+rm -r build/upload
+mv src/util/Globals.js Globals_deploy.js
+mv src/util/Globals_local.js src/util/Globals.js
+zip -r build.zip build
+gcloud compute scp build.zip alinso@afserver2:/tmp
+rm build.zip
+
+
+gcloud compute ssh alinso@afserver2
+cd /var/www/activityfriend.net/public_html/
+
+mv upload ../upload
+rm -r /var/www/activityfriend.net/public_html/*
+unzip /tmp/build.zip -d .
+mv build/* .
+mv ../upload upload
+rm /tmp/build.zip
+
+
+
