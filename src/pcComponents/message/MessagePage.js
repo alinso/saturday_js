@@ -21,16 +21,33 @@ class MessagePage extends React.Component {
             messages: [],
             message: "",
             readerProfile: {},
-            errors: {}
+            errors: {},
+            canItext:false
+
         };
 
         this.deleteConvo = this.deleteConvo.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.canItext=this.canItext.bind(this);
         this.fillPage();
+        this.canItext();
     }
 
+
+
+    canItext() {
+        const self = this;
+        axios.get(Globals.serviceUrl + 'message/haveTheseUsersMeet/'+this.props.match.params.id+'/'+localStorage.getItem("userId"), Security.authHeader())
+            .then(function (response) {
+               self.setState({"canItext":response.data});
+
+            })
+            .catch(function (error) {
+                self.setState({"errors": error.response.data});
+            });
+    }
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
@@ -147,12 +164,22 @@ class MessagePage extends React.Component {
                                 </div>
                             )}
                         </div>
+                        {this.state.canItext && (
+                            <input
+                                type="submit"
+                                value="Gönder"
+                                className="btn btn-primary btn-block mt-4"
+                            />
+                        )}
 
-                        <input
-                            type="submit"
-                            value="Gönder"
-                            className="btn btn-primary btn-block mt-4"
-                        />
+                        {!this.state.canItext && (
+                            <div>
+                                <span>Bu kişi ile onaylanmış bir aktiviten yok, yalnız ortak aktiviten olan kişilere mesaj atabilirsin.
+                                    Sosyalleşmek için bir aktivite oluşturabilir veya birine katılabilirsin :)</span>
+                            </div>
+                        )}
+
+
                     </form>
                     <br/>
                 </div>

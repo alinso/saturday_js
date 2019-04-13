@@ -27,9 +27,23 @@ class MessagePageMobile extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.canItext=this.canItext.bind(this);
+        this.canItext();
         this.fillPage();
     }
 
+
+    canItext() {
+        const self = this;
+        axios.get(Globals.serviceUrl + 'message/haveTheseUsersMeet/'+this.props.match.params.id+'/'+localStorage.getItem("userId"), Security.authHeader())
+            .then(function (response) {
+                self.setState({"canItext":response.data});
+
+            })
+            .catch(function (error) {
+                self.setState({"errors": error.response.data});
+            });
+    }
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
@@ -145,11 +159,20 @@ class MessagePageMobile extends React.Component {
                         )}
                     </div>
 
-                    <input
-                        type="submit"
-                        value="Gönder"
-                        className="btn btn-primary btn-block mt-4"
-                    />
+                    {this.state.canItext && (
+                        <input
+                            type="submit"
+                            value="Gönder"
+                            className="btn btn-primary btn-block mt-4"
+                        />
+                    )}
+
+                    {!this.state.canItext && (
+                        <div>
+                            <span>Bu kişi ile onaylanmış bir aktiviten yok, yalnız ortak aktiviten olan kişilere mesaj atabilirsin. <br/>
+                            Sosyalleşmek için bir aktivite oluşturabilir veya birine katılabilirsin :)</span>
+                        </div>
+                    )}
                     <br/>
                     <span className={"messageWarning"}> Rahatsız edici, ısrarcı, uygulama amacı dışında yazanları bize bildir(aramızda kalacak). Burada iyi ve az insan olsun istiyoruz.<br/>
                                 Ve unutma hayır, "HAYIR!" demektir!</span>

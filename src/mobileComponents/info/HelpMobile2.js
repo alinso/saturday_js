@@ -30,43 +30,9 @@ class HelpMobile2 extends React.Component {
                 {/*Ali ve Ömer*/}
 
 
-                   {/*<h4>Bahar geldi,  haftasonun planın nedir?</h4>*/}
-                {/*<hr/>*/}
-
-                {/*<a className={"shareOnWhatsapp"}*/}
-                   {/*href="whatsapp://send?text=Sana bu uygulamadan bahsetmis miydim? İlgini çekebilir, incele istersen https://www.activityfriend.net"*/}
-                   {/*data-action="share/whatsapp/share"><strong>*/}
-                    {/*Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>*/}
-                {/*<hr/>*/}
-                {/*Burada kimse kimseyi tanımıyor :) Var oluş amacımız zaten insanların birbirini tanıması, dışarı çıkıp birlikte birşeyler yapması..<br/>*/}
-                {/*Netflix, Instagram, Youtube... seni ekran başına hapsediyor. Oysa dışarıda akıp giden bir hayat var. Elbette ki dünyanın toz pembe bir*/}
-                {/*cennet olmadığını biliyoruz, fakat güvenlikle ilgili bazı küçük ipuçları verebiliriz.*/}
-                {/*<br/><br/>-Kişi hakkında yapılan yorumları inceleyebilirsin<br/>*/}
-                {/*-Google'da kişinin ismini aratarak veya sosyal medya linklerini isteyerek gerçekten o kişinin söylediği kişi olup olmadığını kontrol etmeye çalışabilirsin.<br/>*/}
-                {/*-İlk buluşmalarınızı halka açık, güvenli yerlerde yapmalisin.<br/>*/}
-                {/*-Suç unsuru barındıran hiçbir aktiviteye dahil olma!.<br/><br/>*/}
-
-                {/*Bu ve benzeri küçük önlemler büyük farklar yaratır. Biz burayı nezih ve güvenli tutmak için elimizden geleni yapıyoruz.*/}
-{/*<br/><br/>*/}
-              {/*<strong>Bugün bir aktivite aç veya birine katıl, kendine ve henüz tanışmadığın arkadaşına bir şans ver</strong>*/}
 
 
-                {/*<h4>Her hafta bir yeni bir aktivite</h4>*/}
-                {/*<hr/>*/}
-
-                {/*<a className={"shareOnWhatsapp"}*/}
-                   {/*href="whatsapp://send?text=Sana bu uygulamadan bahsetmis miydim? İlgini çekebilir, incele istersen https://www.activityfriend.net"*/}
-                   {/*data-action="share/whatsapp/share"><strong>*/}
-                    {/*Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>*/}
-                {/*<hr/>*/}
-                {/*Yakında YouTube kanalımız açılıyor. Her hafta bir aktiviteye misafir oluyor ve videolar çekiyoruz. Bunları kanalımızda izleyicilerimizle paylaşacağız.<br/>*/}
-                {/*Sen aktiviteyi oluştur ve birlikte bunu filme dönüştürelim, yaratıcı, eğlenceli, macera dolu deneyimler yaşayalım:)*/}
-                {/*<br/><br/>*/}
-                {/*<strong>Bugün bir aktivite aç veya birine katıl! Kendine ve henüz tanışmadığın arkadaşına bir şans ver. </strong>*/}
-
-                {/*<br/><br/><br/>*/}
-
-                <h4>Yeni erkek kullanıcı kayıtlarını bir süre için kapattık</h4>
+                <h4>Mesajlaşma sistemini değiştirdik</h4>
                 <hr/>
 
                 <a className={"shareOnWhatsapp"}
@@ -74,17 +40,14 @@ class HelpMobile2 extends React.Component {
                    data-action="share/whatsapp/share"><strong>
                     Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>
                 <hr/>
-                Tanımladığımız cinsiyet oranlarının erkekler tarafında limite ulaşması nedeniyle yeni erkek üye alımlarını geçici olarak durdurduk.
-                Tekrar ne zaman açılacağı tamamen metamatiksel gelişmelere bağlı ve açılış duyurusunu buradan ve Instagramdan yapacağız.
-                Şu an daha çok kadına ulaşmaya ve projemize dahil etmeye çalışıyoruz.<br/><br/>
-
-
-                Ayrıca önümüzdeki hafta kitle kalitemizi korumak adına bazı çalışmalar ve içerik kontrolleri yapacağız. Ne kadar çok şikayette bulunursan topluluğumuzu
-                temiz tutmakta bize o kadar yardımcı olursun.
-                <br/><br/>
-                <strong> Kalite/güvenlik konusundaki hassayitlerimizi anlayışla karşılayacağını umuyoruz, <br/>
-                    Activity Friend'in bir parçası olduğun için çok teşekkür ederiz:) </strong>
-
+                Merhaba arkadaşlar,
+                Herkes daha rahat şekilde aktivite açabilsin ve insanlar yalnız birlikte birşey yapmak istedikleri kişilerle iletişim halinde olup diğerlerini filtreleyebilsin diye mesajlaşma için
+                iki kişi arasında onaylanmış aktivite olması şartı getirdik. Bu durumda birine mesaj atabilmek için o kişinin, sizi bir aktivtede onaylamış olması gerekiyor. Aynı şekilde aktivite
+                açan kişi de yalnız onayladığı kişilere mesaj atabiliyor.<br/><br/>
+                Moderatör arkadaşlarımız bu şartın dışında. Onlar sınırsız mesaj atabilecek.
+                <br/>
+                Umarız ki daha sağlıklı bir iletişim ortamı oluşur bu şekilde. Fikirleriniz ve yorumlarınız için bize yazabilirsiniz. <br/>
+                Teşekkürler :)
                 <br/><br/><br/>
 
             </div>
