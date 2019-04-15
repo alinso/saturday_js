@@ -29,7 +29,27 @@ class ProfileMobile extends React.Component {
 
         this.follow = this.follow.bind(this);
         this.block = this.block.bind(this);
+        this.deleteAccount  =this.deleteAccount.bind(this);
+
         this.fillPage();
+    }
+
+    deleteAccount() {
+        let res = window.prompt("Hesabın tamamen silinecek, gerçekten silmek istiyorsan aşağıdaki kutuya onaylıyorum yaz ve onay butonunu tıkla");
+        let self = this;
+
+        if (res === "onaylıyorum") {
+            axios.get(Globals.serviceUrl + 'user/deleteAccount/' + localStorage.getItem("userId"), Security.authHeader()).
+            then(function (response) {
+                alert("Hesabın silindi :( umarım geri gelirsin :(");
+                localStorage.removeItem("jwtToken");
+                window.location="/";
+            })
+                .catch(function (error) {
+                    console.log(error);
+                    self.setState({"errors": error.response.data});
+                });
+        }
     }
 
     fillPage() {
@@ -263,11 +283,11 @@ class ProfileMobile extends React.Component {
                                     className="fas fa-info-circle"/>Bilgilerim
                                 </button>
                             </a><br/>
-                            <a href="/updatePassword/">
-                                <button className={"btn btn-menuColorMobile profileButton"}><i
-                                    className="fas fa-key"/> Şifre
-                                </button>
-                            </a><br/>
+                            <button  onClick={this.deleteAccount} className={"btn btn-danger profileButton"}><i
+                                className=" fas fa-times"/> Hesabımı Sil
+                            </button>
+
+
                         </div>
 
                         <div className={"text-align-left settingsTitlesMobile"}>
@@ -285,7 +305,12 @@ class ProfileMobile extends React.Component {
                                 <button className={"btn btn-menuColorMobile profileButton"}><i
                                     className="fas fa-ban"/> Engel Listesi
                                 </button>
-                            </a>
+                            </a><br/>
+                            <a href="/updatePassword/">
+                                <button className={"btn btn-menuColorMobile profileButton"}><i
+                                    className="fas fa-key"/> Şifre
+                                </button>
+                            </a><br/>
                         </div>
                         <div className={"clear-both"}></div>
 

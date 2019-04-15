@@ -32,7 +32,27 @@ class Profile extends React.Component {
 
         this.follow = this.follow.bind(this);
         this.block = this.block.bind(this);
+        this.deleteAccount  =this.deleteAccount.bind(this);
         this.fillPage();
+    }
+
+    deleteAccount() {
+        let res = window.prompt("Hesabın tamamen silinecek, gerçekten silmek istiyorsan aaşğıdaki kutuya onaylıyorum yaz ve onay butonunu tıkla");
+        let self = this;
+
+        if (res === "onaylıyorum") {
+            axios.get(Globals.serviceUrl + 'user/deleteAccount/' + localStorage.getItem("userId"), Security.authHeader()).
+            then(function (response) {
+                alert("Hesabın silindi :( umarım geri gelirsin :(")
+                localStorage.removeItem("jwtToken");
+                window.location="/";
+
+            })
+                .catch(function (error) {
+                    console.log(error);
+                    self.setState({"errors": error.response.data});
+                });
+        }
     }
 
     fillPage() {
@@ -216,16 +236,16 @@ class Profile extends React.Component {
                             <hr/>
                             {/*{(this.props.match.params.id === localStorage.getItem("userId")) &&*/}
                             {/*(*/}
-                                {/*<a href={"/getPremium"}>*/}
-                                    {/*<button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium*/}
-                                        {/*Ol !</strong></button>*/}
-                                {/*</a>*/}
+                            {/*<a href={"/getPremium"}>*/}
+                            {/*<button className={"btn btn-success"}><i className="fas fa-crown"/> <strong>Premium*/}
+                            {/*Ol !</strong></button>*/}
+                            {/*</a>*/}
                             {/*)}*/}
                             <hr/>
                             <div className={"col-md-12"}>
                                 {this.sendMessageButton()}
                                 {this.reviewButton()}
-                                {this.followButton()}.
+                                {this.followButton()}
                                 {this.blockButton()}
                                 {this.complainButton()}
 
@@ -239,7 +259,9 @@ class Profile extends React.Component {
                                         <a href="/updatePassword/"><i className="fas fa-key"/> Şifre Güncelle</a><br/>
                                         {/*<a href="/referenceCodes/"><i className="fas fa-check"/> Referans Ol</a><br/>*/}
                                         <a href="/followings/"><i className="fas fa-bell"/> Bildirim Listem</a><br/>
-                                        <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a>
+                                        <a href="/blocks/"><i className="fas fa-ban"/> Engel Listesi</a><br/>
+                                        <span onClick={this.deleteAccount}><i
+                                            className=" fas fa-times"/> Hesabımı Sil</span>
                                     </div>
 
                                 )}

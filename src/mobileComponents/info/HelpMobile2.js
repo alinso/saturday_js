@@ -32,7 +32,7 @@ class HelpMobile2 extends React.Component {
 
 
 
-                <h4>Mesajlaşma sistemini değiştirdik</h4>
+                <h4>Erkek alımları geçiçi olarak başladı</h4>
                 <hr/>
 
                 <a className={"shareOnWhatsapp"}
@@ -41,12 +41,11 @@ class HelpMobile2 extends React.Component {
                     Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>
                 <hr/>
                 Merhaba arkadaşlar,
-                Herkes daha rahat şekilde aktivite açabilsin ve insanlar yalnız birlikte birşey yapmak istedikleri kişilerle iletişim halinde olup diğerlerini filtreleyebilsin diye mesajlaşma için
-                iki kişi arasında onaylanmış aktivite olması şartı getirdik. Bu durumda birine mesaj atabilmek için o kişinin, sizi bir aktivtede onaylamış olması gerekiyor. Aynı şekilde aktivite
-                açan kişi de yalnız onayladığı kişilere mesaj atabiliyor.<br/><br/>
-                Moderatör arkadaşlarımız bu şartın dışında. Onlar sınırsız mesaj atabilecek.
-                <br/>
-                Umarız ki daha sağlıklı bir iletişim ortamı oluşur bu şekilde. Fikirleriniz ve yorumlarınız için bize yazabilirsiniz. <br/>
+                Kadın / erkek sayısı istediğimiz dengeye geldi. Erkek kullanıcı kayıtlarını tekrar açtık. Çarşamba akşamına kadar alımlar açık olacak. Bu sürede tanımadığımız rastgele insanlardan
+                çok, uygulamamızı zaten kullanan hali hazırda topluluğumuzu ve amacımızı bilen kullanıcılarımızın arkadaşlarına ulaşmayı hedefliyoruz. Tanıdığınız/güvendiğiniz erkek arkadaşlarınıza
+                bizden bahsedebilirsiiz. Kotamızı bu şekilde doldurmayı arzu ederiz.
+            <br/><br/>
+                Kadın / Erkek oran kontrolü gibi kitlemizi nezih ve dengeli tutacak  önlemleri almaya devam edeceğiz.<br/>
                 Teşekkürler :)
                 <br/><br/><br/>
 

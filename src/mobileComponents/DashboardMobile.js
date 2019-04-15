@@ -114,8 +114,8 @@ class DashboardMobile extends BaseActivityListMobile {
                 <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                 <hr/>
                 {/*<strong><a href={"/help2"}> <i className="fab fa-youtube"/>Her hafta bir aktiviteyi kanalımıza taşıyoruz</a></strong><br/>*/}
-                {/*<strong><a href={"/help"}> <i className="fas fa-meh-rolling-eyes"/>Geleceğim deyip gelmeyenler</a></strong><br/>*/}
-                <strong><a href={"/help2"}> <i className="far fa-envelope"/>Mesajlaşma sistemini değiştirdik</a></strong>
+                <strong><a href={"/help"}> <i className="far fa-grin-tongue"/>Biraz daha yaratıcı olabilirsin</a></strong><br/>
+                <a href={"/help2"}> <i className="fas fa-mars"/> Erkek kullanıcı alımları açıldı</a>
 
                 <hr/>
                 {(localStorage.getItem("cityId") === "null") &&
