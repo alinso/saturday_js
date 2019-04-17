@@ -32,7 +32,7 @@ class HelpMobile2 extends React.Component {
 
 
 
-                <h4>Erkek alımları geçiçi olarak başladı</h4>
+                <h4>#activityfriend etkitler misin Lütfeeenn Noolur</h4>
                 <hr/>
 
                 <a className={"shareOnWhatsapp"}
@@ -40,12 +40,11 @@ class HelpMobile2 extends React.Component {
                    data-action="share/whatsapp/share"><strong>
                     Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>
                 <hr/>
-                Merhaba arkadaşlar,
-                Kadın / erkek sayısı istediğimiz dengeye geldi. Erkek kullanıcı kayıtlarını tekrar açtık. Çarşamba akşamına kadar alımlar açık olacak. Bu sürede tanımadığımız rastgele insanlardan
-                çok, uygulamamızı zaten kullanan hali hazırda topluluğumuzu ve amacımızı bilen kullanıcılarımızın arkadaşlarına ulaşmayı hedefliyoruz. Tanıdığınız/güvendiğiniz erkek arkadaşlarınıza
-                bizden bahsedebilirsiiz. Kotamızı bu şekilde doldurmayı arzu ederiz.
+                Merhaba,<br/>
+                Buluşma sonrası fotoğraflarını #activityfriend hashtagı ekler veya @activityfriend hesabına gönderirsen paylaşmak isteriz. Böylece insanlara buradaki ortam ve kültür
+                hakkında bilgi vermiş oluruz ve bu bizim daha fazla insana ulaşmamıza yardım eder.
             <br/><br/>
-                Kadın / Erkek oran kontrolü gibi kitlemizi nezih ve dengeli tutacak  önlemleri almaya devam edeceğiz.<br/>
+                Activity Friend ticari bir yapıya sahip değil, bu işi sadece sevdiğimiz ve doğru bulduğumuz için yapıyoruz. Sizlerin desteği olmadan başaramayız.
                 Teşekkürler :)
                 <br/><br/><br/>
 

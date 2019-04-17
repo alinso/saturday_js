@@ -32,7 +32,7 @@ class DashboardMobile extends BaseActivityListMobile {
 
         self = this;
         window.onscroll = function (ev) {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight-100)) {
                 self.loadMore();
             }
         };
@@ -115,7 +115,7 @@ class DashboardMobile extends BaseActivityListMobile {
                 <hr/>
                 {/*<strong><a href={"/help2"}> <i className="fab fa-youtube"/>Her hafta bir aktiviteyi kanalımıza taşıyoruz</a></strong><br/>*/}
                 <strong><a href={"/help"}> <i className="far fa-grin-tongue"/>Biraz daha yaratıcı olabilirsin</a></strong><br/>
-                <a href={"/help2"}> <i className="fas fa-mars"/> Erkek kullanıcı alımları açıldı</a>
+                <a href={"/help2"}> <i className="fas fa-hashtag"/>Instagram'da #activityfriend etiketler misin?</a>
 
                 <hr/>
                 {(localStorage.getItem("cityId") === "null") &&

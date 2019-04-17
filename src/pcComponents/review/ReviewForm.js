@@ -27,9 +27,21 @@ class ReviewForm extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.saveReference = this.saveReference.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.canItext=this.canItext.bind(this);
+        this.canItext();
         this.fillPage();
     }
+    canItext() {
+        const self = this;
+        axios.get(Globals.serviceUrl + 'message/haveTheseUsersMeet/'+this.props.match.params.id+'/'+localStorage.getItem("userId"), Security.authHeader())
+            .then(function (response) {
+                self.setState({"canItext":response.data});
 
+            })
+            .catch(function (error) {
+                self.setState({"errors": error.response.data});
+            });
+    }
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
@@ -172,12 +184,21 @@ class ReviewForm extends React.Component {
 
                         </div>
 
-                        <input
-                            type="submit"
-                            value="Yorumu Kaydet"
-                            className="btn btn-primary btn-block mt-4"
-                            disabled={disabled}
-                        />
+                        {this.state.canItext && (
+                            <input
+                                type="submit"
+                                value="Yorumu Kaydet"
+                                className="btn btn-primary btn-block mt-4"
+                                disabled={disabled}
+                            />
+                        )}
+
+                        {!this.state.canItext && (
+                            <div>
+                                <span>Bu kişi ile onaylanmış bir aktiviten yok, yalnız ortak aktiviten olan kişilere yorum yazabilirsin.
+                                    Sosyalleşmek için bir aktivite oluşturabilir veya birine katılabilirsin :)</span>
+                            </div>
+                        )}
                     </form>
                     <br/>
                 </div>

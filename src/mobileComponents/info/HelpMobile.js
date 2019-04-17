@@ -38,6 +38,7 @@ class HelpMobile extends React.Component {
                    data-action="share/whatsapp/share"><strong>
                     Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>
                 <hr/>
+                Merhaba,<br/>
                 "Buluşup çay içelim", "Kahve?", "Çay-Kahve içelim?" kolay gibi gözüküyor ama aslında en zor buluşamalar bunlardır :) Yeni tanıştığın biriyle kahve içmek en zor iletişim şeklidir,
                 Muhabbeti ilerletmek çok güç olabilir. Çünkü sohbetin ilerlemesi sadece konuşma-iletişim yeteneğine bağlı kalır.  Ama "birlikte yapılan bir aktivite", mesela fotoğraf çekimi, bowling, bilardo,
                 bisiklet sürmek, spora gitmek, piknik, karaoke.. gibi hareket içeren durumlarda kaynaşmak ve iletişim kurmak çok daha kolaydır. Ayrıca bir yabancı için hareket içeren aktiviteler

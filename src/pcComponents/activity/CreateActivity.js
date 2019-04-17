@@ -51,6 +51,10 @@ class CreateActivity extends BaseActivityForm{
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
+                console.log(error.response.status);
+                if(error.response.status===500){
+                    self.setState({"errors": {file:"Fotoğraf boyutu max 4 MB olabilir"}});
+                }
                 self.setState({isSubmitDisabled: false});
                 self.setState({isFileSelected:false});
             });
