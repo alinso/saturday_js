@@ -33,6 +33,11 @@ class MessagePage extends React.Component {
         this.canItext=this.canItext.bind(this);
         this.fillPage();
         this.canItext();
+
+        let self=this;
+        setInterval(function () {
+            self.fillPage();
+        }, 4000)
     }
 
 

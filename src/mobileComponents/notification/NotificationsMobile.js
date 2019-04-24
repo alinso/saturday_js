@@ -82,7 +82,7 @@ class NotificationsMobile extends React.Component {
     newMeetingCommentAvailable(id) {
         return (
             <span>
-            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 10 gün içinde yorum yapabilirsin.
+            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 2 gün içinde yorum yapabilirsin.
                 Özellikle geleceğim deyip gelmeyenler için OLUMSUZ YORUM bırakmalısın.
             </span>
         )

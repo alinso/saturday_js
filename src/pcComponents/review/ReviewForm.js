@@ -21,14 +21,15 @@ class ReviewForm extends React.Component {
             isPositive:true,
             saved: false,
             label:"",
+            canItext:false,
             errors: {}
         };
 
         this.onSubmit = this.onSubmit.bind(this);
         this.saveReference = this.saveReference.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.canItext=this.canItext.bind(this);
-        this.canItext();
+       // this.canItext=this.canItext.bind(this);
+       // this.canItext();
         this.fillPage();
     }
     canItext() {
@@ -102,21 +103,16 @@ class ReviewForm extends React.Component {
                     const label = self.state.profileDto.name +" ile buluştunuz, nasıl bir deneyimdi referans olur musunuz? yorumlar silinemez ve düzenlenemez";
                     self.setState({label:label});
                     self.setState({reviewType:"MEETING"});
+                    self.setState({"canItext":true});
                 }
-
                 //we not
                 if(!response.data){
-                    const label ="Bir Yorum Yazın, (yorumlar silinemez ve düzenlenemez)";
-                    self.setState({label:label});
-                    self.setState({reviewType:"FRIEND"});
+                    self.setState({"canItext":false});
                 }
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
             });
-
-
-
     }
 
 
@@ -195,7 +191,7 @@ class ReviewForm extends React.Component {
 
                         {!this.state.canItext && (
                             <div>
-                                <span>Bu kişi ile onaylanmış bir aktiviten yok, yalnız ortak aktiviten olan kişilere yorum yazabilirsin.
+                                <span>Bu kişi ile yakın zamanda buluşmadın,  buluşmadan 1 saat sonra - 2 gün içinde yorum yapabilirsin.
                                     Sosyalleşmek için bir aktivite oluşturabilir veya birine katılabilirsin :)</span>
                             </div>
                         )}

@@ -32,7 +32,7 @@ class HelpMobile2 extends React.Component {
 
 
 
-                <h4>#activityfriend etkitler misin Lütfeeenn Noolur</h4>
+                <h4>Yorum sistemini değiştirdik</h4>
                 <hr/>
 
                 <a className={"shareOnWhatsapp"}
@@ -41,10 +41,10 @@ class HelpMobile2 extends React.Component {
                     Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>
                 <hr/>
                 Merhaba,<br/>
-                Buluşma sonrası fotoğraflarını #activityfriend hashtagı ekler veya @activityfriend hesabına gönderirsen paylaşmak isteriz. Böylece insanlara buradaki ortam ve kültür
-                hakkında bilgi vermiş oluruz ve bu bizim daha fazla insana ulaşmamıza yardım eder.
+                Artık buluşma saatinden 1 saat sonrasından başlayarak 2 gün içinde yorum yapabiirsiniz.<br/>
+                Ayrıca yazılan yorumlar da 2 sonra gözükür olacak. Bu şekilde <strong>'o bana olumsuz yorum yazdı, ben de ona olumsuz yorum yazayım'</strong> yaklaşımı
+                engellenmiş oldu. Buluşmalara gelmeyen veya son dakikada gelemiyorum diyenler hakkında olumsuz yorum yazmanız özellikle önemli.
             <br/><br/>
-                Activity Friend ticari bir yapıya sahip değil, bu işi sadece sevdiğimiz ve doğru bulduğumuz için yapıyoruz. Sizlerin desteği olmadan başaramayız.
                 Teşekkürler :)
                 <br/><br/><br/>
 

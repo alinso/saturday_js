@@ -20,9 +20,10 @@ class ActivityInfoBlockMobile extends React.Component {
             <br/>
             {hashtags.map(function (tag) {
                     if (tag !== "")
-                        return (<a href={"/hashtagActivity/"+tag}>{"#" + tag}</a>)
+                        return (<div className={"float-left"}><a href={"/hashtagActivity/"+tag}>{"#" + tag}</a></div>)
                 }
             )}
+            <div className={"clear-both"}></div>
 
             {(this.props.photoName != null) && (
                 <div className={"full-width"}>

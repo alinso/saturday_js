@@ -46,11 +46,10 @@ class ActivityListItemMobile extends React.Component {
                         userId={this.props.activity.profileDto.id}
                         deleteActivity={() => this.props.deleteActivity(this.props.activity.id)}
                     />
-                    {(!this.props.activity.expired) &&
-                    (<div className={"float-right"}>
+
+                    <div className={"float-right"}>
                         <i className="far fa-clock">{this.props.activity.deadLineString}</i>
-                    </div>)
-                    }
+                    </div>
                     <br/><br/>
                     {(this.props.activity.expired) &&
                     (<a href={"/activityDetail/" + this.props.activity.id} className={"float-right"}>

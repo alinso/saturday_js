@@ -30,6 +30,10 @@ class MessagePageMobile extends React.Component {
         this.canItext=this.canItext.bind(this);
         this.canItext();
         this.fillPage();
+        let self= this;
+        setInterval(function () {
+            self.fillPage();
+        }, 4000)
     }
 
 
@@ -133,8 +137,8 @@ class MessagePageMobile extends React.Component {
                     />
                 <div>
                     <button onClick={()=>this.deleteConvo()} className={"btn btn-danger float-left"}>Konuşmayı Sil</button>
-                    <a className={"complainOnMessagePage"} href={"/complain/" + this.state.readerProfile.id}><button className={"btn btn-success"}> Şikayet
-                        Et</button></a>
+                    <a className={"complainOnMessagePage"} href={"/complain/" + this.state.readerProfile.id}>
+                        <button className={"btn btn-success"}> Şikayet Et</button></a>
                 </div>
                 <div className={"clear-both"}/>
                 <br/>

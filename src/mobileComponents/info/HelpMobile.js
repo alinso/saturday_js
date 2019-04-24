@@ -30,25 +30,23 @@ class HelpMobile extends React.Component {
                 {/*<strong>Bu konuda tek çözüm yorum yazmak! Eğer kişiler gelmiyor veya son dakika haber veriyorsa bunu yorum olarak yazmalısın. Bu şekilde ancak bu tatsız durumla mücadele edebiliriz</strong>*/}
                 {/*<br/><br/><br/>*/}
 
-                <h4>Hareket Kolaylaştırır</h4>
+                <h4>Daha fazla insana ulaşmak istiyoruz</h4>
                 <hr/>
 
                 <a className={"shareOnWhatsapp"}
-                   href="whatsapp://send?text=Sana bu uygulamadan bahsetmis miydim? İlgini çekebilir, incele istersen https://www.activityfriend.net"
-                   data-action="share/whatsapp/share"><strong>
-                    Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>
+                href="whatsapp://send?text=Sana bu uygulamadan bahsetmis miydim? İlgini çekebilir, incele istersen https://www.activityfriend.net"
+                data-action="share/whatsapp/share"><strong>
+                Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>
                 <hr/>
-                Merhaba,<br/>
-                "Buluşup çay içelim", "Kahve?", "Çay-Kahve içelim?" kolay gibi gözüküyor ama aslında en zor buluşamalar bunlardır :) Yeni tanıştığın biriyle kahve içmek en zor iletişim şeklidir,
-                Muhabbeti ilerletmek çok güç olabilir. Çünkü sohbetin ilerlemesi sadece konuşma-iletişim yeteneğine bağlı kalır.  Ama "birlikte yapılan bir aktivite", mesela fotoğraf çekimi, bowling, bilardo,
-                bisiklet sürmek, spora gitmek, piknik, karaoke.. gibi hareket içeren durumlarda kaynaşmak ve iletişim kurmak çok daha kolaydır. Ayrıca bir yabancı için hareket içeren aktiviteler
-                "kahve-sohbet" ikilisinden daha ilgi çekici olabilir.<br/><br/>
+                Merhaba, biz bu projeyi yürüten iki arkadaşız, herhangi ticari bir amacımız veya sermayemiz yok.<br/>
+                İnsanların yalnızlaştığına, sosyal medya ve internet bağımlılığının bizi gerçek hayattan, samimiyetten kopardığına inanıyoruz. <br/>
+                Bununla mücadele etmek, şu kısa hayatımızda güzel birşeyler başarmak istiyoruz ve yardıma ihtiyacımız var.<br/><br/> <strong>Maddi bir destek asla istemiyoruz, </strong>
+                arkadaşlarına bizden bahsederek , topluluğumuzun büyümesinde yardımcı olursan minnettar kalırız. Henüz kullanıcı sayımız çok az. Uygulamamızın daha aktif olması, sizin de
+                daha fazla insanla tanışma şansınız olması için bu hareketi yaymamıza yardım edebilirsin.
 
-                Bir yere gidecek ve bir süre bekleyeceksen sıkılmamak için "kahve içen var mı şu saate şu yakınlarda" tarzı bir aktivite mantıklı olabilir. Bunun haricinde daha yaratıcı ve ilgi
-                çekici teklifler sunmanı öneririz. Hem alacağın geri dönüş de daha fazla olacaktır.
-                <br/>
-                Teşekkürler :)
-                <br/><br/><br/>
+                <br/><br/>
+                Burayı okuyan, bizi katılımıyla mutlu eden ve umut veren herkese çok teşekkür ederiz...
+                <br/><br/>
 
             </div>
 

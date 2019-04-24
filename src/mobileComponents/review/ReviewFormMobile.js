@@ -13,36 +13,36 @@ class ReviewFormMobile extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
-        UserUtil.redirectIsBlocked(this.props.match.params.id);
+     //   UserUtil.redirectIsBlocked(this.props.match.params.id);
 
         this.state = {
             review: "",
-            reviewType: "",
             profileDto: {},
             isPositive: true,
             saved: false,
             label: "",
+            canItext:false,
             errors: {}
         };
 
         this.onSubmit = this.onSubmit.bind(this);
         this.saveReference = this.saveReference.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.canItext=this.canItext.bind(this);
-        this.canItext();
+      //  this.canItext=this.canItext.bind(this);
+      //  this.canItext();
         this.fillPage();
     }
-    canItext() {
-        const self = this;
-        axios.get(Globals.serviceUrl + 'message/haveTheseUsersMeet/'+this.props.match.params.id+'/'+localStorage.getItem("userId"), Security.authHeader())
-            .then(function (response) {
-                self.setState({"canItext":response.data});
-
-            })
-            .catch(function (error) {
-                self.setState({"errors": error.response.data});
-            });
-    }
+    // canItext() {
+    //     const self = this;
+    //     axios.get(Globals.serviceUrl + 'message/haveTheseUsersMeet/'+this.props.match.params.id+'/'+localStorage.getItem("userId"), Security.authHeader())
+    //         .then(function (response) {
+    //             self.setState({"canItext":response.data});
+    //
+    //         })
+    //         .catch(function (error) {
+    //             self.setState({"errors": error.response.data});
+    //         });
+    // }
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
@@ -59,7 +59,7 @@ class ReviewFormMobile extends React.Component {
             review: this.state.review,
             reader: this.state.profileDto,
             positive: this.state.isPositive,
-            reviewType: this.state.reviewType
+            reviewType: "MEETING"
         };
         this.saveReference(reference);
     }
@@ -95,26 +95,19 @@ class ReviewFormMobile extends React.Component {
 
         axios.get(Globals.serviceUrl+'review/haveIMeetThisUserRecently/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
-
                 //we have met
                 if (response.data) {
                     const label = self.state.profileDto.name + " ile buluştunuz, nasıl bir deneyimdi referans olur musunuz? yorumlar silinemez ve düzenlenemez";
                     self.setState({label: label});
-                    self.setState({reviewType: "MEETING"});
+                    self.setState({"canItext":true});
                 }
-
-                //we not
-                if (!response.data) {
-                    const label = "Bir Yorum Yazın, (yorumlar silinemez ve düzenlenemez)";
-                    self.setState({label: label});
-                    self.setState({reviewType: "FRIEND"});
+                else{
+                    self.setState({"canItext":false});
                 }
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
             });
-
-
     }
 
 
@@ -197,7 +190,7 @@ class ReviewFormMobile extends React.Component {
 
                     {!this.state.canItext && (
                         <div>
-                                <span>Bu kişi ile onaylanmış bir aktiviten yok, yalnız ortak aktiviten olan kişilere yorum yazabilirsin.
+                                <span>Bu kişi ile yakın zamanda buluşmadın, buluşmadan 1 saat sonra - 2 gün içinde yorum yapabilirsin.
                                     Sosyalleşmek için bir aktivite oluşturabilir veya birine katılabilirsin :)</span>
                         </div>
                     )}
