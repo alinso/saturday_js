@@ -328,18 +328,18 @@ class ProfileMobile extends React.Component {
                 <div className={"full-width text-align-center"}>
                     <div className="profileTitleMobileDiv">
                         <a className="profileTitleMobile" href={"/album/" + this.props.match.params.id}>
-                            Fotoğraflar({this.state.photoCount})
+                            Fotoğraflar
                         </a>
                     </div>
                     <div className="profileTitleMobileDiv">
                         <a className="profileTitleMobile" href={"/reviews/" + this.props.match.params.id}>
-                            Yorumlar ({this.state.reviewCount})
+                            Yorumlar
                         </a>
                     </div>
                     <div className="profileTitleMobileDiv">
                         <a className="profileTitleMobile"
                            href={"/userActivities/" + this.props.match.params.id}>
-                            Aktiviteler({this.state.activityCount})
+                            Aktiviteler
                         </a>
                     </div>
                     <div className={"clear-both"}></div>

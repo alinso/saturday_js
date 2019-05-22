@@ -285,18 +285,18 @@ class Profile extends React.Component {
                                 <div className={"profileTitleContainer m-auto"}>
                                     <div className="profileTitleDiv">
                                         <a className="profileTitle" href={"/album/" + this.props.match.params.id}>
-                                            Fotoğraflar({this.state.photoCount})
+                                            Fotoğraflar
                                         </a>
                                     </div>
                                     <div className="profileTitleDiv">
                                         <a className="profileTitle" href={"/reviews/" + this.props.match.params.id}>
-                                            Yorumlar ({this.state.reviewCount})
+                                            Yorumlar
                                         </a>
                                     </div>
                                     <div className="profileTitleDiv">
                                         <a className="profileTitle"
                                            href={"/userActivities/" + this.props.match.params.id}>
-                                            Aktiviteler({this.state.activityCount})
+                                            Aktiviteler
                                         </a>
                                     </div>
                                 </div>

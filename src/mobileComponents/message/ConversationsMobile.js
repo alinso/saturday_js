@@ -1,9 +1,7 @@
 import React from "react";
 import Security from "../../security/Security";
-import classnames from "classnames";
 import ProfilePicMobile from "../common/ProfilePicMobile";
 import UserFullNameMobile from "../common/UserFullNameMobile";
-import MessageBox from "./DisplayMessagesMobile";
 import Globals from "../../util/Globals";
 
 const axios = require('axios');

@@ -58,7 +58,7 @@ class MyAlbumMobile extends React.Component {
 
         for (var key in this.state.selectedPhotos) {
             if (this.state.selectedPhotos.hasOwnProperty(key)) {
-                let selectedFile = this.state.selectedPhotos [key];
+                let selectedFile = this.state.selectedPhotos[key];
                 data.append('files', selectedFile, selectedFile.name);
             }
         }

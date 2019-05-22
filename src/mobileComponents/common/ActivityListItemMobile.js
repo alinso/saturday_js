@@ -27,6 +27,17 @@ class ActivityListItemMobile extends React.Component {
                     <UserFullNameMobile
                         user={this.props.activity.profileDto}
                     />
+                    <h6>{this.props.activity.profileDto.point} <i className="far fa-star"/></h6>
+                    {(localStorage.getItem("userId")==="1" || localStorage.getItem("userId")==="33") &&(
+                        <div className={"full-width"}>
+                            <a href={"/kjshfgjhskjfh/police"} className={"float-left"}>
+                                <button className={"btn btn-danger"}>Kullanıcı(id:{this.props.activity.profileDto.id})</button></a>
+                            <a href={"/activityRequests/"+this.props.activity.id} className={"float-left"}>
+                            <button className={"btn btn-primary float-left"}>Aktivite</button>
+                            </a>
+                            <div className={"clear-both"}></div>
+                        </div>
+                    ) }
                     <ActivityInfoBlockMobile
                         photoName={this.props.activity.photoName}
                         detail={this.props.activity.detail}

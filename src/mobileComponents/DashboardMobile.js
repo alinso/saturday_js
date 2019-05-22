@@ -113,8 +113,9 @@ class DashboardMobile extends BaseActivityListMobile {
 
                 <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                 <hr/>
-               <strong><a href={"/help2"}> <i className="fas fa-cubes"/>Yorum Sistemi Değişti</a></strong><br/>
-                {/*<strong><a href={"/help2"}><i className="fas fa-hashtag"/>Instagram'da #activityfriend etiketler misin?</a></strong>*/}
+                <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>
+                <strong><a href={"/help"}><i className="fab fa-gripfire"/>Tanrılar kan istiyor</a></strong><br/>
+                <strong><a href={"/help2"}>@activityfriend</a></strong><br/>
 
                 <hr/>
                 {(localStorage.getItem("cityId") === "null") &&

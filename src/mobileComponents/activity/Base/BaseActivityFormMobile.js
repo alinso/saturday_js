@@ -134,6 +134,12 @@ class BaseActivityFormMobile extends React.Component {
 
     render() {
 
+        const {savedMessage} = this.state;
+        const {errors} = this.state;
+        const {photoName} = this.state;
+        const {hours} = this.state;
+        const {minutes} = this.state;
+
         if (localStorage.getItem("cityId") === "null") {
             return (<div className="full-width container">
                 <a href="/updateInfo"> <div className={"alert alert-danger"}>
@@ -143,18 +149,13 @@ class BaseActivityFormMobile extends React.Component {
 
         if (this.state.activityLimitExceeded) {
             return (
-                <div className={"ull-width container"}><Alert
+                <div className={"full-width container"}><Alert
                     type={"alert-warning"}
                     message={"Haftada e fazla 2 aktivite oluşturabilirsin"}
                 /></div>
             )
         }
 
-        const {savedMessage} = this.state;
-        const {errors} = this.state;
-        const {photoName} = this.state;
-        const {hours} = this.state;
-        const {minutes} = this.state;
 
         return (
             <div className={"full-width container"}>
@@ -227,6 +228,12 @@ class BaseActivityFormMobile extends React.Component {
                         <div className={"alert alert-success"}>
                             {savedMessage}
                             <a href="/"><strong>Aktiviten Yayında! burada görünüyor :)</strong> </a>
+                        </div>
+                    )}
+                    {errors.userWarningMessage && (
+                        <div className={"alert alert-danger"}>
+                            {savedMessage}
+                            <a href="/"><strong>Tarihi geçmiş aktivitede değişiklik yapamazsın</strong> </a>
                         </div>
                     )}
                     <input

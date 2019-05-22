@@ -211,10 +211,10 @@
 }
 
 .landingSlideMobile {
-    width: 100%;
-    height: 385px;
-    background-image: url(/img/landing_mobile_slide.jpg);
-    background-size: cover;
+    /*width: 100%;*/
+    /*height: 385px;*/
+    /*background-image: url(/img/landing_mobile_slide.jpg);*/
+    /*background-size: cover;*/
 }
 
 .waitingApprovalMobile{

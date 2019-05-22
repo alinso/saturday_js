@@ -83,10 +83,6 @@ class Reviews extends React.Component {
                                             {!review.positive && (<strong className={"negativeReview"}><i
                                                 className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
                                             , &nbsp;
-                                            {(review.reviewType==="FRIEND") && (
-                                                <span className={"reviewTypeFriend  "}>Arkadaş Referansı</span>)}
-                                            {(review.reviewType==="MEETING") && (
-                                                <strong className={"reviewTypeActivity"}>Aktivite Referansı</strong>)}
                                             <hr/>
                                             {review.review}
                                         </div>

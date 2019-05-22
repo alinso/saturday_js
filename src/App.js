@@ -90,6 +90,7 @@ import PrivacyPolicy from "./pcComponents/info/PrivacyPolicy";
 import HelpMobile from "./mobileComponents/info/HelpMobile";
 import HelpMobile2 from "./mobileComponents/info/HelpMobile2";
 import APolice from "./jshfsadf/police/APolice";
+import Top100 from "./mobileComponents/info/Top100";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -251,6 +252,7 @@ class App extends Component {
                         {<Route exact path="/privacyPolicy/" component={PrivacyPolicyMobile}/>}
                         {<Route exact path="/help/" component={HelpMobile}/>}
                         {<Route exact path="/help2/" component={HelpMobile2}/>}
+                        {<Route exact path="/top100/" component={Top100}/>}
 
                         {<Route exact path="/complain/:id/" component={ComplainMobile}/>}
                         {<Route exact path="/discover/" component={DiscoverMobile}/>}

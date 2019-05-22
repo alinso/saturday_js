@@ -65,8 +65,8 @@ class NotificationsMobile extends React.Component {
     newRequestApprovalText(id) {
         return (
             <span>
-                katılmak istediğiniz <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için siz onayladı, Instagram'da <strong>#activityfriend</strong>
-                hashtagı ile buluşma fotopraflarını paylaşırsan seviniriz🙏🙏, iyi eğlenceler:)
+                katılmak istediğiniz <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için siz onayladı, Instagram'da <strong>@activityfriend</strong>
+                ile etiketlersen biz de senin fotoğrafını paylaşıp etiketleyelim, karşılıklı etiketleşelim :)<br/>
             </span>
         )
     }

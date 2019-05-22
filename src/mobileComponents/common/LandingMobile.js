@@ -7,8 +7,7 @@ class LandingMobile extends Component {
         return (
             <div className={"landingContainerMobile"}>
                 <div className={"landingSlideMobile"}>
-
-
+                    <img src={"/img/landing_mobile_slide.jpg"} className={"full-width"}/>
                 </div>
 
                 <br/>

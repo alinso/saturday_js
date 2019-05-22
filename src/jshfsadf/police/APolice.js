@@ -1,7 +1,6 @@
 import React from "react";
 import Security from "../../security/Security";
 import Globals from "../../util/Globals";
-import AdminMenu from "../AdminMenu";
 import classnames from "classnames";
 
 const axios = require('axios');
@@ -23,6 +22,8 @@ class APolice extends React.Component {
         };
         this.onChange = this.onChange.bind(this);
         this.getInfo = this.getInfo.bind(this);
+        this.updatePoint=this.updatePoint.bind(this);
+        this.sendMessage = this.sendMessage.bind(this);
     }
 
 
@@ -61,7 +62,29 @@ class APolice extends React.Component {
         }
 
     }
+    updatePoint() {
+        let self = this;
+        axios.get(Globals.serviceUrl + Globals.adminUrl + 'updatePoint/' , Security.authHeader())
+            .then(function (response) {
+                self.setState({"errors": {}});
+                self.setState({"savedMessage": "Bilgiler guncellendi"});
+                self.setState({"userdata": response.data});
+            })
+            .catch(function (error) {
+                self.setState({"errors": error.response.data});
+                self.setState({isSubmitDisabled: false});
+            });
+    }
+    sendMessage() {
+        let self = this;
+        axios.get(Globals.serviceUrl + Globals.adminUrl + 'autoMessage/' , Security.authHeader())
+            .then(function (response) {
+                self.setState({"errors": {}});
+                self.setState({"savedMessage": "Bilgiler guncellendi"});
+                self.setState({"userdata": response.data});
+            })
 
+    }
 
     getInfo() {
         let self = this;
@@ -108,6 +131,16 @@ class APolice extends React.Component {
                             onChange={this.onChange}
                         />
                     </div>
+                    <div className={"col-md-4 policeButtonDivMobile"}>
+                        <button type={"button"} className={"btn btn-warning "} onClick={this.updatePoint}>
+                            Puan güncelle
+                        </button>
+                    </div>
+                    {/*<div className={"col-md-4 policeButtonDivMobile"}>*/}
+                    {/*    <button type={"button"} className={"btn btn-warning "} onClick={this.sendMessage}>*/}
+                    {/*        Toplu Mesaj Gönder*/}
+                    {/*    </button>*/}
+                    {/*</div>*/}
                     {this.state.userdata && (
                         <div>
                             {this.state.userdata.name} {this.state.userdata.surname}
@@ -116,6 +149,7 @@ class APolice extends React.Component {
                             <br/>
                             {this.state.userdata.email}
                             <div className={"row"}>
+
                                 <div className={"col-md-4 policeButtonDivMobile"}>
                                     <button type={"button"} className={"btn btn-warning "} onClick={()=>this.db('invalidName')}>
                                         Geçersiz İsim
