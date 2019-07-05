@@ -80,7 +80,6 @@ class ActivityRequests extends React.Component {
                 self.setState({requests: requestsNew});
             })
             .catch(function (error) {
-
                 console.log(error);
                 self.setState({errors: error.response.data});
             });

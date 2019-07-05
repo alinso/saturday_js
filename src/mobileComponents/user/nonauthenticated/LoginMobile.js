@@ -4,6 +4,7 @@ import security from "../../../security/Security";
 import AlertMobile from "../../common/AlertMobile";
 import Globals from "../../../util/Globals";
 import DownloadAppLink from "../../common/DownloadAppLink";
+import Alert from "../../../pcComponents/common/Alert";
 
 const axios = require('axios');
 
@@ -72,7 +73,9 @@ class LoginMobile extends Component {
 
                     )}
                     {errors.userWarningMessage && (
+                        <a href={"/verifyPhone"}>
                         <AlertMobile type="alert-danger" message={errors.userWarningMessage}/>
+                        </a>
                     )}
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">

@@ -20,12 +20,21 @@ class BaseActivityListMobile extends React.Component {
 
     joinActivity(id){
         const self = this;
+
+        let activities = self.state.activities;
+        let currentMeetingOld = activities.filter(obj => {
+            return obj.id === id
+        });
+        let question="Bu aktiviteye katılmak istediğinden emin misin?";
+        if(currentMeetingOld[0].thisUserJoined)
+            question="Bu isteği iptal edeceksin, emin misin?";
+
+        let result=window.confirm(question);
+        if(!result)
+            return;
+
         axios.get(Globals.serviceUrl+'request/sendRequest/'+id, Security.authHeader())
             .then(function (response) {
-                let activities = self.state.activities;
-                let currentMeetingOld = activities.filter(obj => {
-                    return obj.id === id
-                });
                 let currentMeetingNew  =Object.assign({},currentMeetingOld)[0];
                 currentMeetingNew.thisUserJoined = response.data;
 

@@ -41,7 +41,7 @@ class NotificationsMobile extends React.Component {
     newRequestText(id) {
         return (
             <span>
-            <a href={"/activityRequests/" + id}>PAYLAŞTIĞINIZ AKTİVİTEYE</a> katılmak istiyor.
+            <a href={"/activityRequests/" + id}>PAYLAŞTIĞIN AKTİVİTEYE</a> katılmak istiyor.
             </span>
         )
     }
@@ -49,7 +49,7 @@ class NotificationsMobile extends React.Component {
     newMessageText(id) {
         return (
             <span>
-                size bir <a href={"/message/"+id}>BİR MESAJ</a> gönderdi.
+                sana bir <a href={"/message/"+id}>BİR MESAJ</a> gönderdi.
             </span>
         )
     }
@@ -57,7 +57,7 @@ class NotificationsMobile extends React.Component {
     newReviewText(id) {
         return (
             <span>
-                sizin için <a href={"/review/" + id}>BİR YORUM</a> yazdı.
+                senin için <a href={"/review/" + id}>BİR YORUM</a> yazdı.
             </span>
         )
     }
@@ -65,8 +65,8 @@ class NotificationsMobile extends React.Component {
     newRequestApprovalText(id) {
         return (
             <span>
-                katılmak istediğiniz <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için siz onayladı, Instagram'da <strong>@activityfriend</strong>
-                ile etiketlersen biz de senin fotoğrafını paylaşıp etiketleyelim, karşılıklı etiketleşelim :)<br/>
+                katılmak istediğin  <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için seni onayladı, Instagram'da <strong>@activityfriend</strong>
+                ile etiketlersen seviniriz, etiketlemezsen de canın sağolsun :)<br/>
             </span>
         )
     }

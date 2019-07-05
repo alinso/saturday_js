@@ -74,7 +74,7 @@ class Login extends Component {
 
                         )}
                     {errors.userWarningMessage && (
-                        <Alert type="alert-danger" message={errors.userWarningMessage}/>
+                        <a href={"/verifyPhone"}><Alert type="alert-danger" message={errors.userWarningMessage}/></a>
                     )}
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">

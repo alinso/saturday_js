@@ -211,6 +211,7 @@ class UpdateInfo extends React.Component {
                                 value={this.state.phone}
                                 onChange={this.onChange}
                                 required
+                                disabled={true}
                             />
                             {errors.phone && (
                                 <div className="invalid-feedback">

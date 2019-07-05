@@ -12,26 +12,20 @@ class HelpMobile2 extends React.Component {
         return (
             <div className="full-width text-align-left container">
 
-                <h4>Kulaktan kulağa yayılmalıyız</h4>
+                <h4>Küçük samimi aktiviteler..</h4>
                 <hr/>
 
-                <a className={"shareOnWhatsapp"}
-                   href="whatsapp://send?text=Sana bu uygulamadan bahsetmis miydim? İlgini çekebilir, incele istersen https://www.activityfriend.net"
-                   data-action="share/whatsapp/share"><strong>
-                    Whatsapp'ta Paylaş <i className="fab fa-whatsapp"/></strong></a>
-                <hr/>
                 Merhaba,<br/>
-                Reklamarımızı uzun süredir yayınlamıyoruz. Activity Friend'in reklama ihtiyacı mı var arkadaşlar?<br/>
-                Çevrenizdeki genç, dinamik, kültürlü, güvendiğiniz insanlara bizi anlatabilirsiniz. Böylece hem rastgele insanlar yerine referansla gelmiş kişilerle
-                    uygulamamız dolar,hem açtığınız aktivitelere katılan kişilerin sayı ve kalitesinde artış olur,  hem de daha fazla ve çeşitli aktivieler açılır.
-                    <strong>Sayısal nedenlerden dolayı an itibariyle yalnız kadın alımı yapıyoruz, eğer kadın sayısı ciddi şekilde artar ise yalnız erkek alımı yaparız,
-                        fakat kaliteli bir topluluk hedefinin haricinde ikinci bir madde olarak sayısal dengeli bir topluluk hedefimiz var</strong><br/>
-                        <br/>
-                        Ayrıca en etkili yöntemlerden biride @activityfriend insatgram hesabımızı buluşma sonrası fotoğraflarınızda etiketlemek olacak. Biz de o fotoğrafları
-                sayfamızda paylaşabiliriz. Ankara bizi duysun!
+                Asurlu tüccarlar Anadoluya yazıyı getirmişti, Activity Friendli tüccarlar ise tüm neşemizi alıp götürüyor. Bilet satan, ücretli  etkinlik düzenlemeye çalışan, ücretsiz etkinlik düzenleyerek
+                firmasının reklamını yapan tüm kullanıcıları siliyoruz(İzinli olanlar hariç). Buradaki insanlar ya aktivitelerine eşlik edecek kişiler arıyor ya da birilerine eşlik etmek istiyor.
+                Özel izni olmadan ve amacını gizli tutmaya çalışarak bu şekilde ticari amaç taşıyan aktivite açan insanlar gerçekten herkesin keyfini kaçırıyor. Böyle bir amacınız varsa bize yazın sponsorlu şekilde sizi destekleyebilir,
+                elimizden geleni yaparız ve insanlara da açıkça bunun bir ücretli/ücretsiz etkinlik olldugunu belirtiriz. Ama lütfen hadi buluşalım birşeyler yapalım diye insanları çağırıp
+                para kazanmaya çalışmayın.
+                <br/>
+                Bütün gizlice para kazanmaya çalışan ticari hesapları, para isteyenleri reklam yapmaya çalışanları şikayet edin, ancak bu şekilde temizlik yapabiliyoruz.
+                <br/>
+                Teşekkürler
                 <br/><br/>
-                Arkadaşlarınız Activity Friend'i sizden öğrendiği için size minnettar kalacak
-                <br/><br/><br/>
 
             </div>
 

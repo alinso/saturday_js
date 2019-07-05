@@ -210,10 +210,13 @@
     text-align: center;
 }
 
+.selectedActivity{
+    background-color: #F4D03F;
+}
 .landingSlideMobile {
     /*width: 100%;*/
     /*height: 385px;*/
-    /*background-image: url(/img/landing_mobile_slide.jpg);*/
+    /*background-image: url(/img/landing_mobile_slide3.jpg);*/
     /*background-size: cover;*/
 }
 

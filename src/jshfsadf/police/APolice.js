@@ -136,11 +136,11 @@ class APolice extends React.Component {
                             Puan güncelle
                         </button>
                     </div>
-                    {/*<div className={"col-md-4 policeButtonDivMobile"}>*/}
-                    {/*    <button type={"button"} className={"btn btn-warning "} onClick={this.sendMessage}>*/}
-                    {/*        Toplu Mesaj Gönder*/}
-                    {/*    </button>*/}
-                    {/*</div>*/}
+                    <div className={"col-md-4 policeButtonDivMobile"}>
+                        <button type={"button"} className={"btn btn-warning "} onClick={this.sendMessage}>
+                            Toplu Mesaj Gönder
+                        </button>
+                    </div>
                     {this.state.userdata && (
                         <div>
                             {this.state.userdata.name} {this.state.userdata.surname}

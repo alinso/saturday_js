@@ -43,9 +43,7 @@ class RegisterMobile extends React.Component {
         let self = this;
         axios.post(Globals.serviceUrl+'user/register', newUser)
             .then(function (response) {
-                self.setState({"errors": {}});
-                //  self.setState({"registrationCompletedMessage": "Mailine aktivasyon linki gönderdik (bu bazen birkaç dakika sürebilir veya spama düşebilir) linke tıklayarak hesabını aktifleştirebilirsin."});
-                  self.setState({"registrationCompleted": true});
+                window.location="/verifyPhone";
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
@@ -180,6 +178,7 @@ class RegisterMobile extends React.Component {
                             value={this.state.phone}
                             onChange={this.onChange}
                         />
+                        <span className={"color-white"}>Doğrulama kodu gönderilecek</span>
                         {errors.phone && (
                             <div className="color-white">
                                 {errors.phone}

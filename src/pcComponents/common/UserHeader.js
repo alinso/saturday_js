@@ -9,7 +9,7 @@ const axios = require('axios');
 class UserHeader extends React.Component {
 
     constructor() {
-        super()
+        super();
         this.state = {
             notifications: [],
             messageNotification: false,
@@ -25,10 +25,7 @@ class UserHeader extends React.Component {
         axios.get(Globals.serviceUrl+'notification/newNotifications/', Security.authHeader())
             .then(function (response) {
                 self.setState({notifications: response.data});
-
-
                 response.data.map(function (not) {
-
                     console.log(not.notificationType);
 
                     if (not.notificationType.toString() === "MESSAGE")

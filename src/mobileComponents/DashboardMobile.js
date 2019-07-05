@@ -38,6 +38,7 @@ class DashboardMobile extends BaseActivityListMobile {
         };
     }
 
+
     loadMore() {
         const self = this;
         let newPageNum = this.state.pageNum + 1;
@@ -114,8 +115,8 @@ class DashboardMobile extends BaseActivityListMobile {
                 <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                 <hr/>
                 <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>
-                <strong><a href={"/help"}><i className="fab fa-gripfire"/>Tanrılar kan istiyor</a></strong><br/>
-                <strong><a href={"/help2"}>@activityfriend</a></strong><br/>
+                <strong><a href={"/help"}><i className="fas fa-star">Aktivite açma sınırı arttı</i></a></strong><br/>
+
 
                 <hr/>
                 {(localStorage.getItem("cityId") === "null") &&

@@ -14,7 +14,6 @@ import UpdatePassword from "./pcComponents/user/self/UpdatePassword";
 import UpdateProfilePic from "./pcComponents/user/self/UpdateProfilePic";
 import MyAlbum from "./pcComponents/user/self/MyAlbum";
 import Settings from "./pcComponents/user/self/Settings";
-import VerifyMail from "./pcComponents/user/nonauthenticated/VerifyMail";
 import SearchUser from "./pcComponents/user/other/SearchUser";
 import ForgottenPassword from "./pcComponents/user/nonauthenticated/ForgottenPassword";
 import ResetPassword from "./pcComponents/user/nonauthenticated/ResetPassword";
@@ -43,7 +42,6 @@ import SearchUserMobile from "./mobileComponents/user/other/SearchUserMobile";
 import ForgottenPasswordMobile from "./mobileComponents/user/nonauthenticated/ForgottenPasswordMobile";
 import ResetPasswordMobile from "./mobileComponents/user/nonauthenticated/ResetPasswordMobile";
 import ProfileMobile from "./mobileComponents/user/other/ProfileMobile";
-import VerifyMailMobile from "./mobileComponents/user/nonauthenticated/VerifyMailMobile";
 import UpdateInfoMobile from "./mobileComponents/user/self/UpdateInfoMobile";
 import UpdatePasswordMobile from "./mobileComponents/user/self/UpdatePasswordMobile";
 import UpdateProfilePicMobile from "./mobileComponents/user/self/UpdateProfilePicMobile";
@@ -91,6 +89,8 @@ import HelpMobile from "./mobileComponents/info/HelpMobile";
 import HelpMobile2 from "./mobileComponents/info/HelpMobile2";
 import APolice from "./jshfsadf/police/APolice";
 import Top100 from "./mobileComponents/info/Top100";
+import VerifyPhoneMobile from "./mobileComponents/user/nonauthenticated/VerifyPhoneMobile";
+import VerifyPhone from "./pcComponents/user/nonauthenticated/VerifyPhone";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -140,13 +140,14 @@ class App extends Component {
                     {!security.isValidToken() && <Route exact path="/" component={Landing}/>}
                     {security.isValidToken() && <Route exact path="/" component={Dashboard}/>}
                     {<Route exact path="/logout" render={() => security.logout()}/>}
-                    {<Route exact path="/register" component={Register}/>}
+                    {<Route exact path="/uyghkbsdkjhvvvhjvjb" component={Register}/>}
                     {<Route exact path="/login" component={Login}/>}
                     {<Route exact path="/searchUser" component={SearchUser}/>}
                     {<Route exact path="/forgottenPassword" component={ForgottenPassword}/>}
                     {<Route exact path="/resetPassword/:token" component={ResetPassword}/>}
                     {<Route exact path="/profile/:id" component={Profile}/>}
-                    {<Route exact path="/verifyMail/:token" component={VerifyMail}/>}
+                    {<Route exact path="/verifyPhone/" component={VerifyPhone}/>}
+                    {<Route exact path="/register/" component={Register}/>}
 
                     {/*authenticated*/}
                     {<Route exact path="/updateInfo" component={UpdateInfo}/>}
@@ -215,7 +216,7 @@ class App extends Component {
                         {<Route exact path="/forgottenPassword" component={ForgottenPasswordMobile}/>}
                         {<Route exact path="/resetPassword/:token" component={ResetPasswordMobile}/>}
                         {<Route exact path="/profile/:id" component={ProfileMobile}/>}
-                        {<Route exact path="/verifyMail/:token" component={VerifyMailMobile}/>}
+                        {<Route exact path="/verifyPhone/" component={VerifyPhoneMobile}/>}
 
                         {/*authenticated*/}
                         {<Route exact path="/updateInfo" component={UpdateInfoMobile}/>}

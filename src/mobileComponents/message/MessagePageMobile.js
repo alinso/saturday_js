@@ -135,8 +135,9 @@ class MessagePageMobile extends React.Component {
                     <MessageBoxMobile
                         messages={this.state.messages}
                     />
-                <div>
-                    <button onClick={()=>this.deleteConvo()} className={"btn btn-danger float-left"}>Konuşmayı Sil</button>
+
+                    <div>
+                        <button onClick={()=>this.deleteConvo()} className={"btn btn-danger float-left"}>Konuşmayı Sil</button>
                     <a className={"complainOnMessagePage"} href={"/complain/" + this.state.readerProfile.id}>
                         <button className={"btn btn-success"}> Şikayet Et</button></a>
                 </div>

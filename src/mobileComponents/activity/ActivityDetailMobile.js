@@ -35,7 +35,7 @@ class ActivityDetailMobile extends React.Component {
 
     }
 
-    joinMeeting(id) {
+    joinActivity(id) {
         const self = this;
         axios.get(Globals.serviceUrl+'request/sendRequest/' + id, Security.authHeader())
             .then(function (response) {
@@ -78,7 +78,7 @@ class ActivityDetailMobile extends React.Component {
                                 {(!activity.expired) &&
                                 (<ActivityRequestButtonsMobile
                                     userId={activity.profileDto.id}
-                                    joinMeeting={() => self.joinMeeting(activity.id)}
+                                    joinActivity={() => self.joinActivity(activity.id)}
                                     thisUserJoined={activity.thisUserJoined}
                                 />)
                                 }

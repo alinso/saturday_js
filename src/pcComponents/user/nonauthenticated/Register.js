@@ -45,7 +45,9 @@ class Register extends React.Component {
             .then(function (response) {
                 self.setState({"errors": {}});
                 // self.setState({"registrationCompletedMessage": "Mailine aktivasyon linki gönderdik (bu bazen birkaç dakika sürebilir veya spama düşebilir) linke tıklayarak hesabını aktifleştirebilirsin."});
-                 self.setState({"registrationCompletedMessage": "Kayıt tamamlandı, giriş sayfasından yapabilirsin"});
+                 //self.setState({"registrationCompletedMessage": "Kayıt tamamlandı, giriş sayfasından yapabilirsin"});
+                window.location="/verifyPhone";
+
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
@@ -105,7 +107,6 @@ class Register extends React.Component {
 
                     {registrationCompletedMessage && (
                         <Alert type="alert-success" message={registrationCompletedMessage}/>
-
                         )}
 
                     <form onSubmit={this.onSubmit}>
@@ -178,6 +179,7 @@ class Register extends React.Component {
                                     {errors.phone}
                                 </div>
                             )}
+                            <span className={"color-white"}>Doğrulama kodu gönderilecek</span>
                         </div>
                         <div className="form-group">
                             <input
