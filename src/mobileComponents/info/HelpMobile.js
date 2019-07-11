@@ -12,20 +12,17 @@ class HelpMobile extends React.Component {
         return (
             <div className="full-width text-align-left container">
 
-                <h4>Sınırlar genişliyorrrr</h4>
-
                 <hr/>
                 Merhaba arkadaşlar,<br/>
 
-                {/*Geleceğim deyip gelmeyen, son anda haber vermeden ekenler hakkında mutlaka "GELMEDİ" şeklinde olumsuz yorum yapın. 3 kere bu şekilde ekenlerin hesabını sileceğiz. Daha ciddi şekilde sizi mağdur*/}
-                {/*edip eken olursa şikayet edebilirsiniz.*/}
-                {/*<br/>*/}
-                {/*Rahatsızlık veren herkesi şikayet edin, şikayetleriniz boşa gitmiyor ve şikayet eden kişileri gizliyoruz. Bu kişileri açığa çıkaracak en ufak bir ipucu veya imada bile bulunmuyoruz.*/}
-                {/*Şikayet inceleme ekibimiz hızlı bir şekilde sonuç üretiyor. Kitleyi sürekli olarak temizliyoruz. Activity Frined kaliteli kalacak. Bunun için ne gerekiyorsa yapacağız. <br/>*/}
-                {/*Teşekkürler*/}
 
-                Haftalık aktivite açma sınırını 13 Temmuza kadar 5'e çıkardık. Eğer verimli olursa bunu kalıcı yapabiliriz, bir süre test etmek istiyoruz.
-                13 Temmuza kadar sınırı düşünmeden aktivite açabilirsiniz.
+                4 ayda 2000+ aktivite yaptık, 1000 civarı insanı biribiriyle tanıştırdık. Çok güzel arkadaşlıklar kurup, birbirinden eğlenceli-unutulmaz etkinlikler yaptık. Activity Friend çoğumuz için okul ve iş dışında gerçek arkadaşlıklar kurabileceğimiz sosyal bir ortam oldu. Şu an görüyoruz ki Ankara'da tam olarak buna ihtiyacımız varmış
+
+                Activity Friend ilk partisini bu 12 Temmuz Cuma akşamı düzenliyor. Sınırsız popcorn, girişte bira, çeşitli masa oyunları ve DJ performansın dahil olduğu geceye katılım bir içki dahil 25TL olacak. Acitivty Friend'in tüm üyelerini bekliyoruz, ilk defa böyle toplu şekilde tanışma şansımız olacak. Böylece hepimiz aktivitelerini fotoğraflarını, gördüğümüz ve tanışma şansı bulamadığımız insanları gerçek hayatta tanımış olacak ve daha sonraki aktivitelerimizde 'gerçek' insanların var olduğunun bilincinde olacağız. Biz asla sanal ortamda kalmak istemiyoruz. Sokaklarda, sinemalarda,tiyatrolarda,kamplarda,gece kulüplerinde,konserlerde,barlarda, pikniklerde kısacası sosyal hayatın merkezinde olmak istiyoruz.
+
+                Biliyorsunuz uygulamamızda reklam veya premium üyeliğimiz yok.(tıklama-indirmeden para kazanmıyoruz). Hep birlikte eğleneceğiz, dans edeceğiz çok ufak da olsa AF'ye katkıda bulunmuş olacağız. Bir yandan da Activity Friend projesine destek olduğunuzun farkında olup, bunun mutluluğunu da yaşamanızı istiyoruz.
+
+                4 aydır hayatımıza değiştiren 3622 kişiye teşekkür ederiz.
                 <br/>
                 Teşekkürler
             </div>

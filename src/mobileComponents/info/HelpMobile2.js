@@ -12,19 +12,14 @@ class HelpMobile2 extends React.Component {
         return (
             <div className="full-width text-align-left container">
 
-                <h4>Küçük samimi aktiviteler..</h4>
-                <hr/>
+
 
                 Merhaba,<br/>
-                Asurlu tüccarlar Anadoluya yazıyı getirmişti, Activity Friendli tüccarlar ise tüm neşemizi alıp götürüyor. Bilet satan, ücretli  etkinlik düzenlemeye çalışan, ücretsiz etkinlik düzenleyerek
-                firmasının reklamını yapan tüm kullanıcıları siliyoruz(İzinli olanlar hariç). Buradaki insanlar ya aktivitelerine eşlik edecek kişiler arıyor ya da birilerine eşlik etmek istiyor.
-                Özel izni olmadan ve amacını gizli tutmaya çalışarak bu şekilde ticari amaç taşıyan aktivite açan insanlar gerçekten herkesin keyfini kaçırıyor. Böyle bir amacınız varsa bize yazın sponsorlu şekilde sizi destekleyebilir,
-                elimizden geleni yaparız ve insanlara da açıkça bunun bir ücretli/ücretsiz etkinlik olldugunu belirtiriz. Ama lütfen hadi buluşalım birşeyler yapalım diye insanları çağırıp
-                para kazanmaya çalışmayın.
+                bu haftasonu mesajlasma sistemi değişecek. Kişiye mesaj atma olmayıp aktivitenın onaylanan kişileri whatsapp grubu gibi bir mesaj havuzunda toplanacak.
+                Böylece numara alışverişi yapmak ve wp grubu kurmakla uğraşmanıza gerek kalmadan ve birbirinize numara vermenize gerek kalmadan, çok daha hızlı ve güvenli iletişim kurmuş olacaksınız.
+                Tabi bu durumda geçmiş tüm mesajlar da silinecek, bu nedenle haftasonuna kadar eski mesajlardan almak istediğiniz bilgiler varsa almalısınız.
                 <br/>
-                Bütün gizlice para kazanmaya çalışan ticari hesapları, para isteyenleri reklam yapmaya çalışanları şikayet edin, ancak bu şekilde temizlik yapabiliyoruz.
-                <br/>
-                Teşekkürler
+
                 <br/><br/>
 
             </div>

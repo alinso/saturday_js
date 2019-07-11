@@ -17,7 +17,7 @@ class UserMenuMobile extends React.Component {
             createActive: false,
             notActive: false,
             hamburgerOpen:false,
-            discoverActive:false
+            messageActive:false
         };
 
 
@@ -33,28 +33,28 @@ class UserMenuMobile extends React.Component {
             this.setState({seedActive: false});
             this.setState({createActive: true});
             this.setState({notActive: false});
-            this.setState({discoverActive: false});
+            this.setState({messageActive: false});
 
         }
         if (pathname === "/notifications") {
             this.setState({seedActive: false});
             this.setState({createActive: false});
             this.setState({notActive: true});
-            this.setState({discoverActive: false});
+            this.setState({messageActive: false});
 
         }
         if (pathname === "/") {
             this.setState({seedActive: true});
             this.setState({createActive: false});
             this.setState({notActive: false});
-            this.setState({discoverActive: false});
+            this.setState({messageActive: false});
 
         }
-        if (pathname === "/discover") {
+        if (pathname === "/conversations") {
             this.setState({seedActive: false});
             this.setState({createActive: false});
             this.setState({notActive: false});
-            this.setState({discoverActive: true});
+            this.setState({messageActive: true});
         }
     }
 
@@ -69,41 +69,34 @@ class UserMenuMobile extends React.Component {
         const self = this;
         axios.get(Globals.serviceUrl+'notification/newNotifications/', Security.authHeader())
             .then(function (response) {
+
+                console.log("ok");
                 self.setState({notifications: response.data});
                 response.data.map(function (not) {
                         self.setState({notification: true});
                 });
+
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
             });
     }
 
-
-
-
-
-
     render() {
         let notificationLinkProps = {title: "Bildirimler", class: "fa fa-bell"};
-
         if (this.state.notification === true) {
             notificationLinkProps = {title: "Yeni Bildirim!", class: "fas fa-bell lightOnGreen"};
+
         }
-
-
 
         const {seedActive}  =this.state;
         const {createActive}  =this.state;
         const {notActive}  =this.state;
-        const {discoverActive}  =this.state;
+        const {messageActive}  =this.state;
         return (<div>
                 <div className={this.state.hamburgerOpen ? "hamburgerContainerMobile" : "displayNone"}>
                     <div className={"hamburgerMenuItemMobile"}>
                         <a href={"/profile/"+localStorage.getItem("userId")}>Profilim</a>
-                    </div>
-                    <div className={"hamburgerMenuItemMobile"}>
-                        <a href={"/conversations"}>Mesajlar</a>
                     </div>
 
                     <div className={"hamburgerMenuItemMobile"}>
@@ -127,9 +120,9 @@ class UserMenuMobile extends React.Component {
                         <span className={"menuTitle"} hidden={!createActive}>Aktivite</span>
                     </a>
 
-                    <a href="/discover"  className={discoverActive ? "active" :""}>
-                        <span className={"menuIconMobile"}> <i className="fas fa-dice"/></span>
-                        <span className={"menuTitle"} hidden={!discoverActive}> Jumanji</span>
+                    <a href="/conversations"  className={messageActive ? "active" :""}>
+                        <span className={"menuIconMobile"}> <i className="fas fa-envelope"/></span>
+                        <span className={"menuTitle"} hidden={!messageActive}> Mesajlar</span>
                     </a>
 
                     <a href="/notifications"  className={notActive ? "active" :""}>

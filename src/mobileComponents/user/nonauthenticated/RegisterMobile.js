@@ -103,6 +103,7 @@ class RegisterMobile extends React.Component {
         return (
             <div className="full-width registerContainerMobile">
                 <h6 className={"color-white"}>Activity Friend'e Katıl!</h6>
+                <h5 className={"color-white"}>Erkek alımlarımız sayısal nedenlerden dolayı geçiçi olarak kapalıdır</h5>
 
                 {registrationCompleted && (
                     <div className={"registerCompletedMessage"}>

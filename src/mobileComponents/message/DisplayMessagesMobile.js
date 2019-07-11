@@ -9,16 +9,16 @@ class MessageBoxMobile extends React.Component {
     }
 
 
-    // scrollToBottom() {
-    //     const scrollHeight = this.messageList.scrollHeight;
-    //     const height = this.messageList.clientHeight;
-    //     const maxScrollTop = scrollHeight - height;
-    //     this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
-    // }
-    //
-    // componentDidUpdate() {
-    //     this.scrollToBottom();
-    // }
+    scrollToBottom() {
+        const scrollHeight = this.messageList.scrollHeight;
+        const height = this.messageList.clientHeight;
+        const maxScrollTop = scrollHeight - height;
+        this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
 
     render() {
 
