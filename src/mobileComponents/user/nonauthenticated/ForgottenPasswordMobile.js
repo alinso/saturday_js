@@ -1,6 +1,5 @@
 import React from "react";
 import classnames from "classnames";
-import AlertMobile from '../../common/AlertMobile';
 import Globals from "../../../util/Globals";
 
 const axios = require('axios');
@@ -11,83 +10,64 @@ class ForgottenPasswordMobile extends React.Component {
         super(props);
 
         this.state = {
-            mail: "",
-            mailSentMessage: false,
-            iSubmitDisabled: false,
-            errors: {}
+            phone:null
         };
-
-        this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-
+        this.sendPass=this.sendPass.bind(this);
+        this.onSubmit=this.onSubmit.bind(this);
+        this.onChange=this.onChange.bind(this);
     }
 
 
-    sendResetPasswordLinkMail(mail) {
-        let self = this;
-
-        axios.get(Globals.serviceUrl+'user/forgottenPassword/' + mail)
-            .then(function (response) {
-                console.log(response);
-                self.setState({"mailSentMessage": "Şifre Güncelleme Linki Gönderildi"});
-                self.setState({isSubmitDisabled: false});
-                self.setState({"errors": {}});
+    sendPass() {
+        // post => Login Request
+        axios.get(Globals.serviceUrl + "user/forgottenPassword/"+this.state.phone)
+            .then(function (res) {
+                alert("Birazdan yeni şifre telefonuna gelecek");
+                window.location="/login";
             })
-            .catch(function (error) {
-                console.log(error.response);
-                self.setState({"errors": error.response.data});
-                self.setState({"mailSentMessage": false});
+            .catch(function (e) {
+                alert("Bu numaraya kayıtlı bir kullanıcı bulunamadı");
             });
-    }
-
+    };
 
     onChange(e) {
-        this.setState({"mail": e.target.value});
+        this.setState({"phone": e.target.value});
     }
 
     onSubmit(e) {
         e.preventDefault();
         this.setState({isSubmitDisabled: true});
-        this.sendResetPasswordLinkMail(this.state.mail);
+        this.sendPass(this.state.mail);
     }
 
 
     render() {
         const {errors} = this.state;
-        const {mailSentMessage} = this.state;
 
 
         return (
             <div className="full-width container">
                 <h5 className="text-center">Şifremi Unuttum</h5>
                 <hr/>
-                {mailSentMessage && (
-                    <AlertMobile type="alert-success" message={mailSentMessage}/>
-                )}
+
                 <form onSubmit={this.onSubmit}>
 
                     <div className="form-group">
-                        <label for="mail">Şifrenizi yenilemek için E-Posta adresinizi Giriniz</label>
+                        <label for="phone">Şifrenizi yenilemek için telefon numaranı gir</label>
                         <input
-                            type="email"
-                            className={classnames("form-control form-control-lg", {
-                                "is-invalid": errors.userWarningMessage
-                            })}
-                            placeholder="E-Posta"
-                            name="mail"
-                            value={this.state.mail}
+                            type="text"
+                            className={classnames("form-control form-control-lg")}
+                            placeholder="Telefon numarası"
+                            name="phone"
+                            value={this.state.phone}
                             onChange={this.onChange}
                             required
                         />
-                        {errors.userWarningMessage && (
-                            <div className="invalid-feedback">
-                                {errors.userWarningMessage}
-                            </div>
-                        )}
+
                     </div>
                     <input
                         type="submit"
-                        value={"Şifre Sıfırlama Linki Gönder"}
+                        value={"Ateşle"}
                         className="btn btn-primary btn-block mt-4"
                         disabled={this.state.isSubmitDisabled}
                     />

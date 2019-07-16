@@ -25,7 +25,7 @@ class ActivityDetailMobile extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get(Globals.serviceUrl+'activity/findById/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findById/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({activity: response.data});
             })
@@ -37,7 +37,7 @@ class ActivityDetailMobile extends React.Component {
 
     joinActivity(id) {
         const self = this;
-        axios.get(Globals.serviceUrl+'request/sendRequest/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'request/sendRequest/' + id, Security.authHeader())
             .then(function (response) {
 
                 let currentMeetingNew = Object.assign({}, self.state.activity);
@@ -68,7 +68,8 @@ class ActivityDetailMobile extends React.Component {
                             <UserFullNameMobile
                                 user={activity.profileDto}
                             />
-                            <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail} hashtagListString={activity.hashtagListString}/>
+                            <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail}
+                                                     hashtagListString={activity.hashtagListString}/>
                             <div className={"clear-both"}/>
                             <br/>
                             <div className={"float-left"}>
@@ -94,7 +95,10 @@ class ActivityDetailMobile extends React.Component {
                     </div>
                     <div className={"full-width"}>
                         <hr/>
-                        Aktiviteye Katılanlar
+                        <h5><a href={"/messageActivity/"+activity.id}> <i className="fas fa-envelope"/> Grup Sohbetine Katıl</a></h5>
+                        <hr/>
+                        Aktiviteye Katılanlar<br/>
+                        <span className={"messageWarning"}>Katılımcı değilsen kimseyi göremezsin</span>
                         {(activity.attendants) &&
                         activity.attendants.map(function (attendant) {
 

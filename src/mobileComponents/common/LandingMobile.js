@@ -52,6 +52,11 @@ class LandingMobile extends Component {
                             ilgili yazılan yorum ve puanları inceleyip aktivitelerini
                             güvenle paylaşabilirsin.
                         </div>
+                        <hr/>
+                        <a href={"https://www.instagram.com/activityfriend/"}>
+                        <button className={"btn btn-danger"}><strong><i className="fab fa-instagram"/> aktivitelerden fotolar için tıkla</strong></button>
+                        </a>
+                        <hr/>
                     </div>
                     <div className={"full-width"}>
                         <img src={"/img/landing_middle.png"} className={"full-width"}/>
@@ -133,7 +138,7 @@ class LandingMobile extends Component {
                 <hr/>
                 <div className={"text-align-left landingText "}>
                     <div className={"col-md-4"}><h6><i className="fab fa-instagram"/>/activityfriend</h6></div>
-                    <div className={"col-md-4"}><h6><i className="far fa-envelope"/> friend@activityfriend.net
+                    <div className={"col-md-4"}><h6><i className="far fa-envelope"/> mail@activityfriend.net
                     </h6></div>
                 </div>
             </div>

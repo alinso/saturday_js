@@ -14,13 +14,13 @@ class ActivityListItemMobile extends React.Component {
 
     render() {
 
-        let selectedClass="";
-          if(this.props.activity.id===2545)
-              selectedClass="selectedActivity";
+        let selectedClass = "";
+        if (this.props.activity.id === 2545)
+            selectedClass = "selectedActivity";
 
 
         return (
-            <div className={"row meetingListSingleMeetingContainer "+ selectedClass}>
+            <div className={"row meetingListSingleMeetingContainer " + selectedClass}>
                 <div className="float-left">
                     <ProfilePicMobile
                         userId={this.props.activity.profileDto.id}
@@ -33,16 +33,18 @@ class ActivityListItemMobile extends React.Component {
                         user={this.props.activity.profileDto}
                     />
                     <h6>{this.props.activity.profileDto.point} <i className="far fa-star"/></h6>
-                    {(localStorage.getItem("userId")==="3211") &&(
+                    {(localStorage.getItem("userId") === "3211") && (
                         <div className={"full-width"}>
                             <a href={"/kjshfgjhskjfh/police"} className={"float-left"}>
-                                <button className={"btn btn-danger"}>Kullanıcı(id:{this.props.activity.profileDto.id})</button></a>
-                            <a href={"/activityRequests/"+this.props.activity.id} className={"float-left"}>
-                            <button className={"btn btn-primary float-left"}>Aktivite</button>
+                                <button className={"btn btn-danger"}>Kullanıcı(id:{this.props.activity.profileDto.id})
+                                </button>
                             </a>
-                            <div className={"clear-both"}></div>
+                            <a href={"/activityRequests/" + this.props.activity.id} className={"float-left"}>
+                                <button className={"btn btn-primary float-left"}>Aktivite</button>
+                            </a>
+                            <div className={"clear-both"}/>
                         </div>
-                    ) }
+                    )}
                     <ActivityInfoBlockMobile
                         photoName={this.props.activity.photoName}
                         detail={this.props.activity.detail}
@@ -55,6 +57,14 @@ class ActivityListItemMobile extends React.Component {
                             joinActivity={() => this.props.joinActivity(this.props.activity.id)}
                             thisUserJoined={this.props.activity.thisUserJoined}
                         />
+                        <a href={"/messageActivity/" + this.props.activity.id}>
+                            <button
+                                className="btn btn-info activityMessageMobile">
+                            <span>
+                                <i
+                                    className="fas fa-envelope"/></span>
+                            </button>
+                        </a>
 
                     </div>
                     <ActivityEditButtonsMobile
@@ -62,6 +72,7 @@ class ActivityListItemMobile extends React.Component {
                         userId={this.props.activity.profileDto.id}
                         deleteActivity={() => this.props.deleteActivity(this.props.activity.id)}
                     />
+
 
                     <div className={"float-right"}>
                         <i className="far fa-clock">{this.props.activity.deadLineString}</i>

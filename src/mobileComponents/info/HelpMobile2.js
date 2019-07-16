@@ -15,9 +15,9 @@ class HelpMobile2 extends React.Component {
 
 
                 Merhaba,<br/>
-                bu haftasonu mesajlasma sistemi değişecek. Kişiye mesaj atma olmayıp aktivitenın onaylanan kişileri whatsapp grubu gibi bir mesaj havuzunda toplanacak.
-                Böylece numara alışverişi yapmak ve wp grubu kurmakla uğraşmanıza gerek kalmadan ve birbirinize numara vermenize gerek kalmadan, çok daha hızlı ve güvenli iletişim kurmuş olacaksınız.
-                Tabi bu durumda geçmiş tüm mesajlar da silinecek, bu nedenle haftasonuna kadar eski mesajlardan almak istediğiniz bilgiler varsa almalısınız.
+                Artık yorum yazmak için 2 değil, 5 gününüz var :) fakat bu durumda yazılan yorumlar 5 gün sonra gözüküyor olacak.
+                <br/>
+                Teşekkürler
                 <br/>
 
                 <br/><br/>

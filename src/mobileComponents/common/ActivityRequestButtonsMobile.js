@@ -11,14 +11,15 @@ class ActivityRequestButtonsMobile extends React.Component {
 
         if (this.props.userId !== parseInt(localStorage.getItem("userId"))) {
             return (
-                <div>
+                <div className={"float-left"}>
                     {this.props.thisUserJoined && (<button
                             onClick={() => this.props.joinActivity()}
                             className="btn btn-danger">
                             <span><i
-                                className="fas fa-times"/>&nbsp;istek gönderdin</span>
+                                className="fas fa-times"/>&nbsp;iptal et</span>
                         </button>
                     )}
+
                     {!this.props.thisUserJoined && (<button
                         onClick={() => this.props.joinActivity()}
                         className="btn btn-success">

@@ -50,7 +50,7 @@ class UserMenuMobile extends React.Component {
             this.setState({messageActive: false});
 
         }
-        if (pathname === "/conversations") {
+        if (pathname === "/conversationsActivity") {
             this.setState({seedActive: false});
             this.setState({createActive: false});
             this.setState({notActive: false});
@@ -120,7 +120,7 @@ class UserMenuMobile extends React.Component {
                         <span className={"menuTitle"} hidden={!createActive}>Aktivite</span>
                     </a>
 
-                    <a href="/conversations"  className={messageActive ? "active" :""}>
+                    <a href="/conversationsActivity"  className={messageActive ? "active" :""}>
                         <span className={"menuIconMobile"}> <i className="fas fa-envelope"/></span>
                         <span className={"menuTitle"} hidden={!messageActive}> Mesajlar</span>
                     </a>

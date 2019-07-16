@@ -59,12 +59,30 @@
     float: left;
     padding: 5px;
 }
+.activityMessageMobile{
+ float: left;
+    margin-left: 10px;
+}
+
+.activityMessageMobileWarning{
+    color: #B68C8C;
+    font-size: 13px;
+}
 
 .my-interestsMobile {
     font-size: 13px;
     margin: 5px;
 }
 
+.messageTextAreaMobile{
+    width: 77%;
+    font-size: 13px;
+}
+.sendMessageButton{
+    width: 22%;
+    float: right;
+    margin-top: -45px;
+}
 .loadingMobile {
     height: 1000px;
     color: white;
@@ -152,7 +170,7 @@
     width: 100%;
     background: #f5f0e8;
     border-radius: 5px;
-    height: 350px;
+    height: 450px;
     overflow-y: scroll;
     margin-bottom: 10px;
 }

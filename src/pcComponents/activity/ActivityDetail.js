@@ -17,7 +17,8 @@ class ActivityDetail extends React.Component {
 
         this.state = {
             activity: {},
-            erorrs: {}
+            erorrs: {},
+            userWarning:""
         };
 
         this.fillPage();
@@ -29,9 +30,7 @@ class ActivityDetail extends React.Component {
             .then(function (response) {
                 self.setState({activity: response.data});
             })
-            .catch(function (error) {
-                console.log(error.response);
-            });
+
 
     }
 
@@ -81,6 +80,7 @@ class ActivityDetail extends React.Component {
                                             thisUserJoined={activity.thisUserJoined}
                                         />)
                                         }
+
                                         {(activity.expired) &&
                                         (<a href={"/activityDetail/" + activity.id}>
                                             <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
@@ -93,12 +93,12 @@ class ActivityDetail extends React.Component {
                         </div>
                         <hr/>
                         <div className={"col-md-12"}>
-                            Aktiviteye Katılanlar
+                            Aktiviteye Katılanlar<br/>
+                            (Katılmadıysan katılanları göremezsin)
                             <hr/>
                             <div className={"row"}>
                                 {(activity.attendants) &&
                                 activity.attendants.map(function (attendant) {
-
                                     return (
 
                                         <div className={"col-md-3"}>

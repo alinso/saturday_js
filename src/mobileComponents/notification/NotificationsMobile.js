@@ -53,6 +53,13 @@ class NotificationsMobile extends React.Component {
             </span>
         )
     }
+    newMessageActivityText(id) {
+        return (
+            <span>
+                <strong>GRUBA</strong> bir <a href={"/messageActivity/"+id}>BİR MESAJ</a> gönderdi.
+            </span>
+        )
+    }
 
     newReviewText(id) {
         return (
@@ -65,8 +72,7 @@ class NotificationsMobile extends React.Component {
     newRequestApprovalText(id) {
         return (
             <span>
-                katılmak istediğin  <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için seni onayladı, Instagram'da <strong>@activityfriend</strong>
-                ile etiketlersen seviniriz, etiketlemezsen de canın sağolsun :)<br/>
+                katılmak istediğin  <a href={"/activityDetail/" + id}>AKTİVİTESİ</a> için seni onayladı. İyi eğlenceler<br/>
             </span>
         )
     }
@@ -82,7 +88,7 @@ class NotificationsMobile extends React.Component {
     newMeetingCommentAvailable(id) {
         return (
             <span>
-            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 2 gün içinde yorum yapabilirsin.
+            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 5 gün içinde yorum yapabilirsin.
                 Özellikle geleceğim deyip gelmeyenler için OLUMSUZ YORUM bırakmalısın.
             </span>
         )
@@ -140,6 +146,9 @@ class NotificationsMobile extends React.Component {
                                     }
                                     {(not.notificationType === "MESSAGE") &&
                                     self.newMessageText(not.trigger.id)
+                                    }
+                                    {(not.notificationType === "MESSAGE_ACTIVITY") &&
+                                    self.newMessageActivityText(not.message)
                                     }
 
                                     {(not.notificationType === "REVIEW") &&

@@ -106,7 +106,7 @@ class MyAlbumMobile extends React.Component {
                 {this.state.photoNames.map((photoName, i) => {
                         photoSet.push({"src": "/upload/" + photoName});
                         return (<div key={"key" + i} className="col-md-4">
-                                <img className="albumPhoto"
+                                <img className="albumPhotoMobile"
                                      src={"/upload/" + photoName}
                                 />
                                 <br/>

@@ -30,10 +30,6 @@ class MessagePageMobile extends React.Component {
         this.canItext=this.canItext.bind(this);
         this.canItext();
         this.fillPage();
-        let self= this;
-        setInterval(function () {
-            self.fillPage();
-        }, 4000)
     }
 
 

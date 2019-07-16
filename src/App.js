@@ -15,7 +15,6 @@ import UpdateProfilePic from "./pcComponents/user/self/UpdateProfilePic";
 import MyAlbum from "./pcComponents/user/self/MyAlbum";
 import Settings from "./pcComponents/user/self/Settings";
 import SearchUser from "./pcComponents/user/other/SearchUser";
-import ForgottenPassword from "./pcComponents/user/nonauthenticated/ForgottenPassword";
 import ResetPassword from "./pcComponents/user/nonauthenticated/ResetPassword";
 import Profile from "./pcComponents/user/other/Profile";
 import Album from "./pcComponents/user/other/Album";
@@ -91,6 +90,8 @@ import APolice from "./jshfsadf/police/APolice";
 import Top100 from "./mobileComponents/info/Top100";
 import VerifyPhoneMobile from "./mobileComponents/user/nonauthenticated/VerifyPhoneMobile";
 import VerifyPhone from "./pcComponents/user/nonauthenticated/VerifyPhone";
+import MessageActivityPageMobile from "./mobileComponents/messageActivity/MessageActivityPageMobile";
+import ConversationsActivityMobile from "./mobileComponents/messageActivity/ConversationsActivityMobile";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -143,7 +144,6 @@ class App extends Component {
                     {<Route exact path="/uyghkbsdkjhvvvhjvjb" component={Register}/>}
                     {<Route exact path="/login" component={Login}/>}
                     {<Route exact path="/searchUser" component={SearchUser}/>}
-                    {<Route exact path="/forgottenPassword" component={ForgottenPassword}/>}
                     {<Route exact path="/resetPassword/:token" component={ResetPassword}/>}
                     {<Route exact path="/profile/:id" component={Profile}/>}
                     {<Route exact path="/verifyPhone/" component={VerifyPhone}/>}
@@ -239,6 +239,9 @@ class App extends Component {
 
                         {<Route exact path="/message/:id" component={MessagePageMobile}/>}
                         {<Route exact path="/conversations/" component={ConversationsMobile}/>}
+                        {<Route exact path="/messageActivity/:id" component={MessageActivityPageMobile}/>}
+                        {<Route exact path="/conversationsActivity/" component={ConversationsActivityMobile}/>}
+
 
                         {<Route exact path="/reviewForm/:id" component={ReviewFormMobile}/>}
                         {<Route exact path="/reviews/:id" component={ReviewsMobile}/>}

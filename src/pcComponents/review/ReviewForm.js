@@ -191,7 +191,7 @@ class ReviewForm extends React.Component {
 
                         {!this.state.canItext && (
                             <div>
-                                <span>Bu kişi ile yakın zamanda buluşmadın,  buluşmadan 1 saat sonra - 2 gün içinde yorum yapabilirsin.
+                                <span>Bu kişi ile yakın zamanda buluşmadın,  buluşmadan 1 saat sonra - 5 gün içinde yorum yapabilirsin.
                                     Sosyalleşmek için bir aktivite oluşturabilir veya birine katılabilirsin :)</span>
                             </div>
                         )}

@@ -32,7 +32,7 @@ class ActivityRequestsMobile extends React.Component {
     fillPage() {
         const self = this;
 
-        axios.get(Globals.serviceUrl+'activity/activityWithRequests/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/activityWithRequests/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 self.setState({detail: response.data.detail});
                 self.setState({photoName: response.data.photoName});
@@ -54,7 +54,7 @@ class ActivityRequestsMobile extends React.Component {
         if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
             return;
 
-        axios.get(Globals.serviceUrl+"activity/delete/" + id, Security.authHeader())
+        axios.get(Globals.serviceUrl + "activity/delete/" + id, Security.authHeader())
             .then(res => {
                 window.location = "/profile/" + localStorage.getItem("userId");
             });
@@ -62,7 +62,7 @@ class ActivityRequestsMobile extends React.Component {
 
     toggleApprove(id) {
         const self = this;
-        axios.get(Globals.serviceUrl+'request/approveRequest/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'request/approveRequest/' + id, Security.authHeader())
             .then(function (response) {
                 let requests = self.state.requests;
                 let currentRequestOld = requests.filter(obj => {
@@ -124,6 +124,9 @@ class ActivityRequestsMobile extends React.Component {
                 </div>
                 <div className={"clear-both"}/>
                 <hr/>
+                <h5><a href={"/messageActivity/" + this.state.activityId}> <i className="fas fa-envelope"/> Grup
+                    Sohbetine Katıl</a></h5>
+                <hr/>
                 <div className={"full-width"}>
                     <strong>Katılmak İsteyen Kişiler</strong><br/>
                     <strong>Geleceğim deyip gelmeyen veya son anda haber verenlere MUTLAKA olumusuz yorum yaz!</strong>
@@ -151,7 +154,7 @@ class ActivityRequestsMobile extends React.Component {
                                     user={request.profileDto}
                                 />
                             </div>
-                                <div className={"half-left"}>
+                            <div className={"half-left"}>
                                 {UserUtil.translateGender(request.profileDto.gender)} / {request.profileDto.age}
                                 <br/>
                                 {
