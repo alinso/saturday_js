@@ -47,7 +47,7 @@ class ADiscoverList extends React.Component {
                         this.state.events.map(function (event, i) {
                             return (
                                 <div className={"col-md-3 float-left"}>
-                                    <h5><a href={"/sgjklnmf/discoverUpdate/" + event.id}>{event.title}</a></h5>
+                                    <h5><a href={"/uhktybb/discoverUpdate/" + event.id}>{event.title}</a></h5>
                                 </div>
                             )
                         })

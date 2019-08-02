@@ -291,11 +291,11 @@ class ProfileMobile extends React.Component {
                         </div>
 
                         <div className={"text-align-left settingsTitlesMobile"}>
-                            {/*<a href="/referenceCodes/">*/}
-                                {/*<button className={"btn btn-menuColorMobile profileButton"}><i*/}
-                                    {/*className="fas fa-check"/> Referans Ol*/}
-                                {/*</button>*/}
-                            {/*</a><br/>*/}
+                            <a href="/referenceCodes/">
+                                <button className={"btn btn-menuColorMobile profileButton"}><i
+                                    className="fas fa-check"/> Referanslar
+                                </button>
+                            </a><br/>
                             <a href="/followings/">
                                 <button className={"btn btn-menuColorMobile profileButton"}><i
                                     className="fas fa-bell"/> Bildirim

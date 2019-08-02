@@ -312,24 +312,24 @@ class UpdateInfo extends React.Component {
                                 {errors.gender &&(errors.gender)}
                             </div>
                         </div>
-                        <div className="form-group  text-align-left">
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.referenceCode
-                                })}
-                                placeholder="Referans Kodu"
-                                name="referenceCode"
-                                value={"Referans Kodu : " + this.state.referenceCode}
-                                onChange={this.onChange}
-                                disabled
-                            />
-                            {errors.referenceCode && (
-                                <div className="invalid-feedback">
-                                    {errors.referenceCode}
-                                </div>
-                            )}
-                        </div>
+                        {/*<div className="form-group  text-align-left">*/}
+                        {/*    <input*/}
+                        {/*        type="text"*/}
+                        {/*        className={classnames("form-control form-control-lg", {*/}
+                        {/*            "is-invalid": errors.referenceCode*/}
+                        {/*        })}*/}
+                        {/*        placeholder="Referans Kodu"*/}
+                        {/*        name="referenceCode"*/}
+                        {/*        value={"Referans Kodu : " + this.state.referenceCode}*/}
+                        {/*        onChange={this.onChange}*/}
+                        {/*        disabled*/}
+                        {/*    />*/}
+                        {/*    {errors.referenceCode && (*/}
+                        {/*        <div className="invalid-feedback">*/}
+                        {/*            {errors.referenceCode}*/}
+                        {/*        </div>*/}
+                        {/*    )}*/}
+                        {/*</div>*/}
                         {savedMessage && (
                             <Alert type="alert-success" message={savedMessage}/>
                         )}

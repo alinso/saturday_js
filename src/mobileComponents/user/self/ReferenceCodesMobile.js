@@ -3,6 +3,7 @@ import Security from "../../../security/Security";
 import Globals from "../../../util/Globals";
 import ProfilePic from "../../../pcComponents/common/ProfilePic";
 import UserFullName from "../../../pcComponents/common/UserFullName";
+import ProfilePicMobile from "../../common/ProfilePicMobile";
 
 const axios = require('axios');
 
@@ -13,7 +14,7 @@ class ReferenceCodesMobile extends React.Component {
         Security.protect()
 
         this.state = {
-            me: {},
+            myCode: "",
             references: [],
             erorrs: {}
         };
@@ -25,9 +26,9 @@ class ReferenceCodesMobile extends React.Component {
 
         const self = this;
 
-        axios.get(Globals.serviceUrl + 'user/profile/' + localStorage.getItem("userId"))
+        axios.get(Globals.serviceUrl + 'reference/myReferenceCode/', Security.authHeader())
             .then(function (response) {
-                self.setState({me: response.data});
+                self.setState({myCode: response.data});
             });
         axios.get(Globals.serviceUrl + 'reference/myReferences', Security.authHeader())
             .then(function (response) {
@@ -43,10 +44,11 @@ class ReferenceCodesMobile extends React.Component {
         const self = this;
         return (
             <div className="full-width container">
-                <h4>Arkaşalarını davet, birlikte büyüyelim!</h4>
-                <h5>Arkadaşlarına vermen gereken referans kodu :{this.state.me.referenceCode}</h5>
+                <h6>Şu an erkek alımlarını referans ile yapıyoruz</h6>
                 <hr/>
-
+                <span>Arkadaşlarına vermen gereken refereans kodu :</span>
+                <h6><strong>{this.state.myCode}</strong></h6>
+                <br/><br/>
                 <h4>Referans olduğum kişiler</h4>
                 <hr/>
 
@@ -55,7 +57,7 @@ class ReferenceCodesMobile extends React.Component {
                         return (
                             <div className={"row"}>
                                 <div className={"float-left"}>
-                                    <ProfilePic
+                                    <ProfilePicMobile
                                         profilePicName={reference.profilePicName}
                                         userId={reference.id}
                                         cssClass={"profilePicSmall"}

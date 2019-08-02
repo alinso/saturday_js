@@ -103,7 +103,6 @@ class RegisterMobile extends React.Component {
         return (
             <div className="full-width registerContainerMobile">
                 <h6 className={"color-white"}>Activity Friend'e Katıl!</h6>
-                <h5 className={"color-white"}>Erkek alımlarımız sayısal nedenlerden dolayı geçiçi olarak kapalıdır</h5>
 
                 {registrationCompleted && (
                     <div className={"registerCompletedMessage"}>
@@ -241,24 +240,25 @@ class RegisterMobile extends React.Component {
                         </div>
 
                     </div>
-                    {/*<div className="form-group">*/}
-                        {/*<input*/}
-                            {/*type="text"*/}
-                            {/*className={classnames("form-control ", {*/}
-                                {/*"is-invalid": errors.referenceCode*/}
-                            {/*})}*/}
-                            {/*placeholder="Referans(Zorunlu değil,boş kalabilir)"*/}
-                            {/*name="referenceCode"*/}
-                            {/*value={this.state.referenceCode}*/}
-                            {/*onChange={this.onChange}*/}
-                        {/*/>*/}
-                        {/*{errors.referenceCode && (*/}
-                            {/*<div className="color-white">*/}
-                                {/*{errors.referenceCode}*/}
-                            {/*</div>*/}
-                        {/*)}*/}
-                    {/*</div>*/}
-
+                    { this.state.gender==="MALE" &&(
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                className={classnames("form-control ", {
+                                    "is-invalid": errors.referenceCode
+                                })}
+                                placeholder="Referans Kodu"
+                                name="referenceCode"
+                                value={this.state.referenceCode}
+                                onChange={this.onChange}
+                            />
+                            {errors.referenceCode && (
+                                <div className="color-white">
+                                    {errors.referenceCode}
+                                </div>
+                            )}
+                        </div>)
+                    }
                     <div className={"userTermsMobile"}>
                     <input className={"float-left"} name={"userGuide"} onClick={this.toggleCheckBox} type={"checkbox"}/>
                         <span className={"color-white"} ><a className={"color-white"} href={"/userGuide"}>

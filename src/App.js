@@ -187,11 +187,11 @@ class App extends Component {
 
                     {<Route exact path="/discover/" component={Discover}/>}
 
-                    {<Route exact path="/kjshfgjhskjfh/dashboard" component={ADashboard}/>}
-                    {<Route exact path="/kjshfgjhskjfh/discoverCreate" component={ADiscoverCreate}/>}
-                    {<Route exact path="/kjshfgjhskjfh/discoverUpdate/:id" component={ADiscoverUpdate}/>}
-                    {<Route exact path="/kjshfgjhskjfh/discoverList" component={ADiscoverList}/>}
-                    {<Route exact path="/kjshfgjhskjfh/police" component={APolice}/>}
+                    {<Route exact path="/uhktybb/dashboard" component={ADashboard}/>}
+                    {<Route exact path="/uhktybb/discoverCreate" component={ADiscoverCreate}/>}
+                    {<Route exact path="/uhktybb/discoverUpdate/:id" component={ADiscoverUpdate}/>}
+                    {<Route exact path="/uhktybb/discoverList" component={ADiscoverList}/>}
+                    {<Route exact path="/uhktybb/police" component={APolice}/>}
 
 
                     {this.setPcFooter()}
@@ -261,11 +261,11 @@ class App extends Component {
                         {<Route exact path="/complain/:id/" component={ComplainMobile}/>}
                         {<Route exact path="/discover/" component={DiscoverMobile}/>}
 
-                        {<Route exact path="/kjshfgjhskjfh/dashboard" component={ADashboard}/>}
-                        {<Route exact path="/kjshfgjhskjfh/discoverCreate" component={ADiscoverCreate}/>}
-                        {<Route exact path="/kjshfgjhskjfh/discoverUpdate/:id" component={ADiscoverUpdate}/>}
-                        {<Route exact path="/kjshfgjhskjfh/discoverList" component={ADiscoverList}/>}
-                        {<Route exact path="/kjshfgjhskjfh/police" component={APolice}/>}
+                        {<Route exact path="/uhktybb/dashboard" component={ADashboard}/>}
+                        {<Route exact path="/uhktybb/discoverCreate" component={ADiscoverCreate}/>}
+                        {<Route exact path="/uhktybb/discoverUpdate/:id" component={ADiscoverUpdate}/>}
+                        {<Route exact path="/uhktybb/discoverList" component={ADiscoverList}/>}
+                        {<Route exact path="/uhktybb/police" component={APolice}/>}
 
                         {this.setMobileMenu()}
 

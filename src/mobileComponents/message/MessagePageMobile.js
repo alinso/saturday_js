@@ -170,7 +170,7 @@ class MessagePageMobile extends React.Component {
 
                     {!this.state.canItext && (
                         <div>
-                            <span>Bu kişi ile onaylanmış bir aktiviten yok, yalnız ortak aktiviten olan kişilere mesaj atabilirsin. <br/>
+                            <span>Bu kişi ile yakın zamanda onaylanmış bir aktiviten yok, yalnız yakın zamanda ortak aktiviten olan kişilere mesaj atabilirsin. <br/>
                             Sosyalleşmek için bir aktivite oluşturabilir veya birine katılabilirsin :)</span>
                         </div>
                     )}

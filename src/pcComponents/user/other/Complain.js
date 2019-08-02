@@ -13,7 +13,7 @@ class Complain extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
-        UserUtil.redirectIsBlocked(this.props.match.params.id);
+      //  UserUtil.redirectIsBlocked(this.props.match.params.id);
 
 
         this.state = {

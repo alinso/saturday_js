@@ -9,7 +9,7 @@ class AdminMenu extends React.Component {
 
     render() {
         return (<div className={"adminMenu col-md-2"}>
-                <a href={"/sgjklnmf/discoverList"}>Keşfet Yönetimi</a>
+                <a href={"/uhktybb/discoverList"}>Keşfet Yönetimi</a>
             </div>
         )
     }

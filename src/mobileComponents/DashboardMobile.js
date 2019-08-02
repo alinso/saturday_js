@@ -173,8 +173,9 @@ class DashboardMobile extends BaseActivityListMobile {
 
                     <hr/>
                     <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>
-                    <strong><a href={"/help"}><i className="fas fa-star">Whatsapp  is dead. (sign:AF)</i></a></strong><br/>
-                    <strong><a href={"/help2"}><i className="fas fa-star">Yorum zamanlamasında değişiklik</i></a></strong><br/>
+                    <strong><a href={"/help"}><i className="fas fa-fire"/>Dedikodu vs Şikayet</a></strong><br/><br/>
+
+                    {/*<strong><a href={"/createActivity"}><i className="fas fa-hashtag"/>İlgi alanında bir aktivite yoksa, sen henüz açmadığın içindir. Şimdi harekete geç</a></strong><br/>*/}
 
                     <hr/>
 
