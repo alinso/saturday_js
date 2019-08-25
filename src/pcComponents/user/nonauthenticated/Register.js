@@ -238,6 +238,46 @@ class Register extends React.Component {
 
                         </div>
 
+                        { this.state.gender==="MALE" &&(
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    className={classnames("form-control ", {
+                                        "is-invalid": errors.referenceCode
+                                    })}
+                                    placeholder="Referans Kodu"
+                                    name="referenceCode"
+                                    value={this.state.referenceCode}
+                                    onChange={this.onChange}
+                                />
+                                {errors.referenceCode && (
+                                    <div className="color-white">
+                                        {errors.referenceCode}
+                                    </div>
+                                )}
+                            </div>)
+                        }
+                        { this.state.gender==="FEMALE" &&(
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    className={classnames("form-control ", {
+                                        "is-invalid": errors.referenceCode
+                                    })}
+                                    placeholder="Referans Kodu(Burası boş kalabilir)"
+                                    name="referenceCode"
+                                    value={this.state.referenceCode}
+                                    onChange={this.onChange}
+                                />
+                                {errors.referenceCode && (
+                                    <div className="color-white">
+                                        {errors.referenceCode}
+                                    </div>
+                                )}
+                            </div>)
+                        }
+
+
                         <input name={"userGuide"} onClick={this.toggleCheckBox} type={"checkbox"}/>
                         <label className={"color-white"} ><a className={"color-white"} href={"/userGuide"}>
                             <strong>Kullanım koşulları</strong></a>'nı ve <a  className={"color-white"}  href={"/privacyPolicy"}><strong>Gizlilik Politikası</strong></a>'nı

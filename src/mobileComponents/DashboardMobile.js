@@ -186,7 +186,9 @@ class DashboardMobile extends BaseActivityListMobile {
 
                     {this.state.sponsor && (
                         <a href={this.state.sponsor.youtube} className={"sponsorTextMobile"}>
-                            <img src={'/upload/' + this.state.sponsor.photoName} width={"100%"}/>
+                            {this.state.sponsor.photoName!=null &&
+                            (<img src={'/upload/' + this.state.sponsor.photoName} width={"100%"}/>)
+                            }
                             {this.state.sponsor.detail}
                         </a>
                     )}
