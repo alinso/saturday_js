@@ -22,7 +22,9 @@ class CreateActivityMobile extends BaseActivityFormMobile{
             .then(function (response) {
             })
             .catch(function (error) {
-                self.setState({activityLimitExceeded:true});
+                console.log(error.response.data);
+                console.log(error.response);
+                self.setState({activityLimitExceeded:error.response.data.userWarningMessage});
             });
 
     }

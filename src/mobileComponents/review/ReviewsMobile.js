@@ -4,6 +4,7 @@ import ProfilePicMobile from "../common/ProfilePicMobile";
 import UserFullNameMobile from "../common/UserFullNameMobile";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
+import JSUtil from "../../util/JSUtil";
 
 const axios = require('axios');
 
@@ -27,7 +28,11 @@ class ReviewsMobile extends React.Component {
         const self = this;
         axios.get(Globals.serviceUrl+'review/reviewsOfUser/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
-                self.setState({reviews: response.data});
+
+                let reviewsSorted = response.data;
+                let r = reviewsSorted.sort(JSUtil.compareByCreatedAt);
+
+                self.setState({reviews: r});
             })
             .catch(function (error) {
                 console.log(error.response);

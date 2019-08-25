@@ -64,7 +64,10 @@ class BaseActivityListMobile extends React.Component {
                 let meetings = self.state.activities;
                 let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings,"id",id );
                 self.setState({activities: meetingsNew});
-            });
+            }).catch(function (error) {
+            alert(error.response.data.userWarningMessage);
+
+        });
     }
 
 }

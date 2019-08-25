@@ -1,9 +1,9 @@
 import React from "react";
-import Security from "../../security/Security";
-import Globals from "../../util/Globals";
+import Security from "../../../security/Security";
+import Globals from "../../../util/Globals";
 import AdminMenu from "../AdminMenu";
 
-const axios = require('axios');
+const axios = require('axios/index');
 
 
 class ADiscoverList extends React.Component {

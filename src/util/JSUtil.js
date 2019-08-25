@@ -29,14 +29,22 @@ class JSUtil {
 
     static compareByRequestatus(a, b) {
         if (a.meetingRequestStatus === "WAITING" && b.meetingRequestStatus === "APPROVED")
-            return 1;
-        if (b.meetingRequestStatus === "WAITING" && a.meetingRequestStatus === "APPROVED")
             return -1;
+        if (b.meetingRequestStatus === "WAITING" && a.meetingRequestStatus === "APPROVED")
+            return 1;
 
         return 0;
     }
 
 
+    static compareByCreatedAt(a,b) {
+        if (a.reviewId >b.reviewId)
+            return -1;
+        if (b.reviewId >a.reviewId)
+            return 1;
+
+        return 0;
+    }
 }
 
 export default JSUtil;

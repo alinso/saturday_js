@@ -1,10 +1,10 @@
 import React from "react";
-import Security from "../../security/Security";
-import CityUtil from "../../util/CityUtil";
-import Globals from "../../util/Globals";
+import Security from "../../../security/Security";
+import CityUtil from "../../../util/CityUtil";
+import Globals from "../../../util/Globals";
 import BaseDiscoverForm from "./BaseDiscoverForm";
 
-const axios = require('axios');
+const axios = require('axios/index');
 
 
 class ADiscoverUpdate extends BaseDiscoverForm {

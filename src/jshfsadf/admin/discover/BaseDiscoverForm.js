@@ -1,6 +1,6 @@
 import React from "react";
-import Security from "../../security/Security";
-import SinglePhotoSelector from "../../pcComponents/common/SinglePhotoSelector";
+import Security from "../../../security/Security";
+import SinglePhotoSelector from "../../../pcComponents/common/SinglePhotoSelector";
 import Select from 'react-select'
 import classnames from "classnames";
 import AdminMenu from "../AdminMenu";
@@ -126,6 +126,11 @@ class BaseDiscoverForm extends React.Component {
                             disabled={this.state.isSubmitDisabled}
                         />
                     </form>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                     <br/>
                 </div>
             </div>

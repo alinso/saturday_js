@@ -20,6 +20,7 @@ class DashboardMobile extends BaseActivityListMobile {
             userCount: 0,
             cities: [],
             city: {},
+            sponsor: false,
             pageNum: 0,
             loading: true,
             noMoreRecords: false
@@ -119,6 +120,12 @@ class DashboardMobile extends BaseActivityListMobile {
             })
             .catch(function (error) {
             });
+        axios.get(Globals.serviceUrl + 'discover/findRandom', Security.authHeader())
+            .then(function (response) {
+                self.setState({sponsor: response.data});
+            })
+            .catch(function (error) {
+            });
 
         axios.get(Globals.serviceUrl + 'user/userCount', Security.authHeader())
             .then(function (response) {
@@ -173,9 +180,16 @@ class DashboardMobile extends BaseActivityListMobile {
 
                     <hr/>
                     <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>
-                    <strong><a href={"/help"}><i className="fas fa-fire"/>Dedikodu vs Şikayet</a></strong><br/><br/>
+                    {/*<strong><a href={"/help"}><i className="fas fa-fire"/>Puan sistemi değişti</a></strong><br/><br/>*/}
 
                     {/*<strong><a href={"/createActivity"}><i className="fas fa-hashtag"/>İlgi alanında bir aktivite yoksa, sen henüz açmadığın içindir. Şimdi harekete geç</a></strong><br/>*/}
+
+                    {this.state.sponsor && (
+                        <a href={this.state.sponsor.youtube} className={"sponsorTextMobile"}>
+                            <img src={'/upload/' + this.state.sponsor.photoName} width={"100%"}/>
+                            {this.state.sponsor.detail}
+                        </a>
+                    )}
 
                     <hr/>
 

@@ -311,7 +311,10 @@ input[type=checkbox] {
     font-size: 0.7rem;
     color: #615757;
 }
-
+.sponsorTextMobile{
+    text-decoration: none;
+    color:black;
+}
 .androidDownloadLink {
     width: 95%;
 }

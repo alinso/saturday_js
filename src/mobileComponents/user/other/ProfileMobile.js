@@ -286,9 +286,8 @@ class ProfileMobile extends React.Component {
                             <button  onClick={this.deleteAccount} className={"btn btn-danger profileButton"}><i
                                 className=" fas fa-times"/> Hesabımı Sil
                             </button>
-
-
                         </div>
+
 
                         <div className={"text-align-left settingsTitlesMobile"}>
                             <a href="/referenceCodes/">
@@ -312,7 +311,7 @@ class ProfileMobile extends React.Component {
                                 </button>
                             </a><br/>
                         </div>
-                        <div className={"clear-both"}></div>
+                        <div className={"clear-both"}/>
 
                     </div>
                 )}
@@ -325,6 +324,15 @@ class ProfileMobile extends React.Component {
                     photoCount={this.state.photoCount}
                 />
                 <br/>
+                {(localStorage.getItem("userId") === "3211") && (
+                    <div className={"full-width"}>
+                        <a href={"/uhktybb/police"} className={"float-left"}>
+                            <button className={"btn btn-danger"}>Kullanıcı(id:{this.props.match.params.id})
+                            </button>
+                        </a>
+                        <div className={"clear-both"}/>
+                    </div>
+                )}
                 <div className={"full-width text-align-center"}>
                     <div className="profileTitleMobileDiv">
                         <a className="profileTitleMobile" href={"/album/" + this.props.match.params.id}>

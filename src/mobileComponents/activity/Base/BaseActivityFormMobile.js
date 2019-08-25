@@ -151,7 +151,7 @@ class BaseActivityFormMobile extends React.Component {
             return (
                 <div className={"full-width container"}><Alert
                     type={"alert-warning"}
-                    message={"Haftada e fazla 2 aktivite oluşturabilirsin"}
+                    message={this.state.activityLimitExceeded}
                 /></div>
             )
         }
@@ -233,7 +233,7 @@ class BaseActivityFormMobile extends React.Component {
                     {errors.userWarningMessage && (
                         <div className={"alert alert-danger"}>
                             {savedMessage}
-                            <a href="/"><strong>Tarihi geçmiş aktivitede değişiklik yapamazsın</strong> </a>
+                            <a href="/"><strong>{errors.userWarningMessage}</strong> </a>
                         </div>
                     )}
                     <input

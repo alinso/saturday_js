@@ -64,7 +64,7 @@ class ComplainMobile extends React.Component {
         const self = this;
         axios.post(Globals.serviceUrl + 'complain/create/', complainDto, Security.authHeader())
             .then(function (response) {
-                self.setState({savedMessage: "Şikayetini değerlendirmeye aldık, teşekkrüler"});
+                self.setState({savedMessage: "Şikayetini değerlendirmeye aldık, teşekkür ederiz"});
                 self.setState({"errors": false});
 
                 //thank you message

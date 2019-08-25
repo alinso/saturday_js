@@ -72,11 +72,10 @@ import AboutMobile from "./mobileComponents/info/AboutMobile";
 import ContactMobile from "./mobileComponents/info/ContactMobile";
 import Contact from "./pcComponents/info/Contact";
 import About from "./pcComponents/info/About";
-import ADashboard from "./jshfsadf/ADashboard";
 import Discover from "./pcComponents/event/Discover";
-import ADiscoverList from "./jshfsadf/discover/ADiscoverList";
-import ADiscoverCreate from "./jshfsadf/discover/ADiscoverCreate";
-import ADiscoverUpdate from "./jshfsadf/discover/ADiscoverUpdate";
+import ADiscoverList from "./jshfsadf/admin/discover/ADiscoverList";
+import ADiscoverCreate from "./jshfsadf/admin/discover/ADiscoverCreate";
+import ADiscoverUpdate from "./jshfsadf/admin/discover/ADiscoverUpdate";
 import Complain from "./pcComponents/user/other/Complain";
 import ComplainMobile from "./mobileComponents/user/other/ComplainMobile";
 import DiscoverMobile from "./mobileComponents/discover/DiscoverMobile";
@@ -86,16 +85,18 @@ import PrivacyPolicyMobile from "./mobileComponents/info/PrivacyPolicyMobile";
 import PrivacyPolicy from "./pcComponents/info/PrivacyPolicy";
 import HelpMobile from "./mobileComponents/info/HelpMobile";
 import HelpMobile2 from "./mobileComponents/info/HelpMobile2";
-import APolice from "./jshfsadf/police/APolice";
+import AdminPolice from "./jshfsadf/admin/police/AdminPolice";
 import Top100 from "./mobileComponents/info/Top100";
 import VerifyPhoneMobile from "./mobileComponents/user/nonauthenticated/VerifyPhoneMobile";
 import VerifyPhone from "./pcComponents/user/nonauthenticated/VerifyPhone";
 import MessageActivityPageMobile from "./mobileComponents/messageActivity/MessageActivityPageMobile";
 import ConversationsActivityMobile from "./mobileComponents/messageActivity/ConversationsActivityMobile";
+import AdminComplaints from "./jshfsadf/admin/police/AdminComplaints";
+import BatmanPolice from "./jshfsadf/batman/BatmanPolice";
 
 const isMobile = require('is-mobile');
 require("./pc.css");
-require("./mobile.css")
+require("./mobile.css");
 
 class App extends Component {
 
@@ -187,11 +188,12 @@ class App extends Component {
 
                     {<Route exact path="/discover/" component={Discover}/>}
 
-                    {<Route exact path="/uhktybb/dashboard" component={ADashboard}/>}
                     {<Route exact path="/uhktybb/discoverCreate" component={ADiscoverCreate}/>}
                     {<Route exact path="/uhktybb/discoverUpdate/:id" component={ADiscoverUpdate}/>}
                     {<Route exact path="/uhktybb/discoverList" component={ADiscoverList}/>}
-                    {<Route exact path="/uhktybb/police" component={APolice}/>}
+                    {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
+                    {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
+                    {<Route exact path="/xbatmany" component={BatmanPolice}/>}
 
 
                     {this.setPcFooter()}
@@ -261,11 +263,13 @@ class App extends Component {
                         {<Route exact path="/complain/:id/" component={ComplainMobile}/>}
                         {<Route exact path="/discover/" component={DiscoverMobile}/>}
 
-                        {<Route exact path="/uhktybb/dashboard" component={ADashboard}/>}
                         {<Route exact path="/uhktybb/discoverCreate" component={ADiscoverCreate}/>}
                         {<Route exact path="/uhktybb/discoverUpdate/:id" component={ADiscoverUpdate}/>}
                         {<Route exact path="/uhktybb/discoverList" component={ADiscoverList}/>}
-                        {<Route exact path="/uhktybb/police" component={APolice}/>}
+                        {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
+                        {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
+                        {<Route exact path="/xbatmany" component={BatmanPolice}/>}
+
 
                         {this.setMobileMenu()}
 
