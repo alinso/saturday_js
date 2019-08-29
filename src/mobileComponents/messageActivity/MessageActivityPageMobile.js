@@ -82,22 +82,24 @@ class MessageActivityPageMobile extends React.Component {
                                 onChange={this.onChange}
                             />
 
-                        {this.state.errors.message && (
-                            <div>
-                                {this.state.errors.message}
-                            </div>
-                        )}
-                        {this.state.errors.userWarningMessage && (
-                            <div>
-                                {this.state.errors.userWarningMessage}
-                            </div>
-                        )}
+
                         <input
                             type="submit"
                             value="Gönder"
                             className="btn btn-primary sendMessageButton"
                         />
                     </div>
+                    {this.state.errors.message && (
+                        <div>
+                            {this.state.errors.message}
+                        </div>
+                    )}
+
+                    {this.state.errors.userWarningMessage && (
+                        <div>
+                            {this.state.errors.userWarningMessage}
+                        </div>
+                    )}
 
                     <span className={"activityMessageMobileWarning"}>Onayladığın aktivitelere aktivite bitiminden 2 gün sonrasına kadar yazabilirsin</span>
 

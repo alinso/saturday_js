@@ -57,7 +57,16 @@ class MessageBoxActivityMobile extends React.Component {
 
                         return (<div className={msgClass + "Container"}>
                                 <div className={msgClass}>
-                                    <strong><a href={"/profile/"+message.writer.id}> {message.writer.name+" "+message.writer.surname}</a></strong><br/>
+                                    <strong>
+                                        {message.writer.premiumType==="GOLD" &&(
+
+                                            <span className={'goldCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
+                                        )}
+                                        {message.writer.premiumType==="SILVER" &&(
+
+                                            <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
+                                        )}
+                                        <a href={"/profile/"+message.writer.id}> {message.writer.name+" "+message.writer.surname}</a></strong><br/>
                                     {message.message}
                                     <span className={"messageDate"}>
                                     {message.createdAt}

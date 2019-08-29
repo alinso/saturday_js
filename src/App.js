@@ -194,6 +194,7 @@ class App extends Component {
                     {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
                     {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
                     {<Route exact path="/xbatmany" component={BatmanPolice}/>}
+                    {<Route exact path="/uhktybb/premium" component={PremiumForm}/>}
 
 
                     {this.setPcFooter()}
@@ -268,6 +269,7 @@ class App extends Component {
                         {<Route exact path="/uhktybb/discoverList" component={ADiscoverList}/>}
                         {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
                         {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
+                        {<Route exact path="/uhktybb/premium" component={PremiumFormMobile}/>}
                         {<Route exact path="/xbatmany" component={BatmanPolice}/>}
 
 

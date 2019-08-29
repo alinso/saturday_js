@@ -24,7 +24,9 @@ class ProfileMobile extends React.Component {
             motivation: "",
             interestsArray: [],
             activityCount: 0,
-            errors: {}
+            premiumType:false,
+            errors: {},
+            latestPremiumDate:""
         };
 
         this.follow = this.follow.bind(this);
@@ -71,6 +73,12 @@ class ProfileMobile extends React.Component {
                 console.log(error);
                 self.setState({"errors": error.response.data});
             });
+
+        axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/',Security.authHeader())
+            .then(function (response) {
+                self.setState({latestPremiumDate :response.data});
+            });
+
 
 
         if (Security.isValidToken())
@@ -232,8 +240,13 @@ class ProfileMobile extends React.Component {
                     <div className={"float-left profileMetaMobile"}>
                         <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
                             <strong>
-                                {this.state.userPremium && (
-                                    <span><i className="far fa-check-circle"/>&nbsp;</span>
+                                {this.state.premiumType==="GOLD" &&(
+
+                                    <span className={'goldCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
+                                )}
+                                {this.state.premiumType==="SILVER" &&(
+
+                                    <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                                 )}
                                 {this.state.name + " " + this.state.surname}</strong>
                         </a><br/>
@@ -243,18 +256,6 @@ class ProfileMobile extends React.Component {
                     </div>
                     <div className={"clear-both"}/>
                 </div>
-
-                {/*{(localStorage.getItem("userId") === this.props.match.params.id) && (*/}
-                    {/*<div className={"full-width"}>*/}
-                        {/*<hr/>*/}
-                        {/*<a href={"/getPremium"}>*/}
-                            {/*<button className={"btn btn-success fontMobile"}><i className="fas fa-crown"/>*/}
-                                {/*<strong>Premium Ol !</strong></button>*/}
-                        {/*</a>*/}
-                        {/*<hr/>*/}
-                    {/*</div>*/}
-                {/*)}*/}
-
                 <div className={"full-width"}>
                     <div className={"half-left"}>
                         {this.sendMessageButton()}
@@ -272,6 +273,11 @@ class ProfileMobile extends React.Component {
                 </div>
                 {(this.props.match.params.id === localStorage.getItem("userId")) &&
                 (<div className={"full-width"}>
+
+
+                        {this.state.latestPremiumDate!=="" &&(
+                            <span>Premium üyelik son tarih: {this.state.latestPremiumDate}</span>
+                        )}
                         <div className={"text-align-left settingsTitlesMobile"}>
                             <a href="/myAlbum/">
                                 <button className={"btn btn-menuColorMobile profileButton"}><i

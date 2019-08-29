@@ -15,6 +15,8 @@ class AdminMenu extends React.Component {
                 <br/>
                 <a href={"/uhktybb/complaints"}>Şikayetler</a>
                 <br/>
+                <a href={"/uhktybb/premium"}>Premium</a>
+                <br/>
                 <hr/>
             </div>
         )

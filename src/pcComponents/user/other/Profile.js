@@ -26,7 +26,7 @@ class Profile extends React.Component {
             activityCount: 0,
             photoCount: 0,
             reviewCount: 0,
-            userPremium: false,
+            premiumType: false,
             errors: {}
         };
 
@@ -211,7 +211,7 @@ class Profile extends React.Component {
 
     render() {
 
-        console.log(this.state.userPremium);
+        let self=this;
         return (
             <div className="row outer">
                 <div className="col-md-6 m-x-auto container">
@@ -224,8 +224,13 @@ class Profile extends React.Component {
                             <br/>
                             <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
                                 <strong>
-                                    {this.state.userPremium && (
-                                        <span><i className="far fa-check-circle"/>&nbsp;</span>
+                                    {this.state.premiumType==="GOLD" &&(
+
+                                        <span className={'goldCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
+                                    )}
+                                    {this.state.premiumType==="SILVER" &&(
+
+                                        <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                                     )}
                                     {this.state.name + " " + this.state.surname}</strong>
                             </a><br/>
