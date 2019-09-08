@@ -129,7 +129,8 @@ class ActivityRequestsMobile extends React.Component {
                 <hr/>
                 <div className={"full-width"}>
                     <strong>Katılmak İsteyen Kişiler</strong><br/>
-                    <strong>Geleceğim deyip gelmeyen veya son anda haber verenlere MUTLAKA olumusuz yorum yaz!</strong>
+                    <strong>GELMEYENLERİ YOKLAMADA İŞARETLE! İŞARETLEMEDİĞİN KİŞİLER GELMİŞ SAYILIR</strong>
+
 
                     {this.state.errors.userWarningMessage && (
                         <AlertMobile

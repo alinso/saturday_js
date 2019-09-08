@@ -131,7 +131,7 @@ class ActivityRequests extends React.Component {
                         <div className={"col-md-12"}>
                             <hr/>
                             <strong>Katılmak İsteyen Kişiler</strong><br/>
-                            <strong>Geleceğim deyip gelmeyen veya son anda haber verenlere MUTLAKA olumusuz yorum yaz!</strong>
+                            <strong>GELMEYENLERİ YOKLAMADA İŞARETLE! İŞARETLEMEDİĞİN KİŞİLER GELMİŞ SAYILIR</strong>
 
                             {this.state.errors.userWarningMessage && (
                                 <Alert

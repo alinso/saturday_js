@@ -17,9 +17,10 @@ class ActivityDetailMobile extends React.Component {
 
         this.state = {
             activity: {},
-            erorrs: {}
+            erorrs: {},
         };
 
+        this.onResultChanged = this.onResultChanged.bind(this);
         this.fillPage();
     }
 
@@ -32,7 +33,6 @@ class ActivityDetailMobile extends React.Component {
             .catch(function (error) {
                 console.log(error.response);
             });
-
     }
 
     joinActivity(id) {
@@ -47,6 +47,15 @@ class ActivityDetailMobile extends React.Component {
             });
 
     }
+
+    onResultChanged(requestId, result) {
+        let self = this;
+        axios.get(Globals.serviceUrl + 'request/requestResult/' + requestId + '/' + result, Security.authHeader())
+            .then(function (response) {
+                self.fillPage();
+            });
+    }
+
 
     render() {
         const {activity} = this.state;
@@ -95,36 +104,59 @@ class ActivityDetailMobile extends React.Component {
                     </div>
                     <div className={"full-width"}>
                         <hr/>
-                        <h5><a href={"/messageActivity/"+activity.id}> <i className="fas fa-envelope"/> Grup Sohbetine Katıl</a></h5>
+                        <h5><a href={"/messageActivity/" + activity.id}> <i className="fas fa-envelope"/> Grup Sohbetine
+                            Katıl</a></h5>
                         <hr/>
                         Aktiviteye Katılanlar<br/>
                         <span className={"messageWarning"}>Katılımcı değilsen kimseyi göremezsin</span>
-                        {(activity.attendants) &&
-                        activity.attendants.map(function (attendant) {
-
+                        {(activity.requests) &&
+                        activity.requests.map(function (request) {
                             return (
                                 <div className={"full-width"}>
                                     <div className={"half-left"}>
                                         <ProfilePicMobile
-                                            userId={attendant.id}
-                                            profilePicName={attendant.profilePicName}
+                                            userId={request.profileDto.id}
+                                            profilePicName={request.profileDto.profilePicName}
                                             cssClass={"profilePicSmallMobile"}
                                         />
-                                    </div>
-                                    <div className="half-left">
+                                        <br/>
                                         <UserFullNameMobile
-                                            user={attendant}
-                                        /><br/>
-                                        {UserUtil.translateGender(attendant.gender)} / {attendant.age}
+                                            user={request.profileDto}
+                                        />
                                         <br/>
                                     </div>
-                                    <hr/>
+                                    <div className="half-left">
+                                        {(activity.profileDto.id===parseInt(localStorage.getItem("userId")) && activity.expired) && (
+                                            <div className="form-group">
+                                                <input type="radio"
+                                                       name={request.id+"result"}
+                                                       checked={request.result===1}
+                                                       onChange={() => self.onResultChanged(request.id, 1)}
+                                                       className="customRadio"
+                                                />
+                                                <label>Geldi&nbsp;</label>
+
+                                                <input type="radio"
+                                                       name={request.id+"result"}
+                                                       onChange={() => self.onResultChanged(request.id, 0)}
+                                                       checked={request.result===0}
+                                                       className="customRadio"
+                                                />
+                                                <label>Gelmedi&nbsp;</label>
+                                            </div>
+                                        )}
+                                    </div>
+
+
                                     <div className={"clear-both"}/>
                                 </div>
                             )
                         })
                         }
                     </div>
+                    <hr/>
+                    <br/>
+                    <br/>
                 </div>
             )
         }

@@ -58,7 +58,7 @@ class ReviewForm extends React.Component {
         const reference = {
             review: this.state.review,
             reader: this.state.profileDto,
-            positive:this.state.isPositive,
+            positive:true,
             reviewType:this.state.reviewType
         };
         this.saveReference(reference);
@@ -161,24 +161,24 @@ class ReviewForm extends React.Component {
                                 )
                             }
                         </div>
-                        <div className="form-group">
-                            <label className="customRadioLabel">Olumlu&nbsp;</label>
-                            <input type="radio"
-                                   name="isPositive"
-                                   value={true}
-                                   onChange={this.onChange}
-                                   className="customRadio"
-                                   checked={this.state.isPositive}
-                            />&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label className="customRadioLabel">Olumsuz&nbsp;</label>
-                            <input type="radio"
-                                   name="isPositive"
-                                   onChange={this.onChange}
-                                   value={false}
-                                   className="customRadio"
-                            />
+                        {/*<div className="form-group">*/}
+                        {/*    <label className="customRadioLabel">Olumlu&nbsp;</label>*/}
+                        {/*    <input type="radio"*/}
+                        {/*           name="isPositive"*/}
+                        {/*           value={true}*/}
+                        {/*           onChange={this.onChange}*/}
+                        {/*           className="customRadio"*/}
+                        {/*           checked={this.state.isPositive}*/}
+                        {/*    />&nbsp;&nbsp;&nbsp;&nbsp;*/}
+                        {/*    <label className="customRadioLabel">Olumsuz&nbsp;</label>*/}
+                        {/*    <input type="radio"*/}
+                        {/*           name="isPositive"*/}
+                        {/*           onChange={this.onChange}*/}
+                        {/*           value={false}*/}
+                        {/*           className="customRadio"*/}
+                        {/*    />*/}
 
-                        </div>
+                        {/*</div>*/}
 
                         {this.state.canItext && (
                             <input

@@ -14,7 +14,7 @@ class Info extends React.Component {
                 <div className="col-md-6 text-align-left container">
                     <h4>Güvenlik</h4>
                     <hr/>
-                        <span>Kaliteli bir kitle oluşturmak için eimizden geleni yapıyoruz ama yine de uygulamadaki kişilerle buluşurken tedbiri elden bırakmayın.<br/>
+                    <span>Kaliteli bir kitle oluşturmak için eimizden geleni yapıyoruz ama yine de uygulamadaki kişilerle buluşurken tedbiri elden bırakmayın.<br/>
                             -Kişi hakkında yapılan yorumları inceleyin<br/>
                             -Google'da kişinin ismini aratarak gerçekten o kişinin söylediği kişi olup olmadığını kontrol etmeye çalışın.<br/>
                             -İlk buluşmalarınızı halka açık, güvenli yerlerde yapın.<br/>
@@ -28,36 +28,19 @@ class Info extends React.Component {
 
                         </span>
 
-                    <h4>Fırsatlar, Puanlama ve İşleyiş!</h4>
-                    <hr/>
-                    <h5><i className="fas fa-gift"/> Fırsatlar</h5>
-                        <br/><br/>
-                        <span>1. Sık sık sürpriz aktiviteler yapacağız ve isteyen kişiler  katılabilecek. Aktiviteden birkaç gün önce yayılanaycağız ve çoğunlukla
-                            bu etkinlikleri Youtube'a yükleyeceğiz. Sosyal sorumluluk projeleri, eğlenceli ve farklı etkinlikler düzenleyeceğiz. Biz bunların hiçbirinde
-                            ticari bir amaç taşımadan ücretsiz yapacağız.
-                            <br/>
-                            Ayrıca Mart 2019 sonunda 3 kişiye Boyner'den toplam 300 TL değerinde hediye çekini çekilişle vereceğiz.
-                        </span><br/><br/>
-                    <hr/>
+
+                    <h4>Puanlama ve İşleyiş!</h4>
                     <h5><i className="fas fa-medal"/> Puanlama</h5>
                     <span>Activity Friend kişiler hakkında size buluşma öncesi fikir vermek istiyor. Bu yüzden bir puanlama ve yorum sistemimiz var.<br/>
-                        Biriyle yaptığınız bir aktiviteden 1 saat sonra o kişi hakkında <strong>aktivite yorumu</strong> yapabilirsiniz, sistemdeki arkadaşlarınız
-                        hakkında ise birlikte aktivite yapma şartı olmadan <strong>arkadaş yorumu</strong> yazabilirsiniz. Yorumlar silinemez, düzenlenemez ve o kişiyle
-                        buluşmayı düşünen insanlar için fikir verir.<br/>
-                        <br/><strong>Puanlama şu şekildedir</strong><br/>
-                        5 puan -> Hakkınızda yazılan her aktivite yorumu için,<br/>
-                        3 puan -> Hakkınızda yazılan her arkadaş yorumu için,<br/>
-                        3 puan -> Katıldığınız her aktivte için,<br/>
-                        1 puan -> Açtığınız her aktivite için,<br/>
-<br/>
-                        -5 puan -> Hakkınızda yazılan her olumsuz aktivite yorumu için<br/>
-                        -3 puan ->Hakkınızda yazılan her olumsuz arkadaş yorumu için kazanırsınız.
+                        Biriyle yaptığınız bir aktiviteden 1 saat sonra o kişi hakkında <strong>aktivite yorumu</strong> yapabilirsiniz. Puanlar ise uygulamamın doğru kullanımı,
+                    topluluğa katma değer katacak davranışlara paralel olarak belirli bir formül dahilinde artıyor.
                     </span>
                     <hr/>
                     <h5><i className="fas fa-cogs"/> İşleyiş</h5>
                     <span>Activity Friend işleyişi aşırı derecede basittir, çünkü ekran başında değil dışarıda gerçek insanlarla sosyalleşmenizi istiyoruz.
-                    Yapmak istediğinizi toplulukla paylaşırsınız, gelmek isteyenler istek gönderir, dilediğinizi onaylar ve iletişime geçersiniz. Gönderilen istekleri
+                    Yapmak istediğinizi toplulukla paylaşırsınız, gelmek isteyenler istek gönderir, dilediğiniz onaylar ve iletişime geçersiniz. Gönderilen istekleri
                         sadece aktiviteyi paylaşan ve istek gönderen kişi görür.<br/>
+
                     </span>
                     <hr/>
                     <h5><i className="fas fa-glass-cheers"/> Son olarak;</h5>

@@ -21,18 +21,26 @@ class ProfileMobile extends React.Component {
             isBlocked: false,
             about: "",
             age: "",
+            attendPercent: null,
             motivation: "",
             interestsArray: [],
             activityCount: 0,
-            premiumType:false,
+            premiumType: false,
             errors: {},
-            latestPremiumDate:""
+            latestPremiumDate: "",
+            haveTheseUsersEverMeet: false,
+            vibe: null,
+            myVibeOfThisUser: null,
+            vibePercent: 0
         };
 
         this.follow = this.follow.bind(this);
         this.block = this.block.bind(this);
-        this.deleteAccount  =this.deleteAccount.bind(this);
+        this.onVibeChanged = this.onVibeChanged.bind(this);
+        this.deleteAccount = this.deleteAccount.bind(this);
+        this.haveTheseUsersEverMeet = this.haveTheseUsersEverMeet.bind(this);
 
+        this.haveTheseUsersEverMeet();
         this.fillPage();
     }
 
@@ -41,11 +49,10 @@ class ProfileMobile extends React.Component {
         let self = this;
 
         if (res === "onaylıyorum") {
-            axios.get(Globals.serviceUrl + 'user/deleteAccount/' + localStorage.getItem("userId"), Security.authHeader()).
-            then(function (response) {
+            axios.get(Globals.serviceUrl + 'user/deleteAccount/' + localStorage.getItem("userId"), Security.authHeader()).then(function (response) {
                 alert("Hesabın silindi :( umarım geri gelirsin :(");
                 localStorage.removeItem("jwtToken");
-                window.location="/";
+                window.location = "/";
             })
                 .catch(function (error) {
                     console.log(error);
@@ -53,6 +60,23 @@ class ProfileMobile extends React.Component {
                 });
         }
     }
+
+    haveTheseUsersEverMeet() {
+        let self = this;
+        if (Security.isValidToken()) {
+            if (localStorage.getItem("userId") !== this.props.match.params.id) {
+                axios.get(Globals.serviceUrl + 'vibe/haveTheseUsersEverMeet/' + this.props.match.params.id, Security.authHeader())
+                    .then(function (response) {
+                        self.setState({"haveTheseUsersEverMeet": response.data});
+                        axios.get(Globals.serviceUrl + 'vibe/myVibeOfThisUser/' + self.props.match.params.id, Security.authHeader())
+                            .then(function (response) {
+                                self.setState({"myVibeOfThisUser": response.data});
+                            });
+                    });
+            }
+        }
+    }
+
 
     fillPage() {
         let self = this;
@@ -74,11 +98,10 @@ class ProfileMobile extends React.Component {
                 self.setState({"errors": error.response.data});
             });
 
-        axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/',Security.authHeader())
+        axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/', Security.authHeader())
             .then(function (response) {
-                self.setState({latestPremiumDate :response.data});
+                self.setState({latestPremiumDate: response.data});
             });
-
 
 
         if (Security.isValidToken())
@@ -98,6 +121,12 @@ class ProfileMobile extends React.Component {
                 .then(function (response) {
                     self.setState({"isBlocked": response.data});
                 });
+        if (Security.isValidToken()) {
+            axios.get(Globals.serviceUrl + 'vibe/isBlocked/' + userId, Security.authHeader())
+                .then(function (response) {
+                    self.setState({"isBlocked": response.data});
+                });
+        }
 
     }
 
@@ -147,8 +176,11 @@ class ProfileMobile extends React.Component {
     complainButton() {
         if (this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
-                <a className={"full-width"} href={"/complain/"+this.props.match.params.id}>
-                    <button className={"btn btn-menuColorMobile profileButton"}><i className="far fa-angry"></i> Şikayet et</button></a>
+                <a className={"full-width"} href={"/complain/" + this.props.match.params.id}>
+                    <button className={"btn btn-menuColorMobile profileButton"}><i className="far fa-angry"></i> Şikayet
+                        et
+                    </button>
+                </a>
             )
         }
     }
@@ -217,6 +249,19 @@ class ProfileMobile extends React.Component {
 
     }
 
+    onVibeChanged(vibeType) {
+        let self = this;
+        let vibeDto = {};
+        vibeDto.readerId = this.props.match.params.id;
+        vibeDto.vibeType = vibeType;
+        vibeDto.writerId = null;
+
+        axios.post(Globals.serviceUrl + 'vibe/save/', vibeDto, Security.authHeader())
+            .then(function (response) {
+                self.setState({myVibeOfThisUser: vibeType})
+            });
+    }
+
 
     render() {
 
@@ -240,11 +285,11 @@ class ProfileMobile extends React.Component {
                     <div className={"float-left profileMetaMobile"}>
                         <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
                             <strong>
-                                {this.state.premiumType==="GOLD" &&(
+                                {this.state.premiumType === "GOLD" && (
 
                                     <span className={'goldCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                                 )}
-                                {this.state.premiumType==="SILVER" &&(
+                                {this.state.premiumType === "SILVER" && (
 
                                     <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                                 )}
@@ -271,13 +316,69 @@ class ProfileMobile extends React.Component {
                     </div>
                     <div className={"clear-both"}/>
                 </div>
+                {this.state.haveTheseUsersEverMeet && (
+                    <div className={"full-width vibeQuestionContainer"}>
+                        <div className="form-group">
+                            <strong>Bu kişi sende nasıl bir izlenim bıraktı?</strong><br/>
+                            (Bu cevabı yalnız sen görebilirsin ve istediğin zaman değiştirebilirsin) <br/>
+                            <label className="customRadioLabelMobile">Olumlu&nbsp;</label>
+                            <input type="radio"
+                                   name="myVibeOfThisUser"
+                                   checked={this.state.myVibeOfThisUser === "POSITIVE"}
+                                   onChange={() => this.onVibeChanged("POSITIVE")}
+                                   className="customRadio"
+                            />&nbsp;&nbsp;&nbsp;&nbsp;
+                            <label className="customRadioLabelMobile">Olumsuz&nbsp;</label>
+                            <input type="radio"
+                                   name="myVibeOfThisUser"
+                                   onChange={() => this.onVibeChanged("NEGATIVE")}
+                                   checked={this.state.myVibeOfThisUser === "NEGATIVE"}
+                                   className="customRadio"
+                            />
+                        </div>
+                    </div>
+                )}
+
+                <hr/>
+                <div>
+                    <h5> Olumlu izlenim oranı</h5>
+                    {this.state.vibePercent > 0 && (
+                        <div className="progress">
+                            <div className="progress-bar progress-bar-striped bg-success" role="progressbar"
+                                 style={{width: this.state.vibePercent + '%'}} aria-valuenow="50"
+                                 aria-valuemin="0" aria-valuemax="100">{this.state.vibePercent}%
+                            </div>
+                        </div>
+                    )}
+                    {this.state.vibePercent === 0 && (
+                        <span>Yeterli veri yok!</span>
+                    )}
+
+                    <hr/>
+                </div>
+                {this.state.attendPercent != null && (
+                    <div>
+                        Onaylandığı aktivitelere katılım oranı
+                        <div className="progress">
+                            <div className="progress-bar" role="progressbar"
+                                 style={{width: this.state.attendPercent + '%'}} aria-valuenow="50"
+                                 aria-valuemin="0" aria-valuemax="100">{this.state.attendPercent}%
+                            </div>
+                        </div>
+                        <hr/>
+                    </div>
+                )}
+
+
                 {(this.props.match.params.id === localStorage.getItem("userId")) &&
                 (<div className={"full-width"}>
 
 
-                        {this.state.latestPremiumDate!=="" &&(
+                        {this.state.latestPremiumDate !== "" && (
                             <span>Premium üyelik son tarih: {this.state.latestPremiumDate}</span>
                         )}
+                        <br/>
+
                         <div className={"text-align-left settingsTitlesMobile"}>
                             <a href="/myAlbum/">
                                 <button className={"btn btn-menuColorMobile profileButton"}><i
@@ -289,7 +390,7 @@ class ProfileMobile extends React.Component {
                                     className="fas fa-info-circle"/>Bilgilerim
                                 </button>
                             </a><br/>
-                            <button  onClick={this.deleteAccount} className={"btn btn-danger profileButton"}><i
+                            <button onClick={this.deleteAccount} className={"btn btn-danger profileButton"}><i
                                 className=" fas fa-times"/> Hesabımı Sil
                             </button>
                         </div>
@@ -330,7 +431,11 @@ class ProfileMobile extends React.Component {
                     photoCount={this.state.photoCount}
                 />
                 <br/>
-                {(localStorage.getItem("userId") === "3211") && (
+                {((localStorage.getItem("userId") === "3211")
+                    || (localStorage.getItem("userId") === "5516")
+                    || (localStorage.getItem("userId") === "5633")
+                    || (localStorage.getItem("userId") === "5634")
+                    || (localStorage.getItem("userId") === "5635")) && (
                     <div className={"full-width"}>
                         <a href={"/uhktybb/police"} className={"float-left"}>
                             <button className={"btn btn-danger"}>Kullanıcı(id:{this.props.match.params.id})

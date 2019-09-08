@@ -78,10 +78,10 @@ class Reviews extends React.Component {
                                         />
 
                                         <div className={"reviewBlock"}>
-                                            {review.positive && (
-                                                <strong className={"positiveReview"}><i className="fas fa-check"/>OLUMLU</strong>)}
-                                            {!review.positive && (<strong className={"negativeReview"}><i
-                                                className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
+                                            {/*{review.positive && (*/}
+                                            {/*    <strong className={"positiveReview"}><i className="fas fa-check"/>OLUMLU</strong>)}*/}
+                                            {/*{!review.positive && (<strong className={"negativeReview"}><i*/}
+                                            {/*    className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}*/}
                                             , &nbsp;
                                             <hr/>
                                             {review.review}

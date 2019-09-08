@@ -19,6 +19,7 @@ class MessageBoxActivityMobile extends React.Component {
         setInterval(function () {
             self.fillPage();
         },4000);
+
         setTimeout(function () {
             self.scrollToBottom();
         },1200)
@@ -33,13 +34,25 @@ class MessageBoxActivityMobile extends React.Component {
     }
 
 
+
+
+    // scrollToBottom() {
+    //     const scrollHeight = this.messageList.scrollHeight;
+    //     const height = this.messageList.clientHeight;
+    //     const maxScrollTop = scrollHeight - height;
+    //     this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    // }
+
+
     fillPage() {
 
         let self = this;
+        let oldLength = this.state.messages.length;
         axios.get(Globals.serviceUrl + 'messageActivity/getMessages/' + this.props.activityId, Security.authHeader())
             .then(function (response) {
                 self.setState({messages: response.data});
-
+                if(response.data.length>oldLength)
+                    self.scrollToBottom();
             })
     }
 

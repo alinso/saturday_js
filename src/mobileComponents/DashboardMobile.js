@@ -185,12 +185,12 @@ class DashboardMobile extends BaseActivityListMobile {
                     {/*<strong><a href={"/createActivity"}><i className="fas fa-hashtag"/>İlgi alanında bir aktivite yoksa, sen henüz açmadığın içindir. Şimdi harekete geç</a></strong><br/>*/}
 
                     {this.state.sponsor && (
-                        <a href={this.state.sponsor.youtube} className={"sponsorTextMobile"}>
+                        <div className={"activityListActivityDetailMobile"}>
                             {this.state.sponsor.photoName != null &&
                             (<img src={'/upload/' + this.state.sponsor.photoName} width={"100%"}/>)
                             }
                             {this.state.sponsor.detail}
-                        </a>
+                        </div>
                     )}
 
                     <hr/>

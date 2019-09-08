@@ -82,13 +82,11 @@ class ReviewsMobile extends React.Component {
                                     <UserFullNameMobile
                                         user={review.writer}
                                     /><br/>
-                                    {review.positive && (
-                                        <strong className={"positiveReview"}><i
-                                            className="fas fa-check"/>OLUMLU</strong>)}
-                                    {!review.positive && (<strong className={"negativeReview"}><i
-                                        className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
-                                    , &nbsp;
-                                    <br/>
+                                    {/*{review.positive && (*/}
+                                    {/*    <strong className={"positiveReview"}><i*/}
+                                    {/*        className="fas fa-check"/>OLUMLU</strong>)}*/}
+                                    {/*{!review.positive && (<strong className={"negativeReview"}><i*/}
+                                    {/*    className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}*/}
                                     {review.review}
                                 </div>
                                 <div className={"clear-both"}> </div>

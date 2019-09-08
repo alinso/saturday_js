@@ -18,7 +18,6 @@ class MessagePageMobile extends React.Component {
 
 
         this.state = {
-            messages: [],
             message: "",
             readerProfile: {},
             errors: {}
@@ -27,17 +26,21 @@ class MessagePageMobile extends React.Component {
         this.onSubmit = this.onSubmit.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.canItext=this.canItext.bind(this);
+        this.canItext = this.canItext.bind(this);
+        this.fillPage = this.fillPage.bind(this);
         this.canItext();
+
         this.fillPage();
+
+
     }
 
 
     canItext() {
         const self = this;
-        axios.get(Globals.serviceUrl + 'message/haveTheseUsersMeet/'+this.props.match.params.id+'/'+localStorage.getItem("userId"), Security.authHeader())
+        axios.get(Globals.serviceUrl + 'message/haveTheseUsersMeet/' + this.props.match.params.id + '/' + localStorage.getItem("userId"), Security.authHeader())
             .then(function (response) {
-                self.setState({"canItext":response.data});
+                self.setState({"canItext": response.data});
 
             })
             .catch(function (error) {
@@ -53,11 +56,10 @@ class MessagePageMobile extends React.Component {
         if (window.confirm("Bu konuşmayı silmek istediğinden emin misin?")) {
             axios.get(Globals.serviceUrl + 'message/deleteConversation/' + this.props.match.params.id, Security.authHeader())
                 .then(function (response) {
-                    window.location="/conversations";
+                    window.location = "/conversations";
                 });
         }
     }
-
 
 
     onSubmit(e) {
@@ -74,12 +76,12 @@ class MessagePageMobile extends React.Component {
     sendMessage(messageDto) {
 
         const self = this;
-        axios.post(Globals.serviceUrl+'message/send/', messageDto, Security.authHeader())
+        axios.post(Globals.serviceUrl + 'message/send/', messageDto, Security.authHeader())
             .then(function (response) {
-                let messages = self.state.messages;
-                let newMessage = response.data;
-                messages.push(newMessage);
-                self.setState({messages: messages});
+                // let messages = self.state.messages;
+                // let newMessage = response.data;
+                // messages.push(newMessage);
+                // self.setState({messages: messages});
                 self.setState({message: ""});
 
             })
@@ -93,7 +95,7 @@ class MessagePageMobile extends React.Component {
         let self = this;
 
         //get the reader user
-        axios.get(Globals.serviceUrl+'user/profile/' + this.props.match.params.id)
+        axios.get(Globals.serviceUrl + 'user/profile/' + this.props.match.params.id)
             .then(function (response) {
                 self.setState({readerProfile: response.data});
             })
@@ -101,17 +103,6 @@ class MessagePageMobile extends React.Component {
                 console.log(error);
                 self.setState({"errors": error.response.data});
             });
-
-
-        //get messages
-        axios.get(Globals.serviceUrl+'message/getMessagesForReader/' + this.props.match.params.id, Security.authHeader())
-            .then(function (response) {
-                self.setState({messages: response.data});
-            })
-            .catch(function (error) {
-                self.setState({"errors": error.response.data});
-            });
-
     }
 
 
@@ -122,20 +113,22 @@ class MessagePageMobile extends React.Component {
                 <ProfilePicMobile
                     userId={this.props.match.params.id}
                     profilePicName={this.state.readerProfile.profilePicName}
-                    cssClass={"profilePicSmallMobile"} />
+                    cssClass={"profilePicSmallMobile"}/>
                 &nbsp;
                 <UserFullNameMobile
                     user={this.state.readerProfile}
                 />
-                <br/>   <br/>
-                    <MessageBoxMobile
-                        messages={this.state.messages}
-                    />
+                <br/> <br/>
+                <MessageBoxMobile
+                    activityId={this.props.match.params.id}
+                />
 
-                    <div>
-                        <button onClick={()=>this.deleteConvo()} className={"btn btn-danger float-left"}>Konuşmayı Sil</button>
+                <div>
+                    <button onClick={() => this.deleteConvo()} className={"btn btn-danger float-left"}>Konuşmayı Sil
+                    </button>
                     <a className={"complainOnMessagePage"} href={"/complain/" + this.state.readerProfile.id}>
-                        <button className={"btn btn-success"}> Şikayet Et</button></a>
+                        <button className={"btn btn-success"}> Şikayet Et</button>
+                    </a>
                 </div>
                 <div className={"clear-both"}/>
                 <br/>

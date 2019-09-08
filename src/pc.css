@@ -505,6 +505,10 @@ margin-bottom: 4px;
 .customRadio:checked{
   border:10px solid #4099ff;
 }
+.vibeQuestionContainer {
+    background-color: #bbf151;
+    border-radius: 5px;
+}
 .silverCheck{
     color:gray;
     font-size: 16px;

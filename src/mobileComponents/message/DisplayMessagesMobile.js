@@ -1,4 +1,6 @@
 import React from "react";
+import Globals from "../../util/Globals";
+import Security from "../../security/Security";
 
 const axios = require('axios');
 
@@ -6,8 +8,40 @@ const axios = require('axios');
 class MessageBoxMobile extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state={
+            messages:[]
+        };
+
+        this.fillPage=this.fillPage.bind(this);
+        this.fillPage();
+        const self = this;
+        setInterval(function () {
+            self.fillPage();
+        }, 4000);
+
+
+        setTimeout(function () {
+            self.scrollToBottom();
+        }, 1600)
     }
 
+
+    fillPage() {
+        //get messages
+        let self=this;
+        let oldLength = this.state.messages.length;
+
+        axios.get(Globals.serviceUrl + 'message/getMessagesForReader/' + this.props.activityId, Security.authHeader())
+            .then(function (response) {
+                self.setState({messages: response.data});
+                if(response.data.length>oldLength)
+                    self.scrollToBottom();
+            })
+            .catch(function (error) {
+                self.setState({"errors": error.response.data});
+            });
+    }
 
     scrollToBottom() {
         const scrollHeight = this.messageList.scrollHeight;
@@ -16,9 +50,6 @@ class MessageBoxMobile extends React.Component {
         this.messageList.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
     }
 
-    componentDidUpdate() {
-        this.scrollToBottom();
-    }
 
     render() {
 
@@ -26,7 +57,7 @@ class MessageBoxMobile extends React.Component {
             <div className="messageBoxMobile" ref={(div) => {
                 this.messageList = div;
             }}>
-                {this.props.messages.map(function (message) {
+                {this.state.messages.map(function (message) {
                         let msgClass = "breakLine outgoingMessage";
                         console.log(message.reader.id);
                         if (message.reader.id.toString() === localStorage.getItem("userId")) {

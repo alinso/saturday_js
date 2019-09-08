@@ -45,10 +45,10 @@ class MessageActivityPageMobile extends React.Component {
         const self = this;
         axios.post(Globals.serviceUrl + 'messageActivity/send/', messageDto, Security.authHeader())
             .then(function (response) {
-                let messages = self.state.messages;
-                let newMessage = response.data;
-                messages.push(newMessage);
-                self.setState({messages: messages});
+              //  let messages = self.state.messages;
+             //   let newMessage = response.data;
+                // messages.push(newMessage);
+                // self.setState({messages: messages});
                 self.setState({message: ""});
 
             })
@@ -67,7 +67,6 @@ class MessageActivityPageMobile extends React.Component {
 
                 <MessageBoxMobile
                     activityId={this.props.match.params.id}
-                    messages={this.state.messages}
                 />
 
 
