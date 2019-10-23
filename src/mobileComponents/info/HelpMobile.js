@@ -22,18 +22,51 @@ class HelpMobile extends React.Component {
                 {/*Şikayetler Batman tarafından incelenir ve karara bağlanır Batman topluluk dışından biridir, kimseyi de tanımaz. Olabildiğince mantık çercevesinde karar vermeye çalışır*/}
                 {/*<br/><br/>*/}
                 {/*Teşekkürler :)*/}
-
-                <strong>Puanlama sisteminde değişiklik</strong><br/>
-                <hr/>
-                Merhaba,
                 <br/>
-                1.)Activity Friend içinde 6-8 kişilik daha samimi ve çok sayıda aktivite olsun istiyoruz. Kalabalık katılımların olduğu, az sayıda aktivite istemiyoruz.
-                <br/><br/>
-                2.)Ayrıca hep aynı kişiler değil, farklı insanlar da aktivitelere dahil edilsin istiyoruz.
-                <br/><br/>
-                Bu iki kriteri dikkate alarak puanlama sistemimizde değişiklik yaptık.
-                <br/><br/>
-                Teşekkürler :)
+                <strong> Sınıra takılma, öne geç!</strong>
+                <hr/>
+                <div className={"col-md-6 m-auto text-align-left"}>
+                    <div className={"paymentIcons col-md-12 m-auto"}>
+                        <i className="fas fa-glass-cheers"/>&nbsp;
+                        <i className="fas fa-swimmer"/>&nbsp;
+                        <i className="fas fa-bowling-ball"/>&nbsp;
+                        <i className="fas fa-bicycle"/>&nbsp;
+                        <i className="fas fa-award"/>&nbsp;
+                        <i className="fab fa-fly"/>&nbsp;
+                        <i className="fas fa-grin-stars"/>&nbsp;
+                    </div>
+                </div>
+
+                Sınırlara takılmak istemiyor, aktivitelerde öne çıkmak ve projemize destek olmak istiyorsan premium
+                olabilirsin. Premium özellik ve fiyatları aşağıdaki şekildedir.<br/>
+                <a href={"https://www.activityfriend.net/message/3212"}> <button className={"btn btn-info"}>
+                    Detaylar İçin Buradan Mesaj At
+                </button></a>
+                <br/>
+                <br/>
+                <strong><span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>SILVER onaylı
+                    profil</strong>
+                <br/>
+                <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>Hatfada 5 aktivite <br/>
+                <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>Günde 7 istek <br/>
+                <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>15 kişi onaylama <br/>
+                (Aylık : 19.90 ₺/ 3 aylık : 49.90₺ / 6 aylık : 89.90₺) <br/>
+                <br/>
+
+
+                <strong><span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>GOLD onaylı
+                    profil</strong>
+                <br/>
+
+                <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Haftada 10 aktivite <br/>
+                <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Günde 20 istek <br/>
+                <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>25 kişi onaylama <br/>
+                <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Dolu aktiviteye istek
+                gönderme <br/>
+                <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Aktivitene sınırsız istek
+                alabilme <br/>
+
+                (Aylık : 29.90₺ / 3 aylık : 79.90₺)
             </div>
 
         )

@@ -60,29 +60,46 @@ class ActivityRequestsMobile extends React.Component {
             });
     }
 
-    toggleApprove(id) {
+    toggleApprove(request) {
         const self = this;
-        axios.get(Globals.serviceUrl + 'request/approveRequest/' + id, Security.authHeader())
+        const id=request.id;
+        axios.get(Globals.serviceUrl + 'vibe/vibePercentOfRequestOwner/' + id, Security.authHeader())
             .then(function (response) {
-                let requests = self.state.requests;
-                let currentRequestOld = requests.filter(obj => {
-                    return obj.id === id
-                });
+                if(response.data<75 && response.data>=50 && response.data!==0 && request.activityRequestStatus==="WAITING"){
+                    let result=window.confirm("Bu profilin OLUMLU İZLENİM ORANI DÜŞÜK, aktivitene dahil etmek istediğinden emin misin?");
+                    if(!result)
+                        return;
+                }
+                if(response.data<50 && response.data!==0 && request.activityRequestStatus==="WAITING"){
+                    let result=window.confirm("Bu profilin OLUMLU İZLENİM ORANI ÇOK DÜŞÜK, aktivitene KABUL ETMEMENİ tavsiye ederiz");
+                    if(!result)
+                        return;
+                }
+                axios.get(Globals.serviceUrl + 'request/approveRequest/' + id, Security.authHeader())
+                    .then(function (response) {
+                        let requests = self.state.requests;
+                        let currentRequestOld = requests.filter(obj => {
+                            return obj.id === id
+                        });
 
-                let currentRequestNew = Object.assign({}, currentRequestOld)[0];
-                currentRequestNew.activityRequestStatus = response.data;
+                        let currentRequestNew = Object.assign({}, currentRequestOld)[0];
+                        currentRequestNew.activityRequestStatus = response.data;
 
-                let requestsNew = JSUtil.deleteFromArrayByPropertyName(requests, "id", id);
-                requestsNew.push(currentRequestNew);
-                requestsNew.sort(JSUtil.compareByRequestatus);
+                        let requestsNew = JSUtil.deleteFromArrayByPropertyName(requests, "id", id);
+                        requestsNew.push(currentRequestNew);
+                        requestsNew.sort(JSUtil.compareByRequestatus);
 
 
-                self.setState({requests: requestsNew});
-            })
-            .catch(function (error) {
+                        self.setState({requests: requestsNew});
+                    })
+                    .catch(function (error) {
 
-                console.log(error);
-                self.setState({errors: error.response.data});
+                        console.log(error);
+                        self.setState({errors: error.response.data});
+                    });
+
+
+
             });
     }
 
@@ -160,12 +177,12 @@ class ActivityRequestsMobile extends React.Component {
                                 <br/>
                                 {
                                     (request.activityRequestStatus === "WAITING") &&
-                                    (<button onClick={() => self.toggleApprove(request.id)}
+                                    (<button onClick={() => self.toggleApprove(request)}
                                              className={"btn btn-info"}>ONAYLA</button>)
                                 }
                                 {
                                     (request.activityRequestStatus === "APPROVED") && (
-                                        <button onClick={() => self.toggleApprove(request.id)}
+                                        <button onClick={() => self.toggleApprove(request)}
                                                 className={"btn btn-danger"}>İPTAL ET</button>
                                     )
                                 }

@@ -240,7 +240,6 @@ class RegisterMobile extends React.Component {
                         </div>
 
                     </div>
-                    { this.state.gender==="MALE" &&(
                         <div className="form-group">
                             <input
                                 type="text"
@@ -257,27 +256,8 @@ class RegisterMobile extends React.Component {
                                     {errors.referenceCode}
                                 </div>
                             )}
-                        </div>)
-                    }
-                    { this.state.gender==="FEMALE" &&(
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                className={classnames("form-control ", {
-                                    "is-invalid": errors.referenceCode
-                                })}
-                                placeholder="Referans Kodu(Burası boş kalabilir)"
-                                name="referenceCode"
-                                value={this.state.referenceCode}
-                                onChange={this.onChange}
-                            />
-                            {errors.referenceCode && (
-                                <div className="color-white">
-                                    {errors.referenceCode}
-                                </div>
-                            )}
-                        </div>)
-                    }
+                        </div>
+
                     <div className={"userTermsMobile"}>
                     <input className={"float-left"} name={"userGuide"} onClick={this.toggleCheckBox} type={"checkbox"}/>
                         <span className={"color-white"} ><a className={"color-white"} href={"/userGuide"}>

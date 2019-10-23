@@ -168,8 +168,8 @@ class MessagePageMobile extends React.Component {
                         </div>
                     )}
                     <br/>
-                    <span className={"messageWarning"}> Rahatsız edici, ısrarcı, uygulama amacı dışında yazanları bize bildir(aramızda kalacak). Burada iyi ve az insan olsun istiyoruz.<br/>
-                                Ve unutma hayır, "HAYIR!" demektir!</span>
+                    <span className={"messageWarning"}> Rahatsız edici kişilere profilinden olumsuz oy ver, bunu kimse göremez ve istediğin zaman değiştirebilirsin.
+                        Burada Hoşgörü ve saygı önemli </span>
                 </form>
                 <br/>
             </div>

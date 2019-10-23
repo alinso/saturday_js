@@ -99,18 +99,13 @@ class MessageActivityPageMobile extends React.Component {
                             {this.state.errors.userWarningMessage}
                         </div>
                     )}
-
                     <span className={"activityMessageMobileWarning"}>Onayladığın aktivitelere aktivite bitiminden 2 gün sonrasına kadar yazabilirsin</span>
-
                     <br/>
                     <br/>
                 </form>
                 <br/>
             </div>
-
         );
     }
 }
-
-
 export default MessageActivityPageMobile;

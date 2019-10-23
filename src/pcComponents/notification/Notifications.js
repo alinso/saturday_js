@@ -82,8 +82,7 @@ class Notifications extends React.Component {
     newMeetingCommentAvailable(id) {
         return (
             <span>
-            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 5 gün içinde yorum yapabilirsin.
-                Böylece Activity Friend'in büyümesine yardımcı olabilirsin.
+            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Tanıştığın kişilerle ilgili olumlu/olumsuz oy vermeyi unutma :)
             </span>
         )
     }

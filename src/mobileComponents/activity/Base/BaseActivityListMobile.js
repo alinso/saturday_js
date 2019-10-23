@@ -25,30 +25,50 @@ class BaseActivityListMobile extends React.Component {
         let currentMeetingOld = activities.filter(obj => {
             return obj.id === id
         });
-        let question="Bu aktiviteye katılmak istediğinden emin misin?";
-        if(currentMeetingOld[0].thisUserJoined)
-            question="Bu isteği iptal edeceksin, emin misin?";
 
-        let result=window.confirm(question);
-        if(!result)
-            return;
 
-        axios.get(Globals.serviceUrl+'request/sendRequest/'+id, Security.authHeader())
-            .then(function (response) {
-                let currentMeetingNew  =Object.assign({},currentMeetingOld)[0];
-                currentMeetingNew.thisUserJoined = response.data;
+        if (Security.isValidToken()) {
+            axios.get(Globals.serviceUrl + 'vibe/vibePercentOfActivityOwner/' + id, Security.authHeader())
+                .then(function (response) {
 
-                let indexOfChanged = 0;
-                activities.map(function (meeting,index) {
-                   if(meeting.id===id)
-                       indexOfChanged=index;
+
+                    let question="Bu aktiviteye katılmak istediğinden emin misin?";
+                    if(response.data<75 &&  response.data >=50 && response.data!==0){
+                         question="Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine katılmak istediğinden emin misin?";
+                    }
+                    if(response.data<50 && response.data!==0){
+                        question="Bu kişinin OLUMLU İZLENİM ORANI çok düşük, aktivitesine KATILMAMANI tavisye ederiz";
+                    }
+
+
+                    if(currentMeetingOld[0].thisUserJoined)
+                        question="Bu isteği iptal edeceksin, emin misin?";
+
+                    let result=window.confirm(question);
+                    if(!result)
+                        return;
+
+                    axios.get(Globals.serviceUrl+'request/sendRequest/'+id, Security.authHeader())
+                        .then(function (response) {
+                            let currentMeetingNew  =Object.assign({},currentMeetingOld)[0];
+                            currentMeetingNew.thisUserJoined = response.data;
+
+                            let indexOfChanged = 0;
+                            activities.map(function (meeting,index) {
+                                if(meeting.id===id)
+                                    indexOfChanged=index;
+                            });
+                            activities[indexOfChanged] = currentMeetingNew;
+                            self.setState({activities:activities});
+                        })
+                        .catch(function (error) {
+                            alert(error.response.data.userWarningMessage);
+                        });
+
+
                 });
-                activities[indexOfChanged] = currentMeetingNew;
-                self.setState({activities:activities});
-            })
-            .catch(function (error) {
-                alert(error.response.data.userWarningMessage);
-            });
+        }
+
     }
 
 

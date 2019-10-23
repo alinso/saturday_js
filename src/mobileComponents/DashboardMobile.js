@@ -17,7 +17,7 @@ class DashboardMobile extends BaseActivityListMobile {
 
         this.state = {
             activities: [],
-            userCount: 0,
+            // userCount: 0,
             cities: [],
             city: {},
             sponsor: false,
@@ -33,7 +33,13 @@ class DashboardMobile extends BaseActivityListMobile {
 
         this.loadMore = this.loadMore.bind(this);
         this.fillPage = this.fillPage.bind(this);
-        this.fillPage(localStorage.getItem("cityId"));
+
+        let cityId = localStorage.getItem("cityId");
+        if (cityId === "null") {
+            cityId = 1;
+        }
+        this.fillPage(cityId);
+
         this.loadCities();
 
 
@@ -127,12 +133,12 @@ class DashboardMobile extends BaseActivityListMobile {
             .catch(function (error) {
             });
 
-        axios.get(Globals.serviceUrl + 'user/userCount', Security.authHeader())
-            .then(function (response) {
-                self.setState({userCount: response.data});
-            })
-            .catch(function (error) {
-            });
+        // axios.get(Globals.serviceUrl + 'user/userCount', Security.authHeader())
+        //     .then(function (response) {
+        //         self.setState({userCount: response.data});
+        //     })
+        //     .catch(function (error) {
+        //     });
     }
 
     loadCities() {
@@ -175,12 +181,24 @@ class DashboardMobile extends BaseActivityListMobile {
                     <span>Yükleniyor...</span>
                 )}
 
+                {localStorage.getItem("cityId") === "null" && (
+
+                    <a href={"updateInfo/"}>
+                        <div className="alert alert-primary" role="alert">
+                            <strong><i className="fas fa-map-marker-alt"/> Yaşadığın şehri seçmek için tıkla</strong>
+                        </div>
+                        <br/>
+                    </a>
+                )}
+
                 <div style={{opacity: pageOpacity}}>
                     <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
 
                     <hr/>
                     <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>
-                    {/*<strong><a href={"/help"}><i className="fas fa-fire"/>Puan sistemi değişti</a></strong><br/><br/>*/}
+                    <strong><a href={"/help"}><span className="goldCheck"><i
+                        className="far fa-check-circle"/>&nbsp;</span> Premium Hakkında
+                        Bilgilendirme</a></strong><br/><br/>
 
                     {/*<strong><a href={"/createActivity"}><i className="fas fa-hashtag"/>İlgi alanında bir aktivite yoksa, sen henüz açmadığın içindir. Şimdi harekete geç</a></strong><br/>*/}
 
@@ -202,14 +220,14 @@ class DashboardMobile extends BaseActivityListMobile {
                                                         joinActivity={self.joinActivity}/>
                             );
                         })}
-                    <span className={"discoverInfo"}>Toplam kullanıcı sayısı: {this.state.userCount}</span><br/>
+                    {/*<span className={"discoverInfo"}>Toplam kullanıcı sayısı: {this.state.userCount}</span><br/>*/}
                     <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha
                         fazla göster...
                     </button>
 
                     <div className={"scrollTopMobile"}>
-                        <span onClick={this.scrollTop}><i
-                            className="fas fa-arrow-alt-circle-up scrollTopArrow"/></span>
+                    <span onClick={this.scrollTop}><i
+                        className="fas fa-arrow-alt-circle-up scrollTopArrow"/></span>
                     </div>
                     <br/><br/>
                 </div>

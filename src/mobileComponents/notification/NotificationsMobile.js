@@ -24,6 +24,10 @@ class NotificationsMobile extends React.Component {
 
     fillPage() {
 
+        if(localStorage.getItem("userId")==="5635")
+        {
+            window.location="/logout";
+        }
 
         const self = this;
         axios.get(Globals.serviceUrl+'notification/allNotifications/', Security.authHeader())
@@ -88,8 +92,7 @@ class NotificationsMobile extends React.Component {
     newMeetingCommentAvailable(id) {
         return (
             <span>
-            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Katıldığın diğer kişilerle ilgili 5 gün içinde yorum yapabilirsin.
-                Özellikle geleceğim deyip gelmeyenler için OLUMSUZ YORUM bırakmalısın.
+            Yakın zamanda <a href={"/activityDetail/" + id}>BİR AKTİVİTEYE</a> katıldın. Tanıştığın kişilerle ilgili olumlu/olumsuz oy vermeyi unutma:)
             </span>
         )
     }

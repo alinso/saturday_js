@@ -44,18 +44,19 @@ class ReferenceCodesMobile extends React.Component {
         const self = this;
         return (
             <div className="full-width container">
-                <h6>Şu an erkek alımlarını referans sadece referans ile yapıyoruz, kadınlar ise referans ile veya
-                    referans olmadan da üye olabiliyor.
+                <h6>Artık erkek/kadın fark etmeksizin herkes yalnız referans kodu ile üye olabilecek
                 </h6>
                 <h6>
-                    Referans ile üye olan kadınlara üye oldukları an 5 puan veriliyor. Ayrıca senin referansın ile üye
-                    olmuş bir kadın 10 puana ulaşırsa sana da 10 puan ekliyoruz.
+                    Ankara için 10.000 üye olduğunda tüm alımları durduracağız. Eskişehir'de ise 5.000 üye sonrası alımları
+                    durduracağız. Arkadaşlarınızın üye olmak için acele etmesi gerekebilir.<br/>
+                    Kadın üye sayısı erkek üye sayısının 4 katı olacak. Ankara için 8.000 kadın, 2.000 erkek kontenjanımız var. Eskişehir için 1000 erkek 4000 kadın  kontenjanımız var.
+                    <br/>
+                    Lütfen aktif, iletişim becerileri kuvvetli, sosyal insanlara referas ol, kadın oranını yüksek tutabilmemiz için özellikle kadınlara referans olmanı istiyoruz.<br/>
+                    Teşekkürler
                 </h6>
                 <hr/>
-                <span>Kadınlara vermen gereken refereans kodu<br/>(Değişmez) </span>
-                <h6><strong>{localStorage.getItem("userId")}</strong></h6>
-                <hr/>
-                <span>Erkeklere vermen gereken refereans kodu<br/>(Her defasında değişir) </span>
+
+                <span>İnsanlara vermen gereken refereans kodu<br/>(Her defasında değişir) </span>
                 <h6><strong>{this.state.myCode}</strong></h6>
                 <hr/>
                 <br/><br/>

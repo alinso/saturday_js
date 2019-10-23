@@ -27,9 +27,8 @@ class LandingMobile extends Component {
                 </div>
                 <div className={"clear-both"}/>
                 <br/>
-                <h5 className={"m-auto"}>Tüm aktivitelerinde sana eşlik edebilecek insanlarla
-                    tanış!</h5>
-
+                <h5 className={"m-auto"}>Ücretsiz kaydol ve her hafta açılan yüzlerce aktiviteyi kaçırma! Veya tüm aktivitelerinde sana eşlik edebilecek insanlar
+                    bul</h5>
                 <div className={"full-width"}>
                     <hr/>
                     <div className={"full-width"}>
@@ -54,7 +53,7 @@ class LandingMobile extends Component {
                         </div>
                         <hr/>
                         <a href={"https://www.instagram.com/activityfriend/"}>
-                        <button className={"btn btn-danger"}><strong><i className="fab fa-instagram"/> aktivitelerden fotolar için tıkla</strong></button>
+                        <button className={"btn btn-danger"}><strong><i className="fab fa-instagram"/> instagram sayfamıza göz at</strong></button>
                         </a>
                         <hr/>
                     </div>
@@ -79,10 +78,9 @@ class LandingMobile extends Component {
 
                 <div className={"full-width landingText"}>
                     <h1><i className="fas fa-user-check"/></h1>
-                    Referans ve Yorumlar!<br/>
-                    Kullanıcı puanlama sistemi ve yorumlar yardımıyla ilgi alanlarına uygun
+                    Puanlama ve Olumlu/Olumsuz oylama!<br/>
+                    Kullanıcı puanlama sistemi ve olumlu/olumusuz geri dönüşler yardımıyla ilgi alanlarına uygun
                     güvenilir kişileri seçebilirsin.
-                    Ayrıca puan biriktirerek sürpriz ödüller kazanabilirsin.
                 </div>
                 <div className={"full-width landingText"}>
                     <h1><i className="fas fa-crown"/></h1>

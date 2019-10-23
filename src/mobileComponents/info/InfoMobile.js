@@ -11,23 +11,37 @@ class InfoMobile extends React.Component {
 
         return (
             <div className="full-width text-align-left container">
-                <h4>Güvenlik</h4>
-                <hr/>
+                <h5><i className="fas fa-shield-alt"/> Güvenlik</h5>
                 <span>Kaliteli bir kitle oluşturmak için eimizden geleni yapıyoruz ama yine de uygulamadaki kişilerle buluşurken tedbiri elden bırakmayın.<br/>
                             -Kişi hakkında yapılan yorumları inceleyin<br/>
                             -Google'da kişinin ismini aratarak gerçekten o kişinin söylediği kişi olup olmadığını kontrol etmeye çalışın.<br/>
                             -İlk buluşmalarınızı halka açık, güvenli yerlerde yapın.<br/>
                             -Suç unsuru barındıran hiçbir aktiviteye dahil olmayın.<br/>
-
-                            <strong>Israrcı, alakasız mesaj atanları şikayet edin.</strong><br/>
-                            <strong>Uygunsuz paylaşım yapanları şikayet edin</strong><br/>
-                            <strong>Suç unsuru bulunan içerikleri şikayet edin</strong><br/>
-                            <strong>Sahte olduğunu düşündüğünüz profilleri şikayet edin</strong><br/>
+<br/><br/>
+                            <strong>Bulunduğunuz ortamda değer katmayan herkesle ilgili olumsuz oy verebilirsin.</strong><br/>
+                            <strong>Şüpheli durumları şikayet edebilirsin</strong><br/>
                             Biz burada az ve iyi insan olsun istiyoruz.
 
                         </span>
 
-                <h4>Puanlama ve İşleyiş!</h4>
+                <br/>
+                <hr/>
+
+                <h5><i className="fas fa-align-justify"/> Kurallar</h5>
+                <span>Saygılı ve kibar olunmalı</span><br/>
+                <span>Nefret dili değil, sevgi diliyle konuşulmalı</span><br/>
+                <span>Aktiviteye uygulama dışından davet edeceğin kişiler için diğer insanlardan izin alınmalı</span><br/>
+                <span>Yasa-Mantık-Ahlak dışı aktivite ve içerik paylaşımı yapılmamalı</span><br/>
+                <span>Ticari amaçlarla veya tanıtım amacıyla aktivite açılmamalı</span><br/>
+                <span>Facebook grupları, whatsapp grupları gibi sanal ortamlara kullanıcı toplama amaçlı aktiviteler açılmamalı</span><br/>
+                <span>Sahte hesaplar açılmamalı</span><br/>
+                <span>İnsanlar söz verdikleri zamanda aktivitelerde olmalı</span><br/>
+                <span>Siyasi,dini,ideolojik eylemlerde bulunulmamalı</span><br/>
+                <span>İçeriği net olmayan aktiviteler açılmamalı</span><br/>
+
+                <br/>
+
+                <hr/>
                 <h5><i className="fas fa-medal"/> Puanlama</h5>
                 <span>Activity Friend kişiler hakkında size buluşma öncesi fikir vermek istiyor. Bu yüzden bir puanlama ve yorum sistemimiz var.<br/>
                         Biriyle yaptığınız bir aktiviteden 1 saat sonra o kişi hakkında <strong>aktivite yorumu</strong> yapabilirsiniz. Puanlar ise uygulamamın doğru kullanımı,

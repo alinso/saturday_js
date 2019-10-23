@@ -31,7 +31,8 @@ class ProfileMobile extends React.Component {
             haveTheseUsersEverMeet: false,
             vibe: null,
             myVibeOfThisUser: null,
-            vibePercent: 0
+            vibePercent: 0,
+            followerCount:0
         };
 
         this.follow = this.follow.bind(this);
@@ -122,9 +123,9 @@ class ProfileMobile extends React.Component {
                     self.setState({"isBlocked": response.data});
                 });
         if (Security.isValidToken()) {
-            axios.get(Globals.serviceUrl + 'vibe/isBlocked/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'vibe/vibePercent/' + userId, Security.authHeader())
                 .then(function (response) {
-                    self.setState({"isBlocked": response.data});
+                    self.setState({"vibePercent": response.data});
                 });
         }
 
@@ -313,9 +314,11 @@ class ProfileMobile extends React.Component {
                         {this.blockButton()}
                         {this.complainButton()}
 
+
                     </div>
                     <div className={"clear-both"}/>
                 </div>
+                <span><strong>{this.state.followerCount}</strong> kişi listeye eklemiş</span>
                 {this.state.haveTheseUsersEverMeet && (
                     <div className={"full-width vibeQuestionContainer"}>
                         <div className="form-group">
@@ -389,7 +392,7 @@ class ProfileMobile extends React.Component {
                                 <button className={"btn btn-menuColorMobile profileButton"}><i
                                     className="fas fa-info-circle"/>Bilgilerim
                                 </button>
-                            </a><br/>
+                            </a><br/><br/>
                             <button onClick={this.deleteAccount} className={"btn btn-danger profileButton"}><i
                                 className=" fas fa-times"/> Hesabımı Sil
                             </button>

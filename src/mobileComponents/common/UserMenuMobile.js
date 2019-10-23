@@ -88,6 +88,7 @@ class UserMenuMobile extends React.Component {
             notificationLinkProps = {title: "Yeni Bildirim!", class: "fas fa-bell lightOnGreen"};
 
         }
+        var iOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
         const {seedActive}  =this.state;
         const {createActive}  =this.state;
@@ -129,6 +130,11 @@ class UserMenuMobile extends React.Component {
                         <span className={"menuIconMobile"}> <i title={notificationLinkProps.title} className={notificationLinkProps.class}/></span>
                         <span className={"menuTitle"} hidden={!notActive}> Bildirim</span>
                     </a>
+                    {iOS &&(
+                        <a onClick={window.history.back}>
+                            <span className={"menuIconMobile"}> <i className="fas fa-backward"/></span>
+                        </a>
+                    )}
                     <span className={"hamburgerButtonMobile"} onClick={this.hamburgerToggle}>
                         {!this.state.hamburgerOpen && (<i className="fas fa-bars"/>)}
                         {this.state.hamburgerOpen && (<i className="fas fa-times"/>)}

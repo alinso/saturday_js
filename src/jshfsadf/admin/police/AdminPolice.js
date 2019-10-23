@@ -27,6 +27,7 @@ class AdminPolice extends React.Component {
         this.updatePoint = this.updatePoint.bind(this);
         this.updateExtraPoint = this.updateExtraPoint.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
+        this.deletePartyVotes=this.deletePartyVotes.bind(this);
     }
 
 
@@ -86,6 +87,13 @@ class AdminPolice extends React.Component {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Bilgiler guncellendi"});
                 self.setState({"userdata": response.data});
+            })
+
+    }
+    deletePartyVotes() {
+        axios.get(Globals.serviceUrl + Globals.adminUrl + 'deletePartyVotes', Security.authHeader())
+            .then(function (response) {
+
             })
 
     }
@@ -163,6 +171,11 @@ class AdminPolice extends React.Component {
                     <div className={"col-md-4 policeButtonDivMobile"}>
                         <button type={"button"} className={"btn btn-warning "} onClick={this.sendMessage}>
                             Toplu Mesaj Gönder
+                        </button>
+                    </div>
+                    <div className={"col-md-4 policeButtonDivMobile"}>
+                        <button type={"button"} className={"btn btn-warning "} onClick={this.deletePartyVotes}>
+                            delete party votes
                         </button>
                     </div>
 
