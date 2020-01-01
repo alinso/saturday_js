@@ -10,7 +10,7 @@ import UserFullNameMobile from "../common/UserFullNameMobile";
 const axios = require('axios');
 
 
-class Top100 extends React.Component {
+class UsersICanVibe extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
@@ -25,7 +25,7 @@ class Top100 extends React.Component {
 
     fillPage() {
         let self = this;
-        axios.get(Globals.serviceUrl + 'user/activityTop100', Security.authHeader())
+        axios.get(Globals.serviceUrl + 'vibe/usersICanVibe', Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({profileDtos: response.data});
@@ -41,15 +41,14 @@ class Top100 extends React.Component {
         return (
             <div className="full-width text-align-left container">
                 <hr/>
-                Bu sıralama <strong>son 3 ay içindeki</strong> en aktif kullanıcıları gösterir. Olumlu izlenim oranı %85 altında kalan kullanıcılar sıralamada yer almaz.
+                Bu liste şimdiye kadar aynı aktivitede bulunduğun ve <strong> oy vermediğin</strong> tüm insanları gösteriyor. Lütfen bu insanlara olumlu veya olumsuz oy ver, böylece aktiviteler öncesi
+                diğer insanlar da fikir sahibi olabilirler. Merak etme, verdiğin cevabı yalnız sen görebilirsin ve dilediğin zaman değiştirebilirsin. Kaliteyi düşürdüğünü
+                düşündüğün veya hoşlanmadığın hesaplara olumsuz oy, tam tersi birlikte vakit geçirmekten keyif aldığın kişilere de olumlu oy verebilirsin.
                 <hr/>
                 {self.state.profileDtos.map((user, i) => {
 
                     return (<div className="full-width searchItemContainer">
                         <div className="half-left">
-                            <div className={"float-left"}>
-                                <h5>{(i + 1)}&nbsp;</h5>
-                            </div>
                             <div className={"float-left"}>
                                 <ProfilePicMobile
                                     userId={user.id}
@@ -59,10 +58,10 @@ class Top100 extends React.Component {
                                 <br/>
 
                                 <strong>
-                                {user.userPremium && (
-                                    <span><i className="far fa-check-circle"/>&nbsp;</span>
-                                )}
-                                {user.name }</strong>
+                                    {user.userPremium && (
+                                        <span><i className="far fa-check-circle"/>&nbsp;</span>
+                                    )}
+                                    {user.name }</strong>
 
 
                             </div>
@@ -80,4 +79,4 @@ class Top100 extends React.Component {
     }
 }
 
-export default Top100;
+export default UsersICanVibe;

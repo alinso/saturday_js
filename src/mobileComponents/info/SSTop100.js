@@ -10,7 +10,7 @@ import UserFullNameMobile from "../common/UserFullNameMobile";
 const axios = require('axios');
 
 
-class Top100 extends React.Component {
+class SSTop100 extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
@@ -25,7 +25,7 @@ class Top100 extends React.Component {
 
     fillPage() {
         let self = this;
-        axios.get(Globals.serviceUrl + 'user/activityTop100', Security.authHeader())
+        axios.get(Globals.serviceUrl + 'user/socialScoreTop100', Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({profileDtos: response.data});
@@ -40,8 +40,11 @@ class Top100 extends React.Component {
         let self = this;
         return (
             <div className="full-width text-align-left container">
+                <a href={"/activityTop100"}>EN AKTİF 100 LİSTESİ İÇİN TIKLA</a>
+
                 <hr/>
-                Bu sıralama <strong>son 3 ay içindeki</strong> en aktif kullanıcıları gösterir. Olumlu izlenim oranı %85 altında kalan kullanıcılar sıralamada yer almaz.
+                Bu sıralama kullanıcıların sosyal skorunu gösterir.
+                Sosyal skor algoritması sistemdeki verileri kullanarak, tanışma öncesi kullanıcılarla ilgili fikir vermeye çalışan puanlama sistemidir.
                 <hr/>
                 {self.state.profileDtos.map((user, i) => {
 
@@ -59,17 +62,30 @@ class Top100 extends React.Component {
                                 <br/>
 
                                 <strong>
-                                {user.userPremium && (
-                                    <span><i className="far fa-check-circle"/>&nbsp;</span>
-                                )}
-                                {user.name }</strong>
+                                    {user.userPremium && (
+                                        <span><i className="far fa-check-circle"/>&nbsp;</span>
+                                    )}
+                                    {user.name }</strong>
 
 
                             </div>
                         </div>
                         <div className={"half-left"}>
                             <h5>{UserUtil.translateGender(user.gender)} / {user.age}</h5>
-                            <h4>{user.point} <i className="far fa-star"/></h4>
+                            {user.socialScore>0 &&(
+
+
+                                <div className="progress">
+                                    <div className="progress-bar-striped bg-info" role="progressbar"
+                                         style={{width: (user.socialScore /10)+ '%',color:"white"}} aria-valuenow={user.socialScore}
+                                         aria-valuemin="0" aria-valuemax="1000">{user.socialScore}
+                                    </div>
+                                </div>
+                            )}
+                            {user.socialScoree===-1 && this.user.socialScore!== 3212 &&(
+                                <h6><strong><i className="fas fa-glass-cheers"/></strong>Yeterli veri yok</h6>
+
+                            )}
                         </div>
                         <div className={"clear-both"}/>
                     </div>)
@@ -80,4 +96,4 @@ class Top100 extends React.Component {
     }
 }
 
-export default Top100;
+export default SSTop100;

@@ -52,7 +52,7 @@ class ReviewFormMobile extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        if (!window.confirm("Yorumlar silinemez ve düzenlenemez, kaydetmek istediğinizden emin misiniz?"))
+        if (!window.confirm("Yorumu kaydetmek istediğinden emin  misin?"))
             return false;
 
         const reference = {
@@ -97,7 +97,7 @@ class ReviewFormMobile extends React.Component {
             .then(function (response) {
                 //we have met
                 if (response.data) {
-                    const label = self.state.profileDto.name + " ile buluştunuz, nasıl bir deneyimdi referans olur musunuz? yorumlar silinemez ve düzenlenemez";
+                    const label = self.state.profileDto.name + " ile buluştun, hakkında neler söylemek istersin. Yorumu istediğin zama silebilir ve yeniden yazabilirsin.";
                     self.setState({label: label});
                     self.setState({"canItext":true});
                 }
@@ -116,7 +116,7 @@ class ReviewFormMobile extends React.Component {
         let {label} = this.state;
         if (this.state.saved) {
             disabled = true;
-            label = "Yorumunuz kaydedildi, topluluğumuza katkıda bulunduğunuz için teşekür ederiz";
+            label = "Yorumun kaydedildi, topluluğumuza katkıda bulunduğun için teşekür ederiz";
         }
 
         return (

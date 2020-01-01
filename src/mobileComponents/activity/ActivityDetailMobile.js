@@ -108,7 +108,7 @@ class ActivityDetailMobile extends React.Component {
                             Katıl</a></h5>
                         <hr/>
                         Aktiviteye Katılanlar<br/>
-                        <span className={"messageWarning"}>Katılımcı değilsen kimseyi göremezsin</span>
+                        <span className={"messageWarning"}>Yalnız Gold üyeler ve onaylanmıs katılımcılar diğer katılımcıları görebilir</span>
                         {(activity.requests) &&
                         activity.requests.map(function (request) {
                             return (

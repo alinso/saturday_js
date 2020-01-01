@@ -240,6 +240,7 @@ class RegisterMobile extends React.Component {
                         </div>
 
                     </div>
+                    {this.state.gender==="MALE" && (
                         <div className="form-group">
                             <input
                                 type="text"
@@ -257,6 +258,7 @@ class RegisterMobile extends React.Component {
                                 </div>
                             )}
                         </div>
+                    )}
 
                     <div className={"userTermsMobile"}>
                     <input className={"float-left"} name={"userGuide"} onClick={this.toggleCheckBox} type={"checkbox"}/>

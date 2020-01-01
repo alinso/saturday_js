@@ -65,6 +65,7 @@ class HelpMobile extends React.Component {
                 gönderme <br/>
                 <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Aktivitene sınırsız istek
                 alabilme <br/>
+                <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Aktiviteye istek atmadan önce katılımcıları görebilme<br/>
 
                 (Aylık : 29.90₺ / 3 aylık : 79.90₺)
             </div>

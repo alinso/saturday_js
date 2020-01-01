@@ -93,6 +93,8 @@ import MessageActivityPageMobile from "./mobileComponents/messageActivity/Messag
 import ConversationsActivityMobile from "./mobileComponents/messageActivity/ConversationsActivityMobile";
 import AdminComplaints from "./jshfsadf/admin/police/AdminComplaints";
 import BatmanPolice from "./jshfsadf/batman/BatmanPolice";
+import UsersICanVibe from "./mobileComponents/info/UsersICanVibe";
+
 
 const isMobile = require('is-mobile');
 require("./pc.css");
@@ -193,7 +195,7 @@ class App extends Component {
                     {<Route exact path="/uhktybb/discoverList" component={ADiscoverList}/>}
                     {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
                     {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
-                    {<Route exact path="/xbatmany" component={BatmanPolice}/>}
+                    {<Route exact path="/oldbatmanassss" component={BatmanPolice}/>}
                     {<Route exact path="/uhktybb/premium" component={PremiumForm}/>}
 
 
@@ -261,6 +263,7 @@ class App extends Component {
                         {<Route exact path="/help2/" component={HelpMobile2}/>}
                         {<Route exact path="/top100/" component={Top100}/>}
 
+
                         {<Route exact path="/complain/:id/" component={ComplainMobile}/>}
                         {<Route exact path="/discover/" component={DiscoverMobile}/>}
 
@@ -270,7 +273,8 @@ class App extends Component {
                         {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
                         {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
                         {<Route exact path="/uhktybb/premium" component={PremiumFormMobile}/>}
-                        {<Route exact path="/xbatmany" component={BatmanPolice}/>}
+                        {<Route exact path="/usersICanVibe" component={UsersICanVibe}/>}
+
 
 
                         {this.setMobileMenu()}

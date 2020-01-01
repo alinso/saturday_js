@@ -298,9 +298,12 @@ class ProfileMobile extends React.Component {
                         </a><br/>
 
                         <h5>{this.state.gender} / {this.state.age}</h5>
-                        <h4>{this.state.point} <i className="far fa-star"/></h4>
+
+                        <h6>{this.state.point}  <i className="far fa-star"/></h6>
+
                     </div>
                     <div className={"clear-both"}/>
+
                 </div>
                 <div className={"full-width"}>
                     <div className={"half-left"}>
@@ -356,8 +359,23 @@ class ProfileMobile extends React.Component {
                     {this.state.vibePercent === 0 && (
                         <span>Yeterli veri yok!</span>
                     )}
-
                     <hr/>
+                    {/*<h5>Sosyal Skor</h5>*/}
+                    {/*{this.state.socialScore>0 &&(*/}
+
+
+                    {/*    <div className="progress">*/}
+                    {/*        <div className="progress-bar-striped bg-info" role="progressbar"*/}
+                    {/*             style={{width: (this.state.socialScore /10)+ '%',color:"white"}} aria-valuenow={this.state.socialScore}*/}
+                    {/*             aria-valuemin="0" aria-valuemax="1000">{this.state.socialScore}*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
+                    {/*{this.state.socialScore===-1 && this.state.socialScore!== 3212 &&(*/}
+                    {/*    <h6><strong><i className="fas fa-glass-cheers"/></strong>Yeterli veri yok</h6>*/}
+
+                    {/*)}*/}
+                    {/*<hr/>*/}
                 </div>
                 {this.state.attendPercent != null && (
                     <div>
@@ -449,17 +467,17 @@ class ProfileMobile extends React.Component {
                 )}
                 <div className={"full-width text-align-center"}>
                     <div className="profileTitleMobileDiv">
-                        <a className="profileTitleMobile" href={"/album/" + this.props.match.params.id}>
+                        <a className="profilePhotoReviewActivity" href={"/album/" + this.props.match.params.id}>
                             Fotoğraflar
                         </a>
                     </div>
                     <div className="profileTitleMobileDiv">
-                        <a className="profileTitleMobile" href={"/reviews/" + this.props.match.params.id}>
+                        <a className="profilePhotoReviewActivity" href={"/reviews/" + this.props.match.params.id}>
                             Yorumlar
                         </a>
                     </div>
                     <div className="profileTitleMobileDiv">
-                        <a className="profileTitleMobile"
+                        <a className="profilePhotoReviewActivity"
                            href={"/userActivities/" + this.props.match.params.id}>
                             Aktiviteler
                         </a>

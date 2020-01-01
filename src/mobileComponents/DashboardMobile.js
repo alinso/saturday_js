@@ -195,14 +195,21 @@ class DashboardMobile extends BaseActivityListMobile {
                     <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
 
                     <hr/>
-                    <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>
+                    <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/>
                     <strong><a href={"/help"}><span className="goldCheck"><i
                         className="far fa-check-circle"/>&nbsp;</span> Premium Hakkında
                         Bilgilendirme</a></strong><br/><br/>
 
+                    <hr/>
+                    <span>İlgini çeken bir aktivite bulamadın mı, o zaman kendi aktiviteni oluştur</span><br/>
+                    <a href="/createActivity"><button className={"btn btn-primary"}>Yeni aktivite</button></a>
+                    <hr/>
+
+                    <a href={"/usersICanVibe"}><button className={"btn btn-danger"}><strong> Tanıştığın kişilere oy ver!</strong></button></a>
+                    <hr/>
                     {/*<strong><a href={"/createActivity"}><i className="fas fa-hashtag"/>İlgi alanında bir aktivite yoksa, sen henüz açmadığın içindir. Şimdi harekete geç</a></strong><br/>*/}
 
-                    {this.state.sponsor && (
+                    {this.state.sponsor && localStorage.getItem("cityId")!="4" && (
                         <div className={"activityListActivityDetailMobile"}>
                             {this.state.sponsor.photoName != null &&
                             (<img src={'/upload/' + this.state.sponsor.photoName} width={"100%"}/>)

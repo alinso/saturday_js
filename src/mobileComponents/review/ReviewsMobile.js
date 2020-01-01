@@ -15,13 +15,31 @@ class ReviewsMobile extends React.Component {
         Security.protect();
         UserUtil.redirectIsBlocked(this.props.match.params.id);
 
+
         this.state = {
             reviews: [],
             profileDto: {},
-            erorrs: {}
+            erorrs: {},
         };
 
+        this.deleteReview=this.deleteReview.bind(this);
         this.fillPage();
+
+    }
+
+    deleteReview(id) {
+
+        const self = this;
+        if (!window.confirm("Bu yorumu silecek misin?"))
+            return;
+
+        axios.get(Globals.serviceUrl+"review/delete/" + id, Security.authHeader())
+            .then(res => {
+                window.location.reload();
+            }).catch(function (error) {
+            alert(error.response.data.userWarningMessage);
+
+        });
     }
 
     fillPage() {
@@ -51,6 +69,7 @@ class ReviewsMobile extends React.Component {
 
     render() {
         const self = this;
+        let loggedUserIdx = localStorage.getItem("userId");
 
         return (
             <div className=" full-width container">
@@ -88,7 +107,14 @@ class ReviewsMobile extends React.Component {
                                     {/*{!review.positive && (<strong className={"negativeReview"}><i*/}
                                     {/*    className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}*/}
                                     {review.review}
+<br/>
+                                    {(review.reader.id==loggedUserIdx || review.writer.id==loggedUserIdx)
+                                     && (
+                                        <button onClick={()=>self.deleteReview(review.reviewId)} className={"btn btn-danger"}> Yorumu Sil</button>
+                                    )
+                                    }
                                 </div>
+
                                 <div className={"clear-both"}> </div>
                             </div>
                         );

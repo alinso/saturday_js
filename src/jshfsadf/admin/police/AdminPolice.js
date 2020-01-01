@@ -25,6 +25,7 @@ class AdminPolice extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.getInfo = this.getInfo.bind(this);
         this.updatePoint = this.updatePoint.bind(this);
+        this.updateScore = this.updateScore.bind(this);
         this.updateExtraPoint = this.updateExtraPoint.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.deletePartyVotes=this.deletePartyVotes.bind(this);
@@ -69,6 +70,19 @@ class AdminPolice extends React.Component {
     updatePoint() {
         let self = this;
         axios.get(Globals.serviceUrl  + 'xbatmany/updatePoint/', Security.authHeader())
+            .then(function (response) {
+                self.setState({"errors": {}});
+                self.setState({"savedMessage": "Bilgiler guncellendi"});
+                self.setState({"userdata": response.data});
+            })
+            .catch(function (error) {
+                self.setState({"errors": error.response.data});
+                self.setState({isSubmitDisabled: false});
+            });
+    }
+    updateScore() {
+        let self = this;
+        axios.get(Globals.serviceUrl  + 'xbatmany/updateScore/', Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({"savedMessage": "Bilgiler guncellendi"});
@@ -166,6 +180,11 @@ class AdminPolice extends React.Component {
                     <div className={"col-md-4 policeButtonDivMobile"}>
                         <button type={"button"} className={"btn btn-warning "} onClick={this.updatePoint}>
                             Puan güncelle
+                        </button>
+                    </div>
+                    <div className={"col-md-4 policeButtonDivMobile"}>
+                        <button type={"button"} className={"btn btn-warning "} onClick={this.updateScore}>
+                            Skor güncelle
                         </button>
                     </div>
                     <div className={"col-md-4 policeButtonDivMobile"}>

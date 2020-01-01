@@ -145,11 +145,11 @@ class BatmanPolice extends React.Component {
                                         onChange={this.onChange}
                                     />
                                 </div>
-                                <div className={"col-md-4  policeButtonDivMobile"}>
-                                    <button  type={"button"} className={"btn btn-warning "} onClick={this.updateExtraPoint}>
-                                        Exra Puanı Değiştir
-                                    </button>
-                                </div>
+                                {/*<div className={"col-md-4  policeButtonDivMobile"}>*/}
+                                {/*    <button  type={"button"} className={"btn btn-warning "} onClick={this.updateExtraPoint}>*/}
+                                {/*        Exra Puanı Değiştir*/}
+                                {/*    </button>*/}
+                                {/*</div>*/}
                                 <div className={"col-md-4 policeButtonDivMobile"}>
                                     <button type={"button"} className={"btn btn-warning "} onClick={()=>this.db('invalidName')}>
                                         Geçersiz İsim

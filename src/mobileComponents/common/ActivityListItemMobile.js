@@ -35,7 +35,18 @@ class ActivityListItemMobile extends React.Component {
                     <UserFullNameMobile
                         user={this.props.activity.profileDto}
                     />
-                    <h6>{this.props.activity.profileDto.point} <i className="far fa-star"/></h6>
+{/*                    {this.props.activity.profileDto.socialScore>0 &&(*/}
+{/*                        <div className="progress" style={{width:"50%"}}>*/}
+{/*                            <div className="progress-bar-striped bg-info" role="progressbar"*/}
+{/*                                 style={{width: (this.props.activity.profileDto.socialScore /10)+ '%',color:"white"}} aria-valuenow={this.props.activity.profileDto.socialScore}*/}
+{/*                                 aria-valuemin="0" aria-valuemax="1000">{" "+this.props.activity.profileDto.socialScore}*/}
+{/*                            </div>*/}
+{/*                        </div>*/}
+{/*                    )}*/}
+{/*                    {this.props.activity.profileDto.socialScore===-1 && this.props.activity.profileDto.id!== 3212 &&(*/}
+{/*                        <h6><strong><i className="fas fa-glass-cheers"/></strong>Yeterli veri yok</h6>*/}
+{/*x*/}
+{/*                    )}*/}
                     {((localStorage.getItem("userId") === "3211")
                         || (localStorage.getItem("userId") === "5516")
                     || (localStorage.getItem("userId") === "5633")
@@ -70,6 +81,14 @@ class ActivityListItemMobile extends React.Component {
                             <span>
                                 <i
                                     className="fas fa-envelope"/></span>
+                            </button>
+                        </a>
+                        <a href={"/activityDetail/" + this.props.activity.id}>
+                            <button
+                                className="btn btn-danger activityMessageMobile">
+                            <span>
+                                <i
+                                    className="fas fa-users"/></span>
                             </button>
                         </a>
 

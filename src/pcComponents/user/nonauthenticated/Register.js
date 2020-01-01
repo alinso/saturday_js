@@ -237,7 +237,7 @@ class Register extends React.Component {
                             </div>
 
                         </div>
-
+                        {this.state.gender==="MALE" && (
                             <div className="form-group">
                                 <input
                                     type="text"
@@ -255,6 +255,8 @@ class Register extends React.Component {
                                     </div>
                                 )}
                             </div>
+
+                        )}
 
 
                         <input name={"userGuide"} onClick={this.toggleCheckBox} type={"checkbox"}/>

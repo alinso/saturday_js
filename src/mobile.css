@@ -29,7 +29,7 @@
 .profileMetaMobile {
     width: 200px;
     margin-top: 25px;
-    height: 100px;
+    height: 115px;
 }
 
 .conversationTextMobile {
@@ -50,6 +50,12 @@
     font-weight: bold;
 }
 
+.profilePhotoReviewActivity {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
 .profileTitleMobile:hover {
     text-decoration: none;
     color: blue;
@@ -58,6 +64,9 @@
 .profileTitleMobileDiv {
     float: left;
     padding: 5px;
+    border-radius: 4px;
+    margin: 5px;
+    background-color: #fe8b44;
 }
 .activityMessageMobile{
  float: left;

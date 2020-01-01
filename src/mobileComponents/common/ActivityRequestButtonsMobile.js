@@ -16,7 +16,7 @@ class ActivityRequestButtonsMobile extends React.Component {
                             onClick={() => this.props.joinActivity()}
                             className="btn btn-danger">
                             <span><i
-                                className="fas fa-times"/>&nbsp;iptal et</span>
+                                className="fas fa-times"/>&nbsp;onay bekliyor</span>
                         </button>
                     )}
 

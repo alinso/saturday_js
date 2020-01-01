@@ -131,7 +131,7 @@ class UserMenuMobile extends React.Component {
                         <span className={"menuTitle"} hidden={!notActive}> Bildirim</span>
                     </a>
                     {iOS &&(
-                        <a onClick={window.history.back}>
+                        <a onClick={()=>window.history.back()}>
                             <span className={"menuIconMobile"}> <i className="fas fa-backward"/></span>
                         </a>
                     )}

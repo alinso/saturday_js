@@ -27,6 +27,17 @@ class InfoMobile extends React.Component {
                 <br/>
                 <hr/>
 
+                <h5><i className="fas fa-shield-alt"/>Sosyal Skor</h5>
+                <span>
+                Olumlu-olumsuz izlenim oranı ve yorumlarla birlikte tanışmadan önce aktivitesine katılmayı veya aktivitene dahil etmeyi düşündüğün kullanıcılar
+                    hakkında fikir alabileceğin bir puandır. Sistemdeki verileri kullanarak sonuç üretmeye çalışır.
+                </span>
+
+                <br/>
+                <hr/>
+
+
+
                 <h5><i className="fas fa-align-justify"/> Kurallar</h5>
                 <span>Saygılı ve kibar olunmalı</span><br/>
                 <span>Nefret dili değil, sevgi diliyle konuşulmalı</span><br/>

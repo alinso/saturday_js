@@ -75,7 +75,7 @@ class BaseActivityListMobile extends React.Component {
     deleteActivity(id) {
 
         const self = this;
-        if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
+        if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtin?"))
             return;
 
         axios.get(Globals.serviceUrl+"activity/delete/" + id, Security.authHeader())
