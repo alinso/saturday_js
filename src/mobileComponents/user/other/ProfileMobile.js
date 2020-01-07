@@ -32,7 +32,8 @@ class ProfileMobile extends React.Component {
             vibe: null,
             myVibeOfThisUser: null,
             vibePercent: 0,
-            followerCount:0
+            vibeCount: 0,
+            followerCount: 0
         };
 
         this.follow = this.follow.bind(this);
@@ -102,6 +103,10 @@ class ProfileMobile extends React.Component {
         axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/', Security.authHeader())
             .then(function (response) {
                 self.setState({latestPremiumDate: response.data});
+            });
+        axios.get(Globals.serviceUrl + 'vibe/vibeCountOfUser/' + userId, Security.authHeader())
+            .then(function (response) {
+                self.setState({vibeCount: response.data});
             });
 
 
@@ -299,7 +304,7 @@ class ProfileMobile extends React.Component {
 
                         <h5>{this.state.gender} / {this.state.age}</h5>
 
-                        <h6>{this.state.point}  <i className="far fa-star"/></h6>
+                        <h6>{this.state.point} <i className="far fa-star"/></h6>
 
                     </div>
                     <div className={"clear-both"}/>
@@ -347,7 +352,7 @@ class ProfileMobile extends React.Component {
 
                 <hr/>
                 <div>
-                    <h5> Olumlu izlenim oranı</h5>
+                    <h5> Olumlu izlenim oranı({this.state.vibeCount} oy)</h5>
                     {this.state.vibePercent > 0 && (
                         <div className="progress">
                             <div className="progress-bar progress-bar-striped bg-success" role="progressbar"

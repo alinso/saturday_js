@@ -94,6 +94,7 @@ import ConversationsActivityMobile from "./mobileComponents/messageActivity/Conv
 import AdminComplaints from "./jshfsadf/admin/police/AdminComplaints";
 import BatmanPolice from "./jshfsadf/batman/BatmanPolice";
 import UsersICanVibe from "./mobileComponents/info/UsersICanVibe";
+import InviteMobile from "./mobileComponents/activity/InviteMobile";
 
 
 const isMobile = require('is-mobile');
@@ -262,6 +263,7 @@ class App extends Component {
                         {<Route exact path="/help/" component={HelpMobile}/>}
                         {<Route exact path="/help2/" component={HelpMobile2}/>}
                         {<Route exact path="/top100/" component={Top100}/>}
+                        {<Route exact path="/invite/:activityId" component={InviteMobile}/>}
 
 
                         {<Route exact path="/complain/:id/" component={ComplainMobile}/>}

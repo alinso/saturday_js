@@ -29,12 +29,10 @@ class BaseActivityList extends React.Component {
         axios.get(Globals.serviceUrl + 'vibe/vibePercentOfActivityOwner/' + id, Security.authHeader())
             .then(function (response) {
                 let question="Bu aktiviteye katılmak istediğinden emin misin?";
-                if(response.data<75 &&  response.data >=50 && response.data!==0){
-                    question="Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine katılmak istediğinden emin misin?";
+                if(response.data<75 &&  response.data!==0){
+                    question="Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine KATILMAMANI tavsiye ederiz";
                 }
-                if(response.data<50 && response.data!==0){
-                    question="Bu kişinin OLUMLU İZLENİM ORANI çok düşük, aktivitesine KATILMAMANI tavisye ederiz";
-                }
+
                 if(currentMeetingOld[0].thisUserJoined)
                     question="Bu isteği iptal edeceksin, emin misin?";
 

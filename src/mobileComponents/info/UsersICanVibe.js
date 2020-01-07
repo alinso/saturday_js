@@ -35,15 +35,28 @@ class UsersICanVibe extends React.Component {
             });
     }
 
+    onVibeChanged(vibeType,readerId) {
+        let self = this;
+        let vibeDto = {};
+        vibeDto.readerId = readerId;
+        vibeDto.vibeType = vibeType;
+        vibeDto.writerId = null;
+
+        axios.post(Globals.serviceUrl + 'vibe/save/', vibeDto, Security.authHeader())
+            .then(function (response) {
+                self.fillPage();
+            });
+    }
+
     render() {
 
         let self = this;
         return (
             <div className="full-width text-align-left container">
                 <hr/>
-                Bu liste şimdiye kadar aynı aktivitede bulunduğun ve <strong> oy vermediğin</strong> tüm insanları gösteriyor. Lütfen bu insanlara olumlu veya olumsuz oy ver, böylece aktiviteler öncesi
+                Bu liste oy verebileceğin tüm kullanıcıları gösteriyor. Lütfen bu insanlara olumlu veya olumsuz oy ver, böylece aktiviteler öncesi
                 diğer insanlar da fikir sahibi olabilirler. Merak etme, verdiğin cevabı yalnız sen görebilirsin ve dilediğin zaman değiştirebilirsin. Kaliteyi düşürdüğünü
-                düşündüğün veya hoşlanmadığın hesaplara olumsuz oy, tam tersi birlikte vakit geçirmekten keyif aldığın kişilere de olumlu oy verebilirsin.
+                düşündüğün veya hoşlanmadığın kullanıcılara olumsuz, tam tersi birlikte vakit geçirmekten keyif aldığın kişilere de olumlu oy vermelisin.
                 <hr/>
                 {self.state.profileDtos.map((user, i) => {
 
@@ -68,7 +81,26 @@ class UsersICanVibe extends React.Component {
                         </div>
                         <div className={"half-left"}>
                             <h5>{UserUtil.translateGender(user.gender)} / {user.age}</h5>
-                            <h4>{user.point} <i className="far fa-star"/></h4>
+                        </div>
+                        <div className={"half-left"}>
+                            <div className={"full-width"}>
+                                <div className="form-group">
+                                    <label className="customRadioLabelMobile">Olumlu&nbsp;</label>
+                                    <input type="radio"
+                                           name={"myVibeOfThisUser"+user.id}
+                                           checked={user.myVibe=="POSITIVE"}
+                                           onChange={() => this.onVibeChanged("POSITIVE",user.id)}
+                                           className="customRadio"
+                                    />&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label className="customRadioLabelMobile">Olumsuz&nbsp;</label>
+                                    <input type="radio"
+                                           name={"myVibeOfThisUser"+user.id}
+                                           onChange={() => this.onVibeChanged("NEGATIVE",user.id)}
+                                           checked={user.myVibe==="NEGATIVE"}
+                                           className="customRadio"
+                                    />
+                                </div>
+                            </div>
                         </div>
                         <div className={"clear-both"}/>
                     </div>)

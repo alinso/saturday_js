@@ -33,11 +33,8 @@ class BaseActivityListMobile extends React.Component {
 
 
                     let question="Bu aktiviteye katılmak istediğinden emin misin?";
-                    if(response.data<75 &&  response.data >=50 && response.data!==0){
-                         question="Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine katılmak istediğinden emin misin?";
-                    }
-                    if(response.data<50 && response.data!==0){
-                        question="Bu kişinin OLUMLU İZLENİM ORANI çok düşük, aktivitesine KATILMAMANI tavisye ederiz";
+                    if(response.data<75 && response.data!==0){
+                        question="Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine KATILMAMANI tavsiye ederiz";
                     }
 
 

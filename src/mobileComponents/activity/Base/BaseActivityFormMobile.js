@@ -161,7 +161,6 @@ class BaseActivityFormMobile extends React.Component {
             <div className={"full-width container"}>
                 <h4> Aktivite Oluştur</h4>
                 <span>Bugünlerde ne planlıyorsun, her ne yapmak istiyorsan bizimle paylaş, birlikte yapalım!</span><br/>
-                <span> İç mekan(cafe) aktivitelerini Dance Cafe'de açarak bize destek olabilirsin.</span>
 
                 {photoName && (
                     <img className={"meetingFormPhoto"} src={"/upload/" + photoName}/>

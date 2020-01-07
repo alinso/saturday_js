@@ -22,6 +22,20 @@ class NotificationsMobile extends React.Component {
         this.fillPage();
     }
 
+    toMessage(id,notId){
+        axios.get(Globals.serviceUrl+'notification/delete/'+notId, Security.authHeader())
+            .then(function (response) {
+                window.location="/message/"+id;
+            });
+    }
+
+    toMessageActivity(id,notId){
+        axios.get(Globals.serviceUrl+'notification/delete/'+notId, Security.authHeader())
+            .then(function (response) {
+                window.location="/messageActivity/"+id;
+            });
+    }
+
     fillPage() {
 
         if(localStorage.getItem("userId")==="5635")
@@ -42,6 +56,16 @@ class NotificationsMobile extends React.Component {
 
     }
 
+
+    newInvite(id) {
+        return (
+            <span>
+            seni <a href={"/activityDetail/" + id}>AKTİVİTESİNE</a> davet ediyor, ilgini çekebilir.
+            </span>
+        )
+    }
+
+
     newRequestText(id) {
         return (
             <span>
@@ -50,17 +74,17 @@ class NotificationsMobile extends React.Component {
         )
     }
 
-    newMessageText(id) {
+    newMessageText(id,notId) {
         return (
             <span>
-                sana bir <a href={"/message/"+id}>BİR MESAJ</a> gönderdi.
+                sana bir <strong onClick={()=> this.toMessage(id,notId)}>BİR MESAJ</strong> gönderdi.
             </span>
         )
     }
-    newMessageActivityText(id) {
+    newMessageActivityText(id,notId) {
         return (
             <span>
-                <strong>GRUBA</strong> bir <a href={"/messageActivity/"+id}>BİR MESAJ</a> gönderdi.
+                GRUBA bir <strong onClick={()=>this.toMessageActivity(id,notId)}>BİR MESAJ</strong> gönderdi.
             </span>
         )
     }
@@ -148,14 +172,17 @@ class NotificationsMobile extends React.Component {
                                     self.newRequestText(not.message)
                                     }
                                     {(not.notificationType === "MESSAGE") &&
-                                    self.newMessageText(not.trigger.id)
+                                        self.newMessageText(not.trigger.id,not.id)
                                     }
                                     {(not.notificationType === "MESSAGE_ACTIVITY") &&
-                                    self.newMessageActivityText(not.message)
+                                        self.newMessageActivityText(not.message,not.id)
                                     }
 
                                     {(not.notificationType === "REVIEW") &&
                                     self.newReviewText(not.message)
+                                    }
+                                    {(not.notificationType === "INVITATION") &&
+                                    self.newInvite(not.message)
                                     }
                                     {(not.notificationType === "REQUEST_APPROVAL") &&
                                     self.newRequestApprovalText(not.message)
