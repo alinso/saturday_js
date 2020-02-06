@@ -11,7 +11,7 @@ class LandingMobile extends Component {
                 </div>
 
                 <br/>
-                <img src={"/img/site-logo-purple.png"}/>
+                <img src={"/img/site-logo-purple2.png"}/>
                 <div className={"col-md-6 m-auto"}>
                     <hr/>
                 </div>
@@ -27,8 +27,8 @@ class LandingMobile extends Component {
                 </div>
                 <div className={"clear-both"}/>
                 <br/>
-                <h5 className={"m-auto"}>Ücretsiz kaydol ve her hafta açılan yüzlerce aktiviteyi kaçırma! Veya tüm aktivitelerinde sana eşlik edebilecek insanlar
-                    bul</h5>
+                <h5 className={"m-auto"}>Ankara'da bireysel kullanıcılar tarafından her hafta açılan yüzlerce aktiviteyi görmek yeya herhangi bir aktivitende sana eşlik edebilecek insanlar
+                    bulmak için hemen kaydol!</h5>
                 <div className={"full-width"}>
                     <hr/>
                     <div className={"full-width"}>
@@ -39,20 +39,18 @@ class LandingMobile extends Component {
                                 <i className="fas fa-theater-masks"/>&nbsp;&nbsp;
                                 <i className="fas fa-chess"/>
                             </div>
-                            Dışarı çıkmak, sinemaya, konsere gitmek veya haftasonu göl kıyısında
-                            bisiklet sürmek istediğinde bazen yalnız kaldığın olmuştur.
-                            Activity Friend sayesinde dilediğin zaman yapmak istediklerini paylaşabilir ve planında
+                            Dışarı çıkmak, sinemaya, konsere gitmek, dans eğitimi almak veya haftasonu göl kıyısında
+                            bisiklet sürmek istediğinde bazen arkadaşların sana eşlik edememişlerdir.
+                            Activuss sayesinde dilediğin zaman yapmak istediklerini paylaşabilir ve planında
                             dahil olmak isteyen birçok insana ulaşabilirsin.
                             Sen de aynı şekilde insanların aktivitelerini görebilir ve onlara dahil
                             olabilirsin<br/><br/>
-                            Activity Friend'in en önemli taraflarından biri de içeriğindeki insan kalitesini çok
-                            ciddiye almasıdır. <strong>NEZİH VE GÜVENLİ BİR ORTAM OLMASINI İSTİYORUZ</strong> Geniş değil, doğru kitleye ulaşmaya çalışıyoruz. Activity Friend'de kadın
-                            ve erkek kullanıcı sayısı dengelidir. Kullanıcılarla
-                            ilgili yazılan yorum ve puanları inceleyip aktivitelerini
-                            güvenle paylaşabilirsin.
+                            Activuss olarak topluluğumuzdaki insan kalitesini yüksek tutmak için gereken her şeyi yaptık. <strong>NEZİH VE GÜVENLİ BİR PLATFORM YARATTIK. </strong> Çok güçlü oylama ve yorum sistemimiz sayesinde belirli bir kalitenin üzerinde
+                            bir kullanıcı kitlemiz var. Ayrıca kuralları ve işleyişi kadın dostu olarak tasarladık. Ankaralı kullanıcılar için verilen 20.000'den fazla oyu, yorum ve puanları inceleyip aktivitelerini
+                            güvenle paylaşabilir veya başkalarına katılabilirsin.
                         </div>
                         <hr/>
-                        <a href={"https://www.instagram.com/activityfriend/"}>
+                        <a href={"https://www.instagram.com/activuss/"}>
                         <button className={"btn btn-danger"}><strong><i className="fab fa-instagram"/> instagram sayfamıza göz at</strong></button>
                         </a>
                         <hr/>
@@ -61,31 +59,28 @@ class LandingMobile extends Component {
                         <img src={"/img/landing_middle.png"} className={"full-width"}/>
                     </div>
                 </div>
-                <h4 className={"landingTitle"}>Özellikler</h4>
-                <hr/>
+
                 <div className={"full-width landingText"}>
                     <h1><i className="far fa-gem"/></h1>
-                    Kaliteli bir Topluluk!<br/>
-                    Sıradan bir kalabalık değil; saygılı, kültürlü insanlardan oluşan bir platform
-                    olmayı hedefliyoruz.
+                    <span className={"landingTextTitle"}>Kaliteli bir Topluluk!</span><br/>
+                    Sıradan bir kalabalık değil; saygılı, kültürlü insanlardan oluşan bir platform. Ortak ilgi alanları çevresinde buluşan şehrin harika insanları burada!
                 </div>
                 <div className={"full-width landingText"}>
                     <h1><i className="fas fa-venus-mars"/></h1>
-                    Kadın-Erkek Sayısı!<br/>
-                    Hemen her ortamda bir cinsiyetin ezici çoğunlukta olduğu ülkemizde, kadın-erkek
-                    sayısını dengeleyen örnek bir sistem olmayı hedefliyoruz.
+                    <span className={"landingTextTitle"}>Kadın-Erkek Sayısı!</span><br/>
+                    Hemen her ortamda bir cinsiyetin ezici çoğunlukta olduğu ülkemizde, tam tersini başaran, kadınların söz sahibi ve çoğunlukta olduğu örnek bir topluluk.
                 </div>
 
                 <div className={"full-width landingText"}>
                     <h1><i className="fas fa-user-check"/></h1>
-                    Puanlama ve Olumlu/Olumsuz oylama!<br/>
+                    <span className={"landingTextTitle"}>Puanlama ve Oylama!</span><br/>
                     Kullanıcı puanlama sistemi ve olumlu/olumusuz geri dönüşler yardımıyla ilgi alanlarına uygun
                     güvenilir kişileri seçebilirsin.
                 </div>
                 <div className={"full-width landingText"}>
                     <h1><i className="fas fa-crown"/></h1>
-                    İki Kat Eğlence!<br/>
-                    Konser, piknik, rakı-balık, kahve falı, yürüyüş, karaoke, paraşüt... Her ne yapmak istiyorsan
+                    <span className={"landingTextTitle"}>İki Kat Eğlence!</span><br/>
+                    Konser, piknik,fotoğrafçılık, yürüyüş, karaoke, paraşüt, kahve, resim, dans, tiyatro... Her ne yapmak istiyorsan
                     birlikte yapalım, eğlenceyi ikiye katlayalım.
                 </div>
                 <br/>
@@ -95,12 +90,12 @@ class LandingMobile extends Component {
                     <div className={"landing_parallax"}>
                         <div className={"landing_parallax_textMobile"}>
                             Sosyal medya yalnızlaştırır!<br/>
-                            Activity Friend sosyalleştirir.
+                            Activuss sosyalleştirir.
                         </div>
                     </div>
                     <br/>
                 </div>
-                <h4 className={"landingTitle"}>Activity Friend Nasıl Çalışır?</h4>
+                <h4 className={"landingTitle"}>Activuss Nasıl Çalışır?</h4>
                 <hr/>
                 <div className={" howitworks1"}>
                     <h4><i className="far fa-play-circle"/> hareketi başlat.</h4>
@@ -135,8 +130,8 @@ class LandingMobile extends Component {
                 <br/><br/><br/>
                 <hr/>
                 <div className={"text-align-left landingText "}>
-                    <div className={"col-md-4"}><h6><i className="fab fa-instagram"/>/activityfriend</h6></div>
-                    <div className={"col-md-4"}><h6><i className="far fa-envelope"/> mail@activityfriend.net
+                    <div className={"col-md-4"}><h6><i className="fab fa-instagram"/>/activuss</h6></div>
+                    <div className={"col-md-4"}><h6><i className="far fa-envelope"/> mail@activuss.com
                     </h6></div>
                 </div>
             </div>

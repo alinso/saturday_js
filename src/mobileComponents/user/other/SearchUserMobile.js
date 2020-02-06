@@ -37,8 +37,12 @@ class SearchUserMobile extends React.Component {
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
 
+        let searchText = this.state.searchText;
+         searchText = searchText.replace(" ","");
+
+
         if (this.state.type === "NAME")
-            axios.get(Globals.serviceUrl + 'user/search/' + this.state.searchText +"/"+ newPageNum)
+            axios.get(Globals.serviceUrl + 'user/search/' + searchText +"/"+ newPageNum)
                 .then(function (response) {
                     if (response.data.length === 0) {
                         self.setState({noMoreRecords: true});
@@ -52,7 +56,7 @@ class SearchUserMobile extends React.Component {
 
 
         if (this.state.type === "HASHTAG")
-            axios.get(Globals.serviceUrl + 'hashtag/findUsers/' +  this.state.searchText +"/"+ newPageNum)
+            axios.get(Globals.serviceUrl + 'hashtag/findUsers/' +  searchText +"/"+ newPageNum)
                 .then(function (response) {
                     if (response.data.length === 0) {
                         self.setState({noMoreRecords: true});
@@ -68,6 +72,8 @@ class SearchUserMobile extends React.Component {
 
 
     searchUser(searchTerm) {
+        searchTerm = searchTerm.replace(" ","");
+
         let self = this;
         if (this.state.type === "NAME")
             axios.get(Globals.serviceUrl + 'user/search/' + searchTerm + "/" + this.state.pageNum)

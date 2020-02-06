@@ -21,6 +21,10 @@ class UserFullName extends React.Component {
 
                         <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                     )}
+                    {self.props.user.premiumType==="ORGANIZATOR" &&(
+
+                        <span className={'proCheck'}><i className="fas fa-certificate"/>&nbsp;</span>
+                    )}
 
                     {this.props.user.name + " " + this.props.user.surname}</strong>
             </a></div>

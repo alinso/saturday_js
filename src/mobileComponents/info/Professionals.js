@@ -10,7 +10,7 @@ import UserFullNameMobile from "../common/UserFullNameMobile";
 const axios = require('axios');
 
 
-class Top100 extends React.Component {
+class Professionals extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
@@ -25,7 +25,7 @@ class Top100 extends React.Component {
 
     fillPage() {
         let self = this;
-        axios.get(Globals.serviceUrl + 'user/activityTop100', Security.authHeader())
+        axios.get(Globals.serviceUrl + 'premium/professionals', Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
                 self.setState({profileDtos: response.data});
@@ -41,12 +41,14 @@ class Top100 extends React.Component {
         return (
             <div className="full-width text-align-left container">
                 <hr/>
-                Bu sıralama tüm zamanların en yüksek puanlı kullanıcılarını gösterir. Olumlu izlenim oranı %85 altında kalan kullanıcılar sıralamada yer almaz.
+                Bu liste Activuss içerisinde her biri alanında uzman, eğitim ve organizasyon düzenleyen arkadaşlarımızı gösteriyor. Tanıdığımız, bildiğimiz kişilerden oluşan bu ekibimizin etkinliklerine
+                güvenle katılabilir, profillerini inceleyerek daha fazla bilgi edinebilirsin. Activuss "her aktivitende sana eşlik edecek insanlar bul" temelini kaybetmeden, kaliteli etkinliklerin-organizasyonaların
+                da düzenlendiği, eğitimlerin de verildiği bir platform oluyor. Bu nedenle profesyonel kullanıcı sayısını şimdilik 10 kişi ile sınırlı tutuyoruz.
                 <hr/>
                 {self.state.profileDtos.map((user, i) => {
 
                     return (<div className="full-width searchItemContainer">
-                        <div className="half-left">
+
                             <div className={"float-left"}>
                                 <h5>{(i + 1)}&nbsp;</h5>
                             </div>
@@ -58,19 +60,9 @@ class Top100 extends React.Component {
                                 />
                                 <br/>
 
-                                <strong>
-                                {user.userPremium && (
-                                    <span><i className="far fa-check-circle"/>&nbsp;</span>
-                                )}
-                                {user.name }</strong>
-
-
+                                <strong>{user.name +" "+user.surname}</strong><br/>
+                                <span>{user.title}</span>
                             </div>
-                        </div>
-                        <div className={"half-left"}>
-                            <h5>{UserUtil.translateGender(user.gender)} / {user.age}</h5>
-                            <h4>{user.point} <i className="far fa-star"/></h4>
-                        </div>
                         <div className={"clear-both"}/>
                     </div>)
                 })}
@@ -80,4 +72,4 @@ class Top100 extends React.Component {
     }
 }
 
-export default Top100;
+export default Professionals;

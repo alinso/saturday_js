@@ -49,7 +49,11 @@ class InviteMobile extends React.Component {
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
 
-        axios.get(Globals.serviceUrl + 'user/search/' + this.state.searchText + "/" + newPageNum, Security.authHeader())
+        let searchText = this.state.searchText;
+        searchText = searchText.replace(" ","");
+
+
+        axios.get(Globals.serviceUrl + 'user/search/' + searchText + "/" + newPageNum, Security.authHeader())
             .then(function (response) {
                 if (response.data.length === 0) {
                     self.setState({noMoreRecords: true});
@@ -64,6 +68,7 @@ class InviteMobile extends React.Component {
 
 
     searchUser(searchTerm) {
+        searchTerm = searchTerm.replace(" ","");
         let self = this;
         axios.get(Globals.serviceUrl + 'user/search/' + searchTerm + "/" + this.state.pageNum, Security.authHeader())
             .then(function (response) {

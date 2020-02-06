@@ -54,13 +54,13 @@ class InfoMobile extends React.Component {
 
                 <hr/>
                 <h5><i className="fas fa-medal"/> Puanlama</h5>
-                <span>Activity Friend kişiler hakkında size buluşma öncesi fikir vermek istiyor. Bu yüzden bir puanlama ve yorum sistemimiz var.<br/>
+                <span>Activuss kişiler hakkında size buluşma öncesi fikir vermek istiyor. Bu yüzden bir puanlama ve yorum sistemimiz var.<br/>
                         Biriyle yaptığınız bir aktiviteden 1 saat sonra o kişi hakkında <strong>aktivite yorumu</strong> yapabilirsiniz. Puanlar ise uygulamamın doğru kullanımı,
                     topluluğa katma değer katacak davranışlara paralel olarak belirli bir formül dahilinde artıyor.
                     </span>
                 <hr/>
                 <h5><i className="fas fa-cogs"/> İşleyiş</h5>
-                <span>Activity Friend işleyişi aşırı derecede basittir, çünkü ekran başında değil dışarıda gerçek insanlarla sosyalleşmenizi istiyoruz.
+                <span>Activuss işleyişi aşırı derecede basittir, çünkü ekran başında değil dışarıda gerçek insanlarla sosyalleşmenizi istiyoruz.
                     Yapmak istediğinizi toplulukla paylaşırsınız, gelmek isteyenler istek gönderir, dilediğiniz onaylar ve iletişime geçersiniz. Gönderilen istekleri
                         sadece aktiviteyi paylaşan ve istek gönderen kişi görür.<br/>
 

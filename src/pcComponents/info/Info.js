@@ -41,14 +41,14 @@ class Info extends React.Component {
 
                     <br/><hr/>
                     <h5><i className="fas fa-medal"/> Puanlama</h5>
-                    <span>Activity Friend kişiler hakkında size buluşma öncesi fikir vermek istiyor. Bu yüzden bir puanlama ve oylama sistemimiz var.<br/>
+                    <span>Activuss kişiler hakkında size buluşma öncesi fikir vermek istiyor. Bu yüzden bir puanlama ve oylama sistemimiz var.<br/>
                         Biriyle yaptığınız bir aktiviteden 1 saat sonra o kişi hakkında <strong>aktivite yorumu</strong> yapabilirsin ve bulustgun herkesle ilgili oy verebilrsin.
                         Puanlar ise uygulamamın doğru kullanımı, aktif olma paralelinde olarak belirli bir formül dahilinde artıyor.
                     </span>
                     <br/>
                     <hr/>
                     <h5><i className="fas fa-cogs"/> İşleyiş</h5>
-                    <span>Activity Friend işleyişi aşırı derecede basittir, çünkü ekran başında değil dışarıda gerçek insanlarla sosyalleşmeni istiyoruz.
+                    <span>Activuss işleyişi aşırı derecede basittir, çünkü ekran başında değil dışarıda gerçek insanlarla sosyalleşmeni istiyoruz.
                     Yapmak istediğinizi toplulukla paylaşırsın, gelmek isteyenler istek gönderir, dilediğiniz onaylar ve iletişime geçersin. Gönderilen istekleri
                         sadece aktiviteyi paylaşan ve istek gönderen kişi görür.<br/>
 

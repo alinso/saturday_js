@@ -19,7 +19,7 @@ class UserUtil{
     }
 
     static redirectIsBlocked(id){
-        axios.get(Globals.serviceUrl+'block/isBlocked/' + id, Security.authHeader())
+        axios.get(Globals.serviceUrl+'block/isBlockedByIt/' + id, Security.authHeader())
             .then(function (response) {
                 if(response.data)
                     window.location="/profile/"+id;

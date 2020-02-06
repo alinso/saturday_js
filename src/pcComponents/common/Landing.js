@@ -13,7 +13,7 @@ class Landing extends Component {
                 <div className={"landingSlide"}>
 
                     <div className={"landingSlideTitleContainer"}>
-                        <h1 className={"landingSlideTitle m-auto"}>Activity Friend</h1>
+                        <h1 className={"landingSlideTitle m-auto"}>Activuss</h1>
                     </div>
                     <div className={"landingSlideTextContainer"}>
                         <h4 className={"landingSlideText m-auto"}>Tüm aktivitelerinde sana eşlik edebilecek insanlarla
@@ -24,7 +24,7 @@ class Landing extends Component {
                 <ScrollableAnchor id={'whatis'}>
                     <div className={"col-md-9 m-auto"}>
                         <div className={"col-md-12"}>
-                            <h4 className={"landingTitle"}>Activity Friend Nedir?</h4>
+                            <h4 className={"landingTitle"}>Activuss Nedir?</h4>
                             <div className={"col-md-6 m-auto"}>
                                 <hr/>
                             </div>
@@ -40,11 +40,11 @@ class Landing extends Component {
                                 </div>
                                 Dışarı çıkmak, sinemaya, konsere gitmek veya haftasonu göl kıyısında
                                 bisiklet sürmek istediğinde bazen yalnız kaldığın olmuştur.
-                                Activity Friend sayesinde dilediğin zaman yapmak istediklerini paylaşabilir ve planında
+                                Activuss sayesinde dilediğin zaman yapmak istediklerini paylaşabilir ve planında
                                 dahil olmak isteyen birçok insana ulaşabilirsin.
                                 Sen de aynı şekilde insanların aktivitelerini görebilir ve onlara dahil olabilirsin<br/><br/>
-                                Activity Friend'in en önemli taraflarından biri de içeriğindeki insan kalitesini çok
-                                ciddiye almasıdır. Geniş değil, doğru kitleye ulaşmaya çalışıyoruz. Activity Friend'de
+                                Activuss'un en önemli taraflarından biri de içeriğindeki insan kalitesini çok
+                                ciddiye almasıdır. Geniş değil, doğru kitleye ulaşmaya çalışıyoruz. Activuss'ta
                                 kadın ve erkek kullanıcı sayısı dengelidir. Kullanıcılarla
                                 ilgili yazılan yorum ve puanları inceleyip aktivitelerini
                                 güvenle paylaşabilirsin.
@@ -108,7 +108,7 @@ class Landing extends Component {
                     <div className={"landing_parallax"}>
                         <div className={"landing_parallax_text  col-md-12 m-auto"}>
                             Sosyal medya yalnızlaştırır!<br/>
-                            Activity Friend sosyalleştirir.
+                            Activuss sosyalleştirir.
                         </div>
 
                     </div>
@@ -117,7 +117,7 @@ class Landing extends Component {
                 <ScrollableAnchor id={'howitworks'}>
                     <div className={"col-md-9 m-auto"}>
                         <div className={"col-md-12"}>
-                            <h4 className={"landingTitle"}>Activity Friend Nasıl Çalışır?</h4>
+                            <h4 className={"landingTitle"}>Activuss Nasıl Çalışır?</h4>
                             <div className={"col-md-6 m-auto"}>
                                 <hr/>
                             </div>
@@ -166,8 +166,8 @@ class Landing extends Component {
                         <br/><br/><br/><br/>
                         <div className={"row   landingText"}>
                             <div className={"col-md-4 text-align-left"}>
-                                <h5><i className="fab fa-instagram"/>/activityfriend</h5>
-                                <h5><i className="far fa-envelope"/> mail@activityfriend.net</h5></div>
+                                <h5><i className="fab fa-instagram"/>/activuss</h5>
+                                <h5><i className="far fa-envelope"/> mail@activuss.com</h5></div>
                             <div className={"col-md-4"}><h5>Temsilci Ol</h5><h5>Reklam Ver</h5></div>
                             <div className={"col-md-4 text-align-left"}><h5>Gizlilik Politikası</h5><h5>Kişisel Verilerin Korunması</h5></div>
                         </div>

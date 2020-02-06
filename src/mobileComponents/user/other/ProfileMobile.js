@@ -123,7 +123,7 @@ class ProfileMobile extends React.Component {
                     self.setState({"isFollowing": response.data});
                 });
         if (Security.isValidToken())
-            axios.get(Globals.serviceUrl + 'block/isBlocked/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'block/isBlockedIt/' + userId, Security.authHeader())
                 .then(function (response) {
                     self.setState({"isBlocked": response.data});
                 });
@@ -299,6 +299,10 @@ class ProfileMobile extends React.Component {
 
                                     <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                                 )}
+                                {this.state.premiumType==="ORGANIZATOR" &&(
+
+                                    <span className={'proCheck'}><i className="fas fa-certificate"/>&nbsp;</span>
+                                )}
                                 {this.state.name + " " + this.state.surname}</strong>
                         </a><br/>
 
@@ -352,7 +356,7 @@ class ProfileMobile extends React.Component {
 
                 <hr/>
                 <div>
-                    <h5> Olumlu izlenim oranı({this.state.vibeCount} oy)</h5>
+                    <h6> Olumlu izlenim oranı({this.state.vibeCount} oy)</h6>
                     {this.state.vibePercent > 0 && (
                         <div className="progress">
                             <div className="progress-bar progress-bar-striped bg-success" role="progressbar"
@@ -415,7 +419,13 @@ class ProfileMobile extends React.Component {
                                 <button className={"btn btn-menuColorMobile profileButton"}><i
                                     className="fas fa-info-circle"/>Bilgilerim
                                 </button>
-                            </a><br/><br/>
+                            </a>
+                            <a href={"/usersICanVibe"}>
+                                <button className={"btn btn-menuColorMobile profileButton"}><strong>Verdiğim Oylar</strong>
+                                </button>
+                            </a>
+
+                            <br/><br/>
                             <button onClick={this.deleteAccount} className={"btn btn-danger profileButton"}><i
                                 className=" fas fa-times"/> Hesabımı Sil
                             </button>

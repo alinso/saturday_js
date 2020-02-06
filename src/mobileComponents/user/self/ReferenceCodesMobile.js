@@ -45,8 +45,9 @@ class ReferenceCodesMobile extends React.Component {
         return (
             <div className="full-width container">
                 <h6>
-                    Erkek kontenjanımız dolmuştur. Bir süre yalnız kadın üye alımı olacaktır.
+                    Erkek üyeler için referans kodu yalnız instagram basvuruları ile veriliyor. Erkek adaylar instagram hesabımıza yazabilir.
                 </h6>
+                (instagram : activityfriend)
                 <hr/>
 
                 <span>Kadınlara vermen gereken refereans kodu<br/>(Her defasında değişir) </span>

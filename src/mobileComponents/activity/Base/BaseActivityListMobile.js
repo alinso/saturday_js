@@ -38,8 +38,8 @@ class BaseActivityListMobile extends React.Component {
                     }
 
 
-                    if(currentMeetingOld[0].thisUserJoined)
-                        question="Bu isteği iptal edeceksin, emin misin?";
+                    if(currentMeetingOld[0].thisUserJoined===1 || currentMeetingOld[0].thisUserJoined===2)
+                        question="Bu aktiviteden isteğini geri çekmek istediğine emin misin?";
 
                     let result=window.confirm(question);
                     if(!result)

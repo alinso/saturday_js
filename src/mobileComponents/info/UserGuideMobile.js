@@ -18,8 +18,8 @@ class UserGuideMobile extends React.Component {
 
                 <p dir="ltr">İşbu &Uuml;yelik ve Kullanım S&ouml;zleşmesi (kısaca &ldquo;S&ouml;zleşme&rdquo;)
                     activityfriend.net uzantılı web sitesinin (kısaca &ldquo;Site&rdquo;), Android ve iOS
-                    platformlarında yer alan Activity Friend adlı aplikasyonun ve buna bağlı t&uuml;m uygulamaların
-                    (kısaca &ldquo;Activity Friend&rdquo;), Ali İnsan Soyaslan(kısaca &ldquo;Geliştirici&rdquo;) ile
+                    platformlarında yer alan Activuss adlı aplikasyonun ve buna bağlı t&uuml;m uygulamaların
+                    (kısaca &ldquo;Activuss&rdquo;), Ali İnsan Soyaslan(kısaca &ldquo;Geliştirici&rdquo;) ile
                     isim ve iletişim bilgilerini işbu s&ouml;zleşmenin kabul&uuml; &ouml;ncesinde sisteme tanımlamış
                     olan &Uuml;ye (&ldquo;Kullanıcı&rdquo; olarak da anılabilecektir.) arasındadır. &Uuml;ye, Activity
                     Friend&rsquo;e &uuml;ye olarak, işbu &lsquo;S&ouml;zleşme&rsquo;nin tamamını okuduğunu, anladığını
@@ -31,20 +31,20 @@ class UserGuideMobile extends React.Component {
                     Konusu</p>
 
                 <p dir="ltr">İşbu S&ouml;zleşme&rsquo;nin konusu Geliştirici tarafından geliştirilmiş, kullanıma
-                    sunulmuş olan &ldquo;Activity Friend&rdquo; in (&ldquo;Uygulama&rdquo; olarak da anılabilecektir.)
+                    sunulmuş olan &ldquo;Activuss&rdquo; in (&ldquo;Uygulama&rdquo; olarak da anılabilecektir.)
                     kullanım koşullarının ve tarafların karşılıklı hak ve y&uuml;k&uuml;ml&uuml;l&uuml;klerinin
                     belirlenmesidir.</p>
 
                 <p dir="ltr">&nbsp;</p>
 
-                <p dir="ltr">Madde 3. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Activity Friend Uygulaması
+                <p dir="ltr">Madde 3. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Activuss Uygulaması
                     ve Tanımlar</p>
 
                 <p dir="ltr">3.1. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Bireysel katılımcıların web sitesi veya mobil
                     uygulamalar &uuml;zerinden; tanışmak bir araya getirerek &uuml;cretli/&uuml;cretsiz ve herkese
                     a&ccedil;ık (Genel) / kapalı (&Ouml;zel) aktivite oluşturmasına veya bu alanlardaki etkinliklere
                     birlikte katılmasına olanak sağlayan, kişilerin buluşmalarını kolaylaştıran bir sosyal ağdır.
-                    Activity Friend etkinlik oluşturan kişiden veya katılanlardah herhangi bir &uuml;cret talep etmez.
+                    Activuss etkinlik oluşturan kişiden veya katılanlardah herhangi bir &uuml;cret talep etmez.
                     Kişileri niteleyici &ouml;zelliği olmayan ve anonimleştirilebilecek t&uuml;rdeki veri, uygulamaların
                     geliştirilmesi i&ccedil;in işlenebilecektir.</p>
 
@@ -63,14 +63,14 @@ class UserGuideMobile extends React.Component {
 
                 <p dir="ltr">&nbsp;</p>
 
-                <p dir="ltr">4.1. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Activity Friend, aktivite oluşturan ve katılan
+                <p dir="ltr">4.1. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Activuss, aktivite oluşturan ve katılan
                     kişilere y&ouml;nelik bir puanlama ve yorum &ouml;zelliği ihtiva etmektedir. Bu &ouml;zellik
                     sayesinde Kullanıcılar, birbirleri hakkında puan verebilir, yorum yapabilir. Kullanıcılar tarafından
                     verilen puan ve yapılan yorumlar herkesin profilinde g&ouml;r&uuml;nt&uuml;lenebilmektedir.</p>
 
                 <p dir="ltr">&nbsp;</p>
 
-                <p dir="ltr">4.2. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Activity Friend, kişilerin puanlanması ile ilgili
+                <p dir="ltr">4.2. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Activuss, kişilerin puanlanması ile ilgili
                     olarak, d&uuml;zenledikleri etkinliklere katılım, iptal, memnuniyet vs ve bunlarla sınırlı olmayan
                     parametreleri arka planda &ccedil;eşitli algoritmalar ile değerlendirerek uygulamanın ve dolaylı
                     olarak etkinlikle ilgili i&ccedil;eriklerin kalitesini arttırıcı &ouml;nlemler alabilir.</p>
@@ -80,7 +80,7 @@ class UserGuideMobile extends React.Component {
                 <p dir="ltr">4.3. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Kullanıcılar, herhangi bir i&ccedil;erik
                     oluştururken ahlak ve adaba aykırı ifadeler kullanmamaya, hakaret ve k&uuml;f&uuml;r i&ccedil;eren
                     yorumlarda bulunmamaya, kamu d&uuml;zenini bozucu, insanları tahrik edici/kışkırtıcı/ayrıştırıcı vs.
-                    ifadeler kullanmamaya &ouml;zen g&ouml;stermek zorundadır. Kullanıcı&rsquo;nın, Activity Friend
+                    ifadeler kullanmamaya &ouml;zen g&ouml;stermek zorundadır. Kullanıcı&rsquo;nın, Activuss
                     uygulaması &uuml;zerinden yapmış olduğu bir yorum eğer T&uuml;rk Ceza Kanunu ve diğer ilgili mevzuat
                     h&uuml;k&uuml;mlerinde bir su&ccedil;, kabahat teşkil ediyor ise bununla ilgili t&uuml;m hukuki ve
                     cezai sorumluluk m&uuml;nhasıran Kullanıcı&rsquo;ya aittir. Geliştirici, Activity
@@ -92,7 +92,7 @@ class UserGuideMobile extends React.Component {
                     <br/>
                 </p>
 
-                <p dir="ltr">4.4 Activity Friend &uuml;zerinden yapılmış olan puanlama ve yorumlar kişilerin sosyal,
+                <p dir="ltr">4.4 Activuss &uuml;zerinden yapılmış olan puanlama ve yorumlar kişilerin sosyal,
                     maddi, g&uuml;venilirlik gibi herhangi bir alandaki durumlarını garanti etmez. Geliştirici Puan ve
                     yorumların ger&ccedil;ekliğini garanti etmez ve bu nedenle doğacak zararlardan sorumluluk kabul
                     etmez. &nbsp;</p>
@@ -136,7 +136,7 @@ class UserGuideMobile extends React.Component {
                     itiraz hakkının mevcut olmadığını kabul, beyan ve taahh&uuml;t eder.</p>
 
                 <p dir="ltr">6.7. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Geliştirici, kullanıcı profili ve pazar
-                    araştırmaları yapmak, Activity Friend ve site kullanım istatistikleri oluşturmak gibi ama&ccedil;lar
+                    araştırmaları yapmak, Activuss ve site kullanım istatistikleri oluşturmak gibi ama&ccedil;lar
                     dahil ancak bunlarla sınırlı olmamak &uuml;zere t&uuml;m yasal ama&ccedil;lar
                     i&ccedil;in, &Uuml;ye&quot;nin kimlik, adres, iletişim, site ve Apptivity kullanım bilgilerini bir
                     veri tabanında toplayabilir ve bu bilgileri herhangi bir kısıtlama olmaksızın işleyebilir. Ayrıca
@@ -155,9 +155,9 @@ class UserGuideMobile extends React.Component {
                     uygulamasında değişiklikler yapabilir, mevcut maddelerini değiştirebilir veya yeni maddeler ilave
                     edebilir.</p>
 
-                <p dir="ltr">6.10. &nbsp; &nbsp; &nbsp; &nbsp;Geliştirici, Activity Friend uygulamasında sunulan
+                <p dir="ltr">6.10. &nbsp; &nbsp; &nbsp; &nbsp;Geliştirici, Activuss uygulamasında sunulan
                     hizmetleri ve i&ccedil;erikleri her zaman değiştirebilme; &Uuml;ye&rsquo; lerin sisteme
-                    y&uuml;kledikleri bilgileri ve i&ccedil;erikleri Activity Friend kullanıcıları da d&acirc;hil
+                    y&uuml;kledikleri bilgileri ve i&ccedil;erikleri Activuss kullanıcıları da d&acirc;hil
                     olmak &uuml;zere &uuml;&ccedil;&uuml;nc&uuml; kişilerin erişimine kapatabilme ve silme hakkını saklı
                     tutmaktadır. Geliştirici, bu hakkını hi&ccedil;bir bildirimde bulunmadan ve &ouml;nel vermeden
                     kullanabilir. &Uuml;yeler, Geliştirici&rsquo;nin talep ettiği değişiklik ve/veya d&uuml;zeltmeleri
@@ -187,7 +187,7 @@ class UserGuideMobile extends React.Component {
                 <p dir="ltr">Madde 7. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&Uuml;ye&rsquo;nin
                     Y&uuml;k&uuml;ml&uuml;l&uuml;kleri</p>
 
-                <p dir="ltr">7.1. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &Uuml;yelik, Activity Friend
+                <p dir="ltr">7.1. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &Uuml;yelik, Activuss
                     uygulaması &uuml;zerinde belirtilen &uuml;yelik prosed&uuml;r&uuml;n&uuml;n &uuml;ye olmak isteyen
                     kişi tarafından yerine getirilerek kayıt işleminin yapılması ile tamamlanır. &Uuml;ye, &uuml;ye
                     olmakla, işbu s&ouml;zleşme h&uuml;k&uuml;mlerini, &uuml;yeliğe ve hizmetlere ilişkin Geliştirici
@@ -196,7 +196,7 @@ class UserGuideMobile extends React.Component {
 
                 <p dir="ltr">7.2. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &Uuml;ye, &uuml;yelik işlemlerinde belirtmiş olduğu
                     kimlik, adres ve/veya iletişim bilgilerinin eksiksiz ve doğru olduğunu, bilgilerinde değişiklik
-                    olması halinde bu bilgileri derhal Activity Friend &uuml;zerinden Geliştiriciye ileteceğini, eksik,
+                    olması halinde bu bilgileri derhal Activuss &uuml;zerinden Geliştiriciye ileteceğini, eksik,
                     g&uuml;ncel olmayan ve/veya yanlış bilgi vermesi nedeniyle ortaya &ccedil;ıkabilecek her
                     t&uuml;rl&uuml; hukuki uyuşmazlık ve/veya zarardan sadece kendisinin sorumlu olacağını kabul ve
                     beyan eder. Geliştiriciye bu nedenle hi&ccedil;bir sorumluluk izafe edilemez.</p>
@@ -208,7 +208,7 @@ class UserGuideMobile extends React.Component {
                     zarar ve/veya ihlalden hi&ccedil;bir şekilde Geliştirici&rsquo;nin sorumlu olmayacağını kabul ve
                     beyan eder.</p>
 
-                <p dir="ltr">7.4. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &Uuml;ye, Site ve Activity Friend
+                <p dir="ltr">7.4. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &Uuml;ye, Site ve Activuss
                     uygulaması &uuml;zerinde yer alan forum ve blogların kullanımı esnasında; Anayasa kanun,
                     y&ouml;netmelik, kanun h&uuml;km&uuml;nde kararname, y&ouml;nerge, tebliğ, genelge ve talimatlara ve
                     ger&ccedil;ek ve/veya t&uuml;zel kişilerim maddi ve manevi varlıklarına aykırı davranışlarda
@@ -262,12 +262,12 @@ class UserGuideMobile extends React.Component {
                     Apptivity d&acirc;hilinde bulunan resimleri, metinleri, g&ouml;rsel ve işitsel imgeleri, video
                     klipleri, dosyaları, veri tabanları, katalogları ve listeleri &ccedil;oğaltmayacağını,
                     kopyalamayacağını, dağıtmayacağını, işlemeyeceğini, başka veri tabanına aktarmayacağını veya bu
-                    nitelikte sonu&ccedil;lar doğurabilecek şekilde Activity Friend&rsquo;e y&uuml;klemeyeceğini; bu
+                    nitelikte sonu&ccedil;lar doğurabilecek şekilde Activuss&rsquo;e y&uuml;klemeyeceğini; bu
                     t&uuml;r eylemler ger&ccedil;ekleştirerek herhangi bir ticari faaliyette bulunmayacağını; gerek bu
                     eylemleri ile gerekse de başka yollarla doğrudan ve/veya dolaylı olarak haksız rekabet teşkil eden
                     davranış ve işlemler ger&ccedil;ekleştirmeyeceğini kabul ve taahh&uuml;t
                     etmektedir. &Uuml;ye&rsquo; nin işbu s&ouml;zleşme h&uuml;k&uuml;mlerine ve hukuka aykırı olarak
-                    ger&ccedil;ekleştirdikleri Activity Friend &uuml;zerindeki faaliyetler
+                    ger&ccedil;ekleştirdikleri Activuss &uuml;zerindeki faaliyetler
                     nedeniyle &uuml;&ccedil;&uuml;nc&uuml; kişilerin uğradıkları veya uğrayabilecekleri zararlardan
                     dolayı Geliştirici doğrudan ve/veya dolaylı olarak hi&ccedil;bir şekilde sorumlu tutulamaz.</p>
 
@@ -275,15 +275,15 @@ class UserGuideMobile extends React.Component {
                     <br/>
                 </p>
 
-                <p dir="ltr">7.13. &nbsp; &nbsp; &nbsp; &nbsp;&Uuml;ye, Activity Friend uygulaması &uuml;zerinden
+                <p dir="ltr">7.13. &nbsp; &nbsp; &nbsp; &nbsp;&Uuml;ye, Activuss uygulaması &uuml;zerinden
                     ger&ccedil;ekleştirdiği, buluşma,tanışma,g&ouml;r&uuml;şmelerde kendi g&uuml;venliğinden sorumludur.
-                    Activity Friend hi&ccedil;bir &uuml;yenin g&uuml;venliğini garanti etmez.</p>
+                    Activuss hi&ccedil;bir &uuml;yenin g&uuml;venliğini garanti etmez.</p>
 
                 <p>
                     <br/>
                 </p>
 
-                <p dir="ltr">7.14 Activity Friend b&uuml;nyesinde kayıtlı olan &uuml;yelerin paylaştıkları bilgilerin
+                <p dir="ltr">7.14 Activuss b&uuml;nyesinde kayıtlı olan &uuml;yelerin paylaştıkları bilgilerin
                     ger&ccedil;ekliğini, doğruluğunu garanti etmez. &Uuml;ye iletişime ge&ccedil;eceği
                     diğer &uuml;yelerin verdiği yanlış bilgilerden dolayı uğrayacak t&uuml;m zarardan kendisi
                     sorumludur. Geliştirici bu nedenle yaşanacak zararlardan dolayı hi&ccedil;bir
@@ -337,7 +337,7 @@ class UserGuideMobile extends React.Component {
                     d&ouml;nemsel kampanya &ccedil;alışmaları, &uuml;ye profillerine y&ouml;nelik &ouml;zel promosyon
                     faaliyetlerinin kurgulanması ve istenmeyen e-postaların iletilmemesine y&ouml;nelik
                     m&uuml;şteri &quot;sınıflandırma&rdquo; &ccedil;alışmalarında sadece Geliştirici tarafından
-                    kullanılacaktır. Kişisel veriler Activity Friend b&uuml;nyesinde tamamen veya kısmen, otomatik olan
+                    kullanılacaktır. Kişisel veriler Activuss b&uuml;nyesinde tamamen veya kısmen, otomatik olan
                     veya olmayan yollarla elde etme, kaydetme, depolanma, muhafaza etme, değiştirme, yeniden
                     d&uuml;zenleme, aktarma vb. işlemler aracılığıyla işlenebilir.</p>
 
@@ -463,7 +463,7 @@ class UserGuideMobile extends React.Component {
 
                 <p dir="ltr">15.6. &nbsp; &nbsp; &nbsp; &nbsp;İşbu S&ouml;zleşme&rsquo;den doğan
                     uyuşmazlıkların &ccedil;&ouml;z&uuml;m&uuml; hususunda Ankara Mahkemeleri yetkilendirilmiştir.
-                    S&ouml;zleşmeden doğacak uyuşmazlıklarda Activity Friend kayıt ve defterleri ile online dataları
+                    S&ouml;zleşmeden doğacak uyuşmazlıklarda Activuss kayıt ve defterleri ile online dataları
                     HMK. Kapsamında m&uuml;nhasır delil olarak kabul edilecektir.</p>
 
                 <p dir="ltr">15.7. &nbsp; &nbsp; &nbsp; &nbsp;&Uuml;ye sitede yer alan t&uuml;m uygulama ve kuralları

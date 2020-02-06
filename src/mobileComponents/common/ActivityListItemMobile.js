@@ -18,9 +18,6 @@ class ActivityListItemMobile extends React.Component {
         // if (this.props.activity.id === 2545)
         //     selectedClass = "selectedActivity";
 
-        if(this.props.activity.profileDto.id===136 && localStorage.getItem("userId")!=="136"){
-            return "";
-        }
 
         return (
             <div className={"row meetingListSingleMeetingContainer " + selectedClass}>

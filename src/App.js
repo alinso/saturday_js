@@ -95,6 +95,9 @@ import AdminComplaints from "./jshfsadf/admin/police/AdminComplaints";
 import BatmanPolice from "./jshfsadf/batman/BatmanPolice";
 import UsersICanVibe from "./mobileComponents/info/UsersICanVibe";
 import InviteMobile from "./mobileComponents/activity/InviteMobile";
+import ActivityAlbum from "./mobileComponents/activity/ActivityAlbum";
+import Statistics from "./jshfsadf/admin/Statistics";
+import Professionals from "./mobileComponents/info/Professionals";
 
 
 const isMobile = require('is-mobile');
@@ -196,6 +199,7 @@ class App extends Component {
                     {<Route exact path="/uhktybb/discoverList" component={ADiscoverList}/>}
                     {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
                     {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
+                    {<Route exact path="/uhktybb/statistics" component={Statistics}/>}
                     {<Route exact path="/oldbatmanassss" component={BatmanPolice}/>}
                     {<Route exact path="/uhktybb/premium" component={PremiumForm}/>}
 
@@ -241,6 +245,7 @@ class App extends Component {
                         {<Route exact path="/ActivityRequests/:id" component={ActivityRequestsMobile}/>}
                         {<Route exact path="/ActivityDetail/:id" component={ActivityDetailMobile}/>}
                         {<Route exact path="/hashtagActivity/:hashtag" component={HashtagActivityMobile}/>}
+                        {<Route exact path="/activityAlbum/:id" component={ActivityAlbum}/>}
 
 
                         {<Route exact path="/message/:id" component={MessagePageMobile}/>}
@@ -275,7 +280,9 @@ class App extends Component {
                         {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
                         {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
                         {<Route exact path="/uhktybb/premium" component={PremiumFormMobile}/>}
+                        {<Route exact path="/uhktybb/statistics" component={Statistics}/>}
                         {<Route exact path="/usersICanVibe" component={UsersICanVibe}/>}
+                        {<Route exact path="/professionals" component={Professionals}/>}
 
 
 

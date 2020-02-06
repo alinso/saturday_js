@@ -196,18 +196,13 @@ class DashboardMobile extends BaseActivityListMobile {
 
                     <hr/>
                     <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>
-                    <strong><a href={"/help"}><span className="goldCheck"><i
-                        className="far fa-check-circle"/>&nbsp;</span> Premium Hakkında
-                        Bilgilendirme</a></strong><br/><br/>
+                    <strong><a href={"/help"}><button className={"btn btn-success"}> Premium Ol!</button></a></strong><br/>
 
                     <hr/>
-                    {/*<span>İlgini çeken bir aktivite bulamadın mı, o zaman kendi aktiviteni oluştur</span><br/>*/}
-                    {/*<a href="/createActivity"><button className={"btn btn-primary"}>Yeni aktivite</button></a>*/}
-                    {/*<hr/>*/}
-
-                    <a href={"/usersICanVibe"}><button className={"btn btn-success"}><strong> Kullanıcılara oy ver!</strong></button></a>
+                    <span>İlgini çeken bir aktivite yoksa kendi aktiviteni oluştur, her konuda sana eşlik edecek insanlar burada!</span><br/>
+                    <a href="/createActivity"><button className={"btn btn-primary"}>Bir Aktivite Oluştur</button></a>
+                    <br/>
                     <hr/>
-                    {/*<strong><a href={"/createActivity"}><i className="fas fa-hashtag"/>İlgi alanında bir aktivite yoksa, sen henüz açmadığın içindir. Şimdi harekete geç</a></strong><br/>*/}
 
                     {this.state.sponsor && localStorage.getItem("cityId")!="4" && (
                         <div className={"activityListActivityDetailMobile"}>

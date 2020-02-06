@@ -13,12 +13,12 @@ class AboutMobile extends React.Component {
             <div className="full-width text-align-left container">
                 <h4>Hakkında</h4>
                 <hr/>
-                Şubat 2019'da ilk kez kullanıma açılan Activity Friend ticari olmayan bir sosyal platformdur. Bağımsız
+                Şubat 2019'da ilk kez kullanıma açılan Activuss ticari olmayan bir sosyal platformdur. Bağımsız
                 geliştiriciler tarafından, sıfır sermaye while
                 geliştirilip Ankara'da çıkış yapmıştır. İnsanların gerçek hayatta birlikte birşeyler yapmaları,
                 tanışmaları, bulundukları şehri yakından tanımaları amacını
                 taşımaktadır.<br/><br/>
-                Henüz beta versiyondadır ve geliştirilmesi devam etmektedir.
+                Geliştirilmesi devam etmektedir.
             </div>
 
         )

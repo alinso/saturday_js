@@ -102,7 +102,7 @@ class RegisterMobile extends React.Component {
 
         return (
             <div className="full-width registerContainerMobile">
-                <h6 className={"color-white"}>Activity Friend'e Katıl!</h6>
+                <h6 className={"color-white"}>Activuss'a Katıl!</h6>
 
                 {registrationCompleted && (
                     <div className={"registerCompletedMessage"}>
@@ -257,6 +257,12 @@ class RegisterMobile extends React.Component {
                                     {errors.referenceCode}
                                 </div>
                             )}
+
+                            <hr className={"color-white"}/>
+                            <strong className={"color-white"}>Eğer referens kodun yoksa <a href={"https://forms.gle/bZagLDATsWr4p8yT7"}>
+                                BURAYA TIKLAYIP</a> 2 soruyu cevaplayarak alabilirsin.
+                                Referans kodu başvuru sonucu olumlu olması halinde 48 saat içerisinde veriliyor </strong>
+                            <hr className={"color-white"}/>
                         </div>
                     )}
 

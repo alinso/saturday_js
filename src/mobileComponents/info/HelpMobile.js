@@ -1,27 +1,73 @@
 import React from "react";
+import Alert from "../../pcComponents/common/Alert";
+import Globals from "../../util/Globals";
+import Security from "../../security/Security";
+const axios = require('axios');
 
 
 class HelpMobile extends React.Component {
     constructor(props) {
         super(props);
+        Security.protect();
+        this.state = {
+            duration: null,
+            message: false,
+            errors: {},
+            isSubmitDisabled: false,
+            latestPremiumDate:null,
+            profileDto: {},
+            id:null
+        };
+
+
+        this.onSubmit = this.onSubmit.bind(this);
+        this.buttonToggle = this.buttonToggle.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.buyPremium=this.buyPremium.bind(this);
+
     }
+
+    buttonToggle(e) {
+        if (this.state.isSubmitDisabled)
+            this.setState({isSubmitDisabled: false});
+
+
+        if (!this.state.isSubmitDisabled)
+            this.setState({isSubmitDisabled: true});
+    }
+    onChange(e) {
+        this.setState({[e.target.name]: e.target.value});
+    }
+    onSubmit(e) {
+        e.preventDefault();
+        this.buyPremium();
+    }
+    buyPremium() {
+        let self = this;
+
+
+        let result=window.confirm("Seçtiğiniz premium üyeliği almak istiyor musunuz?");
+        if(!result)
+            return false;
+
+
+        axios.get(Globals.serviceUrl + 'premium/sellMePremium/'+this.state.duration, Security.authHeader())
+            .then(function (response) {
+               alert("Teşekkür ederiz, premium üyeliğiniz aktifleştirilmiştir, bilgilendirme için mesaj gelecektir");
+                self.buttonToggle();
+            })
+            .catch(function (error) {
+                console.log(error.response);
+            });
+    }
+
 
     render() {
 
 
         return (
             <div className="full-width text-align-left container">
-                {/*<strong>Dedikodu yapan kişilerin hesabı silinecek</strong><br/>*/}
-                {/*<hr/>*/}
-                {/*Merhaba, sizi rahatsız eden kişiler, ortamı bozan kişiler varsa uygulamada şikayet edebilirsiniz. Bunun yerine dedikodu yapma/arkadan konuşma yolunu seçen hesapları sileceğiz.*/}
-                {/*Şikayet etmekten çekinip dedikodu yapmaktan çekinmeyen kişilerin ciddiyetine ve iyi niyetine inanmıyoruz. Arkadaşımı uyardım adı altında yapılacak olan dedikodular da silinmeye istisna değildir.*/}
-                {/*<br/>*/}
-                {/*Şikayet ederseniz o kişinin hesabı incelenir ve gerekiyorsa silinir. Şikayet eden kesinlikle gizlidir. Dedikodu yapanlar ise herkes tarafından bilinir. Ayrıca rahatsızlık veren kişiyi  arkadaşlarınıza*/}
-                {/*anlatmak hem o kişinin toplulukta varlığını devam ettirmesine, hem o kişi tarafından kısa süre içinde arkasından konuştuğunuzun bilinmesine, hem de sizin hesabınızın silinmesine neden olur.*/}
-                {/*<br/>*/}
-                {/*Şikayetler Batman tarafından incelenir ve karara bağlanır Batman topluluk dışından biridir, kimseyi de tanımaz. Olabildiğince mantık çercevesinde karar vermeye çalışır*/}
-                {/*<br/><br/>*/}
-                {/*Teşekkürler :)*/}
+
                 <br/>
                 <strong> Sınıra takılma, öne geç!</strong>
                 <hr/>
@@ -37,21 +83,21 @@ class HelpMobile extends React.Component {
                     </div>
                 </div>
 
-                Sınırlara takılmak istemiyor, aktivitelerde öne çıkmak ve projemize destek olmak istiyorsan premium
-                olabilirsin. Premium özellik ve fiyatları aşağıdaki şekildedir.<br/>
-                <a href={"https://www.activityfriend.net/message/3212"}> <button className={"btn btn-info"}>
-                    Detaylar İçin Buradan Mesaj At
-                </button></a>
-                <br/>
-                <br/>
+
+
+                Activus projesinin masraflarının karşılanması, daha da büyümesi ve gelişmesi için tek gelir kaynağı premium üyeliklerdir. Başka bir reklam veya sponsorluk gelirimiz malesef yok:(
+                <br/><br/>
+                Sen de sınırlara takılmak istemiyor, aktivitelerde öne çıkmak ve projemize destek olmak istiyorsan premium
+                olabilirsin. Premium özellik ve fiyatları aşağıdaki şekildedir.
+                <hr/>
                 <strong><span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>SILVER onaylı
                     profil</strong>
                 <br/>
                 <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>Hatfada 5 aktivite <br/>
                 <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>Günde 7 istek <br/>
                 <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>15 kişi onaylama <br/>
-                (Aylık : 19.90 ₺/ 3 aylık : 49.90₺ / 6 aylık : 89.90₺) <br/>
-                <br/>
+                (Aylık : 19.90 ₺/ 3 aylık : 49.90₺ ) <br/>
+
 
 
                 <strong><span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>GOLD onaylı
@@ -68,7 +114,60 @@ class HelpMobile extends React.Component {
                 <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Aktiviteye istek atmadan önce katılımcıları görebilme<br/>
 
                 (Aylık : 29.90₺ / 3 aylık : 79.90₺)
+                <hr/>
+                <form onSubmit={this.onSubmit}>
+
+                    <h5>Silver</h5>
+                    <div className="form-group">
+                        <input type="radio"
+                               name="duration"
+                               value="SONE_MONTH"
+                               onChange={this.onChange}
+                               className="customRadio"
+                        />&nbsp;<label className="customRadioLabel">1 Ay (₺19,90)&nbsp;</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio"
+                               name="duration"
+                               onChange={this.onChange}
+                               value="STHREE_MONTHS"
+                               className="customRadio"
+                        />&nbsp;
+                        <label className="customRadioLabel">3 Ay (₺49,90)&nbsp;</label>
+                    </div>
+                    <h5>Gold</h5>
+                    <div className="form-group">
+                        <input type="radio"
+                               name="duration"
+                               value="GONE_MONTH"
+                               onChange={this.onChange}
+                               className="customRadio"
+                        />&nbsp;<label className="customRadioLabel">1 Ay (₺29,90)&nbsp;</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio"
+                               name="duration"
+                               onChange={this.onChange}
+                               value="GTHREE_MONTHS"
+                               className="customRadio"
+                        />&nbsp;
+                        <label className="customRadioLabel">3 Ay (₺79,90)&nbsp;</label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+
+                    </div>
+                    {this.state.message && (
+                        <Alert type="alert-success" message={this.state.message}/>
+
+                    )}
+                    <button
+                        type="submit"
+                        className="btn btn-success btn-block mt-4"
+                        disabled={this.state.isSubmitDisabled}
+                    >
+                        <i className="fas fa-crown"/> <strong>Premium Ol!</strong>
+                    </button>
+                </form>
+<br/><br/><br/>
             </div>
+
 
         )
     }

@@ -93,7 +93,7 @@ class Dashboard extends BaseActivityList {
         return (
             <div className="row outer">
                 <div className="col-md-5 m-x-auto container">
-                    <h6>Bilgisayarda bazı güncellemeler geç gelir ve bazı özellikler kısıtlı çalışır. Activity Friend telefonlarda çalışması için geliştirilmiştir</h6>
+                    <h6>Bilgisayarda bazı güncellemeler geç gelir ve bazı özellikler kısıtlı çalışır. Activuss telefonlarda çalışması için geliştirilmiştir</h6>
                     <hr/>
                     <div className={"col-md-6 m-auto"}>
                         <div className={"float-left city-filter-label"}> Şehir Filtresi:&nbsp;</div>

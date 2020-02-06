@@ -189,6 +189,14 @@ class PremiumForm extends React.Component {
                         />&nbsp;
                         <label className="customRadioLabel">6 Ay (₺139,90)&nbsp;</label>
                         <br/>
+                            <input type="radio"
+                                   name="duration"
+                                   onChange={this.onChange}
+                                   value="ORGANIZATOR"
+                                   className="customRadio"
+                            />&nbsp;
+                            <label className="customRadioLabel">1 Ay (₺100)&nbsp;</label>
+                            <br/>
                         </div>
                         <br/><hr/>
 

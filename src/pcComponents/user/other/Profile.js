@@ -232,6 +232,10 @@ class Profile extends React.Component {
 
                                         <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                                     )}
+                                    {this.state.premiumType==="ORGANIZATOR" &&(
+
+                                        <span className={'proCheck'}><i className="fas fa-certificate"/>&nbsp;</span>
+                                    )}
                                     {this.state.name + " " + this.state.surname}</strong>
                             </a><br/>
 

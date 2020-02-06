@@ -288,6 +288,10 @@ height: 200px;
     border-bottom: 2px dotted gray;
 
 }
+.headerLogo{
+    width: 140px;
+    height: 40px;
+}
 .landingSlideTitleContainer{
     padding-top: 50px;
 }
@@ -302,6 +306,9 @@ height: 200px;
 .landingText{
     color: #646f7f;
     font-weight: 600;
+}
+.landingTextTitle{
+    color:#6d730e;
 }
 .landingIcons{
     font-size: 2em;
@@ -516,7 +523,10 @@ margin-bottom: 4px;
 .goldCheck{
     color:orange;
     font-size: 16px;
-
+}
+.proCheck{
+    color:blue;
+    font-size: 16px;
 }
 
 .complainOnMessagePage{

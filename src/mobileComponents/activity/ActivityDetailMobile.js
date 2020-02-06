@@ -37,15 +37,33 @@ class ActivityDetailMobile extends React.Component {
 
     joinActivity(id) {
         const self = this;
-        axios.get(Globals.serviceUrl + 'request/sendRequest/' + id, Security.authHeader())
+
+        axios.get(Globals.serviceUrl + 'vibe/vibePercentOfActivityOwner/' + id, Security.authHeader())
             .then(function (response) {
 
-                let currentMeetingNew = Object.assign({}, self.state.activity);
-                currentMeetingNew.thisUserJoined = response.data;
+                let question="Bu aktiviteye katılmak istediğinden emin misin?";
+                if(response.data<75 &&  response.data!==0){
+                    question="Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine KATILMAMANI tavsiye ederiz";
+                }
 
-                self.setState({activity: currentMeetingNew});
+                if(self.state.activity.thisUserJoined===1 || self.state.activity.thisUserJoined===2)
+                    question="Bu aktiviteden isteğini geri çekmek istediğine emin misin?";
+
+                let result=window.confirm(question);
+                if(!result)
+                    return;
+
+
+                axios.get(Globals.serviceUrl + 'request/sendRequest/' + id, Security.authHeader())
+                    .then(function (response) {
+
+                        let currentMeetingNew = Object.assign({}, self.state.activity);
+                        currentMeetingNew.thisUserJoined = response.data;
+
+                        self.setState({activity: currentMeetingNew});
+                    });
+
             });
-
     }
 
     onResultChanged(requestId, result) {

@@ -11,6 +11,8 @@ class AdminMenu extends React.Component {
         return (<div className={"adminMenu col-md-2"}>
                 <a href={"/uhktybb/discoverList"}>Duyurular</a>
                 <br/>
+                <a href={"/uhktybb/statistics"}>İstatistik</a>
+                <br/>
                 <a href={"/uhktybb/police"}>Polis</a>
                 <br/>
                 <a href={"/uhktybb/complaints"}>Şikayetler</a>

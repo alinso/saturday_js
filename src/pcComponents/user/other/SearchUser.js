@@ -40,6 +40,10 @@ class SearchUser extends React.Component {
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
 
+
+        let searchText = this.state.searchText;
+        searchText = searchText.replace(" ","");
+
         if (this.state.type === "NAME")
             axios.get(Globals.serviceUrl + 'user/search/' + this.state.searchText +"/"+ newPageNum)
                 .then(function (response) {
@@ -71,6 +75,9 @@ class SearchUser extends React.Component {
 
     searchUser(searchTerm) {
         let self = this;
+
+        searchTerm = searchTerm.replace(" ","");
+
 
         if (this.state.type === "NAME")
             axios.get(Globals.serviceUrl + 'user/search/' + searchTerm + "/" + this.state.pageNum)

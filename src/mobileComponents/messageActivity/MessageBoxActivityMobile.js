@@ -80,7 +80,7 @@ class MessageBoxActivityMobile extends React.Component {
                                             <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                                         )}
                                         <a href={"/profile/"+message.writer.id}> {message.writer.name+" "+message.writer.surname}</a></strong><br/>
-                                    {message.message}
+                                    <div dangerouslySetInnerHTML={{__html:message.message}}></div>
                                     <span className={"messageDate"}>
                                     {message.createdAt}
                                 </span>

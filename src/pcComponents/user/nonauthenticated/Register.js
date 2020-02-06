@@ -103,7 +103,7 @@ class Register extends React.Component {
         return (
             <div className="md-auto registerOuter">
                 <div className={"col-md-4 offset-4 registerContainer"}>
-                    <h4 className={"color-white"}>Activity Friend'e Katıl!</h4>
+                    <h4 className={"color-white"}>Activuss'a Katıl!</h4>
                     <h5 className={"color-white"}>Erkek alımlarımız sayısal nedenlerden dolayı geçiçi olarak kapalıdır</h5>
 
                     {registrationCompletedMessage && (

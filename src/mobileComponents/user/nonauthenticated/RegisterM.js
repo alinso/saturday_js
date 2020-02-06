@@ -105,7 +105,7 @@ class RegisterM extends React.Component {
 
         return (
             <div className="full-width registerContainerMobile">
-                <h4 className={"color-white"}>Activity Friend'e Katıl!</h4>
+                <h4 className={"color-white"}>Activuss'a Katıl!</h4>
                 <br/>
                 <h6 className={"color-white"}>
                     Üye olmak için isim,soyisim,telefon,email bilgilerini instagramdan (activityfriend) dm atabilirsin.
