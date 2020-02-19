@@ -1,5 +1,5 @@
 import Security from "../security/Security";
-import Globals from "./Globals";
+import Globals from "../util/Globals";
 const axios = require('axios');
 
 class UserUtil{

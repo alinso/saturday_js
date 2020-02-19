@@ -21,6 +21,7 @@ class InviteMobile extends React.Component {
             errors: {}
         };
 
+        this.getMyList=this.getMyList.bind(this);
         this.loadMore = this.loadMore.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -89,6 +90,22 @@ class InviteMobile extends React.Component {
         this.searchUser(searchText);
     }
 
+    getMyList(){
+        let self=this;
+        axios.get(Globals.serviceUrl + "follow/myFollowings", Security.authHeader())
+            .then(function (response) {
+                self.setState({"users": response.data});
+                self.setState({"userNotFoundMessage": false});
+
+                if (response.data.length === 0)
+                    self.setState({"userNotFoundMessage": "Kullanıcı Bulunamadı"});
+
+            })
+            .catch(function (error) {
+                console.log(error.response);
+            });
+    }
+
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
     }
@@ -135,6 +152,9 @@ class InviteMobile extends React.Component {
                         />
                     </div>
                 </form>
+                <hr/>
+                <button onClick={()=>this.getMyList()}>Listemi Getir</button>
+                <hr/>
                 {userNotFoundMessage && (
                     <h6>{userNotFoundMessage}</h6>
                 )}

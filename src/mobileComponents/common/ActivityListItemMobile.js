@@ -44,11 +44,8 @@ class ActivityListItemMobile extends React.Component {
 {/*                        <h6><strong><i className="fas fa-glass-cheers"/></strong>Yeterli veri yok</h6>*/}
 {/*x*/}
 {/*                    )}*/}
-                    {((localStorage.getItem("userId") === "3211")
-                        || (localStorage.getItem("userId") === "5516")
-                    || (localStorage.getItem("userId") === "5633")
-                        || (localStorage.getItem("userId") === "5634")
-                    ||  (localStorage.getItem("userId") === "5635")) && (
+                    {(localStorage.getItem("userId") === "3212") &&
+                    (
                         <div className={"full-width"}>
                             <a href={"/uhktybb/police"} className={"float-left"}>
                                 <button className={"btn btn-danger"}>Kullanıcı(id:{this.props.activity.profileDto.id})

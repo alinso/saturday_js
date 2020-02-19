@@ -18,9 +18,12 @@ class DashboardMobile extends BaseActivityListMobile {
         this.state = {
             activities: [],
             // userCount: 0,
+            maleCount: 0,
+            femaleCount: 0,
             cities: [],
             city: {},
             sponsor: false,
+            attendanceRate: 0,
             pageNum: 0,
             loading: true,
             noMoreRecords: false
@@ -33,6 +36,8 @@ class DashboardMobile extends BaseActivityListMobile {
 
         this.loadMore = this.loadMore.bind(this);
         this.fillPage = this.fillPage.bind(this);
+        this.loadCount = this.loadCount.bind(this);
+        this.loadCount();
 
         let cityId = localStorage.getItem("cityId");
         if (cityId === "null") {
@@ -79,6 +84,18 @@ class DashboardMobile extends BaseActivityListMobile {
                 self.setState({activities: newActivities});
                 localStorage.setItem("pageNum", newPageNum);
 
+            });
+    }
+
+
+    loadCount() {
+        axios.get(Globals.serviceUrl + 'user/maleCount/', Security.authHeader())
+            .then(function (response) {
+                self.setState({maleCount: response.data});
+            });
+        axios.get(Globals.serviceUrl + 'user/femaleCount/', Security.authHeader())
+            .then(function (response) {
+                self.setState({femaleCount: response.data});
             });
     }
 
@@ -132,6 +149,12 @@ class DashboardMobile extends BaseActivityListMobile {
             })
             .catch(function (error) {
             });
+        axios.get(Globals.serviceUrl + 'user/userAttendanceRate/' + localStorage.getItem("userId"), Security.authHeader())
+            .then(function (response) {
+                self.setState({attendanceRate: response.data});
+            })
+            .catch(function (error) {
+            });
 
         // axios.get(Globals.serviceUrl + 'user/userCount', Security.authHeader())
         //     .then(function (response) {
@@ -171,6 +194,8 @@ class DashboardMobile extends BaseActivityListMobile {
     render() {
         const self = this;
         let pageOpacity = 0;
+        let kadin = 16000 - this.state.femaleCount;
+        let erkek = 4000 - this.state.maleCount;
         return (
 
             <div className="full-width container">
@@ -196,15 +221,39 @@ class DashboardMobile extends BaseActivityListMobile {
 
                     <hr/>
                     <strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>
-                    <strong><a href={"/help"}><button className={"btn btn-success"}> Premium Ol!</button></a></strong><br/>
+                    <strong><a href={"/help"}>
+                        <button className={"btn btn-success"}> Premium Ol!</button>
+                    </a></strong><br/>
 
                     <hr/>
                     <span>İlgini çeken bir aktivite yoksa kendi aktiviteni oluştur, her konuda sana eşlik edecek insanlar burada!</span><br/>
-                    <a href="/createActivity"><button className={"btn btn-primary"}>Bir Aktivite Oluştur</button></a>
+                    <a href="/createActivity">
+                        <button className={"btn btn-primary"}>Bir Aktivite Oluştur</button>
+                    </a>
                     <br/>
                     <hr/>
+                    <h5>Ankara Toplam Üye Sayısı</h5>
+                    <span>Ankara'da toplam en fazla 20.000 üye olabilmesi kararı aldık. Şehrin en nezih 20.000 kişisini topluluğumuza dahil ettikten sonra diğer şehirlerden büyümeye devam
+                        edeceğiz. Kaliteyi en yüksek seviyede tutabilmek için kullanıcı sayısına bu limiti getirdik. Ankara toplam kullanıcı sayısı hiçbir zaman 20.001 olmayacak ve limite ulaştığımızda
+                    sayımızı değil, kalitemizi yükseltmeye odaklı çalışmalar yapacağız. Aşağıda kadın ve erkek için kalan kontenjanları canlı olarak ayrı ayrı görebilirsiniz</span>
+                    <br/>
+                    <strong> Kadın Kontenjanı :{kadin} (Toplam 16.000)</strong>
+                    <br/>
+                    <strong>Erkek Kontenjanı :{erkek} (Toplam 4.000)</strong>
+                    <hr/>
+                    {this.state.attendanceRate > 3 && this.state.attendanceRate < 70 && (
+                        (
+                            <div className={"full-width warning"}>
+                                Onaylandığın aktivitelere katılım oranın düşük, lütfen sadece katılmayı düşündüğün
+                                aktivitelere istek gönder.
+                                Onaylandığın zaman gerçekten planlarını ona göre yapan ve seni bekleyen insanlar var!
 
-                    {this.state.sponsor && localStorage.getItem("cityId")!="4" && (
+                            </div>
+                        )
+                    )}
+                    <br/>
+
+                    {this.state.sponsor && localStorage.getItem("cityId") != "4" && (
                         <div className={"activityListActivityDetailMobile"}>
                             {this.state.sponsor.photoName != null &&
                             (<img src={'/upload/' + this.state.sponsor.photoName} width={"100%"}/>)

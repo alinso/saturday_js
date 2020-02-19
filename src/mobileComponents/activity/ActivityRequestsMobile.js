@@ -65,37 +65,47 @@ class ActivityRequestsMobile extends React.Component {
         const id=request.id;
         axios.get(Globals.serviceUrl + 'vibe/vibePercentOfRequestOwner/' + id, Security.authHeader())
             .then(function (response) {
+
+
                 if(response.data<75 && response.data!==0 && request.activityRequestStatus==="WAITING"){
                     let result=window.confirm("Bu profil katıldığı aktivitelerden OLUMSUZ TEPKİLER ALMIŞ, aktivitene KABUL ETMEMENİ tavsiye ederiz");
                     if(!result)
                         return;
                 }
 
-                axios.get(Globals.serviceUrl + 'request/approveRequest/' + id, Security.authHeader())
+
+                axios.get(Globals.serviceUrl + 'user/attendanceRate/' + id, Security.authHeader())
                     .then(function (response) {
-                        let requests = self.state.requests;
-                        let currentRequestOld = requests.filter(obj => {
-                            return obj.id === id
-                        });
 
-                        let currentRequestNew = Object.assign({}, currentRequestOld)[0];
-                        currentRequestNew.activityRequestStatus = response.data;
+                        if(response.data<70 && response.data>1){
+                            let result=window.confirm("Bu profil onaylandığı aktivitelere yeteri katılım göstermemiş, aktivitene KABUL ETMEMENİ tavsiye ederiz");
+                            if(!result)
+                                return;
+                        }
+                        axios.get(Globals.serviceUrl + 'request/approveRequest/' + id, Security.authHeader())
+                            .then(function (response) {
+                                let requests = self.state.requests;
+                                let currentRequestOld = requests.filter(obj => {
+                                    return obj.id === id
+                                });
 
-                        let requestsNew = JSUtil.deleteFromArrayByPropertyName(requests, "id", id);
-                        requestsNew.push(currentRequestNew);
-                        requestsNew.sort(JSUtil.compareByRequestatus);
+                                let currentRequestNew = Object.assign({}, currentRequestOld)[0];
+                                currentRequestNew.activityRequestStatus = response.data;
+
+                                let requestsNew = JSUtil.deleteFromArrayByPropertyName(requests, "id", id);
+                                requestsNew.push(currentRequestNew);
+                                requestsNew.sort(JSUtil.compareByRequestatus);
 
 
-                        self.setState({requests: requestsNew});
-                    })
-                    .catch(function (error) {
+                                self.setState({requests: requestsNew});
+                            })
+                            .catch(function (error) {
 
-                        console.log(error);
-                        self.setState({errors: error.response.data});
+                                console.log(error);
+                                self.setState({errors: error.response.data});
+                            });
+
                     });
-
-
-
             });
     }
 

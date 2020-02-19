@@ -22,6 +22,7 @@ class Statistics extends React.Component {
         };
 
         this.fillPage();
+        this.avgWomenRegister=this.avgWomenRegister.bind(this);
     }
 
 
@@ -72,8 +73,22 @@ class Statistics extends React.Component {
     }
 
 
+    avgWomenRegister(){
+        let total=0;
+        this.state.registeredWomen.map(function (woman,i) {
+           if(i>0)
+           {
+               total=total+woman;
+           }
+        });
+
+        return total/30;
+    }
+
+
     render() {
 
+        let self=this;
         return (
             <div className="row outer">
                 <div className={"col-md-6 offset-3 container"}>
@@ -86,8 +101,15 @@ class Statistics extends React.Component {
                     Yeni Kadın Üyeler
                     <hr/>
                     {this.state.registeredWomen!=null && this.state.registeredWomen.map(function (womenCount) {
-                        return (<span>{womenCount}, </span>)
+
+
+                        return (<span>{womenCount}+</span>)
                     })}
+                    <br/>
+                    {this.state.registeredWomen!=null &&(
+                        <span> Günlük Ortalama:{self.avgWomenRegister()}</span>
+                    )}
+
                     <br/><br/>
                     Kullanıcı Sayıları(Ankara)
                     <hr/>

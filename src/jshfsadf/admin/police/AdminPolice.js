@@ -16,6 +16,7 @@ class AdminPolice extends React.Component {
             name: "",
             surname: "",
             phone: null,
+            sms_code:null,
             email: false,
             userdata: false,
             extraPoint: 0,
@@ -206,6 +207,8 @@ class AdminPolice extends React.Component {
                             {this.state.userdata.phone}
                             <br/>
                             {this.state.userdata.email}
+                            <br/>
+                            {this.state.userdata.smsCode}
                             <div className={"row"}>
 
 
