@@ -183,6 +183,20 @@
     overflow-y: scroll;
     margin-bottom: 10px;
 }
+.ghostProfilePic {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius:50%
+}
+.ghostMessageBoxMobile {
+    width: 100%;
+    border-radius: 5px;
+    height: 490px;
+    background-color: #f3f7f0;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+}
 
 .fontMobile {
     font-size: 0.8rem;

@@ -24,7 +24,6 @@ class MessageActivityPageMobile extends React.Component {
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
         this.sendLocation = this.sendLocation.bind(this);
-        this.sendLink = this.sendLink.bind(this);
     }
 
 
@@ -35,8 +34,10 @@ class MessageActivityPageMobile extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
+        let urlMessage=this.urlify(this.state.message);
+
         const message = {
-            message: this.state.message,
+            message: urlMessage,
             activityId: this.state.activityId
         };
         this.sendMessage(message);
@@ -65,19 +66,28 @@ class MessageActivityPageMobile extends React.Component {
         }
     }
 
-    sendLink(e) {
-        e.preventDefault();
+    // sendLink(e) {
+    //     e.preventDefault();
+    //
+    //     if (this.state.message == "") {
+    //         alert("Linki mesaj kutusuna yapıştır ve bu butona tıkla");
+    //         return false;
+    //     }
+    //
+    //     const message = {
+    //         message: "<a href='" + this.state.message + "'  target='_blank'>" + this.state.message + "</a>",
+    //         activityId: this.state.activityId
+    //     };
+    //     this.sendMessage(message);
+    // }
 
-        if (this.state.message == "") {
-            alert("Linki mesaj kutusuna yapıştır ve bu butona tıkla");
-            return false;
-        }
-
-        const message = {
-            message: "<a href='" + this.state.message + "'  target='_blank'>" + this.state.message + "</a>",
-            activityId: this.state.activityId
-        };
-        this.sendMessage(message);
+    urlify(text) {
+        var urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function(url) {
+            return '<a href="' + url + '">' + url + '</a>';
+        })
+        // or alternatively
+        // return text.replace(urlRegex, '<a href="$1">$1</a>')
     }
 
 
@@ -144,8 +154,7 @@ class MessageActivityPageMobile extends React.Component {
                     <br/>
 
                     <button className={"btn btn-danger"} onClick={this.sendLocation}>Konum</button>
-                    &nbsp;
-                    <button className={"btn btn-success"} onClick={this.sendLink}>Link</button>
+
                     &nbsp;
                     <a href={"/activityAlbum/"+this.props.match.params.id}><button type={"button"} className={"btn btn-primary"}>Fotoğraf </button></a>
 

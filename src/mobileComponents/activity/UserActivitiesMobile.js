@@ -49,6 +49,18 @@ class UserActivitiesMobile extends BaseActivityListMobile {
 
     fillPage() {
         const self = this;
+
+        axios.get(Globals.serviceUrl + 'user/profile/' + this.props.match.params.id, Security.authHeader())
+            .then(function (response) {
+                self.setState({creator: response.data});
+            })
+            .catch(function (error) {
+                console.log(error.response);
+            });
+
+        if(this.props.match.params.id==2534){
+            return;
+        }
         axios.get(Globals.serviceUrl + 'activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
                 let activitiesCreated = [];
@@ -69,13 +81,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
             });
 
 
-        axios.get(Globals.serviceUrl + 'user/profile/' + this.props.match.params.id, Security.authHeader())
-            .then(function (response) {
-                self.setState({creator: response.data});
-            })
-            .catch(function (error) {
-                console.log(error.response);
-            });
+
     }
 
 

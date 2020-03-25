@@ -47,7 +47,7 @@ class ReferenceCodesMobile extends React.Component {
                 <h6>
                     Erkek üyeler için referans kodu yalnız instagram basvuruları ile veriliyor. Erkek adaylar instagram hesabımıza yazabilir.
                 </h6>
-                (instagram : activityfriend)
+                (instagram : activuss)
                 <hr/>
 
                 <span>Kadınlara vermen gereken refereans kodu<br/>(Her defasında değişir) </span>

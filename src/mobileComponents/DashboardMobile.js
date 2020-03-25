@@ -39,10 +39,10 @@ class DashboardMobile extends BaseActivityListMobile {
         this.loadCount = this.loadCount.bind(this);
         this.loadCount();
 
-        let cityId = localStorage.getItem("cityId");
-        if (cityId === "null") {
-            cityId = 1;
-        }
+         let cityId = localStorage.getItem("cityId");
+        // if (cityId === "null") {
+        //     cityId = 1;
+        // }
         this.fillPage(cityId);
 
         this.loadCities();
@@ -225,22 +225,26 @@ class DashboardMobile extends BaseActivityListMobile {
                         <button className={"btn btn-success"}> Premium Ol!</button>
                     </a></strong><br/>
 
+                    {/*<hr/>*/}
+                    {/*<span>İlgini çeken bir aktivite yoksa kendi aktiviteni oluştur, her konuda sana eşlik edecek insanlar burada!</span><br/>*/}
+                    {/*<a href="/createActivity">*/}
+                    {/*    <button className={"btn btn-primary"}>Bir Aktivite Oluştur</button>*/}
+                    {/*</a>*/}
+                    {/*<br/>*/}
                     <hr/>
-                    <span>İlgini çeken bir aktivite yoksa kendi aktiviteni oluştur, her konuda sana eşlik edecek insanlar burada!</span><br/>
-                    <a href="/createActivity">
-                        <button className={"btn btn-primary"}>Bir Aktivite Oluştur</button>
+                    <a href="/ghostMessage">
+                        <button type={"button"} className={"btn btn-danger"}><strong>KARALAMA DUVARI</strong></button>
                     </a>
-                    <br/>
-                    <hr/>
-                    <h5>Ankara Toplam Üye Sayısı</h5>
-                    <span>Ankara'da toplam en fazla 20.000 üye olabilmesi kararı aldık. Şehrin en nezih 20.000 kişisini topluluğumuza dahil ettikten sonra diğer şehirlerden büyümeye devam
-                        edeceğiz. Kaliteyi en yüksek seviyede tutabilmek için kullanıcı sayısına bu limiti getirdik. Ankara toplam kullanıcı sayısı hiçbir zaman 20.001 olmayacak ve limite ulaştığımızda
-                    sayımızı değil, kalitemizi yükseltmeye odaklı çalışmalar yapacağız. Aşağıda kadın ve erkek için kalan kontenjanları canlı olarak ayrı ayrı görebilirsiniz</span>
-                    <br/>
-                    <strong> Kadın Kontenjanı :{kadin} (Toplam 16.000)</strong>
-                    <br/>
-                    <strong>Erkek Kontenjanı :{erkek} (Toplam 4.000)</strong>
-                    <hr/>
+
+                    {/*<h5>Ankara Toplam Üye Sayısı</h5>*/}
+                    {/*<span>Ankara'da toplam en fazla 20.000 üye olabilmesi kararı aldık. Şehrin en nezih 20.000 kişisini topluluğumuza dahil ettikten sonra diğer şehirlerden büyümeye devam*/}
+                    {/*    edeceğiz. Kaliteyi en yüksek seviyede tutabilmek için kullanıcı sayısına bu limiti getirdik. Ankara toplam kullanıcı sayısı hiçbir zaman 20.001 olmayacak ve limite ulaştığımızda*/}
+                    {/*sayımızı değil, kalitemizi yükseltmeye odaklı çalışmalar yapacağız. Aşağıda kadın ve erkek için kalan kontenjanları canlı olarak ayrı ayrı görebilirsiniz</span>*/}
+                    {/*<br/>*/}
+                    {/*<strong> Kadın Kontenjanı :{kadin} (Toplam 16.000)</strong>*/}
+                    {/*<br/>*/}
+                    {/*<strong>Erkek Kontenjanı :{erkek} (Toplam 4.000)</strong>*/}
+                    {/*<hr/>*/}
                     {this.state.attendanceRate > 3 && this.state.attendanceRate < 70 && (
                         (
                             <div className={"full-width warning"}>
@@ -251,7 +255,6 @@ class DashboardMobile extends BaseActivityListMobile {
                             </div>
                         )
                     )}
-                    <br/>
 
                     {this.state.sponsor && localStorage.getItem("cityId") != "4" && (
                         <div className={"activityListActivityDetailMobile"}>

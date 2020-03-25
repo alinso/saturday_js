@@ -367,10 +367,19 @@ height: 200px;
   overflow-y: scroll;
   margin-bottom: 10px;
 }
-.incomingMessage, .outgoingMessage{
+.incomingMessage, .outgoingMessage,.ghostMessage{
   border-radius: 5px;
   margin-bottom: 5px;
     font-size: 14px;
+}
+
+.ghostMessage{
+    padding: 1px 1px 3px;
+    float: left;
+}
+.ghostMessageContainer{
+    clear: both;
+    text-align: left;
 }
 
 .messageDate{

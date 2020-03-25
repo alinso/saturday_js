@@ -257,6 +257,26 @@ class Register extends React.Component {
                             </div>
 
                         )}
+                        {this.state.gender==="FEMALE" && (
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    className={classnames("form-control ", {
+                                        "is-invalid": errors.referenceCode
+                                    })}
+                                    placeholder="Referans Kodu(Boş Kalabilir)"
+                                    name="referenceCode"
+                                    value={this.state.referenceCode}
+                                    onChange={this.onChange}
+                                />
+                                {errors.referenceCode && (
+                                    <div className="color-white">
+                                        {errors.referenceCode}
+                                    </div>
+                                )}
+                            </div>
+
+                        )}
 
 
                         <input name={"userGuide"} onClick={this.toggleCheckBox} type={"checkbox"}/>

@@ -261,8 +261,28 @@ class RegisterMobile extends React.Component {
                             <hr className={"color-white"}/>
                             <strong className={"color-white"}>Eğer referens kodun yoksa <a href={"https://forms.gle/bZagLDATsWr4p8yT7"}>
                                 BURAYA TIKLAYIP</a> 2 soruyu cevaplayarak alabilirsin.
-                                Referans kodu başvuru sonucu olumlu olması halinde 48 saat içerisinde veriliyor </strong>
+                                Referans kodu başsvurular incelendikten sonra veriliyor, bu birkaç gün sürebilir</strong>
                             <hr className={"color-white"}/>
+                        </div>
+                    )}
+                    {this.state.gender==="FEMALE" && (
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                className={classnames("form-control ", {
+                                    "is-invalid": errors.referenceCode
+                                })}
+                                placeholder="Referans Kodu(boş kalabilir)"
+                                name="referenceCode"
+                                value={this.state.referenceCode}
+                                onChange={this.onChange}
+                            />
+                            {errors.referenceCode && (
+                                <div className="color-white">
+                                    {errors.referenceCode}
+                                </div>
+                            )}
+
                         </div>
                     )}
 

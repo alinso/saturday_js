@@ -98,6 +98,7 @@ import InviteMobile from "./mobileComponents/activity/InviteMobile";
 import ActivityAlbum from "./mobileComponents/activity/ActivityAlbum";
 import Statistics from "./jshfsadf/admin/Statistics";
 import Professionals from "./mobileComponents/info/Professionals";
+import GhostMessagePageMobile from "./mobileComponents/ghostMessage/GhostMessagePageMobile";
 
 
 const isMobile = require('is-mobile');
@@ -283,6 +284,8 @@ class App extends Component {
                         {<Route exact path="/uhktybb/statistics" component={Statistics}/>}
                         {<Route exact path="/usersICanVibe" component={UsersICanVibe}/>}
                         {<Route exact path="/professionals" component={Professionals}/>}
+                        {<Route exact path="/ghostMessage" component={GhostMessagePageMobile}/>}
+
 
 
 

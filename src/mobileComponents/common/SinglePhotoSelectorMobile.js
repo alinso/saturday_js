@@ -11,7 +11,7 @@ class SinglePhotoSelectorMobile extends React.Component {
 
         return (
             <div>
-                <label className="btn btn-default">
+                <label>
                     <div className="uploadBrowseButton">Fotoğraf Seç</div>
                     <input type="file" hidden onChange={this.props.onChange}/>
                     {
