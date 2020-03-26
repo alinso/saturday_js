@@ -99,6 +99,7 @@ import ActivityAlbum from "./mobileComponents/activity/ActivityAlbum";
 import Statistics from "./jshfsadf/admin/Statistics";
 import Professionals from "./mobileComponents/info/Professionals";
 import GhostMessagePageMobile from "./mobileComponents/ghostMessage/GhostMessagePageMobile";
+import Pandemi from "./pcComponents/pandemi/Pandemi";
 
 
 const isMobile = require('is-mobile');
@@ -203,6 +204,7 @@ class App extends Component {
                     {<Route exact path="/uhktybb/statistics" component={Statistics}/>}
                     {<Route exact path="/oldbatmanassss" component={BatmanPolice}/>}
                     {<Route exact path="/uhktybb/premium" component={PremiumForm}/>}
+                    {<Route exact path="/pandemi/:disease" component={Pandemi}/>}
 
 
                     {this.setPcFooter()}

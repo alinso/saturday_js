@@ -36,8 +36,8 @@ class DashboardMobile extends BaseActivityListMobile {
 
         this.loadMore = this.loadMore.bind(this);
         this.fillPage = this.fillPage.bind(this);
-        this.loadCount = this.loadCount.bind(this);
-        this.loadCount();
+       // this.loadCount = this.loadCount.bind(this);
+       //   this.loadCount();
 
          let cityId = localStorage.getItem("cityId");
         // if (cityId === "null") {
@@ -143,12 +143,12 @@ class DashboardMobile extends BaseActivityListMobile {
             })
             .catch(function (error) {
             });
-        axios.get(Globals.serviceUrl + 'discover/findRandom', Security.authHeader())
-            .then(function (response) {
-                self.setState({sponsor: response.data});
-            })
-            .catch(function (error) {
-            });
+        // axios.get(Globals.serviceUrl + 'discover/findRandom', Security.authHeader())
+        //     .then(function (response) {
+        //         self.setState({sponsor: response.data});
+        //     })
+        //     .catch(function (error) {
+        //     });
         axios.get(Globals.serviceUrl + 'user/userAttendanceRate/' + localStorage.getItem("userId"), Security.authHeader())
             .then(function (response) {
                 self.setState({attendanceRate: response.data});

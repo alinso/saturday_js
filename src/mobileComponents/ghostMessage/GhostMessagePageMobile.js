@@ -27,7 +27,7 @@ class GhostMessagePageMobile extends React.Component {
         };
         this.handleUpload = this.handleUpload.bind(this);
         this.handleSelectedFile = this.handleSelectedFile.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onSend = this.onSend.bind(this);
         this.sendMessage = this.sendMessage.bind(this);
         this.onChange = this.onChange.bind(this);
         this.toggleNotification = this.toggleNotification.bind(this);
@@ -36,8 +36,8 @@ class GhostMessagePageMobile extends React.Component {
 
     }
 
-    isReceivingNotification(){
-        let self=this;
+    isReceivingNotification() {
+        let self = this;
         axios.get(Globals.serviceUrl + "ghostMessage/isReceivingNotification", Security.authHeader())
             .then(function (res) {
                 self.setState({notify: res.data});
@@ -84,8 +84,7 @@ class GhostMessagePageMobile extends React.Component {
     }
 
 
-    onSubmit(e) {
-        e.preventDefault();
+    onSend() {
 
         if (this.state.isFileSelected !== false) {
             this.handleUpload();
@@ -102,7 +101,7 @@ class GhostMessagePageMobile extends React.Component {
         let notifyOld = this.state.notify;
         axios.get(Globals.serviceUrl + "ghostMessage/toggleNotification", Security.authHeader())
             .then(function () {
-                self.setState({notify:!notifyOld });
+                self.setState({notify: !notifyOld});
             });
 
     }
@@ -110,7 +109,7 @@ class GhostMessagePageMobile extends React.Component {
     urlify(text) {
         var urlRegex = /(https?:\/\/[^\s]+)/g;
         return text.replace(urlRegex, function (url) {
-            return '<a href="' + url + '">' + url + '</a>';
+            return '<a href="' + url + '">[-LİNK-]</a>';
         })
         // or alternatively
         // return text.replace(urlRegex, '<a href="$1">$1</a>')
@@ -137,20 +136,18 @@ class GhostMessagePageMobile extends React.Component {
 
 
         let notifyButtonText = "Bildirim Al";
-        if(this.state.notify){
-            notifyButtonText="Sessize Al";
+        let bell="fa-bell";
+        if (this.state.notify) {
+            notifyButtonText = "Sessize Al";
+            bell="fa-bell-slash";
         }
 
         return (
-            <div className={"full-width container"}>
+            <div className={"full-width"} style={{paddingBottom:"70px"}}>
                 <GhostMessageBoxMobile
                     activityId={this.props.match.params.id}
                 />
-
                 <div className={"clear-both"}/>
-                <br/>
-
-
                 <form onSubmit={this.onSubmit}>
 
                     <div className="form-group">
@@ -168,33 +165,31 @@ class GhostMessagePageMobile extends React.Component {
                                 {this.state.errors.message}
                             </div>
                         )}
+                        <div className={"float-left"}>
+                            <button
+                                type="button"
+                                className="btn btn-danger"
+                                onClick={this.toggleNotification}
+                            ><strong><i className={"far "+bell}/>{notifyButtonText}</strong></button>
+                        </div>
+                        <div className={"float-right"}>
+                            <button
+                                type="button"
+                                className="btn btn-primary"
+                                onClick={this.onSend}
+                            ><strong><i className="far fa-paper-plane"/>Gönder</strong></button>
+                        </div>
+                        <div className={"half-left"}>
+                            <SinglePhotoSelectorMobile
+                                onChange={this.handleSelectedFile}
+                                isFileSelected={this.state.isFileSelected}
+                                error={this.state.errors.file}
+                            />
+                        </div>
                     </div>
-                    <div className={"float-left"}>
-                        <input
-                            type="button"
-                            value={notifyButtonText}
-                            className="btn btn-danger"
-                            onClick={this.toggleNotification}
-                        />
-                    </div>
-                    <div className={"float-right"}>
-                        <input
-                            type="submit"
-                            value="Gönder"
-                            className="btn btn-primary "
-                        />
-                    </div>
-                    <div className={"half-left"}>
-                        <SinglePhotoSelectorMobile
-                            onChange={this.handleSelectedFile}
-                            isFileSelected={this.state.isFileSelected}
-                            error={this.state.errors.file}
-                        />
-                    </div>
-                    <br/>
                 </form>
-                <br/>                <br/>
-
+                <br/>
+                <br/>
                 <br/>
             </div>
 

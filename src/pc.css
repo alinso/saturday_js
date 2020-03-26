@@ -556,3 +556,23 @@ margin-bottom: 4px;
     width: 100%;
     margin-bottom: -50px;
 }
+
+.pandemiContainer{
+    background-color: #210f42;
+    overflow: hidden;
+    border-radius: 9px;
+}
+.pandemiPerson{
+    float: left;
+    position:absolute;
+    border-radius: 50%;
+}
+.healthyPerson{
+    background-color: white;
+}
+.sickPerson{
+    background-color: black;
+}
+.doctorPerson{
+    background-color: #6ca71e;
+}
