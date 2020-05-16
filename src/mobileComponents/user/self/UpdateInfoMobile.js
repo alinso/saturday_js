@@ -25,6 +25,7 @@ class UpdateInfoMobile extends React.Component {
             name: "",
             surname: "",
             email: "",
+            nick:"",
             bDateString: "",
             phone: "",
             gender: "UNSELECTED",
@@ -34,7 +35,6 @@ class UpdateInfoMobile extends React.Component {
             motivation: "",
             city: {},
             cities: [],
-            interests: "",
             errors: {}
         };
 
@@ -79,7 +79,7 @@ class UpdateInfoMobile extends React.Component {
         axios.post(Globals.serviceUrl+'user/updateInfo', newUser, security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
-                self.setState({"savedMessage": "Bilgileriniz Güncellendi"});
+                self.setState({"savedMessage": "Bilgilerin Güncellendi"});
                 localStorage.setItem("cityId", response.data.cityId);
                 self.initCities();
             })
@@ -121,9 +121,9 @@ class UpdateInfoMobile extends React.Component {
             gender: this.state.gender,
             referenceCode: this.state.referenceCode,
             about: this.state.about,
+            nick:this.state.nick,
             cityId: this.state.city.value,
             motivation: this.state.motivation,
-            interests: this.state.interests,
         };
         this.updateUser(newUser);
     }
@@ -171,6 +171,24 @@ class UpdateInfoMobile extends React.Component {
                             placeholder="Soyisim"
                             name="surname"
                             value={this.state.surname}
+                            onChange={this.onChange}
+                        />
+                        {errors.surname && (
+                            <div className="invalid-feedback">
+                                {errors.surname}
+                            </div>
+                        )}
+                    </div>
+                    <div className="form-group  text-align-left">
+                        Duvar İçin Takma Ad(Nick)
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.nick
+                            })}
+                            placeholder="Nick"
+                            name="nick"
+                            value={this.state.nick}
                             onChange={this.onChange}
                         />
                         {errors.surname && (
@@ -254,19 +272,6 @@ class UpdateInfoMobile extends React.Component {
                             placeholder="Godfather, Suç ve Ceza, Hotel California..."
                             name="motivation"
                             value={this.state.motivation}
-                            onChange={this.onChange}
-                        />
-                    </div>
-
-                    <div className="form-group  text-align-left">
-                        İlgi alanların neler? (# ile ayırmalısın)<br/>
-                        (#marvel motosiklet pastacılık ->yanlış)<br/>
-                        (#marvel #motosiklet #pastacılık ->doğru)
-                        <textarea
-                            className={classnames("form-control form-control-lg")}
-                            placeholder="#marvel #motosiklet #pastacılık #doğa"
-                            name="interests"
-                            value={this.state.interests}
                             onChange={this.onChange}
                         />
                     </div>

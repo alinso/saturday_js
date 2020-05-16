@@ -1,19 +1,18 @@
 import React from "react";
-import Person from "./Person";
+import PersonMobile from "./PersonMobile";
 import Select from "react-select";
 
 
-class Pandemi extends React.Component {
+class PandemiMobile extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             people: [],
-            num: 20,
-            maxHeight: window.screen.height - 150,
-            maxWidth: window.screen.width - 150,
+            num: 18,
+            maxHeight: window.innerHeight,
+            maxWidth: window.screen.width,
             point: 0,
-            percent: 0,
             title: "Coronavirus",
             difficulties: [{label: "Kolay", value: "kolay"}, {label: "Orta", value: "orta"}, {
                 label: "Zor",
@@ -23,14 +22,14 @@ class Pandemi extends React.Component {
         if (this.props.match.params.difficulty === "orta") {
             this.state.doctor = 5;
             this.state.contaminated = 2;
-            this.state.speed = 80;
+            this.state.speed = 120;
             this.state.change = 5;
             this.state.difficulty = {value:"orta",label:"Orta"};
         }
         if (this.props.match.params.difficulty === "zor") {
-            this.state.doctor = 4;
+            this.state.doctor = 5;
             this.state.contaminated = 2;
-            this.state.speed = 60;
+            this.state.speed = 90;
             this.state.change = 5;
             this.state.difficulty = {value:"zor",label:"Zor"};
 
@@ -38,13 +37,13 @@ class Pandemi extends React.Component {
         if (this.props.match.params.difficulty === "kolay") {
             this.state.doctor = 6;
             this.state.contaminated = 2;
-            this.state.speed = 100;
+            this.state.speed = 160;
             this.state.change = 5;
             this.state.difficulty = {value:"kolay",label:"Kolay"};
 
         }
         if (this.props.match.params.difficulty === "turkiye") {
-            this.state.doctor = 8;
+            this.state.doctor = 7;
             this.state.contaminated = 5;
             this.state.speed = 70;
             this.state.change = 25;
@@ -56,7 +55,7 @@ class Pandemi extends React.Component {
         let left;
         let topChange;
         let leftChange;
-        let size = 30;
+        let size = 20;
 
         for (let i = 0; i < this.state.num; i++) {
 
@@ -67,8 +66,8 @@ class Pandemi extends React.Component {
                 style = "doctorPerson";
 
 
-            top = Math.ceil(Math.random() * 400);
-            left = Math.ceil(Math.random() * 1100);
+            top = Math.ceil(Math.random() * (this.state.maxWidth-40));
+            left = Math.ceil(Math.random() * (this.state.maxWidth-40));
             leftChange = Math.ceil(Math.random() * this.state.change);
             topChange = Math.ceil(Math.random() * this.state.change);
 
@@ -122,8 +121,8 @@ class Pandemi extends React.Component {
                 biggerOne = Math.max(sickOnes[k].size, healthyOnes[p].size) - 4;
                 if (Math.abs(Math.abs(sickOnes[k].top) - Math.abs(healthyOnes[p].top)) < biggerOne && Math.abs(Math.abs(sickOnes[k].left) - Math.abs(healthyOnes[p].left)) < biggerOne) {
 
-                    if (sickOnes[k].size < 200) {
-                        sickOnes[k].size = sickOnes[k].size + 5;
+                    if (sickOnes[k].size < 120) {
+                        sickOnes[k].size = sickOnes[k].size + 3;
                     }
                     healthyOnes[p].personStyle = "sickPerson";
                     changed = true;
@@ -237,8 +236,6 @@ class Pandemi extends React.Component {
                 window.location.reload();
 
             }
-            let percent = Math.ceil(healthyCount / (healthyCount + sickCount) * 100);
-            self.setState({percent: percent})
             self.setState({people: newPeople});
             self.contamine();
             self.heal();
@@ -270,36 +267,29 @@ class Pandemi extends React.Component {
         //this.contamine();
         let self = this;
         return (
-            <div className="row outer">
 
                 <div className={"pandemiContainer"}
                      style={{width: this.state.maxWidth, height: this.state.maxHeight, margin: "auto",marginTop:0}}>
-                    <div style={{width: "100%", backgroundColor: "#594186"}}>
-                        <div className="progress-bar progress-bar-striped bg-success" role="progressbar"
-                             style={{width: this.state.percent + '%'}} aria-valuenow="50"
-                             aria-valuemin="0" aria-valuemax="100">{this.state.percent}%
-                        </div>
-                    </div>
 
-                    <div style={{width: "180px", float: "left", padding:"5px", backgroundColor:"#21136c", backgroundOpacity:0.3}}>
-                        <a href={"/howToPlay/corona"}><h5 style={{color:"white"}}>Nasıl Oynanır?</h5></a>
+
+                    <div style={{width: "100px", float: "left", padding:"5px", backgroundColor:"#21136c", backgroundOpacity:0.3}}>
+                        <a href={"/howToPlay/corona"}><strong style={{color:"white"}}>Nasıl Oynanır?</strong></a>
 
                         <Select value={this.state.difficulty} options={this.state.difficulties}
                                 onChange={this.onSelectChange}/>
-                        <h1 className={"color-white float-left"}> {this.state.point}
-                        <i className="fas fa-heartbeat"/></h1>
+                        <h4 className={"color-white float-left"}> {this.state.point}
+                            <i className="fas fa-heartbeat"/></h4>
                     </div>
                     {this.state.people.map(function (p, index) {
                         return (
-                            <Person key={index} onClick={() => self.makeDoctor(index)} personStyle={p.personStyle}
+                            <PersonMobile key={index} onClick={() => self.makeDoctor(index)} personStyle={p.personStyle}
                                     top={p.top} left={p.left} leftChange={p.leftChange} size={p.size}
                                     topChange={p.topChange}/>);
                     })}
                 </div>
-            </div>
         );
     }
 }
 
 
-export default Pandemi;
+export default PandemiMobile;

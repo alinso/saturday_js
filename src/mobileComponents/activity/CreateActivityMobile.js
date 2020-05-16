@@ -13,6 +13,7 @@ class CreateActivityMobile extends BaseActivityFormMobile{
         super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.loadCities();
+        this.loadCategories();
         this.checkActivityLimit();
     }
 
@@ -41,6 +42,17 @@ class CreateActivityMobile extends BaseActivityFormMobile{
             });
 
     }
+    loadCategories() {
+        const self = this;
+        axios.get(Globals.serviceUrl + 'category/allCategories', Security.authHeader())
+            .then(function (response) {
+                self.setState({allCategories: response.data});
+            })
+            .catch(function (error) {
+                console.log(error.response);
+            });
+    }
+
 
     createActivity(newActivity) {
         let self = this;
@@ -73,8 +85,9 @@ class CreateActivityMobile extends BaseActivityFormMobile{
 
         data.append("cityId",this.state.city.value);
         data.append("detail", this.state.detail);
-        data.append("hashtagListString", this.state.hashtagListString);
+        data.append("selectedCategoryIds", this.state.selectedCategoryIds);
         data.append("deadLineString",deadLineString);
+        data.append("secret", this.state.audiance=="mylist");
         this.createActivity(data);
     }
 

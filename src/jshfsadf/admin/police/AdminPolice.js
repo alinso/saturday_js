@@ -106,7 +106,7 @@ class AdminPolice extends React.Component {
 
     }
     deletePartyVotes() {
-        axios.get(Globals.serviceUrl + Globals.adminUrl + 'deletePartyVotes', Security.authHeader())
+        axios.get(Globals.serviceUrl  + 'user/calculatePercent', Security.authHeader())
             .then(function (response) {
 
             })
@@ -195,7 +195,7 @@ class AdminPolice extends React.Component {
                     </div>
                     <div className={"col-md-4 policeButtonDivMobile"}>
                         <button type={"button"} className={"btn btn-warning "} onClick={this.deletePartyVotes}>
-                            delete party votes
+                           percent guncelle
                         </button>
                     </div>
 

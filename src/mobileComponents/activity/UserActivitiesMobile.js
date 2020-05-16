@@ -14,40 +14,68 @@ class UserActivitiesMobile extends BaseActivityListMobile {
         UserUtil.redirectIsBlocked(this.props.match.params.id);
 
         this.state = {
-            activitiesCreated: [],
-            activitiesJoined: [],
+            activitiesJoinedCount:0,
+            activitiesCreatedCount:0,
+            noMoreRecords:false,
             activities: [],
-            activityTypes: "created",
+            type: "created",
             creator: {},
             createdTitle: "activeTitle",
             joinedTitle: "passiveTitle",
+            pageNum:0,
         };
-        this.fillPage();
+        this.loadMore = this.loadMore.bind(this);
         this.changeType = this.changeType.bind(this);
+        this.activityCounts=this.activityCounts.bind(this);
+
+        this.activityCounts();
+        this.fillPage("created");
+
+        let self = this;
+        window.onscroll = function (ev) {
+            if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
+                self.loadMore();
+            }
+        };
+    }
+
+     loadMore() {
+        let newPageNum = this.state.pageNum + 1;
+        this.setState({pageNum: newPageNum});
+         this.fillPage(this.state.type);
     }
 
     changeType(type) {
-        let activities = [];
         let createdTitle = "";
         let joinedTitle = "";
-
+        this.setState({activities:[]});
+        this.setState({type:type});
+        this.fillPage(type);
         if (type === "created") {
-            activities = this.state.activitiesCreated;
             createdTitle = "activeTitle";
             joinedTitle = "passiveTitle";
         } else if (type === "joined") {
-            activities = this.state.activitiesJoined;
             createdTitle = "passiveTitle";
             joinedTitle = "activeTitle";
         }
-
-        this.setState({activities: activities});
         this.setState({createdTitle: createdTitle});
         this.setState({joinedTitle: joinedTitle});
 
     }
 
-    fillPage() {
+    activityCounts(){
+        let self=this;
+        axios.get(Globals.serviceUrl + 'activity/createdAndJoinedCount/' + this.props.match.params.id, Security.authHeader())
+            .then(function (response) {
+                self.setState({activitiesCreatedCount: response.data[0]});
+                self.setState({activitiesJoinedCount: response.data[1]});
+            })
+            .catch(function (error) {
+                console.log(error.response);
+            });
+    }
+
+    fillPage(type) {
         const self = this;
 
         axios.get(Globals.serviceUrl + 'user/profile/' + this.props.match.params.id, Security.authHeader())
@@ -58,30 +86,25 @@ class UserActivitiesMobile extends BaseActivityListMobile {
                 console.log(error.response);
             });
 
+        //yasin
         if(this.props.match.params.id==2534){
             return;
         }
-        axios.get(Globals.serviceUrl + 'activity/findByUserId/' + this.props.match.params.id, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findByUserId/' + this.props.match.params.id+"/"+this.state.pageNum+"/"+type, Security.authHeader())
             .then(function (response) {
-                let activitiesCreated = [];
-                let activitiesJoined = [];
-                response.data.map(function (activity) {
-                    if (activity.profileDto.id == self.props.match.params.id)
-                        activitiesCreated.push(activity);
-                    if (activity.profileDto.id != self.props.match.params.id)
-                        activitiesJoined.push(activity);
-                });
-                self.setState({activitiesCreated: activitiesCreated});
-                self.setState({activitiesJoined: activitiesJoined});
-                self.setState({activities: activitiesCreated});
+
+                if (response.data.length === 0) {
+                    self.setState({noMoreRecords: true});
+                    return;
+                }
+                let newActivities = self.state.activities;
+                newActivities = newActivities.concat(response.data);
+                self.setState({activities: newActivities});
 
             })
             .catch(function (error) {
                 console.log(error.response);
             });
-
-
-
     }
 
 
@@ -109,9 +132,9 @@ class UserActivitiesMobile extends BaseActivityListMobile {
                 <hr/>
                 <div className="text-align-center">
                             <span className={this.state.createdTitle}
-                                  onClick={() => this.changeType("created")}> Oluşturduğu ({this.state.activitiesCreated.length}) </span>&nbsp;&nbsp;
+                                  onClick={() => this.changeType("created")}> Oluşturduğu ({this.state.activitiesCreatedCount}) </span>&nbsp;&nbsp;
                     <span className={this.state.joinedTitle}
-                          onClick={() => this.changeType("joined")}> Katıldığı ({this.state.activitiesJoined.length})</span>
+                          onClick={() => this.changeType("joined")}> Katıldığı ({this.state.activitiesJoinedCount})</span>
                 </div>
                 <hr/>
 
@@ -123,6 +146,9 @@ class UserActivitiesMobile extends BaseActivityListMobile {
 
                         );
                     })}
+                <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha
+                    fazla göster...
+                </button>
             </div>
         )
     }

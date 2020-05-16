@@ -2,7 +2,6 @@ import React from "react";
 import classnames from "classnames";
 import Validator from "../../../util/Validator";
 import InputMask from "react-input-mask";
-import AlertMobile from "../../common/AlertMobile";
 import Security from "../../../security/Security";
 import Globals from "../../../util/Globals";
 

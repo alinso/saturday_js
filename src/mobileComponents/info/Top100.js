@@ -28,7 +28,7 @@ class Top100 extends React.Component {
         axios.get(Globals.serviceUrl + 'user/activityTop100', Security.authHeader())
             .then(function (response) {
                 self.setState({"errors": {}});
-                self.setState({profileDtos: response.data});
+      //          self.setState({profileDtos: response.data});
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});

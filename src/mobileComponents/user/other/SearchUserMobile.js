@@ -201,7 +201,7 @@ class SearchUserMobile extends React.Component {
                         </div>
                         <div className={"half-left"}>
                             <h5>{UserUtil.translateGender(user.gender)} / {user.age}</h5>
-                            <h4>{user.point} <i className="far fa-star"/></h4>
+                            {/*<h4>{user.point} <i className="far fa-star"/></h4>*/}
                         </div>
                         <div className={"clear-both"}/>
                     </div>)

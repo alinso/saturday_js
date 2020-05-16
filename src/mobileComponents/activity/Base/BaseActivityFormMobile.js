@@ -31,12 +31,18 @@ class BaseActivityFormMobile extends React.Component {
             hashtagListString:"",
             isFileSelected: false,
             isSubmitDisabled: false,
+            audiance:"everyone",
             cities: [],
             city: {},
             errors: {},
+            allCategories: [],
+            selectedCategoryIds: [],
             activityLimitExceeded:false
         };
 
+        this.toggleCategory = this.toggleCategory.bind(this);
+
+        this.loadCategories  =this.loadCategories.bind(this);
         this.onChange = this.onChange.bind(this);
         this.dateSelected = this.dateSelected.bind(this);
         this.onHourChange = this.onHourChange.bind(this);
@@ -56,6 +62,24 @@ class BaseActivityFormMobile extends React.Component {
         };
 
     }
+
+
+    toggleCategory(id) {
+        let alreadyExists = this.state.selectedCategoryIds.includes(id);
+        let selectedCategoryIds = this.state.selectedCategoryIds;
+
+        if (alreadyExists) {
+            const index = this.state.selectedCategoryIds.indexOf(id);
+            if (index > -1) {
+                selectedCategoryIds.splice(index, 1);
+            }
+        } else {
+            selectedCategoryIds.push(id);
+        }
+
+        this.setState({selectedCategoryIds: selectedCategoryIds});
+    }
+
 
     setHours() {
         let arr = [];
@@ -134,6 +158,7 @@ class BaseActivityFormMobile extends React.Component {
 
     render() {
 
+        let self=this;
         const {savedMessage} = this.state;
         const {errors} = this.state;
         const {photoName} = this.state;
@@ -182,6 +207,21 @@ class BaseActivityFormMobile extends React.Component {
                         detail={this.state.detail}
                         hashtagListString={this.state.hashtagListString}
                     />
+                    <br/>
+                    <h5>Kategriler</h5>
+
+                    {this.state.allCategories.length > 0 && this.state.allCategories.map(function (cat) {
+
+                        let catClass = "category-button-passive";
+                        if (self.state.selectedCategoryIds.includes(cat.id))
+                            catClass = "category-button-active";
+                        return (
+                            <div className={"half-left category-button " + catClass}
+                                 onClick={() => self.toggleCategory(cat.id)}>
+                                <span>{cat.name}</span>
+                            </div>
+                        )
+                    })}
                     <br/>
                     <label className={"text-align-left"}><i
                         className="far fa-clock"/> Tarih-Zaman:</label>
@@ -236,6 +276,31 @@ class BaseActivityFormMobile extends React.Component {
                             <a href="/"><strong>{errors.userWarningMessage}</strong> </a>
                         </div>
                     )}
+                    <hr/>
+                    <div className="form-group">
+                        Bu aktiviteyi kimler görebilir,<br/>
+                        <label className="customRadioLabelMobile ">Yalnız listem&nbsp;</label>
+                        <input type="radio"
+                               name="audiance"
+                               value="mylist"
+                               onChange={this.onChange}
+                               className="customRadio"
+                               checked={this.state.audiance=="mylist"}
+                        />&nbsp;&nbsp;
+                        <label className="customRadioLabelMobile ">Herkes&nbsp;</label>
+                        <input type="radio"
+                               name="audiance"
+                               onChange={this.onChange}
+                               value="everyone"
+                               checked={this.state.audiance=="everyone"}
+                               className="customRadio"
+                        />
+                        <br/>
+                        <div  className="form-error" >
+                            {errors.gender}
+                        </div>
+
+                    </div>
                     <input
                         type="submit"
                         value="Kaydet ve Yayınla"

@@ -23,20 +23,6 @@ class ActivityDetailInputMobil extends React.Component {
                 onChange={this.props.onChange}
             />
 
-            <label><i className="fas fa-hashtag"/> Hashtag:</label>
-
-            <textarea
-                className={classnames("form-control form-control-lg breakLine", {
-                    "is-invalid": this.props.error
-                })}
-                placeholder="#bisiklet #doğa"
-                name="hashtagListString"
-                value={this.props.hashtagListString}
-                onChange={this.props.onChange}
-            />
-
-
-
             {this.props.error && (
             <div className="invalid-feedback">
                 {this.props.error}

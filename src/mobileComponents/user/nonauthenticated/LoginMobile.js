@@ -65,54 +65,52 @@ class LoginMobile extends Component {
     render() {
         const {errors} = this.state;
         return (
-            <div className="loginOuterMobile">
-                <div className="loginContainerMobile">
-                    <h5 className=" text-center">Giriş Yap</h5>
-                    {errors.errorMessage && (
-                        <AlertMobile type="alert-danger" message={errors.errorMessage}/>
+            <div className="full-width container">
+                <h5 className=" text-center">Giriş Yap</h5>
+                {errors.errorMessage && (
+                    <AlertMobile type="alert-danger" message={errors.errorMessage}/>
 
-                    )}
-                    {errors.userWarningMessage && (
-                        <a href={"/verifyPhone"}>
+                )}
+                {errors.userWarningMessage && (
+                    <a href={"/verifyPhone"}>
                         <AlertMobile type="alert-danger" message={errors.userWarningMessage}/>
-                        </a>
-                    )}
-                    <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                            <input
-                                type="text"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.errorMessage
-                                })}
-                                placeholder="E-Posta Adresi"
-                                name="username"
-                                value={this.state.username}
-                                onChange={this.onChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <input
-                                type="password"
-                                className={classnames("form-control form-control-lg", {
-                                    "is-invalid": errors.errorMessage
-                                })}
-                                placeholder="Şifre"
-                                name="password"
-                                value={this.state.password}
-                                onChange={this.onChange}
-                            />
-
-                        </div>
-                        <input type="submit" value="Giriş Yap"
-                               className="btn btn-info btn-block mt-4"
-                               disabled={this.state.isSubmitDisabled}/>
-                    </form>
-                    <br/>
-                    <a href="/forgottenPassword">Şifremi Unuttum</a> | <a href="/register">Kaydol</a>
-                    <br/>
-                    <div className={"bottom"}>
-                        <DownloadAppLink/>
+                    </a>
+                )}
+                <form onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.errorMessage
+                            })}
+                            placeholder="E-Posta Adresi"
+                            name="username"
+                            value={this.state.username}
+                            onChange={this.onChange}
+                        />
                     </div>
+                    <div className="form-group">
+                        <input
+                            type="password"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.errorMessage
+                            })}
+                            placeholder="Şifre"
+                            name="password"
+                            value={this.state.password}
+                            onChange={this.onChange}
+                        />
+
+                    </div>
+                    <input type="submit" value="Giriş Yap"
+                           className="btn btn-info btn-block mt-4"
+                           disabled={this.state.isSubmitDisabled}/>
+                </form>
+                <br/>
+                <a href="/forgottenPassword">Şifremi Unuttum</a> | <a href="/register">Kaydol</a>
+                <br/>
+                <div className={"bottom"}>
+                    <DownloadAppLink/>
                 </div>
             </div>
 

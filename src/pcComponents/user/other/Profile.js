@@ -241,7 +241,7 @@ class Profile extends React.Component {
 
 
                             <span>{this.state.gender} / {this.state.age}</span>
-                            <h4>{this.state.point} <i className="far fa-star"/></h4>
+                            {/*<h4>{this.state.point} <i className="far fa-star"/></h4>*/}
                             <hr/>
                             {/*{(this.props.match.params.id === localStorage.getItem("userId")) &&*/}
                             {/*(*/}

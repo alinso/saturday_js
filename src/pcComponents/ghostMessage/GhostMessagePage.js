@@ -3,13 +3,13 @@ import Security from "../../security/Security";
 import classnames from "classnames";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
-import GhostMessageBoxMobile from "./GhostMessageBoxMobile";
-import SinglePhotoSelectorMobile from "../common/SinglePhotoSelectorMobile";
+import GhostMessageBoxMobile from "./GhostMessageBox";
+import SinglePhotoSelectorMobile from "../common/SinglePhotoSelector";
 
 const axios = require('axios');
 
 
-class GhostMessagePageMobile extends React.Component {
+class GhostMessagePage extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
@@ -149,7 +149,7 @@ class GhostMessagePageMobile extends React.Component {
         }
 
         return (
-            <div className={"full-width"} style={{paddingBottom:"70px"}}>
+            <div className={"col-md-6 offset-md-3"} style={{paddingBottom:"70px"}}>
                 <GhostMessageBoxMobile
                     activityId={this.props.match.params.id}
                 />
@@ -204,4 +204,4 @@ class GhostMessagePageMobile extends React.Component {
 }
 
 
-export default GhostMessagePageMobile;
+export default GhostMessagePage;

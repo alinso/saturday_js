@@ -69,8 +69,8 @@ class UserHeader extends React.Component {
                                 <i className="fas fa-2x fa-glass-cheers"/></a>
                         </li>
                         <li className="nav-item nav-link">
-                            <a href="/discover" className={"doSometingLink"} title={"Jumanji"}>
-                                <i className="fas fa-2x fa-dice"/></a>
+                           &nbsp; &nbsp; &nbsp;    <a href="/ghostMessage" className={"doSometingLink"} title={"Jumanji"}>
+                                <i className="fas fa-2x fa-pen"></i><strong>DUVAR</strong></a>
                         </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right ">

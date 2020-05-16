@@ -14,6 +14,7 @@ class UpdateActivityMobile extends BaseActivityFormMobile {
         this.fillPage();
         this.onSubmit = this.onSubmit.bind(this);
         this.loadCities();
+        this.loadCategories();
     }
 
     loadCities(){
@@ -24,6 +25,17 @@ class UpdateActivityMobile extends BaseActivityFormMobile {
                 self.setState({cities:result.cities});
             })
             .catch(function (error) {
+            });
+
+    }
+    loadCategories() {
+        const self = this;
+        axios.get(Globals.serviceUrl + 'category/allCategories', Security.authHeader())
+            .then(function (response) {
+                self.setState({allCategories: response.data});
+            })
+            .catch(function (error) {
+                console.log(error.response);
             });
 
     }
@@ -45,6 +57,13 @@ class UpdateActivityMobile extends BaseActivityFormMobile {
                 const minuteFromDb = dateFromDb.getMinutes();
                 let formattedDate = moment(dateFromDb).format("DD/MM/YYYY");
                 self.setState({deadLine:{date:formattedDate,hour:{label:hourFromDb,value:hourFromDb}, minute:{label:minuteFromDb, value:minuteFromDb}}});
+
+
+                let selectedCategoryIds = [];
+                response.data.categories.map(function (c) {
+                    selectedCategoryIds.push(c.id);
+                });
+                self.setState({selectedCategoryIds: selectedCategoryIds});
 
             })
             .catch(function (error) {
@@ -83,7 +102,8 @@ class UpdateActivityMobile extends BaseActivityFormMobile {
         data.append("cityId", this.state.city.value);
         data.append("deadLineString", deadLineString);
         data.append("id", this.props.match.params.id);
-        data.append("hashtagListString", this.state.hashtagListString);
+        data.append("secret", this.state.audiance=="mylist");
+        data.append("selectedCategoryIds", this.state.selectedCategoryIds);
 
         this.updateActivity(data);
     }

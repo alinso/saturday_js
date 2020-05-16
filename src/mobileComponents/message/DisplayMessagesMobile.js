@@ -8,7 +8,6 @@ const axios = require('axios');
 class MessageBoxMobile extends React.Component {
     constructor(props) {
         super(props);
-
         this.state={
             messages:[]
         };

@@ -37,7 +37,6 @@ class InfoMobile extends React.Component {
                 <hr/>
 
 
-
                 <h5><i className="fas fa-align-justify"/> Kurallar</h5>
                 <span>Saygılı ve kibar olunmalı</span><br/>
                 <span>Nefret dili değil, sevgi diliyle konuşulmalı</span><br/>

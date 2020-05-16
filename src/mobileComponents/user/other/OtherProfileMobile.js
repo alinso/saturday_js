@@ -5,10 +5,8 @@ import Globals from "../../../util/Globals";
 import CompleteProfile from "../../../pcComponents/common/CompleteProfile";
 
 const axios = require('axios');
-const isMobile = require('is-mobile');
 
-
-class ProfileMobile extends React.Component {
+class OtherProfileMobile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,10 +22,8 @@ class ProfileMobile extends React.Component {
             attendPercent: null,
             motivation: "",
             interestsArray: [],
-            activityCount: 0,
             premiumType: false,
             errors: {},
-            latestPremiumDate: "",
             haveTheseUsersEverMeet: false,
             vibe: null,
             myVibeOfThisUser: null,
@@ -39,29 +35,15 @@ class ProfileMobile extends React.Component {
         this.follow = this.follow.bind(this);
         this.block = this.block.bind(this);
         this.onVibeChanged = this.onVibeChanged.bind(this);
-        this.deleteAccount = this.deleteAccount.bind(this);
         this.haveTheseUsersEverMeet = this.haveTheseUsersEverMeet.bind(this);
 
+    }
+
+    componentDidMount() {
         this.haveTheseUsersEverMeet();
         this.fillPage();
     }
 
-    deleteAccount() {
-        let res = window.prompt("Hesabın tamamen silinecek, gerçekten silmek istiyorsan aşağıdaki kutuya onaylıyorum yaz ve onay butonunu tıkla");
-        let self = this;
-
-        if (res === "onaylıyorum") {
-            axios.get(Globals.serviceUrl + 'user/deleteAccount/' + localStorage.getItem("userId"), Security.authHeader()).then(function (response) {
-                alert("Hesabın silindi :( umarım geri gelirsin :(");
-                localStorage.removeItem("jwtToken");
-                window.location = "/";
-            })
-                .catch(function (error) {
-                    console.log(error);
-                    self.setState({"errors": error.response.data});
-                });
-        }
-    }
 
     haveTheseUsersEverMeet() {
         let self = this;
@@ -90,32 +72,13 @@ class ProfileMobile extends React.Component {
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
                 self.setState({"profilePicName": response.data.profilePicName});
 
-                if (response.data.interests != null) {
-                    let interests = response.data.interests.split("#");
-                    self.setState({interestsArray: interests});
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-                self.setState({"errors": error.response.data});
+                self.setState({interestsArray: response.data.categories});
             });
 
-        axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/', Security.authHeader())
-            .then(function (response) {
-                self.setState({latestPremiumDate: response.data});
-            });
         axios.get(Globals.serviceUrl + 'vibe/vibeCountOfUser/' + userId, Security.authHeader())
             .then(function (response) {
                 self.setState({vibeCount: response.data});
             });
-
-
-        if (Security.isValidToken())
-            axios.get(Globals.serviceUrl + 'review/isReviewedBefore/' + userId, Security.authHeader())
-                .then(function (response) {
-                    self.setState({"isReviewedBefore": response.data});
-                });
-
 
         if (Security.isValidToken())
             axios.get(Globals.serviceUrl + 'follow/isFollowing/' + userId, Security.authHeader())
@@ -193,7 +156,7 @@ class ProfileMobile extends React.Component {
 
 
     reviewButton() {
-        if (!this.state.isReviewedBefore && this.props.match.params.id !== localStorage.getItem("userId")) {
+        if (this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <a href={"/reviewForm/" + this.props.match.params.id} className={"full-width"}>
                     <button className={"btn btn-menuColorMobile profileButton"}><strong><i
@@ -271,6 +234,7 @@ class ProfileMobile extends React.Component {
 
     render() {
 
+        let {interestsArray} = this.state;
 
         return (
             <div className="full-width container">
@@ -299,7 +263,7 @@ class ProfileMobile extends React.Component {
 
                                     <span className={'silverCheck'}><i className="far fa-check-circle"/>&nbsp;</span>
                                 )}
-                                {this.state.premiumType==="ORGANIZATOR" &&(
+                                {this.state.premiumType === "ORGANIZATOR" && (
 
                                     <span className={'proCheck'}><i className="fas fa-certificate"/>&nbsp;</span>
                                 )}
@@ -308,7 +272,7 @@ class ProfileMobile extends React.Component {
 
                         <h5>{this.state.gender} / {this.state.age}</h5>
 
-                        <h6>{this.state.point} <i className="far fa-star"/></h6>
+                        {/*<h6>{this.state.point} <i className="far fa-star"/></h6>*/}
 
                     </div>
                     <div className={"clear-both"}/>
@@ -369,22 +333,7 @@ class ProfileMobile extends React.Component {
                         <span>Yeterli veri yok!</span>
                     )}
                     <hr/>
-                    {/*<h5>Sosyal Skor</h5>*/}
-                    {/*{this.state.socialScore>0 &&(*/}
 
-
-                    {/*    <div className="progress">*/}
-                    {/*        <div className="progress-bar-striped bg-info" role="progressbar"*/}
-                    {/*             style={{width: (this.state.socialScore /10)+ '%',color:"white"}} aria-valuenow={this.state.socialScore}*/}
-                    {/*             aria-valuemin="0" aria-valuemax="1000">{this.state.socialScore}*/}
-                    {/*        </div>*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
-                    {/*{this.state.socialScore===-1 && this.state.socialScore!== 3212 &&(*/}
-                    {/*    <h6><strong><i className="fas fa-glass-cheers"/></strong>Yeterli veri yok</h6>*/}
-
-                    {/*)}*/}
-                    {/*<hr/>*/}
                 </div>
                 {this.state.attendPercent != null && (
                     <div>
@@ -400,75 +349,9 @@ class ProfileMobile extends React.Component {
                 )}
 
 
-                {(this.props.match.params.id === localStorage.getItem("userId")) &&
-                (<div className={"full-width"}>
-
-
-                        {this.state.latestPremiumDate !== "" && (
-                            <span>Premium üyelik son tarih: {this.state.latestPremiumDate}</span>
-                        )}
-                        <br/>
-
-                        <div className={"text-align-left settingsTitlesMobile"}>
-                            <a href="/myAlbum/">
-                                <button className={"btn btn-menuColorMobile profileButton"}><i
-                                    className="fas fa-images"/> Albüm
-                                </button>
-                            </a><br/>
-                            <a href="/updateInfo/">
-                                <button className={"btn btn-menuColorMobile profileButton"}><i
-                                    className="fas fa-info-circle"/>Bilgilerim
-                                </button>
-                            </a>
-                            <a href={"/usersICanVibe"}>
-                                <button className={"btn btn-menuColorMobile profileButton"}><strong>Verdiğim Oylar</strong>
-                                </button>
-                            </a>
-
-                            <br/><br/>
-                            <button onClick={this.deleteAccount} className={"btn btn-danger profileButton"}><i
-                                className=" fas fa-times"/> Hesabımı Sil
-                            </button>
-                        </div>
-
-
-                        <div className={"text-align-left settingsTitlesMobile"}>
-                            <a href="/referenceCodes/">
-                                <button className={"btn btn-menuColorMobile profileButton"}><i
-                                    className="fas fa-check"/> Referanslar
-                                </button>
-                            </a><br/>
-                            <a href="/followings/">
-                                <button className={"btn btn-menuColorMobile profileButton"}><i
-                                    className="fas fa-bell"/> Bildirim
-                                </button>
-                            </a><br/>
-                            <a href="/blocks/">
-                                <button className={"btn btn-menuColorMobile profileButton"}><i
-                                    className="fas fa-ban"/> Engel Listesi
-                                </button>
-                            </a><br/>
-                            <a href="/updatePassword/">
-                                <button className={"btn btn-menuColorMobile profileButton"}><i
-                                    className="fas fa-key"/> Şifre
-                                </button>
-                            </a><br/>
-                        </div>
-                        <div className={"clear-both"}/>
-
-                    </div>
-                )}
-                <CompleteProfile
-                    userId={this.props.match.params.id}
-                    profilePicName={this.state.profilePicName}
-                    age={this.state.age}
-                    about={this.state.about}
-                    interestsArray={this.state.interestsArray}
-                    photoCount={this.state.photoCount}
-                />
                 <br/>
                 {(localStorage.getItem("userId") === "3212")
-                    && (
+                && (
                     <div className={"full-width"}>
                         <a href={"/uhktybb/police"} className={"float-left"}>
                             <button className={"btn btn-danger"}>Kullanıcı(id:{this.props.match.params.id})
@@ -502,10 +385,11 @@ class ProfileMobile extends React.Component {
                         <h5 className="card-title">İlgi Alanlarım</h5>
                         <hr/>
                         {
-                            this.state.interestsArray.map(function (interest) {
+                            interestsArray.map(function (interest) {
                                 if (interest !== "")
-                                    return (<a href={"/searchUser?hashtag=" + interest}> <span
-                                            className="badge badge-pill badge-success my-interestsMobile">{"#" + interest}</span></a>
+                                    return (<a href={"/categoryDetail/" + interest.id}>
+                                            <span
+                                                className="badge badge-pill badge-success my-interestsMobile">{interest.name}</span></a>
                                     )
                             })
                         }
@@ -541,4 +425,4 @@ class ProfileMobile extends React.Component {
     }
 }
 
-export default ProfileMobile;
+export default OtherProfileMobile;

@@ -5,7 +5,7 @@ import Security from "../../security/Security";
 const axios = require('axios');
 
 
-class GhostMessageBoxMobile extends React.Component {
+class GhostMessageBox extends React.Component {
     constructor(props) {
         super(props);
 
@@ -38,7 +38,7 @@ class GhostMessageBoxMobile extends React.Component {
         //get messages
         let self=this;
 
-        axios.get(Globals.serviceUrl + 'ghostMessage/all/', Security.authHeader())
+        axios.get(Globals.serviceUrl + 'ghostMessage/allPC/', Security.authHeader())
             .then(function (response) {
                 self.setState({messages: response.data});
                 if(x===0)
@@ -59,7 +59,7 @@ class GhostMessageBoxMobile extends React.Component {
 
         let self=this;
         return (
-            <div className="ghostMessageBoxMobile" ref={(div) => {
+            <div className="ghostMessageBox" ref={(div) => {
                 this.messageList = div;
             }}>
 
@@ -93,7 +93,7 @@ class GhostMessageBoxMobile extends React.Component {
 }
 
 
-export default GhostMessageBoxMobile;
+export default GhostMessageBox;
 
 
 

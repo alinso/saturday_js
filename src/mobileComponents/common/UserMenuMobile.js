@@ -70,7 +70,6 @@ class UserMenuMobile extends React.Component {
         axios.get(Globals.serviceUrl+'notification/newNotifications/', Security.authHeader())
             .then(function (response) {
 
-                console.log("ok");
                 self.setState({notifications: response.data});
                 response.data.map(function (not) {
                         self.setState({notification: true});
@@ -97,7 +96,7 @@ class UserMenuMobile extends React.Component {
         return (<div>
                 <div className={this.state.hamburgerOpen ? "hamburgerContainerMobile" : "displayNone"}>
                     <div className={"hamburgerMenuItemMobile"}>
-                        <a href={"/profile/"+localStorage.getItem("userId")}>Profilim</a>
+                        <a href={"/myProfile/"}>Profilim</a>
                     </div>
 
                     <div className={"hamburgerMenuItemMobile"}>
