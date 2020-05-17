@@ -36,10 +36,10 @@ class DashboardMobile extends BaseActivityListMobile {
 
         this.loadMore = this.loadMore.bind(this);
         this.fillPage = this.fillPage.bind(this);
-       // this.loadCount = this.loadCount.bind(this);
-       //   this.loadCount();
+        // this.loadCount = this.loadCount.bind(this);
+        //   this.loadCount();
 
-         let cityId = localStorage.getItem("cityId");
+        let cityId = localStorage.getItem("cityId");
         // if (cityId === "null") {
         //     cityId = 1;
         // }
@@ -60,6 +60,7 @@ class DashboardMobile extends BaseActivityListMobile {
         self = this;
         window.onscroll = function (ev) {
             if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
+                if(!self.state.noMoreRecords)
                 self.loadMore();
             }
         };
@@ -216,8 +217,13 @@ class DashboardMobile extends BaseActivityListMobile {
                 )}
 
                 <div style={{opacity: pageOpacity}}>
-                    <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
-
+                    <div className={"half-left"}>
+                        <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
+                    </div>
+                    <div className={"half-left"}>
+                        <a className={"profileTitleMobile"} href={"/allActivities"}>Tüm Aktiviteler</a>
+                    </div>
+                    <div className={"clear-both"}/>
                     <hr/>
                     {/*<strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>*/}
                     <a href="/ghostMessage">

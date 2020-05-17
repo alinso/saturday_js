@@ -92,6 +92,8 @@ import HowToPlayMobile from "./mobileComponents/pandemi/HowToPlayMobile";
 import PandemiMobile from "./mobileComponents/pandemi/PandemiMobile";
 import Categories from "./mobileComponents/user/self/CategoriesMobile";
 import MyProfileMobile from "./mobileComponents/user/self/MyProfileMobile";
+import CategoryDetailMobile from "./mobileComponents/category/CategoryDetail";
+import AllActivitiesMobile from "./mobileComponents/activity/AllActivitiesMobile";
 
 
 const isMobile = require('is-mobile');
@@ -286,6 +288,8 @@ class App extends Component {
                         {<Route exact path="/corona/:difficulty" component={PandemiMobile}/>}
                         {<Route exact path="/howToPlay/:text" component={HowToPlayMobile}/>}
                         {<Route exact path="/categories/" component={Categories}/>}
+                        {<Route exact path="/categoryDetail/:id" component={CategoryDetailMobile}/>}
+                        {<Route exact path="/allActivities/" component={AllActivitiesMobile}/>}
 
 
 

@@ -35,6 +35,8 @@ class BaseActivityFormMobile extends React.Component {
             cities: [],
             city: {},
             errors: {},
+            hideCategories:true,
+            categoriesTitle:"Kategorileri Göster",
             allCategories: [],
             selectedCategoryIds: [],
             activityLimitExceeded:false
@@ -50,7 +52,7 @@ class BaseActivityFormMobile extends React.Component {
         this.handleSelectedFile = this.handleSelectedFile.bind(this);
         this.loadCities = this.loadCities.bind(this);
         this.onSelectChange = this.onSelectChange.bind(this);
-
+        this.toggleCategoryVisibility=this.toggleCategoryVisibility.bind(this);
 
         this.setHours();
         this.setMinutes();
@@ -120,6 +122,16 @@ class BaseActivityFormMobile extends React.Component {
         this.setState({deadLine: deadLineNew});
     }
 
+    toggleCategoryVisibility(){
+        let not = !this.state.hideCategories;
+        this.setState({hideCategories:not});
+
+        if(not)
+            this.setState({categoriesTitle:"Kategorileri Göster"});
+        if(!not)
+            this.setState({categoriesTitle:"Kategorileri Gizle"});
+
+    }
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value});
@@ -207,9 +219,9 @@ class BaseActivityFormMobile extends React.Component {
                         detail={this.state.detail}
                         hashtagListString={this.state.hashtagListString}
                     />
-                    <br/>
-                    <h5>Kategriler</h5>
-
+                    <hr/>
+                    <button type={"button"} className={"btn btn-info"} onClick={this.toggleCategoryVisibility}><i className="fas fa-plus-circle"/> {this.state.categoriesTitle}</button>
+                    <div hidden={this.state.hideCategories}>
                     {this.state.allCategories.length > 0 && this.state.allCategories.map(function (cat) {
 
                         let catClass = "category-button-passive";
@@ -218,11 +230,15 @@ class BaseActivityFormMobile extends React.Component {
                         return (
                             <div className={"half-left category-button " + catClass}
                                  onClick={() => self.toggleCategory(cat.id)}>
-                                <span>{cat.name}</span>
+                                <span style={{fontSize:"13px"}}> {cat.name} ({cat.watcherCount})</span>
                             </div>
                         )
                     })}
-                    <br/>
+                        {errors.selectedCategoryIds && (
+                            <span className={"error-message"}>{errors.selectedCategoryIds}</span>
+                        )}
+                    </div>
+                    <hr/>
                     <label className={"text-align-left"}><i
                         className="far fa-clock"/> Tarih-Zaman:</label>
                     <div className={"text-align-center"}>

@@ -222,7 +222,7 @@
 .category-button {
     border-radius: 3px;
     margin: 2px;
-    padding: 4px 0px;
+    padding: 1px 0px;
     font-weight: 600;
     color: white;
 }
@@ -235,6 +235,9 @@
     color: #7f868f;
     font-weight: 600;
     font-size: 1.1rem;
+}
+.error-message{
+    color:red;
 }
 
 .loginContainerMobile {

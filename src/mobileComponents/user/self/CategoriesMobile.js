@@ -27,7 +27,15 @@ class Categories extends React.Component {
 
 
     save() {
-        axios.post(Globals.serviceUrl + 'category/saveUserCategories/',this.state.selectedCategoryIds, Security.authHeader());
+        let self = this;
+        axios.post(Globals.serviceUrl + 'category/saveUserCategories/',this.state.selectedCategoryIds, Security.authHeader())
+            .then(function () {
+               alert("İlgi alanlarını kaydettik");
+               window.location.href="/myProfile";
+            })
+            .catch(function (errors) {
+                alert(errors.response.data.userWarningMessage);
+            });
     }
 
     fillPage() {
@@ -90,12 +98,13 @@ class Categories extends React.Component {
                     return (
                         <div className={"half-left category-button " + catClass}
                              onClick={() => self.toggleCategory(cat.id)}>
-                            <span>{cat.name}</span>
+                            <span style={{fontSize:"13px"}}>{cat.name} ({cat.watcherCount})</span>
                         </div>
                     )
                 })}
                 <div className={"clear-both"}/>
                 <button type={"button"} className={"btn btn-info"} onClick={this.save}>Kaydet</button>
+                <br/><br/>
             </div>
         )
     }

@@ -491,6 +491,10 @@ html, body {
     float: left;
     width: 48%;
 }
+.triple-left {
+    float: left;
+    width: 31%;
+}
 
 .meetingListPhoto {
     width: 98%;

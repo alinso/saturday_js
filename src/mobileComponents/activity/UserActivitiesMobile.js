@@ -29,9 +29,9 @@ class UserActivitiesMobile extends BaseActivityListMobile {
         this.activityCounts=this.activityCounts.bind(this);
 
         this.activityCounts();
-        this.fillPage("created");
+        this.fillPage("created",0);
 
-        let self = this;
+       let self = this;
         window.onscroll = function (ev) {
             if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
                 self.loadMore();
@@ -42,7 +42,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
      loadMore() {
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
-         this.fillPage(this.state.type);
+         this.fillPage(this.state.type,newPageNum);
     }
 
     changeType(type) {
@@ -50,7 +50,8 @@ class UserActivitiesMobile extends BaseActivityListMobile {
         let joinedTitle = "";
         this.setState({activities:[]});
         this.setState({type:type});
-        this.fillPage(type);
+        this.setState({pageNum:0});
+        this.fillPage(type,0);
         if (type === "created") {
             createdTitle = "activeTitle";
             joinedTitle = "passiveTitle";
@@ -75,7 +76,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
             });
     }
 
-    fillPage(type) {
+    fillPage(type,newPageNum) {
         const self = this;
 
         axios.get(Globals.serviceUrl + 'user/profile/' + this.props.match.params.id, Security.authHeader())
@@ -90,7 +91,7 @@ class UserActivitiesMobile extends BaseActivityListMobile {
         if(this.props.match.params.id==2534){
             return;
         }
-        axios.get(Globals.serviceUrl + 'activity/findByUserId/' + this.props.match.params.id+"/"+this.state.pageNum+"/"+type, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'activity/findByUserId/' + this.props.match.params.id+"/"+newPageNum+"/"+type, Security.authHeader())
             .then(function (response) {
 
                 if (response.data.length === 0) {

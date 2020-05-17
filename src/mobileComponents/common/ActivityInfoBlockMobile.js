@@ -9,18 +9,13 @@ class ActivityInfoBlockMobile extends React.Component {
 
     render() {
 
-        let hashtags = [];
-        if (this.props.hashtagListString != null) {
-            hashtags = this.props.hashtagListString.split("#");
-        }
 
 
         return (<div className={"activityListActivityDetailMobile"}>
             {this.props.detail}
             <br/>
-            {hashtags.map(function (tag) {
-                    if (tag !== "")
-                        return (<div className={"float-left"}><a href={"/hashtagActivity/"+tag}>{"#" + tag}</a></div>)
+            {this.props.categories.map(function (tag) {
+                        return (<div className={"float-left"}><a href={"/categoryDetail/"+tag.id}>{"#"+tag.name}</a> &nbsp;</div>)
                 }
             )}
             <div className={"clear-both"}></div>

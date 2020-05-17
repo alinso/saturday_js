@@ -60,7 +60,7 @@ class ActivityListItemMobile extends React.Component {
                     <ActivityInfoBlockMobile
                         photoName={this.props.activity.photoName}
                         detail={this.props.activity.detail}
-                        hashtagListString={this.props.activity.hashtagListString}
+                        categories={this.props.activity.categories}
                     />
                     <br/>
                     <div className={"float-left"}>
