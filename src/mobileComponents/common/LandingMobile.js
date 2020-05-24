@@ -27,8 +27,7 @@ class LandingMobile extends Component {
                 </div>
                 <div className={"clear-both"}/>
                 <br/>
-                <h5 className={"m-auto"}>Ankara'da bireysel kullanıcılar tarafından her hafta açılan yüzlerce aktiviteyi görmek yeya herhangi bir aktivitende sana eşlik edebilecek insanlar
-                    bulmak için hemen kaydol!</h5>
+                <h5 className={"m-auto"}>Ankara'da her hafta açılan yüzlerce aktiviteyi görmek için hemen kaydol!</h5>
                 <div className={"full-width"}>
                     <hr/>
                     <div className={"full-width"}>
@@ -43,10 +42,9 @@ class LandingMobile extends Component {
                             bisiklet sürmek istediğinde bazen arkadaşların sana eşlik edememişlerdir.
                             Activuss sayesinde dilediğin zaman yapmak istediklerini paylaşabilir ve planında
                             dahil olmak isteyen birçok insana ulaşabilirsin.
-                            Sen de aynı şekilde insanların aktivitelerini görebilir ve onlara dahil
-                            olabilirsin<br/><br/>
-                            Activuss olarak topluluğumuzdaki insan kalitesini yüksek tutmak için gereken her şeyi yaptık. <strong>NEZİH VE GÜVENLİ BİR PLATFORM YARATTIK. </strong> Çok güçlü oylama ve yorum sistemimiz sayesinde belirli bir kalitenin üzerinde
-                            bir kullanıcı kitlemiz var. Ayrıca kuralları ve işleyişi kadın dostu olarak tasarladık. Ankaralı kullanıcılar için verilen 20.000'den fazla oyu, yorum ve puanları inceleyip aktivitelerini
+                            Sen de aynı şekilde insanların aktivitelerini görebilir ve katılabilirsin.<br/><br/>
+                            Activuss olarak topluluğumuzdaki insan kalitesini yüksek tutmak için gereken her şeyi yaptık. <strong>NEZİH VE GÜVENLİ BİR PLATFORM YARATTIK. </strong> Güçlü oylama sistemimiz sayesinde belirli bir kalitenin üzerinde
+                            bir kullanıcı kitlemiz var. Ayrıca kuralları ve işleyişi kadın dostu olarak tasarladık. Ankaralı kullanıcılar için verilen 30.000'den fazla oyu, yorum ve puanları inceleyip aktivitelerini
                             güvenle paylaşabilir veya başkalarına katılabilirsin.
                         </div>
                         <hr/>
@@ -123,16 +121,15 @@ class LandingMobile extends Component {
                     <h4>Dışarıda Hayat Var!</h4><br/>
                 </div>
                 <a href={"/register"}>
-                    <button className={"btn btnJoin"}><h1>Hadi sen de gel</h1></button>
+                    <button className={"btn btnJoin"}><h1>Sen de gel</h1></button>
                 </a>
 
 
                 <br/><br/><br/>
                 <hr/>
                 <div className={"text-align-left landingText "}>
-                    <div className={"col-md-4"}><h6><i className="fab fa-instagram"/>/activuss</h6></div>
-                    <div className={"col-md-4"}><h6><i className="far fa-envelope"/> mail@activuss.com
-                    </h6></div>
+                    <div className={"col-md-3"}><h6><i className="fab fa-instagram"/>/activuss</h6></div>
+                    <div className={"col-md-6"}><h6><i className="far fa-envelope"/>mail@activuss.com</h6></div>
                 </div>
             </div>
 

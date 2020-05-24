@@ -22,6 +22,7 @@ class DashboardMobile extends BaseActivityListMobile {
             femaleCount: 0,
             cities: [],
             city: {},
+            noActivity:false,
             sponsor: false,
             attendanceRate: 0,
             pageNum: 0,
@@ -43,6 +44,7 @@ class DashboardMobile extends BaseActivityListMobile {
         // if (cityId === "null") {
         //     cityId = 1;
         // }
+
         this.fillPage(cityId);
 
         this.loadCities();
@@ -71,7 +73,13 @@ class DashboardMobile extends BaseActivityListMobile {
         const self = this;
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
-        await axios.get(Globals.serviceUrl + 'activity/findByCategoriesByCityId/' + this.state.city.value + "/" + newPageNum, Security.authHeader())
+        let cityId;
+        if(this.state.city.value==undefined)
+            cityId=1;
+        else
+            cityId=this.state.city.value;
+
+        await axios.get(Globals.serviceUrl + 'activity/findByCategoriesByCityId/' +  cityId+ "/" + newPageNum, Security.authHeader())
             .then(function (response) {
 
                 if (response.data.length === 0) {
@@ -114,6 +122,14 @@ class DashboardMobile extends BaseActivityListMobile {
         axios.get(Globals.serviceUrl + 'activity/findByCategoriesByCityId/' + cityId + "/0", Security.authHeader())
             .then(function (response) {
                 self.setState({activities: response.data});
+
+                if (response.data.length === 0) {
+                    self.setState({noActivity: true});
+                    self.setState({"loading": false});
+                    self.setState({"noMoreRecords": true});
+
+                    return;
+                }
 
 
                 let pageNum = localStorage.getItem("pageNum");
@@ -226,13 +242,11 @@ class DashboardMobile extends BaseActivityListMobile {
                     <div className={"clear-both"}/>
                     <hr/>
                     {/*<strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>*/}
-                    <a href="/ghostMessage">
-                        <button type={"button"} className={"btn btn-danger"}><strong>KARALAMA DUVARI</strong></button>
-                    </a>
-                    &nbsp;&nbsp;
                     <strong><a href={"/help"}>
-                        <button className={"btn btn-success"}> Premium Ol!</button>
+                        <button className={"btn btn-primary"}> <strong>Premium Ol!</strong></button>
                     </a></strong><br/>
+                    <span style={{fontSize:"13px"}}>Activuss'un herhangi bir reklam veya sponsorluk geliri yok. Sadece premium üyelikler sayesinde varlığını sürdürebiliyor.
+                    </span>
 
                     {this.state.attendanceRate > 3 && this.state.attendanceRate < 70 && (
                         (
@@ -255,6 +269,12 @@ class DashboardMobile extends BaseActivityListMobile {
                     )}
 
                     <hr/>
+                    {this.state.noActivity && (
+                        <span>
+                            Eğer seçmediysen <a href={"/categories"}>BURAYA TIKLAYIP</a> ilgi alanlarını seçmelisin. <br/>
+                            Eğer seçtiysen sen bir aktivite oluştur. Unutma, seninle aynı şeylere ilgi duyan birrrsürü insan aktivite açmanı bekliyor.
+                        </span>
+                    )}
 
                     {
                         self.state.activities.map(function (activity, i) {

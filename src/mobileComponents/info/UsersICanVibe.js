@@ -82,25 +82,23 @@ class UsersICanVibe extends React.Component {
                         <div className={"half-left"}>
                             <h5>{UserUtil.translateGender(user.gender)} / {user.age}</h5>
                         </div>
-                        <div className={"half-left"}>
-                            <div className={"full-width"}>
+                        <div className={"half-left text-align-left"}>
                                 <div className="form-group">
-                                    <label className="customRadioLabelMobile">Olumlu&nbsp;</label>
                                     <input type="radio"
                                            name={"myVibeOfThisUser"+user.id}
                                            checked={user.myVibe=="POSITIVE"}
                                            onChange={() => this.onVibeChanged("POSITIVE",user.id)}
                                            className="customRadio"
-                                    />&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label className="customRadioLabelMobile">Olumsuz&nbsp;</label>
+                                    />                                    <label className="customRadioLabelMobile">Olumlu&nbsp;</label>
+                                    <br/>
                                     <input type="radio"
                                            name={"myVibeOfThisUser"+user.id}
                                            onChange={() => this.onVibeChanged("NEGATIVE",user.id)}
                                            checked={user.myVibe==="NEGATIVE"}
                                            className="customRadio"
                                     />
+                                    <label className="customRadioLabelMobile">Olumsuz&nbsp;</label>
                                 </div>
-                            </div>
                         </div>
                         <div className={"clear-both"}/>
                     </div>)

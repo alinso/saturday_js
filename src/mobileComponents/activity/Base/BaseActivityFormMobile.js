@@ -234,10 +234,11 @@ class BaseActivityFormMobile extends React.Component {
                             </div>
                         )
                     })}
-                        {errors.selectedCategoryIds && (
-                            <span className={"error-message"}>{errors.selectedCategoryIds}</span>
-                        )}
-                    </div>
+                    <div className={"clear-both"}/>
+                    </div><br/>
+                    {errors.selectedCategoryIds && (
+                        <span className={"error-message"}>{errors.selectedCategoryIds}</span>
+                    )}
                     <hr/>
                     <label className={"text-align-left"}><i
                         className="far fa-clock"/> Tarih-Zaman:</label>

@@ -64,6 +64,13 @@ class NotificationsMobile extends React.Component {
             </span>
         )
     }
+    newReminderText(id) {
+        return (
+            <span>
+            ile  <a href={"/activityDetail/" + id}>BİR AKTİVİTEN</a> var, hem de BUGÜN!!.
+            </span>
+        )
+    }
 
 
     newRequestText(id) {
@@ -97,6 +104,14 @@ class NotificationsMobile extends React.Component {
         )
     }
 
+    newFollowText() {
+        return (
+            <span>
+                seni <a href={"/myFollowers/"}>TAKİP ETTİ</a> .
+            </span>
+        )
+    }
+
     newRequestApprovalText(id) {
         return (
             <span>
@@ -105,7 +120,7 @@ class NotificationsMobile extends React.Component {
         )
     }
 
-    newFollowingText(id) {
+    newActivityText(id) {
         return (
             <span>
             <a href={"/activityDetail/" + id}>YENİ BİR AKTİVİTE</a> paylaştı.
@@ -174,10 +189,15 @@ class NotificationsMobile extends React.Component {
                                     {(not.notificationType === "MESSAGE") &&
                                         self.newMessageText(not.trigger.id,not.id)
                                     }
+                                    {(not.notificationType === "FOLLOW") &&
+                                    self.newFollowText()
+                                    }
                                     {(not.notificationType === "MESSAGE_ACTIVITY") &&
                                         self.newMessageActivityText(not.message,not.id)
                                     }
-
+                                    {(not.notificationType === "REMINDER") &&
+                                    self.newReminderText(not.message)
+                                    }
                                     {(not.notificationType === "REVIEW") &&
                                     self.newReviewText(not.message)
                                     }
@@ -187,8 +207,8 @@ class NotificationsMobile extends React.Component {
                                     {(not.notificationType === "REQUEST_APPROVAL") &&
                                     self.newRequestApprovalText(not.message)
                                     }
-                                    {(not.notificationType === "FOLLOWING") &&
-                                    self.newFollowingText(not.message)
+                                    {(not.notificationType === "NEW_ACTIVITY") &&
+                                    self.newActivityText(not.message)
                                     }
                                     {(not.notificationType === "MEETING_COMMENT_AVAILABLE") &&
                                     self.newMeetingCommentAvailable(not.message)

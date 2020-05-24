@@ -90,17 +90,12 @@ class MyProfileMobile extends React.Component {
             <div className="full-width container">
                 <div className={"full-width"}>
 
-                    {(localStorage.getItem("userId") === this.props.match.params.id) && (
+
                         <a href={"/updateProfilePic/"} className={"float-left"}>
                             <img className={"profilePicMedium"}
                                  src={UserUtil.buildProfilePicUrl(this.state.profilePicName)}/>
                         </a>
-                    )}
 
-                    {(localStorage.getItem("userId") !== this.props.match.params.id) && (
-                        <img className={"profilePicMedium float-left"}
-                             src={UserUtil.buildProfilePicUrl(this.state.profilePicName)}/>
-                    )}
 
                     <div className={"float-left profileMetaMobile"}>
                         <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
@@ -121,13 +116,13 @@ class MyProfileMobile extends React.Component {
                         </a><br/>
 
                         <h5>{this.state.gender} / {this.state.age}</h5>
+                        <a href={"/myFollowers"}> <strong><i className="fas fa-user"/> {this.state.followerCount}</strong></a>
 
 
                     </div>
                     <div className={"clear-both"}/>
 
                 </div>
-                <span><strong>{this.state.followerCount}</strong> kişi listeye eklemiş</span>
 
                 <hr/>
                 <div>

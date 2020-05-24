@@ -41,16 +41,16 @@ class ActivityDetailMobile extends React.Component {
         axios.get(Globals.serviceUrl + 'vibe/vibePercentOfActivityOwner/' + id, Security.authHeader())
             .then(function (response) {
 
-                let question="Bu aktiviteye katılmak istediğinden emin misin?";
-                if(response.data<75 &&  response.data!==0){
-                    question="Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine KATILMAMANI tavsiye ederiz";
+                let question = "Bu aktiviteye katılmak istediğinden emin misin?";
+                if (response.data < 75 && response.data !== 0) {
+                    question = "Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine KATILMAMANI tavsiye ederiz";
                 }
 
-                if(self.state.activity.thisUserJoined===1 || self.state.activity.thisUserJoined===2)
-                    question="Bu aktiviteden isteğini geri çekmek istediğine emin misin?";
+                if (self.state.activity.thisUserJoined === 1 || self.state.activity.thisUserJoined === 2)
+                    question = "Bu aktiviteden isteğini geri çekmek istediğine emin misin?";
 
-                let result=window.confirm(question);
-                if(!result)
+                let result = window.confirm(question);
+                if (!result)
                     return;
 
 
@@ -96,7 +96,7 @@ class ActivityDetailMobile extends React.Component {
                                 user={activity.profileDto}
                             />
                             <ActivityInfoBlockMobile photoName={activity.photoName} detail={activity.detail}
-                                                     hashtagListString={activity.hashtagListString}/>
+                                                     categories={activity.categories}/>
                             <div className={"clear-both"}/>
                             <br/>
                             <div className={"float-left"}>
@@ -143,21 +143,21 @@ class ActivityDetailMobile extends React.Component {
                                         />
                                         <br/>
                                     </div>
-                                    <div className="half-left">
-                                        {(activity.profileDto.id===parseInt(localStorage.getItem("userId")) && activity.expired) && (
+                                    <div className="half-left text-align-left">
+                                        {(activity.profileDto.id === parseInt(localStorage.getItem("userId")) && activity.expired) && (
                                             <div className="form-group">
                                                 <input type="radio"
-                                                       name={request.id+"result"}
-                                                       checked={request.result===1}
+                                                       name={request.id + "result"}
+                                                       checked={request.result === 1}
                                                        onChange={() => self.onResultChanged(request.id, 1)}
                                                        className="customRadio"
                                                 />
-                                                <label>Geldi&nbsp;</label>
-
+                                                <label>Geldi</label>
+                                                <br/>
                                                 <input type="radio"
-                                                       name={request.id+"result"}
+                                                       name={request.id + "result"}
                                                        onChange={() => self.onResultChanged(request.id, 0)}
-                                                       checked={request.result===0}
+                                                       checked={request.result === 0}
                                                        className="customRadio"
                                                 />
                                                 <label>Gelmedi&nbsp;</label>

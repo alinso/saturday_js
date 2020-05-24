@@ -94,11 +94,10 @@ import Categories from "./mobileComponents/user/self/CategoriesMobile";
 import MyProfileMobile from "./mobileComponents/user/self/MyProfileMobile";
 import CategoryDetailMobile from "./mobileComponents/category/CategoryDetail";
 import AllActivitiesMobile from "./mobileComponents/activity/AllActivitiesMobile";
+import FollowersMobile from "./mobileComponents/user/self/FollowersMobile";
 
 
-const isMobile = require('is-mobile');
-require("./pc.css");
-require("./mobile.css");
+require("./compact.css");
 
 class App extends Component {
 
@@ -212,7 +211,6 @@ class App extends Component {
         //
 
 
-        if(isMobile() || true)
             return (
                 <Router>
                     <div className="App">
@@ -290,8 +288,7 @@ class App extends Component {
                         {<Route exact path="/categories/" component={Categories}/>}
                         {<Route exact path="/categoryDetail/:id" component={CategoryDetailMobile}/>}
                         {<Route exact path="/allActivities/" component={AllActivitiesMobile}/>}
-
-
+                        {<Route exact path="/myFollowers/" component={FollowersMobile}/>}
 
 
                         {this.setMobileMenu()}

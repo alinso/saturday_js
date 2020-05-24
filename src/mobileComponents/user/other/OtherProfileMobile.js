@@ -240,17 +240,9 @@ class OtherProfileMobile extends React.Component {
             <div className="full-width container">
                 <div className={"full-width"}>
 
-                    {(localStorage.getItem("userId") === this.props.match.params.id) && (
-                        <a href={"/updateProfilePic/"} className={"float-left"}>
-                            <img className={"profilePicMedium"}
-                                 src={UserUtil.buildProfilePicUrl(this.state.profilePicName)}/>
-                        </a>
-                    )}
 
-                    {(localStorage.getItem("userId") !== this.props.match.params.id) && (
                         <img className={"profilePicMedium float-left"}
                              src={UserUtil.buildProfilePicUrl(this.state.profilePicName)}/>
-                    )}
 
                     <div className={"float-left profileMetaMobile"}>
                         <a className="userFullName" href={"/profile/" + this.props.match.params.id}>
@@ -273,7 +265,7 @@ class OtherProfileMobile extends React.Component {
                         <h5>{this.state.gender} / {this.state.age}</h5>
 
                         {/*<h6>{this.state.point} <i className="far fa-star"/></h6>*/}
-
+                        <span><strong><i className="fas fa-user"/> {this.state.followerCount}</strong></span>
                     </div>
                     <div className={"clear-both"}/>
 
@@ -294,7 +286,7 @@ class OtherProfileMobile extends React.Component {
                     </div>
                     <div className={"clear-both"}/>
                 </div>
-                <span><strong>{this.state.followerCount}</strong> kişi listeye eklemiş</span>
+
                 {this.state.haveTheseUsersEverMeet && (
                     <div className={"full-width vibeQuestionContainer"}>
                         <div className="form-group">

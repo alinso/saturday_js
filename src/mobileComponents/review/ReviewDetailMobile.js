@@ -52,16 +52,6 @@ class ReviewDetailMobile extends React.Component {
                             <UserFullNameMobile
                                 user={review.writer}
                             /><br/>
-                            {review.positive && (
-                                <strong className={"positiveReview"}><i
-                                    className="fas fa-check"/>OLUMLU</strong>)}
-                            {!review.positive && (<strong className={"negativeReview"}><i
-                                className="fas fa-times"/>&nbsp;OLUMSUZ</strong>)}
-                            , &nbsp;
-                            {review.positive && (
-                                <span className={"reviewTypeFriend  "}>Arkadaş Referansı</span>)}
-                            {!review.positive && (
-                                <strong className={"reviewTypeActivity"}>Aktivite Referansı</strong>)}
 
                             <hr/>
                             {review.review}

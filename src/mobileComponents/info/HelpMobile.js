@@ -95,7 +95,7 @@ class HelpMobile extends React.Component {
                 <br/>
                 <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>Hatfada 5 aktivite <br/>
                 <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>Günde 7 istek <br/>
-                <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>15 kişi onaylama <br/>
+                <span className="silverCheck"><i className="far fa-check-circle"/>&nbsp;</span>12 kişi onaylama <br/>
                 (Aylık : 19.90 ₺/ 3 aylık : 49.90₺ ) <br/>
 
 
@@ -106,7 +106,7 @@ class HelpMobile extends React.Component {
 
                 <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Haftada 10 aktivite <br/>
                 <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Günde 20 istek <br/>
-                <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>25 kişi onaylama <br/>
+                <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>12 kişi onaylama <br/>
                 <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Dolu aktiviteye istek
                 gönderme <br/>
                 <span className="goldCheck"><i className="far fa-check-circle"/>&nbsp;</span>Aktivitene sınırsız istek
