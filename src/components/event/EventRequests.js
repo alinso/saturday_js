@@ -5,7 +5,7 @@ import UserFullName from "../common/UserFullName";
 import UserUtil from "../../util/UserUtil";
 import JSUtil from "../../util/JSUtil";
 import Alert from "../common/Alert";
-import eventEditButtonsMobile from "../common/eventEditButtonsMobile";
+import EventEditButtons from "../common/EventEditButtons";
 import Globals from "../../util/Globals";
 
 const axios = require('axios');

@@ -44,7 +44,7 @@
     font-weight: bold;
 }
 
-.profilePhotoReviewActivity {
+.profilePhotoReviewevent {
     color: #fff;
     font-size: 1rem;
     font-weight: 700;
@@ -62,12 +62,12 @@
     margin: 5px;
     background-color: #fe8b44;
 }
-.activityMessageMobile{
+.eventMessageMobile{
  float: left;
     margin-left: 10px;
 }
 
-.activityMessageMobileWarning{
+.eventMessageMobileWarning{
     color: #B68C8C;
     font-size: 13px;
 }
@@ -176,13 +176,13 @@
     overflow-y: scroll;
     margin-bottom: 10px;
 }
-.ghostProfilePic {
+.wallProfilePic {
     width: 45px;
     height: 45px;
     object-fit: cover;
     border-radius:50%
 }
-.ghostMessageBoxMobile {
+.wallMessageBoxMobile {
     width: 100%;
     border-radius: 5px;
     height: 490px;
@@ -212,14 +212,14 @@
     float: left;
     width: 50%;
 }
-.category-button-active {
+.interest-button-active {
     background-color: #9373e2;
 }
 
-.category-button-passive {
+.interest-button-passive {
     background-color: #eabdbd;
 }
-.category-button {
+.interest-button {
     border-radius: 3px;
     margin: 2px;
     padding: 1px 0px;
@@ -282,7 +282,7 @@
     text-align: center;
 }
 
-.selectedActivity {
+.selectedevent {
     background-color: #F4D03F;
 }
 
@@ -361,11 +361,11 @@ input[type=checkbox] {
     position: absolute;
 }
 
-.activityListActivityDetailMobile {
+.eventListeventDetailMobile {
     white-space: pre-line;
 }
 
-.activityListDetailContainerMobile {
+.eventListDetailContainerMobile {
     width: 82%;
     margin-left: 5px;
 }

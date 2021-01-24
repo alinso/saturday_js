@@ -144,7 +144,7 @@ html, body {
     color: #282c34
 }
 
-.reviewTypeActivity {
+.reviewTypeevent {
     font-style: italic;
     color: #504a4a;
 }
@@ -406,7 +406,7 @@ html, body {
     max-height: 400px;
 }
 
-.activityListActivityDetail {
+.eventListeventDetail {
     min-height: 100px;
     padding: 10px;
     white-space: pre-line;
@@ -421,18 +421,18 @@ html, body {
     margin-bottom: 10px;
 }
 
-.incomingMessage, .outgoingMessage, .ghostMessage {
+.incomingMessage, .outgoingMessage, .wallMessage {
     border-radius: 5px;
     margin-bottom: 5px;
     font-size: 14px;
 }
 
-.ghostMessage {
+.wallMessage {
     padding: 1px 1px 3px;
     float: left;
 }
 
-.ghostMessageContainer {
+.wallMessageContainer {
     clear: both;
     text-align: left;
 }
@@ -637,7 +637,7 @@ html, body {
     margin-bottom: -50px;
 }
 
-.ghostMessageBox {
+.wallMessageBox {
     width: 100%;
     border-radius: 5px;
     height: 750px;

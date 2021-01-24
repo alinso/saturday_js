@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class ActivityEditButtons extends React.Component {
+class EventEditButtons extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -41,5 +41,5 @@ class ActivityEditButtons extends React.Component {
 }
 
 
-export default ActivityEditButtons;
+export default EventEditButtons;
 

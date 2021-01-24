@@ -4,7 +4,6 @@ import security from "../../../security/Security";
 import Alert from "../../common/Alert";
 import Globals from "../../../util/Globals";
 import DownloadAppLink from "../../common/DownloadAppLink";
-import Alert from "../../../../cemetery/pcComponents/common/Alert";
 
 const axios = require('axios');
 

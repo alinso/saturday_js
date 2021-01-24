@@ -1,10 +1,9 @@
 import React from "react";
 import Security from "../../../security/Security";
-import SinglePhotoSelector from "../../../../cemetery/pcComponents/common/SinglePhotoSelector";
 import Select from 'react-select'
 import classnames from "classnames";
 import AdminMenu from "../AdminMenu";
-
+import SinglePhotoSelector from "../../../components/common/SinglePhotoSelector";
 
 class BaseDiscoverForm extends React.Component {
     constructor(props) {

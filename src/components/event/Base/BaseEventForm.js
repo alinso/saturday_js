@@ -1,16 +1,12 @@
 import React from "react";
 import Security from "../../../security/Security";
-import eventDetailInputMobil from "../../common/eventDetailInputMobil";
 import Datetime from "react-datetime";
 import SinglePhotoSelector from "../../common/SinglePhotoSelector";
 import Select from 'react-select'
-import CityUtil from "../../../util/CityUtil";
 import Alert from "../../common/Alert";
-import Alert from "../../../../cemetery/pcComponents/common/Alert";
 
 const moment = require("moment");
 
-const axios = require('axios');
 
 
 require('moment/locale/tr');

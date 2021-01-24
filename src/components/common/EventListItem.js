@@ -1,7 +1,7 @@
 import ProfilePic from "./ProfilePic";
 import UserFullName from "./UserFullName";
 import EventInfoBlock from "./EventInfoBlock";
-import ActivityEditButtons from "./ActivityEditButtons";
+import EventEditButtons from "./EventEditButtons";
 import EventRequestButtons from "./EventRequestButtons";
 import React from "react";
 
@@ -87,7 +87,7 @@ class EventListItem extends React.Component {
                         </a>
 
                     </div>
-                    <ActivityEditButtons
+                    <EventEditButtons
                         activityId={this.props.activity.id}
                         userId={this.props.activity.profileDto.id}
                         deleteActivity={() => this.props.deleteActivity(this.props.activity.id)}

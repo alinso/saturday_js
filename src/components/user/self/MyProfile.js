@@ -2,7 +2,7 @@ import React from "react";
 import Security from "../../../security/Security";
 import UserUtil from "../../../util/UserUtil";
 import Globals from "../../../util/Globals";
-import CompleteProfile from "../../../../cemetery/pcComponents/common/CompleteProfile";
+import CompleteProfile from "../../common/CompleteProfile";
 
 const axios = require('axios');
 

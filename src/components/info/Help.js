@@ -1,7 +1,7 @@
 import React from "react";
-import Alert from "../../../cemetery/pcComponents/common/Alert";
 import Globals from "../../util/Globals";
 import Security from "../../security/Security";
+import Alert from "../common/Alert";
 const axios = require('axios');
 
 

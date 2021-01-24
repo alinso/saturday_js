@@ -1,11 +1,8 @@
 import React from "react";
 import Security from "../../security/Security";
 import Globals from "../../util/Globals";
-import ProfilePic from "../../../cemetery/pcComponents/common/ProfilePic";
-import UserFullName from "../../../cemetery/pcComponents/common/UserFullName";
 import UserUtil from "../../util/UserUtil";
 import ProfilePic from "../common/ProfilePic";
-import UserFullName from "../common/UserFullName";
 
 const axios = require('axios');
 
