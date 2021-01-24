@@ -1,6 +1,6 @@
 import React from "react";
 import Security from "../../../security/Security";
-import SinglePhotoSelector from "../../../pcComponents/common/SinglePhotoSelector";
+import SinglePhotoSelector from "../../../../cemetery/pcComponents/common/SinglePhotoSelector";
 import Select from 'react-select'
 import classnames from "classnames";
 import AdminMenu from "../AdminMenu";
