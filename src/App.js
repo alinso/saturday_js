@@ -62,7 +62,7 @@ import MyProfile from "./components/user/self/MyProfile";
 import CategoryDetailMobile from "./components/category/CategoryDetail";
 import AllEvents from "./components/event/AllEvents";
 import Followers from "./components/user/self/Followers";
-
+import ApplicationForm from "./components/user/application/ApplicationForm";
 
 require("./compact.css");
 
@@ -87,6 +87,7 @@ class App extends Component {
                         {!security.isValidToken() && <Route exact path="/" component={Landing}/>}
                         {security.isValidToken() && <Route exact path="/" component={Dashboard}/>}
                         {<Route exact path="/logout" render={() => security.logout()}/>}
+                        {<Route exact path="/applicationForm" component={ApplicationForm}/>}
                         {<Route exact path="/register" component={Register}/>}
                         {<Route exact path="/login" component={Login}/>}
                         {<Route exact path="/searchUser" component={SearchUser}/>}
