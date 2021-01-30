@@ -14,7 +14,7 @@ class OtherProfile extends React.Component {
             gender: "UNSELECTED",
             profilePicName: "",
             isReviewedBefore: false,
-            isFollowing: false,
+            followStatus: false,
             isBlocked: false,
             about: "",
             age: "",
@@ -71,7 +71,7 @@ class OtherProfile extends React.Component {
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
                 self.setState({"profilePicName": response.data.profilePicName});
 
-                self.setState({interestsArray: response.data.categories});
+                self.setState({interestsArray: response.data.interests});
             });
 
         axios.get(Globals.serviceUrl + 'vibe/vibeCountOfUser/' + userId, Security.authHeader())
@@ -80,9 +80,9 @@ class OtherProfile extends React.Component {
             });
 
         if (Security.isValidToken())
-            axios.get(Globals.serviceUrl + 'follow/isFollowing/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'follow/followStatus/' + userId, Security.authHeader())
                 .then(function (response) {
-                    self.setState({"isFollowing": response.data});
+                    self.setState({"followStatus": response.data});
                 });
         if (Security.isValidToken())
             axios.get(Globals.serviceUrl + 'block/isBlockedIt/' + userId, Security.authHeader())
@@ -102,7 +102,7 @@ class OtherProfile extends React.Component {
         const self = this;
         axios.get(Globals.serviceUrl + 'follow/follow/' + this.props.match.params.id, Security.authHeader())
             .then(function (response) {
-                self.setState({"isFollowing": response.data});
+                self.setState({"followStatus": response.data});
             })
             .catch(function (error) {
                 self.setState({"errors": error.response.data});
@@ -169,22 +169,31 @@ class OtherProfile extends React.Component {
 
 
     followButton() {
-        if (this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
+        if (this.state.followStatus=="FOLLOWING" && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <div className={"full-width"}>
                     <button onClick={this.follow} className={"btn btn-menuColorMobile profileButton "}><strong>
                         <i className="far fa-bell-slash"/>
-                    </strong>Listemden Çıkar
+                    </strong>unfollow
                     </button>
                 </div>
             )
         }
 
-        if (!this.state.isFollowing && this.props.match.params.id !== localStorage.getItem("userId")) {
+        if (this.state.followStatus=="NOT_FOLLOWING" && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (<div className={"full-width"}>
                     <button onClick={this.follow} className={"btn btn-menuColorMobile profileButton"}><strong><i
                         className="far fa-bell"/></strong>
-                        Listeme Ekle
+                        follow
+                    </button>
+                </div>
+            )
+        }
+        if (this.state.followStatus=="WAITING" && this.props.match.params.id !== localStorage.getItem("userId")) {
+            return (<div className={"full-width"}>
+                    <button onClick={this.follow} className={"btn btn-menuColorMobile profileButton"}><strong><i
+                        className="far fa-bell"/></strong>
+                        requested
                     </button>
                 </div>
             )

@@ -66,6 +66,7 @@ import ApplicationForm from "./components/user/application/ApplicationForm";
 import ApplicationList from "./jshfsadf/admin/application/ApplicationList";
 
 require("./compact.css");
+require("./mobile.css");
 
 class App extends Component {
 

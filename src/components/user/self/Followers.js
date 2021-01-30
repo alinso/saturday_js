@@ -14,7 +14,7 @@ class Followers extends React.Component {
         Security.protect()
 
         this.state = {
-            followings: [],
+            followers: [],
             pageNum:0,
             noMoreRecords:false
         };
@@ -31,6 +31,17 @@ class Followers extends React.Component {
         this.fillPage(newPageNum);
     }
 
+    approve(followerId){
+        const self = this;
+        axios.get(Globals.serviceUrl+'follow/approve/'+followerId, Security.authHeader())
+            .then(function (response) {
+                self.fillPage(0);
+            })
+            .catch(function (error) {
+                console.log(error.response);
+            });
+    }
+
     fillPage(pageNum) {
         const self = this;
         axios.get(Globals.serviceUrl+'follow/myFollowers/'+pageNum, Security.authHeader())
@@ -41,15 +52,14 @@ class Followers extends React.Component {
                     return;
                 }
 
-                let newFollowers = self.state.followings;
+                let newFollowers = self.state.followers;
                 newFollowers = newFollowers.concat(response.data);
-                self.setState({followings: newFollowers});
+                self.setState({followers: newFollowers});
 
             })
             .catch(function (error) {
                 console.log(error.response);
             });
-
     }
 
 
@@ -59,19 +69,24 @@ class Followers extends React.Component {
             <div className="full-width container">
                 <h5>Takipçilerim</h5>
                 {
-                    self.state.followings.map(function (following, i) {
+                    self.state.followers.map(function (follow, i) {
                         return (
                             <div className={"full-width"}>
                                 <div className={"half-left"}>
                                     <ProfilePic
-                                        userId={following.id}
-                                        profilePicName={following.profilePicName}
+                                        userId={follow.follower.id}
+                                        profilePicName={follow.follower.profilePicName}
                                         cssClass={"profilePicSmallMobile"}
                                     />
                                     <br/>
                                     <UserFullName
-                                        user={following}
+                                        user={follow.follower}
                                     />
+                                </div>
+                                <div className={"half-left"}>
+                                    {follow.status==="WAITING" &&(
+                                        <div className={"btn btn-success"} onClick={()=>self.approve(follow.id)}>APPROVE</div>
+                                    )}
                                 </div>
                                 <div className={"clear-both"}/>
                                 <hr/>

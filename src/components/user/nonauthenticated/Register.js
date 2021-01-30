@@ -93,7 +93,7 @@ class Register extends React.Component {
         return (
             <div className="full-width registerContainerMobile">
 
-                {registrationCompleted && (<div>
+                {!registrationCompleted && (<div>
                         <h6 className={"color-white"}>Congratulations <strong>{this.state.name}</strong>!</h6>
                         <span className={"color-white"}>
                      Your application has been approved, please fill the form below to complete your registration<br/>
