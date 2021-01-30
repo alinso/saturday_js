@@ -64,7 +64,7 @@ class MyProfile extends React.Component {
                 self.setState({"gender": UserUtil.translateGender(self.state.gender)});
                 self.setState({"profilePicName": response.data.profilePicName});
 
-                self.setState({interestsArray: response.data.categories});
+                self.setState({interestsArray: response.data.interests});
             });
 
         axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/', Security.authHeader())
@@ -174,7 +174,7 @@ class MyProfile extends React.Component {
                                 className="fas fa-info-circle"/> Bilgilerim
                             </button>
                         </a>
-                        <a href="/categories/">
+                        <a href="/interests/">
                             <button className={"btn btn-menuColorMobile profileButton"}><i
                                 className="fas fa-chess-knight"/> İlgi Alanlarım
                             </button>

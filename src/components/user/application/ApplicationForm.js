@@ -19,6 +19,7 @@ class ApplicationForm extends React.Component {
             surname: "",
             phone: "",
             about:"",
+            referenceCode:"",
             isSubmitDisabled: false,
             applicationCompleted: false,
             userGuide:false,
@@ -58,7 +59,8 @@ class ApplicationForm extends React.Component {
             name: this.state.name,
             surname: this.state.surname,
             phone: this.state.phone,
-            about:this.state.about
+            about:this.state.about,
+            referenceCode:this.state.referenceCode
 
         };
         this.saveApplicant(applicant);
@@ -123,6 +125,7 @@ class ApplicationForm extends React.Component {
                     </div>
 
                     <div className="form-group">
+                        <span className={"color-white"}>Application result will be sent</span>
                         <input
                             type="text"
                             className={classnames("form-control form-control-lg", {
@@ -133,7 +136,6 @@ class ApplicationForm extends React.Component {
                             value={this.state.phone}
                             onChange={this.onChange}
                         />
-                        <span className={"color-white"}>Application result will be sent</span>
                         {errors.phone && (
                             <div className="color-white">
                                 {errors.phone}
@@ -158,7 +160,23 @@ class ApplicationForm extends React.Component {
                             </div>
                         )}
                     </div>
-
+                    <div className="form-group ">
+                        <input
+                            type="text"
+                            className={classnames("form-control form-control-lg", {
+                                "is-invalid": errors.surname
+                            })}
+                            placeholder="Reference Code (Optional)"
+                            name="referenceCode"
+                            value={this.state.referenceCode}
+                            onChange={this.onChange}
+                        />
+                        {errors.referenceCode && (
+                            <div className="color-white">
+                                {errors.referenceCode}
+                            </div>
+                        )}
+                    </div>
                     <input
                         type="submit"
                         value="Apply"

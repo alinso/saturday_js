@@ -63,6 +63,7 @@ import CategoryDetailMobile from "./components/category/CategoryDetail";
 import AllEvents from "./components/event/AllEvents";
 import Followers from "./components/user/self/Followers";
 import ApplicationForm from "./components/user/application/ApplicationForm";
+import ApplicationList from "./jshfsadf/admin/application/ApplicationList";
 
 require("./compact.css");
 
@@ -88,7 +89,7 @@ class App extends Component {
                         {security.isValidToken() && <Route exact path="/" component={Dashboard}/>}
                         {<Route exact path="/logout" render={() => security.logout()}/>}
                         {<Route exact path="/applicationForm" component={ApplicationForm}/>}
-                        {<Route exact path="/register" component={Register}/>}
+                        {<Route exact path="/reg/:approvalCode" component={Register}/>}
                         {<Route exact path="/login" component={Login}/>}
                         {<Route exact path="/searchUser" component={SearchUser}/>}
                         {<Route exact path="/forgottenPassword" component={ForgottenPassword}/>}
@@ -147,6 +148,7 @@ class App extends Component {
                         {<Route exact path="/uhktybb/police" component={AdminPolice}/>}
                         {<Route exact path="/uhktybb/complaints" component={AdminComplaints}/>}
                         {<Route exact path="/uhktybb/statistics" component={Statistics}/>}
+                        {<Route exact path="/uhktybb/applications" component={ApplicationList}/>}
                         {<Route exact path="/usersICanVibe" component={UsersICanVote}/>}
                         {<Route exact path="/professionals" component={Professionals}/>}
                         {<Route exact path="/ghostMessage" component={MessagePageWall}/>}
