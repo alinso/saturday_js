@@ -2,8 +2,8 @@ class JSUtil {
     static deleteFromArrayByPropertyName(array, elementPropertyName, elementPropertyValue) {
 
         let deletedIndex = -1;
-        array.forEach(function (meeting, index) {
-            if (meeting[elementPropertyName] === elementPropertyValue) {
+        array.forEach(function (array, index) {
+            if (array[elementPropertyName] === elementPropertyValue) {
                 deletedIndex = index;
             }
         });

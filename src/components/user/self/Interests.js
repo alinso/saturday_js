@@ -28,7 +28,7 @@ class Interests extends React.Component {
 
     save() {
         let self = this;
-        axios.post(Globals.serviceUrl + 'category/saveUserCategories/',this.state.selectedCategoryIds, Security.authHeader())
+        axios.post(Globals.serviceUrl + 'interest/saveUserInterests/',this.state.selectedCategoryIds, Security.authHeader())
             .then(function () {
                alert("İlgi alanlarını kaydettik");
                window.location.href="/myProfile";
@@ -40,7 +40,7 @@ class Interests extends React.Component {
 
     fillPage() {
         const self = this;
-        axios.get(Globals.serviceUrl + 'category/allCategories', Security.authHeader())
+        axios.get(Globals.serviceUrl + 'interest/allInterests', Security.authHeader())
             .then(function (response) {
                 self.setState({allCategories: response.data});
             })
@@ -48,7 +48,7 @@ class Interests extends React.Component {
                 console.log(error.response);
             });
 
-        axios.get(Globals.serviceUrl + "category/myCategories/", Security.authHeader())
+        axios.get(Globals.serviceUrl + "interest/myInterests/", Security.authHeader())
             .then(res => {
 
                 let selectedCategoryIds = [];

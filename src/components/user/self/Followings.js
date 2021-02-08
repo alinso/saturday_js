@@ -33,7 +33,7 @@ class Followings extends React.Component {
 
     }
 
-    unfollow(id, name) {
+    unfollow(id, name,followId) {
         const self = this;
 
         if (window.confirm("Artık " + name + " ile ilgili bildirim almayacaksınız, emin misiniz?"))
@@ -41,7 +41,7 @@ class Followings extends React.Component {
                 .then(function (response) {
 
                     let followings = self.state.followings;
-                    JSUtil.deleteFromArrayByPropertyName(followings, "id", id);
+                    JSUtil.deleteFromArrayByPropertyName(followings, "id", followId);
                     self.setState({blocks: followings});
                 })
                 .catch(function (error) {
@@ -60,19 +60,22 @@ class Followings extends React.Component {
                             <div className={"full-width"}>
                                 <div className={"half-left"}>
                                     <ProfilePic
-                                        userId={following.id}
-                                        profilePicName={following.profilePicName}
+                                        userId={following.profileDto.id}
+                                        profilePicName={following.profileDto.profilePicName}
                                         cssClass={"profilePicSmallMobile"}
                                     />
                                     <br/>
                                     <UserFullName
-                                        user={following}
+                                        user={following.profileDto}
                                     />
                                 </div>
-                                <div className={"half-left"}><br/>
-                                    <button onClick={() => self.unfollow(following.id, following.name)}
-                                            className={"btn btn-danger"}>Bildirim almayı Bırak
-                                    </button>
+                                <div className={"half-left"}>
+                                    {following.status==="WAITING" &&(
+                                        <div className={"btn btn-success"} onClick= {() => self.unfollow(following.profileDto.id, following.profileDto.name,following.id)}>requested</div>
+                                    )}
+                                    {following.status==="APPROVED" &&(
+                                        <div className={"btn btn-success"} onClick={()=>self.unfollow(following.profileDto.id,following.profileDto.name,following.id)}>unfollow</div>
+                                    )}
                                 </div>
                                 <div className={"clear-both"}/>
                                 <hr/>

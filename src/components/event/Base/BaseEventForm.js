@@ -4,6 +4,7 @@ import Datetime from "react-datetime";
 import SinglePhotoSelector from "../../common/SinglePhotoSelector";
 import Select from 'react-select'
 import Alert from "../../common/Alert";
+import EventDetailInput from "../../common/EventDetailInput";
 
 const moment = require("moment");
 
@@ -209,7 +210,7 @@ class BaseEventForm extends React.Component {
                                 onChange={this.onSelectChange}/>
                     </div>
                     <br/>
-                    <eventDetailInputMobil
+                    <EventDetailInput
                         error={errors.detail}
                         onChange={this.onChange}
                         detail={this.state.detail}

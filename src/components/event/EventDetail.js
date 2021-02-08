@@ -35,35 +35,28 @@ class EventDetail extends React.Component {
             });
     }
 
-    joinEvent(id) {
+    joinevent(id) {
         const self = this;
 
-        axios.get(Globals.serviceUrl + 'vote/votePercentOfOrganiser/' + id, Security.authHeader())
+        let question = "Bu aktiviteye katılmak istediğinden emin misin?";
+
+        if (self.state.event.thisUserJoined === 1 || self.state.event.thisUserJoined === 2)
+            question = "Bu aktiviteden isteğini geri çekmek istediğine emin misin?";
+
+        let result = window.confirm(question);
+        if (!result)
+            return;
+
+
+        axios.get(Globals.serviceUrl + 'request/sendRequest/' + id, Security.authHeader())
             .then(function (response) {
 
-                let question = "Bu aktiviteye katılmak istediğinden emin misin?";
-                if (response.data < 75 && response.data !== 0) {
-                    question = "Bu kişinin OLUMLU İZLENİM ORANI düşük, aktivitesine KATILMAMANI tavsiye ederiz";
-                }
+                let currentMeetingNew = Object.assign({}, self.state.event);
+                currentMeetingNew.thisUserJoined = response.data;
 
-                if (self.state.event.thisUserJoined === 1 || self.state.event.thisUserJoined === 2)
-                    question = "Bu aktiviteden isteğini geri çekmek istediğine emin misin?";
-
-                let result = window.confirm(question);
-                if (!result)
-                    return;
-
-
-                axios.get(Globals.serviceUrl + 'request/sendRequest/' + id, Security.authHeader())
-                    .then(function (response) {
-
-                        let currentMeetingNew = Object.assign({}, self.state.event);
-                        currentMeetingNew.thisUserJoined = response.data;
-
-                        self.setState({event: currentMeetingNew});
-                    });
-
+                self.setState({event: currentMeetingNew});
             });
+
     }
 
     onResultChanged(requestId, result) {

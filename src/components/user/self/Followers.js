@@ -20,6 +20,7 @@ class Followers extends React.Component {
         };
 
 
+        this.approve=this.approve.bind(this);
         this.fillPage=this.fillPage.bind(this);
         this.loadMore=this.loadMore.bind(this);
         this.fillPage(0);
@@ -32,10 +33,29 @@ class Followers extends React.Component {
     }
 
     approve(followerId){
-        const self = this;
+        let self = this;
         axios.get(Globals.serviceUrl+'follow/approve/'+followerId, Security.authHeader())
             .then(function (response) {
-                self.fillPage(0);
+
+                let nfollowers =  self.state.followers;
+                for(let i=0;i<nfollowers.length;i++){
+                    if(nfollowers[i].id==followerId) {
+                        nfollowers[i].status = "APPROVED";
+                        break;
+                    }
+                }
+                self.setState({followers:nfollowers});
+            });
+    }
+    remove(followerId,name){
+        const self = this;
+
+       if(window.confirm("Do you remove "+name+" from your follower?"))
+        axios.get(Globals.serviceUrl+'follow/remove/'+followerId, Security.authHeader())
+            .then(function (response) {
+                let nfollowers = self.state.followers;
+                JSUtil.deleteFromArrayByPropertyName(nfollowers, "id", followerId);
+                self.setState({followers:nfollowers});
             })
             .catch(function (error) {
                 console.log(error.response);
@@ -74,19 +94,21 @@ class Followers extends React.Component {
                             <div className={"full-width"}>
                                 <div className={"half-left"}>
                                     <ProfilePic
-                                        userId={follow.follower.id}
-                                        profilePicName={follow.follower.profilePicName}
+                                        userId={follow.profileDto.id}
+                                        profilePicName={follow.profileDto.profilePicName}
                                         cssClass={"profilePicSmallMobile"}
                                     />
                                     <br/>
                                     <UserFullName
-                                        user={follow.follower}
+                                        user={follow.profileDto}
                                     />
                                 </div>
                                 <div className={"half-left"}>
                                     {follow.status==="WAITING" &&(
                                         <div className={"btn btn-success"} onClick={()=>self.approve(follow.id)}>APPROVE</div>
                                     )}
+                                    &nbsp;
+                                        <div className={"btn btn-danger"} onClick={()=>self.remove(follow.id,follow.profileDto.name)}>REMOVE</div>
                                 </div>
                                 <div className={"clear-both"}/>
                                 <hr/>

@@ -24,7 +24,6 @@ class UpdateInfo extends React.Component {
         this.state = {
             name: "",
             surname: "",
-            email: "",
             nick:"",
             bDateString: "",
             phone: "",
@@ -102,21 +101,12 @@ class UpdateInfo extends React.Component {
     onSubmit(e) {
         e.preventDefault();
 
-        let phoneValidationResult = Validator.validatePhoneNumber(this.state.phone);
-        if (!phoneValidationResult.valid) {
-            let errorUpdated = {...this.state.errors}
-            errorUpdated.phone = "Telefon numarası uygun formatta değil";
-            this.setState({"errors": errorUpdated})
-            return;
-        }
-
 
         const newUser = {
             id: localStorage.getItem("userId"),
             name: this.state.name,
             surname: this.state.surname,
-            email: this.state.email.trim(),
-            phone: phoneValidationResult.phoneNumer,
+            phone: this.state.phone,
             bDateString: this.state.bDateString,
             gender: this.state.gender,
             referenceCode: this.state.referenceCode,
@@ -194,24 +184,6 @@ class UpdateInfo extends React.Component {
                         {errors.surname && (
                             <div className="invalid-feedback">
                                 {errors.surname}
-                            </div>
-                        )}
-                    </div>
-                    <div className="form-group  text-align-left">
-                        Email*
-                        <input
-                            type="text"
-                            className={classnames("form-control form-control-lg", {
-                                "is-invalid": errors.email
-                            })}
-                            placeholder="E-Posta"
-                            name="email"
-                            value={this.state.email}
-                            onChange={this.onChange}
-                        />
-                        {errors.email && (
-                            <div className="invalid-feedback">
-                                {errors.email}
                             </div>
                         )}
                     </div>

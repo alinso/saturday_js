@@ -155,9 +155,8 @@ class App extends Component {
                         {<Route exact path="/ghostMessage" component={MessagePageWall}/>}
                         {<Route exact path="/corona/:difficulty" component={PandemiMobile}/>}
                         {<Route exact path="/howToPlay/:text" component={HowToPlayMobile}/>}
-                        {<Route exact path="/categories/" component={Interests}/>}
+                        {<Route exact path="/interests/" component={Interests}/>}
                         {<Route exact path="/categoryDetail/:id" component={CategoryDetailMobile}/>}
-                        {<Route exact path="/allActivities/" component={AllEvents}/>}
                         {<Route exact path="/myFollowers/" component={Followers}/>}
 
                         {this.setMobileMenu()}

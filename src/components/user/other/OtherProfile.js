@@ -24,16 +24,14 @@ class OtherProfile extends React.Component {
             premiumType: false,
             errors: {},
             haveTheseUsersEverMeet: false,
-            vibe: null,
-            myVibeOfThisUser: null,
-            vibePercent: 0,
-            vibeCount: 0,
+            vote: null,
+            myVoteOfThisUser: null,
             followerCount: 0
         };
 
         this.follow = this.follow.bind(this);
         this.block = this.block.bind(this);
-        this.onVibeChanged = this.onVibeChanged.bind(this);
+        this.onVoteChanged = this.onVoteChanged.bind(this);
         this.haveTheseUsersEverMeet = this.haveTheseUsersEverMeet.bind(this);
 
     }
@@ -48,12 +46,12 @@ class OtherProfile extends React.Component {
         let self = this;
         if (Security.isValidToken()) {
             if (localStorage.getItem("userId") !== this.props.match.params.id) {
-                axios.get(Globals.serviceUrl + 'vibe/haveTheseUsersEverMeet/' + this.props.match.params.id, Security.authHeader())
+                axios.get(Globals.serviceUrl + 'vote/haveTheseUsersEverMeet/' + this.props.match.params.id, Security.authHeader())
                     .then(function (response) {
                         self.setState({"haveTheseUsersEverMeet": response.data});
-                        axios.get(Globals.serviceUrl + 'vibe/myVibeOfThisUser/' + self.props.match.params.id, Security.authHeader())
+                        axios.get(Globals.serviceUrl + 'vote/myVoteOfThisUser/' + self.props.match.params.id, Security.authHeader())
                             .then(function (response) {
-                                self.setState({"myVibeOfThisUser": response.data});
+                                self.setState({"myVoteOfThisUser": response.data});
                             });
                     });
             }
@@ -74,9 +72,9 @@ class OtherProfile extends React.Component {
                 self.setState({interestsArray: response.data.interests});
             });
 
-        axios.get(Globals.serviceUrl + 'vibe/vibeCountOfUser/' + userId, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'vote/voteCountOfUser/' + userId, Security.authHeader())
             .then(function (response) {
-                self.setState({vibeCount: response.data});
+                self.setState({voteCount: response.data});
             });
 
         if (Security.isValidToken())
@@ -90,9 +88,9 @@ class OtherProfile extends React.Component {
                     self.setState({"isBlocked": response.data});
                 });
         if (Security.isValidToken()) {
-            axios.get(Globals.serviceUrl + 'vibe/vibePercent/' + userId, Security.authHeader())
+            axios.get(Globals.serviceUrl + 'vote/votePercent/' + userId, Security.authHeader())
                 .then(function (response) {
-                    self.setState({"vibePercent": response.data});
+                    self.setState({"votePercent": response.data});
                 });
         }
 
@@ -169,7 +167,7 @@ class OtherProfile extends React.Component {
 
 
     followButton() {
-        if (this.state.followStatus=="FOLLOWING" && this.props.match.params.id !== localStorage.getItem("userId")) {
+        if (this.state.followStatus=="APPROVED" && this.props.match.params.id !== localStorage.getItem("userId")) {
             return (
                 <div className={"full-width"}>
                     <button onClick={this.follow} className={"btn btn-menuColorMobile profileButton "}><strong>
@@ -226,16 +224,16 @@ class OtherProfile extends React.Component {
 
     }
 
-    onVibeChanged(vibeType) {
+    onVoteChanged(voteType) {
         let self = this;
-        let vibeDto = {};
-        vibeDto.readerId = this.props.match.params.id;
-        vibeDto.vibeType = vibeType;
-        vibeDto.writerId = null;
+        let voteDto = {};
+        voteDto.readerId = this.props.match.params.id;
+        voteDto.voteType = voteType;
+        voteDto.writerId = null;
 
-        axios.post(Globals.serviceUrl + 'vibe/save/', vibeDto, Security.authHeader())
+        axios.post(Globals.serviceUrl + 'vote/save/', voteDto, Security.authHeader())
             .then(function (response) {
-                self.setState({myVibeOfThisUser: vibeType})
+                self.setState({myVoteOfThisUser: voteType})
             });
     }
 
@@ -298,20 +296,27 @@ class OtherProfile extends React.Component {
                 {this.state.haveTheseUsersEverMeet && (
                     <div className={"full-width vibeQuestionContainer"}>
                         <div className="form-group">
-                            <strong>Bu kişi sende nasıl bir izlenim bıraktı?</strong><br/>
+                            <strong>Would you prefer to join an event with this person again?</strong><br/>
                             (Bu cevabı yalnız sen görebilirsin ve istediğin zaman değiştirebilirsin) <br/>
-                            <label className="customRadioLabelMobile">Olumlu&nbsp;</label>
+                            <label className="customRadioLabelMobile">YES&nbsp;</label>
                             <input type="radio"
-                                   name="myVibeOfThisUser"
-                                   checked={this.state.myVibeOfThisUser === "POSITIVE"}
-                                   onChange={() => this.onVibeChanged("POSITIVE")}
+                                   name="myVoteOfThisUser"
+                                   checked={this.state.myVoteOfThisUser === "POSITIVE"}
+                                   onChange={() => this.onVoteChanged("POSITIVE")}
                                    className="customRadio"
                             />&nbsp;&nbsp;&nbsp;&nbsp;
-                            <label className="customRadioLabelMobile">Olumsuz&nbsp;</label>
+                            <label className="customRadioLabelMobile">NO&nbsp;</label>
                             <input type="radio"
-                                   name="myVibeOfThisUser"
-                                   onChange={() => this.onVibeChanged("NEGATIVE")}
-                                   checked={this.state.myVibeOfThisUser === "NEGATIVE"}
+                                   name="myVoteOfThisUser"
+                                   onChange={() => this.onVoteChanged("NEGATIVE")}
+                                   checked={this.state.myVoteOfThisUser === "NEGATIVE"}
+                                   className="customRadio"
+                            />
+                            <label className="customRadioLabelMobile">MAYBE&nbsp;</label>
+                            <input type="radio"
+                                   name="myVoteOfThisUser"
+                                   onChange={() => this.onVoteChanged("NOTR")}
+                                   checked={this.state.myVoteOfThisUser === "NOTR"}
                                    className="customRadio"
                             />
                         </div>

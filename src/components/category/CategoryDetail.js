@@ -62,7 +62,7 @@ class CategoryDetailMobile extends BaseEventList {
                     self.state.activities.length>0 && self.state.activities.map(function (activity, i) {
                         return (
                             <EventListItem activity={activity} deleteActivity={self.deleteActivity}
-                                           joinActivity={self.joinActivity}/>
+                                           joinevent={self.joinevent}/>
                         );
                     })}
                 <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha

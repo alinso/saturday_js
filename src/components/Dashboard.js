@@ -16,13 +16,13 @@ class Dashboard extends BaseEventList {
         super();
 
         this.state = {
-            activities: [],
+            events: [],
             // userCount: 0,
             maleCount: 0,
             femaleCount: 0,
             cities: [],
             city: {},
-            noActivity:false,
+            noevent:false,
             sponsor: false,
             attendanceRate: 0,
             pageNum: 0,
@@ -79,7 +79,7 @@ class Dashboard extends BaseEventList {
         else
             cityId=this.state.city.value;
 
-        await axios.get(Globals.serviceUrl + 'activity/findByCategoriesByCityId/' +  cityId+ "/" + newPageNum, Security.authHeader())
+        await axios.get(Globals.serviceUrl + 'event/findByInterestByCityId/' +  cityId+ "/" + newPageNum, Security.authHeader())
             .then(function (response) {
 
                 if (response.data.length === 0) {
@@ -87,9 +87,9 @@ class Dashboard extends BaseEventList {
                     return;
                 }
 
-                let newActivities = self.state.activities;
-                newActivities = newActivities.concat(response.data);
-                self.setState({activities: newActivities});
+                let newevents = self.state.events;
+                newevents = newevents.concat(response.data);
+                self.setState({events: newevents});
                 localStorage.setItem("pageNum", newPageNum);
 
             });
@@ -119,12 +119,12 @@ class Dashboard extends BaseEventList {
     fillPage(cityId) {
         const self = this;
 
-        axios.get(Globals.serviceUrl + 'activity/findByCategoriesByCityId/' + cityId + "/0", Security.authHeader())
+        axios.get(Globals.serviceUrl + 'event/findByInterestByCityId/' + cityId + "/0", Security.authHeader())
             .then(function (response) {
-                self.setState({activities: response.data});
+                self.setState({events: response.data});
 
                 if (response.data.length === 0) {
-                    self.setState({noActivity: true});
+                    self.setState({noevent: true});
                     self.setState({"loading": false});
                     self.setState({"noMoreRecords": true});
 
@@ -236,18 +236,8 @@ class Dashboard extends BaseEventList {
                     <div className={"half-left"}>
                         <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
                     </div>
-                    <div className={"half-left"}>
-                        <a className={"profileTitleMobile"} href={"/allActivities"}>Tüm Aktiviteler</a>
-                    </div>
                     <div className={"clear-both"}/>
                     <hr/>
-                    {/*<strong><a href={"/top100"}><i className="fas fa-trophy"/> TOP 100</a></strong><br/><br/>*/}
-                    <strong><a href={"/help"}>
-                        <button className={"btn btn-primary"}> <strong>Premium Ol!</strong></button>
-                    </a></strong><br/>
-                    <span style={{fontSize:"13px"}}>Activuss'un herhangi bir reklam veya sponsorluk geliri yok. Sadece premium üyelikler sayesinde varlığını sürdürebiliyor.
-                    </span>
-
                     {this.state.attendanceRate > 3 && this.state.attendanceRate < 70 && (
                         (
                             <div className={"full-width warning"}>
@@ -260,7 +250,7 @@ class Dashboard extends BaseEventList {
                     )}
 
                     {this.state.sponsor && localStorage.getItem("cityId") != "4" && (
-                        <div className={"activityListActivityDetailMobile"}>
+                        <div className={"eventListeventDetailMobile"}>
                             {this.state.sponsor.photoName != null &&
                             (<img src={'/upload/' + this.state.sponsor.photoName} width={"100%"}/>)
                             }
@@ -269,18 +259,18 @@ class Dashboard extends BaseEventList {
                     )}
 
                     <hr/>
-                    {this.state.noActivity && (
+                    {this.state.noevent && (
                         <span>
-                            Eğer seçmediysen <a href={"/categories"}>BURAYA TIKLAYIP</a> ilgi alanlarını seçmelisin. <br/>
+                            Eğer seçmediysen <a href={"/interests"}>BURAYA TIKLAYIP</a> ilgi alanlarını seçmelisin. <br/>
                             Eğer seçtiysen sen bir aktivite oluştur. Unutma, seninle aynı şeylere ilgi duyan birrrsürü insan aktivite açmanı bekliyor.
                         </span>
                     )}
 
                     {
-                        self.state.activities.map(function (activity, i) {
+                        self.state.events.map(function (event, i) {
                             return (
-                                <EventListItem activity={activity} deleteActivity={self.deleteActivity}
-                                               joinActivity={self.joinActivity}/>
+                                <EventListItem event={event} deleteevent={self.deleteevent}
+                                               joinevent={self.joinevent}/>
                             );
                         })}
                     {/*<span className={"discoverInfo"}>Toplam kullanıcı sayısı: {this.state.userCount}</span><br/>*/}

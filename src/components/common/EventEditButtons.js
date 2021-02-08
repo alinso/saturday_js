@@ -27,7 +27,7 @@ class EventEditButtons extends React.Component {
                                 className="btn btn-info meetingProcess"><i className="fas fa-edit"/>
                         </button>
                     </a>
-                    <button onClick={this.props.deleteActivity}
+                    <button onClick={this.props.deleteevent}
                             className="btn btn-warning meetingProcess"><i className="fas fa-trash"/>
                     </button>
 

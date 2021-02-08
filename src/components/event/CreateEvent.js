@@ -14,7 +14,7 @@ class CreateEvent extends BaseEventForm{
         this.onSubmit = this.onSubmit.bind(this);
         this.loadCities();
         this.loadInterests();
-        this.checkEventLimit();
+       // this.checkEventLimit();
     }
 
     checkEventLimit(){
@@ -85,9 +85,9 @@ class CreateEvent extends BaseEventForm{
 
         data.append("cityId",this.state.city.value);
         data.append("detail", this.state.detail);
-        data.append("selectedinterestIds", this.state.selectedinterestIds);
+        data.append("selectedInterestIds", this.state.selectedInterestIds);
         data.append("deadLineString",deadLineString);
-        data.append("secret", this.state.audiance=="mylist");
+        data.append("secret", this.state.audiance==="mylist");
         this.createevent(data);
     }
 

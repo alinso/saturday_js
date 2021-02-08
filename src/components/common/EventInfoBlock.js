@@ -11,10 +11,10 @@ class EventInfoBlock extends React.Component {
 
 
 
-        return (<div className={"activityListActivityDetailMobile"}>
+        return (<div className={"eventListEventDetailMobile"}>
             {this.props.detail}
             <br/>
-            {this.props.categories.map(function (tag) {
+            {this.props.interests.map(function (tag) {
                         return (<div className={"float-left"}><a href={"/categoryDetail/"+tag.id}>{"#"+tag.name}</a> &nbsp;</div>)
                 }
             )}

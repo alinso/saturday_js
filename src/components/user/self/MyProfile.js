@@ -22,7 +22,6 @@ class MyProfile extends React.Component {
             eventCount: 0,
             premiumType: false,
             errors: {},
-            latestPremiumDate: "",
             vibePercent: 0,
             vibeCount: 0,
             followerCount: 0
@@ -67,19 +66,6 @@ class MyProfile extends React.Component {
                 self.setState({interestsArray: response.data.interests});
             });
 
-        axios.get(Globals.serviceUrl + 'premium/latestPremiumDate/', Security.authHeader())
-            .then(function (response) {
-                self.setState({latestPremiumDate: response.data});
-            });
-        axios.get(Globals.serviceUrl + 'vibe/vibeCountOfUser/' + userId, Security.authHeader())
-            .then(function (response) {
-                self.setState({vibeCount: response.data});
-            });
-
-        axios.get(Globals.serviceUrl + 'vibe/vibePercent/' + userId, Security.authHeader())
-            .then(function (response) {
-                self.setState({"vibePercent": response.data});
-            });
     }
 
     render() {
@@ -156,12 +142,6 @@ class MyProfile extends React.Component {
 
 
                 <div className={"full-width"}>
-
-
-                    {this.state.latestPremiumDate !== "" && (
-                        <span>Premium üyelik son tarih: {this.state.latestPremiumDate}</span>
-                    )}
-                    <br/>
 
                     <div className={"text-align-left settingsTitlesMobile"}>
                         <a href="/myAlbum/">
