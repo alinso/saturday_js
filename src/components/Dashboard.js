@@ -5,7 +5,7 @@ import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
 import Globals from "../util/Globals";
 import Alert from "./common/Alert";
-import EventListItem from "./common/EventListItem";
+import EventListItem from "./common/event/EventListItem";
 
 
 const axios = require('axios');
@@ -269,8 +269,11 @@ class Dashboard extends BaseEventList {
                     {
                         self.state.events.map(function (event, i) {
                             return (
-                                <EventListItem event={event} deleteevent={self.deleteevent}
-                                               joinevent={self.joinevent}/>
+                                <EventListItem event={event}
+                                               deleteevent={self.deleteevent}
+                                               joinevent={self.joinevent}
+                                               voteEvent={self.voteEvent}
+                                />
                             );
                         })}
                     {/*<span className={"discoverInfo"}>Toplam kullanıcı sayısı: {this.state.userCount}</span><br/>*/}

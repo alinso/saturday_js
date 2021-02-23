@@ -4,7 +4,7 @@ import Datetime from "react-datetime";
 import SinglePhotoSelector from "../../common/SinglePhotoSelector";
 import Select from 'react-select'
 import Alert from "../../common/Alert";
-import EventDetailInput from "../../common/EventDetailInput";
+import EventDetailInput from "../../common/event/EventDetailInput";
 
 const moment = require("moment");
 

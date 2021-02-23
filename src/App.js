@@ -109,19 +109,19 @@ class App extends Component {
                         {<Route exact path="/followings" component={Followings}/>}
                         {<Route exact path="/blocks" component={Blocks}/>}
 
-                        {<Route exact path="/createActivity" component={CreateEvent}/>}
-                        {<Route exact path="/updateActivity/:id" component={UpdateEvent}/>}
-                        {<Route exact path="/userActivities/:id" component={UserEvents}/>}
-                        {<Route exact path="/ActivityRequests/:id" component={ActivityRequestsMobile}/>}
-                        {<Route exact path="/ActivityDetail/:id" component={EventDetail}/>}
+                        {<Route exact path="/createEvent" component={CreateEvent}/>}
+                        {<Route exact path="/updateEvent/:id" component={UpdateEvent}/>}
+                        {<Route exact path="/userEvents/:id" component={UserEvents}/>}
+                        {<Route exact path="/EventRequests/:id" component={ActivityRequestsMobile}/>}
+                        {<Route exact path="/EventDetail/:id" component={EventDetail}/>}
                         {<Route exact path="/hashtagActivity/:hashtag" component={HashtagActivityMobile}/>}
                         {<Route exact path="/activityAlbum/:id" component={EventAlbum}/>}
 
 
                         {<Route exact path="/message/:id" component={MessagePage}/>}
                         {<Route exact path="/conversations/" component={Conversations}/>}
-                        {<Route exact path="/messageActivity/:id" component={MessageEventPage}/>}
-                        {<Route exact path="/conversationsActivity/" component={ConversationsEvent}/>}
+                        {<Route exact path="/messageEvent/:id" component={MessageEventPage}/>}
+                        {<Route exact path="/conversationsEvent/" component={ConversationsEvent}/>}
 
 
                         {<Route exact path="/reviewForm/:id" component={ReviewForm}/>}

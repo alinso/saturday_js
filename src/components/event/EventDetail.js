@@ -2,8 +2,8 @@ import React from "react";
 import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
-import EventInfoBlock from "../common/EventInfoBlock";
-import EventRequestButtons from "../common/EventRequestButtons";
+import EventInfoBlock from "../common/event/EventInfoBlock";
+import EventRequestButtons from "../common/event/EventRequestButtons";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
 
@@ -141,16 +141,16 @@ class EventDetail extends React.Component {
                                             <div className="form-group">
                                                 <input type="radio"
                                                        name={request.id + "result"}
-                                                       checked={request.result === 1}
-                                                       onChange={() => self.onResultChanged(request.id, 1)}
+                                                       checked={request.result === "CAME"}
+                                                       onChange={() => self.onResultChanged(request.id, "CAME")}
                                                        className="customRadio"
                                                 />
                                                 <label>Geldi</label>
                                                 <br/>
                                                 <input type="radio"
                                                        name={request.id + "result"}
-                                                       onChange={() => self.onResultChanged(request.id, 0)}
-                                                       checked={request.result === 0}
+                                                       onChange={() => self.onResultChanged(request.id, "DIDNT_CAME")}
+                                                       checked={request.result === "DIDNT_CAME"}
                                                        className="customRadio"
                                                 />
                                                 <label>Gelmedi&nbsp;</label>

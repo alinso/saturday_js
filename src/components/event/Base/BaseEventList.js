@@ -14,6 +14,7 @@ class BaseEventList extends React.Component {
 
         this.deleteevent = this.deleteevent.bind(this);
         this.joinevent = this.joinevent.bind(this);
+        this.voteEvent=this.voteEvent.bind(this);
     }
 
 
@@ -70,6 +71,13 @@ class BaseEventList extends React.Component {
                 let meetings = self.state.events;
                 let meetingsNew = JSUtil.deleteFromArrayByPropertyName(meetings, "id", id);
                 self.setState({events: meetingsNew});
+            });
+    }
+
+    voteEvent(id,vote){
+        axios.get(Globals.serviceUrl + "eventVote/save/"+id+"/"+vote , Security.authHeader())
+            .then(res => {
+
             });
     }
 

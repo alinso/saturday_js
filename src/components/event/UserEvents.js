@@ -4,7 +4,7 @@ import '../../util/JSUtil';
 import BaseEventList from "./Base/BaseEventList";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
-import EventListItem from "../common/EventListItem";
+import EventListItem from "../common/event/EventListItem";
 
 const axios = require('axios');
 

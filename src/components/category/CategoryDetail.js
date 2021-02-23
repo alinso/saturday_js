@@ -1,6 +1,6 @@
 import React from "react";
 import Security from "../../security/Security";
-import EventListItem from "../common/EventListItem";
+import EventListItem from "../common/event/EventListItem";
 import Globals from "../../util/Globals";
 import BaseEventList from "../event/Base/BaseEventList";
 const axios = require('axios');
