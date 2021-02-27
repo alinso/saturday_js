@@ -1,7 +1,7 @@
 // import React from "react";
 // import Security from "../../security/Security";
 // import BaseEventList from "./Base/BaseEventList";
-// import EventListItem from "../common/EventListItem";
+// import EventBlock from "../common/EventBlock";
 // import Globals from "../../util/Globals";
 // const axios = require('axios');
 // let self;
@@ -39,7 +39,7 @@
 //                     {
 //                         self.state.activities.map(function (activity, i) {
 //                             return (
-//                                 <EventListItem activity={activity} deleteActivity={self.deleteActivity}
+//                                 <EventBlock activity={activity} deleteActivity={self.deleteActivity}
 //                                                joinActivity={self.joinActivity}/>
 //                             );
 //                         })}

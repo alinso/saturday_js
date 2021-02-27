@@ -1,18 +1,18 @@
 import React from "react";
 import Security from "../../security/Security";
-import EventListItem from "../common/event/EventListItem";
+import EventBlock from "../common/event/EventBlock";
 import Globals from "../../util/Globals";
-import BaseEventList from "../event/Base/BaseEventList";
+
 const axios = require('axios');
 
-class CategoryDetailMobile extends BaseEventList {
+class InterestActivity  extends React.Component {
     constructor(props) {
-        super(props);
-
+        super(props)
+        Security.protect();
         this.state = {
             activities: [],
-            pageNum:0,
-            noMoreRecords:false
+            pageNum: 0,
+            noMoreRecords: false
         };
 
         this.loadMore = this.loadMore.bind(this);
@@ -30,7 +30,7 @@ class CategoryDetailMobile extends BaseEventList {
     fillPage(newPageNum) {
         const self = this;
 
-        axios.get(Globals.serviceUrl + 'category/activities/' + this.props.match.params.id+"/"+newPageNum, Security.authHeader())
+        axios.get(Globals.serviceUrl + 'category/activities/' + this.props.match.params.id + "/" + newPageNum, Security.authHeader())
             .then(function (response) {
                 if (response.data.length === 0) {
                     self.setState({noMoreRecords: true});
@@ -53,16 +53,14 @@ class CategoryDetailMobile extends BaseEventList {
     }
 
 
-
     render() {
         const self = this;
         return (
             <div className="full-width container">
                 {
-                    self.state.activities.length>0 && self.state.activities.map(function (activity, i) {
+                    self.state.activities.length > 0 && self.state.activities.map(function (activity, i) {
                         return (
-                            <EventListItem activity={activity} deleteActivity={self.deleteActivity}
-                                           joinevent={self.joinevent}/>
+                            <EventBlock event={activity} />
                         );
                     })}
                 <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha
@@ -73,4 +71,4 @@ class CategoryDetailMobile extends BaseEventList {
     }
 }
 
-export default CategoryDetailMobile;
+export default InterestActivity;

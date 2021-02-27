@@ -1,7 +1,7 @@
 import React from "react";
 
 
-class EventInfoBlock extends React.Component {
+class EventInfo extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -15,7 +15,7 @@ class EventInfoBlock extends React.Component {
             {this.props.detail}
             <br/>
             {this.props.interests.map(function (tag) {
-                        return (<div className={"float-left"}><a href={"/categoryDetail/"+tag.id}>{"#"+tag.name}</a> &nbsp;</div>)
+                        return (<div key={tag.id} className={"float-left"}><a href={"/categoryDetail/"+tag.id}>{"#"+tag.name}</a> &nbsp;</div>)
                 }
             )}
             <div className={"clear-both"}></div>
@@ -31,5 +31,5 @@ class EventInfoBlock extends React.Component {
 }
 
 
-export default EventInfoBlock;
+export default EventInfo;
 

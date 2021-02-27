@@ -24,7 +24,6 @@ class UpdateInfo extends React.Component {
         this.state = {
             name: "",
             surname: "",
-            nick:"",
             bDateString: "",
             phone: "",
             gender: "UNSELECTED",
@@ -34,7 +33,8 @@ class UpdateInfo extends React.Component {
             motivation: "",
             city: {},
             cities: [],
-            errors: {}
+            errors: {},
+            balance:"x"
         };
 
         this.onChange = this.onChange.bind(this);
@@ -111,9 +111,9 @@ class UpdateInfo extends React.Component {
             gender: this.state.gender,
             referenceCode: this.state.referenceCode,
             about: this.state.about,
-            nick:this.state.nick,
             cityId: this.state.city.value,
             motivation: this.state.motivation,
+            balance:this.state.balance
         };
         this.updateUser(newUser);
     }
@@ -169,24 +169,7 @@ class UpdateInfo extends React.Component {
                             </div>
                         )}
                     </div>
-                    <div className="form-group  text-align-left">
-                        Duvar İçin Takma Ad(Nick)
-                        <input
-                            type="text"
-                            className={classnames("form-control form-control-lg", {
-                                "is-invalid": errors.nick
-                            })}
-                            placeholder="Nick"
-                            name="nick"
-                            value={this.state.nick}
-                            onChange={this.onChange}
-                        />
-                        {errors.surname && (
-                            <div className="invalid-feedback">
-                                {errors.surname}
-                            </div>
-                        )}
-                    </div>
+
                     <div className="form-group  text-align-left">
                         Telefon*
                         <InputMask
@@ -260,7 +243,37 @@ class UpdateInfo extends React.Component {
                         )}
                     </div>
 
+
                     <div className="form-group">
+                        Do you think gender balance is important in events?<br/>
+                        <label>Yes&nbsp;</label>
+                        <input type="radio"
+                               name="balance"
+                               value="YES"
+                               className={"customRadio"}
+                               onChange={this.onChange}
+                               checked={this.state.balance === "YES"}
+
+                        />&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label>No&nbsp;</label>
+                        <input type="radio"
+                               name="balance"
+                               className={"customRadio"}
+                               onChange={this.onChange}
+                               value="NO"
+                               checked={this.state.balance === "NO"}
+
+                        />
+                        <br/>
+                        <div className="invalid-feedback">
+                            {errors.gender && (errors.gender)}
+                        </div>
+
+                    </div>
+                    <hr/>
+                    <div className="form-group">
+                        Your Gender<br/>
                         <label>Erkek&nbsp;</label>
                         <input type="radio"
                                name="gender"
@@ -290,6 +303,8 @@ class UpdateInfo extends React.Component {
                         </div>
 
                     </div>
+
+
                     {/*<div className="form-group  text-align-left">*/}
                     {/*    <input*/}
                     {/*        type="text"*/}

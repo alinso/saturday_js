@@ -1,40 +1,56 @@
 import React from "react";
+import Globals from "../../../util/Globals";
+import Security from "../../../security/Security";
 
+const axios = require('axios');
 
 class EventVotes extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            myVote: this.props.event.myVote,
+            vote: this.props.event.vote,
+        }
+    }
+
+    voteEvent(id, vote) {
+        let self = this;
+        axios.get(Globals.serviceUrl + "eventVote/save/" + id + "/" + vote, Security.authHeader())
+            .then(res => {
+                self.setState({myVote: vote});
+                self.setState({vote: res.data});
+            });
     }
 
 
     render() {
-        let myVoteDownCss="";
-        let myVoteUpCss="";
-        if(this.props.myVote===1)
-            myVoteUpCss = "btn-success";
-        else if (this.props.myVote===-1)
-            myVoteDownCss ="btn-success";
+
+        let voteUpCss, voteDownCss = "";
+        if (this.state.myVote == 1) {
+            voteUpCss = "color-blue";
+        } else if (this.state.myVote == -1) {
+            voteDownCss = "color-blue";
+        }
 
         if (this.props.userId !== parseInt(localStorage.getItem("userId"))) {
             return (
                 <div className={"float-left"}>
 
-                    {this.props.event.vote}
+                    {this.state.vote}
                     <button
-                        onClick={() => this.props.voteEvent(this.props.event.id,"1")}
-                        className={"btn "+myVoteUpCss} >
+                        onClick={() => this.voteEvent(this.props.event.id, "1")}
+                        className={"btn "}>
                             <span><i
-                                className="fas fa-arrow-up"/></span>
+                                className={voteUpCss + " fas fa-arrow-up"}/></span>
                     </button>
                     <button
-                        onClick={() => this.props.voteEvent(this.props.event.id,"-1")}
-                        className={"btn"+myVoteDownCss }>
+                        onClick={() => this.voteEvent(this.props.event.id, "-1")}
+                        className={"btn "}>
                             <span><i
-                                className="fas fa-arrow-down"/></span>
+                                className={voteDownCss + " fas fa-arrow-down"}/></span>
                     </button>
                 </div>)
-        }
-        else {
+        } else {
             return "";
         }
     }

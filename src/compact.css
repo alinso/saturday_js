@@ -28,7 +28,9 @@ html, body {
     height: 150px;
     border-radius: 50%;
 }
-
+.color-blue{
+    color: blue;
+}
 
 .profilePicXSmall {
     object-fit: cover;

@@ -5,13 +5,13 @@ import UserFullName from "../common/UserFullName";
 import UserUtil from "../../util/UserUtil";
 import JSUtil from "../../util/JSUtil";
 import Alert from "../common/Alert";
-import EventEditButtons from "../common/event/EventEditButtons";
 import Globals from "../../util/Globals";
+import EventEditButtons from "../common/event/EventEditButtons";
 
 const axios = require('axios');
 
 
-class eventRequestsMobile extends React.Component {
+class EventSettings extends React.Component {
     constructor(props) {
         super(props);
         Security.protect();
@@ -46,18 +46,6 @@ class eventRequestsMobile extends React.Component {
                 console.log(error.response);
             });
 
-    }
-
-    deleteevent(id) {
-
-        const self = this;
-        if (!window.confirm("Dışarı cıkmaktan  vaz mı geçtiniz?"))
-            return;
-
-        axios.get(Globals.serviceUrl + "event/delete/" + id, Security.authHeader())
-            .then(res => {
-                window.location = "/profile/" + localStorage.getItem("userId");
-            });
     }
 
     toggleApprove(request) {
@@ -130,17 +118,13 @@ class eventRequestsMobile extends React.Component {
                     <i className="far fa-clock">{this.state.deadLineString}</i>
                 </div>
                 <div className={"half-left"}>
-                    <eventEditButtonsMobile
+                    <EventEditButtons
                         eventId={this.state.eventId}
-                        userId={parseInt(localStorage.getItem("userId"))}
-                        deleteevent={() => self.deleteevent(this.state.eventId)}
                     />
                 </div>
                 <div className={"clear-both"}/>
                 <hr/>
-                <h5><a href={"/messageevent/" + this.state.eventId}> <i className="fas fa-envelope"/> Grup
-                    Sohbetine Katıl</a></h5>
-                <hr/>
+
                 <div className={"full-width"}>
                     <strong>Katılmak İsteyen Kişiler</strong><br/>
                     <strong>GELMEYENLERİ YOKLAMADA İŞARETLE! İŞARETLEMEDİĞİN KİŞİLER GELMİŞ SAYILIR</strong>
@@ -196,4 +180,4 @@ class eventRequestsMobile extends React.Component {
 }
 
 
-export default eventRequestsMobile;
+export default EventSettings;

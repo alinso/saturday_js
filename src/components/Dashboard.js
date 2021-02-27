@@ -1,33 +1,31 @@
 import React from "react";
 import Security from "../security/Security";
-import BaseEventList from "./event/Base/BaseEventList";
 import CityUtil from "../util/CityUtil";
 import Select from 'react-select'
 import Globals from "../util/Globals";
-import Alert from "./common/Alert";
-import EventListItem from "./common/event/EventListItem";
+import EventBlock from "./common/event/EventBlock";
+import EventVotes from "./common/event/EventVotes";
 
 
 const axios = require('axios');
 let self;
 
-class Dashboard extends BaseEventList {
-    constructor() {
-        super();
+class Dashboard extends React.Component {
 
+    constructor(props) {
+        super(props)
+        Security.protect();
         this.state = {
             events: [],
-            // userCount: 0,
-            maleCount: 0,
-            femaleCount: 0,
             cities: [],
             city: {},
-            noevent:false,
+            noevent: false,
             sponsor: false,
             attendanceRate: 0,
             pageNum: 0,
             loading: true,
-            noMoreRecords: false
+            noMoreRecords: false,
+            eventServiceLink:"event/findByInterestByCityIdOrderByVote/"
         };
         axios.get(Globals.serviceUrl + 'notification/newNotifications/', Security.authHeader())
             .then(function (response) {
@@ -37,6 +35,7 @@ class Dashboard extends BaseEventList {
 
         this.loadMore = this.loadMore.bind(this);
         this.fillPage = this.fillPage.bind(this);
+        this.setEventServiceLink=this.setEventServiceLink.bind(this);
         // this.loadCount = this.loadCount.bind(this);
         //   this.loadCount();
 
@@ -45,7 +44,7 @@ class Dashboard extends BaseEventList {
         //     cityId = 1;
         // }
 
-        this.fillPage(cityId);
+        this.fillPage(cityId, this.state.eventServiceLink);
 
         this.loadCities();
 
@@ -62,24 +61,31 @@ class Dashboard extends BaseEventList {
         self = this;
         window.onscroll = function (ev) {
             if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 100)) {
-                if(!self.state.noMoreRecords)
-                self.loadMore();
+                if (!self.state.noMoreRecords)
+                    self.loadMore();
             }
         };
     }
 
+    setEventServiceLink(link){
+        this.setState({eventServiceLink:link});
+        this.setState({pageNum:0});
+        this.fillPage(this.state.city.value,link);
+        localStorage.setItem("scroll", "0");
+
+    }
 
     async loadMore() {
         const self = this;
         let newPageNum = this.state.pageNum + 1;
         this.setState({pageNum: newPageNum});
         let cityId;
-        if(this.state.city.value==undefined)
-            cityId=1;
+        if (this.state.city.value == undefined)
+            cityId = 1;
         else
-            cityId=this.state.city.value;
+            cityId = this.state.city.value;
 
-        await axios.get(Globals.serviceUrl + 'event/findByInterestByCityId/' +  cityId+ "/" + newPageNum, Security.authHeader())
+        await axios.get(Globals.serviceUrl + this.state.eventServiceLink + cityId + "/" + newPageNum, Security.authHeader())
             .then(function (response) {
 
                 if (response.data.length === 0) {
@@ -95,18 +101,6 @@ class Dashboard extends BaseEventList {
             });
     }
 
-
-    loadCount() {
-        axios.get(Globals.serviceUrl + 'user/maleCount/', Security.authHeader())
-            .then(function (response) {
-                self.setState({maleCount: response.data});
-            });
-        axios.get(Globals.serviceUrl + 'user/femaleCount/', Security.authHeader())
-            .then(function (response) {
-                self.setState({femaleCount: response.data});
-            });
-    }
-
     async loadPages(pageNum) {
         console.log("pagenum" + pageNum);
         for (let i = 0; i < pageNum; i++) {
@@ -116,10 +110,12 @@ class Dashboard extends BaseEventList {
 
     }
 
-    fillPage(cityId) {
+    fillPage(cityId,link) {
         const self = this;
+        self.setState({events: []});
 
-        axios.get(Globals.serviceUrl + 'event/findByInterestByCityId/' + cityId + "/0", Security.authHeader())
+
+        axios.get(Globals.serviceUrl + link + cityId + "/0", Security.authHeader())
             .then(function (response) {
                 self.setState({events: response.data});
 
@@ -193,7 +189,7 @@ class Dashboard extends BaseEventList {
     }
 
     onSelectChange(e) {
-        self.fillPage(e.value);
+        self.fillPage(e.value,this.state.eventServiceLink);
         self.setState({city: e});
         self.setState({pageNum: 0});
         self.setState({noMoreRecords: false});
@@ -210,8 +206,7 @@ class Dashboard extends BaseEventList {
     render() {
         const self = this;
         let pageOpacity = 0;
-        let kadin = 16000 - this.state.femaleCount;
-        let erkek = 4000 - this.state.maleCount;
+
         return (
 
             <div className="full-width container">
@@ -235,6 +230,14 @@ class Dashboard extends BaseEventList {
                 <div style={{opacity: pageOpacity}}>
                     <div className={"half-left"}>
                         <Select value={this.state.city} options={this.state.cities} onChange={this.onSelectChange}/>
+                    </div>
+                    <div className={"half-left"}>
+                        <button className={"btn"} onClick={()=>this.setEventServiceLink('event/findByInterestByCityIdOrderByVote/')}>
+                            TOP
+                        </button>
+                        <button className={"btn"} onClick={()=>this.setEventServiceLink('event/findByInterestByCityId/')}>
+                            UPCOMING
+                        </button>
                     </div>
                     <div className={"clear-both"}/>
                     <hr/>
@@ -261,22 +264,19 @@ class Dashboard extends BaseEventList {
                     <hr/>
                     {this.state.noevent && (
                         <span>
-                            Eğer seçmediysen <a href={"/interests"}>BURAYA TIKLAYIP</a> ilgi alanlarını seçmelisin. <br/>
+                            Eğer seçmediysen <a
+                            href={"/interests"}>BURAYA TIKLAYIP</a> ilgi alanlarını seçmelisin. <br/>
                             Eğer seçtiysen sen bir aktivite oluştur. Unutma, seninle aynı şeylere ilgi duyan birrrsürü insan aktivite açmanı bekliyor.
                         </span>
                     )}
 
+
                     {
                         self.state.events.map(function (event, i) {
                             return (
-                                <EventListItem event={event}
-                                               deleteevent={self.deleteevent}
-                                               joinevent={self.joinevent}
-                                               voteEvent={self.voteEvent}
-                                />
-                            );
+                                <EventBlock event={event} key={i}/>
+                        );
                         })}
-                    {/*<span className={"discoverInfo"}>Toplam kullanıcı sayısı: {this.state.userCount}</span><br/>*/}
                     <button hidden={this.state.noMoreRecords} className={"btn btn-primary"} onClick={this.loadMore}>Daha
                         fazla göster...
                     </button>

@@ -21,7 +21,7 @@ import Blocks from "./components/user/self/Blocks";
 import CreateEvent from "./components/event/CreateEvent";
 import UpdateEvent from "./components/event/UpdateEvent";
 import UserEvents from "./components/event/UserEvents";
-import ActivityRequestsMobile from "./components/event/EventRequests";
+import EventSettings from "./components/event/EventSettings";
 import EventDetail from "./components/event/EventDetail";
 import MessagePage from "./components/message/MessagePage";
 import Conversations from "./components/message/Conversations";
@@ -59,8 +59,7 @@ import HowToPlayMobile from "./components/pandemi/HowToPlayMobile";
 import PandemiMobile from "./components/pandemi/PandemiMobile";
 import Interests from "./components/user/self/Interests";
 import MyProfile from "./components/user/self/MyProfile";
-import CategoryDetailMobile from "./components/category/CategoryDetail";
-import AllEvents from "./components/event/AllEvents";
+import CategoryDetailMobile from "./components/interest/InterestActivity";
 import Followers from "./components/user/self/Followers";
 import ApplicationForm from "./components/user/application/ApplicationForm";
 import ApplicationList from "./jshfsadf/admin/application/ApplicationList";
@@ -112,7 +111,7 @@ class App extends Component {
                         {<Route exact path="/createEvent" component={CreateEvent}/>}
                         {<Route exact path="/updateEvent/:id" component={UpdateEvent}/>}
                         {<Route exact path="/userEvents/:id" component={UserEvents}/>}
-                        {<Route exact path="/EventRequests/:id" component={ActivityRequestsMobile}/>}
+                        {<Route exact path="/EventSettings/:id" component={EventSettings}/>}
                         {<Route exact path="/EventDetail/:id" component={EventDetail}/>}
                         {<Route exact path="/hashtagActivity/:hashtag" component={HashtagActivityMobile}/>}
                         {<Route exact path="/activityAlbum/:id" component={EventAlbum}/>}

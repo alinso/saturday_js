@@ -1,23 +1,24 @@
 import ProfilePic from "../ProfilePic";
 import UserFullName from "../UserFullName";
-import EventInfoBlock from "./EventInfoBlock";
-import EventEditButtons from "./EventEditButtons";
+import EventInfo from "./EventInfo";
 import EventRequestButtons from "./EventRequestButtons";
 import React from "react";
 import EventVotes from "./EventVotes";
+import Security from "../../../security/Security";
 
 
-class EventListItem extends React.Component {
+class EventBlock extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+        Security.protect();
     }
+
+
 
     render() {
 
-         let selectedClass = "";
-
         return (
-            <div className={"row meetingListSingleMeetingContainer " + selectedClass}>
+            <div className={"row meetingListSingleMeetingContainer"}>
                 <div className="float-left">
                     <ProfilePic
                         userId={this.props.event.profileDto.id}
@@ -42,45 +43,36 @@ class EventListItem extends React.Component {
                             <div className={"clear-both"}/>
                         </div>
                     )}
-                    <EventInfoBlock
+                    <EventInfo
                         photoName={this.props.event.photoName}
                         detail={this.props.event.detail}
                         interests={this.props.event.interests}
                     />
                     <br/>
                     <div className={"float-left"}>
-                        <EventRequestButtons
-                            userId={this.props.event.profileDto.id}
-                            joinevent={() => this.props.joinevent(this.props.event.id)}
-                            thisUserJoined={this.props.event.thisUserJoined}
-                        />
-                        <EventVotes
-                            event = {this.props.event}
-                            voteEvent={this.props.voteEvent}
+                        {this.props.event.profileDto.id !== parseInt(localStorage.getItem("userId")) &&  (!this.props.event.expired) &&(
+                            <EventRequestButtons
+                            event={ this.props.event}
                             />
-                        <a href={"/messageevent/" + this.props.event.id}>
-                            <button
-                                className="btn btn-info eventMessageMobile">
-                            <span>
-                                <i
-                                    className="fas fa-envelope"/></span>
-                            </button>
-                        </a>
+                            )}
+                        <EventVotes event = {this.props.event}/>
                         <a href={"/eventDetail/" + this.props.event.id}>
                             <button
                                 className="btn btn-danger eventMessageMobile">
                             <span>
                                 <i
-                                    className="fas fa-users"/></span>
+                                    className="fas fa-align-justify"/></span>
                             </button>
                         </a>
 
                     </div>
-                    <EventEditButtons
-                        eventId={this.props.event.id}
-                        userId={this.props.event.profileDto.id}
-                        deleteevent={() => this.props.deleteevent(this.props.event.id)}
-                    />
+                    { (this.props.event.profileDto.id === parseInt(localStorage.getItem("userId"))) && (
+                        <a href={"/eventSettings/" + this.props.event.id}>
+                            <button className="btn btn-success meetingProcess">
+                                <i className="fas fa-cog"/>
+                            </button>
+                        </a>
+                        )}
 
 
                     <div className={"float-right"}>
@@ -103,6 +95,6 @@ class EventListItem extends React.Component {
 }
 
 
-export default EventListItem;
+export default EventBlock;
 
 

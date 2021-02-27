@@ -2,10 +2,11 @@ import React from "react";
 import Security from "../../security/Security";
 import ProfilePic from "../common/ProfilePic";
 import UserFullName from "../common/UserFullName";
-import EventInfoBlock from "../common/event/EventInfoBlock";
+import EventInfo from "../common/event/EventInfo";
 import EventRequestButtons from "../common/event/EventRequestButtons";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
+import EventBlock from "../common/event/EventBlock";
 
 const axios = require('axios');
 
@@ -35,29 +36,6 @@ class EventDetail extends React.Component {
             });
     }
 
-    joinevent(id) {
-        const self = this;
-
-        let question = "Bu aktiviteye katılmak istediğinden emin misin?";
-
-        if (self.state.event.thisUserJoined === 1 || self.state.event.thisUserJoined === 2)
-            question = "Bu aktiviteden isteğini geri çekmek istediğine emin misin?";
-
-        let result = window.confirm(question);
-        if (!result)
-            return;
-
-
-        axios.get(Globals.serviceUrl + 'request/sendRequest/' + id, Security.authHeader())
-            .then(function (response) {
-
-                let currentMeetingNew = Object.assign({}, self.state.event);
-                currentMeetingNew.thisUserJoined = response.data;
-
-                self.setState({event: currentMeetingNew});
-            });
-
-    }
 
     onResultChanged(requestId, result) {
         let self = this;
@@ -76,48 +54,18 @@ class EventDetail extends React.Component {
         if (event.profileDto !== undefined) {
             return (
                 <div className={"full-with container"}>
+                    <EventBlock event={event}/>
+                    <div className={"clear-both"}/>
+                    <a href={"/messageevent/" + event.id}>
+                        <button
+                            className="btn btn-info eventMessageMobile">
+                            <span>
+                                <i className="fas fa-envelope"/> EVENT CHAT GROUP</span>
+                        </button>
+                    </a>
+                    <hr/>
+
                     <div className={"full-width"}>
-                        <div className="float-left">
-                            <ProfilePic
-                                cssClass={"profilePicSmallMobile"}
-                                userId={event.profileDto.id}
-                                profilePicName={event.profileDto.profilePicName}
-                            />
-                        </div>
-                        <div className={"float-left eventListDetailContainerMobile text-align-left"}>
-                            <UserFullName
-                                user={event.profileDto}
-                            />
-                            <EventInfoBlock photoName={event.photoName} detail={event.detail}
-                                            interests={event.interests}/>
-                            <div className={"clear-both"}/>
-                            <br/>
-                            <div className={"float-left"}>
-                                <i className="far fa-clock">{event.deadLineString}</i>
-                            </div>
-                            <div className={"float-right"}>
-                                {(!event.expired) &&
-                                (<EventRequestButtons
-                                    userId={event.profileDto.id}
-                                    joinevent={() => self.joinEvent(event.id)}
-                                    thisUserJoined={event.thisUserJoined}
-                                />)
-                                }
-                                {(event.expired) &&
-                                (<a href={"/eventDetail/" + event.id}>
-                                    <button className={"btn btn-warning"}><i className="fas fa-users"/>Katılanlar
-                                    </button>
-                                </a>)
-                                }
-                            </div>
-                        </div>
-                        <div className={"clear-both"}/>
-                    </div>
-                    <div className={"full-width"}>
-                        <hr/>
-                        <h5><a href={"/messageevent/" + event.id}> <i className="fas fa-envelope"/> Grup Sohbetine
-                            Katıl</a></h5>
-                        <hr/>
                         Aktiviteye Katılanlar<br/>
                         <span className={"messageWarning"}>Yalnız Gold üyeler ve onaylanmıs katılımcılar diğer katılımcıları görebilir</span>
                         {(event.requests) &&
@@ -163,8 +111,7 @@ class EventDetail extends React.Component {
                                 </div>
                             )
                         })
-                        }
-                    </div>
+                        }</div>
                     <hr/>
                     <br/>
                     <br/>

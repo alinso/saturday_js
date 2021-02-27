@@ -1,16 +1,16 @@
 import React from "react";
 import Security from "../../security/Security";
 import '../../util/JSUtil';
-import BaseEventList from "./Base/BaseEventList";
 import UserUtil from "../../util/UserUtil";
 import Globals from "../../util/Globals";
-import EventListItem from "../common/event/EventListItem";
+import EventBlock from "../common/event/EventBlock";
 
 const axios = require('axios');
 
-class UserEvents extends BaseEventList {
+class UserEvents  extends React.Component{
     constructor(props) {
-        super(props);
+        super(props)
+        Security.protect()
         UserUtil.redirectIsBlocked(this.props.match.params.id);
 
         this.state = {
@@ -142,8 +142,7 @@ class UserEvents extends BaseEventList {
                 {
                     self.state.events.map(function (event, i) {
                         return (
-                            <EventListItem event={event} deleteevent={self.deleteevent}
-                                           joinevent={self.joinevent}/>
+                            <EventBlock event={event}/>
 
                         );
                     })}
